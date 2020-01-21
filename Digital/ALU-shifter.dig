@@ -54,16 +54,6 @@
       <pos x="2120" y="1080"/>
     </visualElement>
     <visualElement>
-      <elementName>PullDown</elementName>
-      <elementAttributes/>
-      <pos x="2160" y="1080"/>
-    </visualElement>
-    <visualElement>
-      <elementName>PullUp</elementName>
-      <elementAttributes/>
-      <pos x="2180" y="500"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="1900" y="1000"/>
@@ -99,11 +89,6 @@
         </entry>
       </elementAttributes>
       <pos x="1300" y="400"/>
-    </visualElement>
-    <visualElement>
-      <elementName>PullUp</elementName>
-      <elementAttributes/>
-      <pos x="2200" y="500"/>
     </visualElement>
     <visualElement>
       <elementName>PullUp</elementName>
@@ -206,11 +191,6 @@
       <pos x="2540" y="600"/>
     </visualElement>
     <visualElement>
-      <elementName>PullDown</elementName>
-      <elementAttributes/>
-      <pos x="2140" y="1080"/>
-    </visualElement>
-    <visualElement>
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
@@ -246,88 +226,110 @@
           <testData>
             <dataString>CLK ~{L}A RESET_SH ~OUTPUT_SH IN_SH       LENIN_SH       LOADLEN_SH OUT_SH    DLEN
 
-loop (A, 256)
-let L = 3;
-let R = (A &gt;&gt; (7 - L));
+loop (rep,32)
 
-loop (i,8)
+# SRA
+
+let A = random(1&lt;&lt;32);
+let L = 3;
+let R = (A &gt;&gt; (31 - L));
+
+# Load shift length
+
+loop (i,32)
 0   1    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
 1   1    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
 end loop
-loop (i,8)
-0   1    0         1          0           0              1          X         X
-1   1    0         1          0           0              1          X         X
-end loop
+
+# Latch length
 0   1    1         1          0           0              0          X         X
 0   1    0         1          0           0              0          X         X
-loop (i,8)
+
+# Load argument
+loop (i,32)
 0   1    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
 1   1    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
 end loop
+
+# Output result
 loop (i,3)
 0   1    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
 1   1    0         0          0           0              0          X         X
 end loop
-loop (i,5)
-0   1    0         0          0           0              0          (A&gt;&gt;7&amp;1)  X
+
+loop (i,32-3)
+0   1    0         0          0           0              0          (A&gt;&gt;31&amp;1) X
 1   1    0         0          0           0              0          X         X
 end loop
+
+# SLL
+
+let A = random(1&lt;&lt;32);
+let dL = random(32);
+
+let L = 32 + dL;
+let R = (A &lt;&lt; (L - 31));
+loop (i,32)
+0   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
+1   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
+end loop
+0   0    1         1          0           0              0          X         X
+0   0    0         1          0           0              0          X         X
+loop (i,32)
+0   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
+1   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
+end loop
+loop (i,32)
+0   0    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
+1   0    0         0          0           0              0          X         X
 end loop
 
+# SRL
 
+let L = dL;
+let R = (A &gt;&gt; (31 - L));
 
-loop (dL, 8)
-     loop (A, 256)
+loop (i,32)
+0   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
+1   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
+end loop
+0   0    1         1          0           0              0          X         X
+0   0    0         1          0           0              0          X         X
+loop (i,32)
+0   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
+1   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
+end loop
+loop (i,32)
+0   0    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
+1   0    0         0          0           0              0          X         X
+end loop
 
-          let L = 8 + dL;
-          let R = (A &lt;&lt; (L - 7));
-          loop (i,8)
-               0   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
-               1   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
-          end loop
-          loop (i,8)
-               0   0    0         1          0           0              1          X         X
-               1   0    0         1          0           0              1          X         X
-          end loop
-          0   0    1         1          0           0              0          X         X
-          0   0    0         1          0           0              0          X         X
-          loop (i,8)
-               0   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
-               1   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
-          end loop
-          loop (i,8)
-               0   0    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
-               1   0    0         0          0           0              0          X         X
-          end loop
-
-          let L = dL;
-          let R = (A &gt;&gt; (7 - L));
-
-          loop (i,8)
-               0   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
-               1   0    0         1          0           (L&gt;&gt;i&amp;1)       1          X         X
-          end loop
-          loop (i,8)
-               0   0    0         1          0           0              1          X         X
-               1   0    0         1          0           0              1          X         X
-          end loop
-          0   0    1         1          0           0              0          X         X
-          0   0    0         1          0           0              0          X         X
-          loop (i,8)
-               0   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
-               1   0    0         1          (A&gt;&gt;i&amp;1)    0              0          X         X
-          end loop
-          loop (i,8)
-               0   0    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
-               1   0    0         0          0           0              0          X         X
-          end loop
-     end loop
 end loop
 </dataString>
           </testData>
         </entry>
       </elementAttributes>
       <pos x="960" y="1120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullUp</elementName>
+      <elementAttributes/>
+      <pos x="2200" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullUp</elementName>
+      <elementAttributes/>
+      <pos x="2140" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullDown</elementName>
+      <elementAttributes/>
+      <pos x="2160" y="1080"/>
+    </visualElement>
+    <visualElement>
+      <elementName>PullUp</elementName>
+      <elementAttributes/>
+      <pos x="2180" y="500"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -382,6 +384,10 @@ end loop
     <wire>
       <p1 x="1280" y="1040"/>
       <p2 x="1920" y="1040"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="1040"/>
+      <p2 x="2140" y="1040"/>
     </wire>
     <wire>
       <p1 x="2140" y="1040"/>
@@ -454,6 +460,10 @@ end loop
     <wire>
       <p1 x="1900" y="1060"/>
       <p2 x="1920" y="1060"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="1060"/>
+      <p2 x="2120" y="1060"/>
     </wire>
     <wire>
       <p1 x="2120" y="1060"/>
@@ -628,12 +638,12 @@ end loop
       <p2 x="1240" y="720"/>
     </wire>
     <wire>
-      <p1 x="2140" y="740"/>
-      <p2 x="2140" y="1040"/>
+      <p1 x="2140" y="500"/>
+      <p2 x="2140" y="740"/>
     </wire>
     <wire>
-      <p1 x="2140" y="1040"/>
-      <p2 x="2140" y="1080"/>
+      <p1 x="2140" y="740"/>
+      <p2 x="2140" y="1040"/>
     </wire>
     <wire>
       <p1 x="1500" y="400"/>
