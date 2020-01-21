@@ -1,0 +1,2774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>Width</string>
+      <int>6</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>ALU-comb.dig</elementName>
+      <elementAttributes/>
+      <pos x="-240" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Demultiplexer</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Default</string>
+          <long>1</long>
+        </entry>
+      </elementAttributes>
+      <pos x="-220" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>D_FF_AS</elementName>
+      <elementAttributes>
+        <entry>
+          <string>inverterConfig</string>
+          <inverterConfig>
+            <string>Set</string>
+            <string>Clr</string>
+          </inverterConfig>
+        </entry>
+      </elementAttributes>
+      <pos x="-40" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>XOR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>OR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>AND</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>SUM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>~{C}_O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>~{NEG}_O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>N</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>N</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-280" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~{C}_O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-60" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-60" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="80" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>LTU</string>
+        </entry>
+      </elementAttributes>
+      <pos x="80" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>D_FF_AS</elementName>
+      <elementAttributes>
+        <entry>
+          <string>inverterConfig</string>
+          <inverterConfig>
+            <string>Set</string>
+          </inverterConfig>
+        </entry>
+      </elementAttributes>
+      <pos x="-40" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NOr</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="-300" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="-120" y="720"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>XOR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-380" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>EQUAL</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>D_FF_AS</elementName>
+      <elementAttributes>
+        <entry>
+          <string>inverterConfig</string>
+          <inverterConfig>
+            <string>Clr</string>
+          </inverterConfig>
+        </entry>
+      </elementAttributes>
+      <pos x="-40" y="900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="960"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="-120" y="900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-100" y="940"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>LT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="920"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~{NEG}_O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-200" y="920"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>N</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>N</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~RESET_ALU</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Multiplexer</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Selector Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="500" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>SUM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="-60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>OR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="-40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>XOR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>AND</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Multiplexer</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Selector Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="500" y="120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>LTU</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>EQUAL</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>LT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1,1</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="300" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>S0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="260" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>S1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="260" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>CLK_F</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>S</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>S0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-620" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>S1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-620" y="640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>FLAG</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1180" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>OUT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Multiplexer</elementName>
+      <elementAttributes/>
+      <pos x="980" y="-20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>S2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="980" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>S2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-620" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>ALU-shifter.dig</elementName>
+      <elementAttributes/>
+      <pos x="-280" y="-300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>SUM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>S0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>LOADLEN_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~OUTPUT_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>RESET_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="-180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>SHIFT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-60" y="-300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Multiplexer</elementName>
+      <elementAttributes/>
+      <pos x="860" y="0"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>S1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>SHIFT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>LOADLEN_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>~OUTPUT_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="840"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>RESET_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>LOADLEN_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~OUTPUT_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="840"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>RESET_SH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-780" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>DLEN</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>6</int>
+        </entry>
+      </elementAttributes>
+      <pos x="100" y="-280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>SUM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="80" y="-160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>DSUM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="-160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Binary Operators</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK S          A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+loop (rep,32)
+
+let A = random(256);
+let B = random(256);
+
+let ADD = 0;
+let OR  = 1;
+let XOR = 2;
+let AND = 3;
+
+# A+B
+
+# Reset ALU
+0    (ADD)     0        0        0 1          0     0          1          0          X             X    X    X
+1    (ADD)     0        0        0 0          0     0          1          0          X             X    X    X
+
+# Perform computation
+loop (i,8)
+0    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0     0          1          0          ((A+B)&gt;&gt;i&amp;1)  X    X    X
+1    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0     0          1          0          X             X    X    X
+end loop
+
+#A-B
+
+0    (ADD)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          ((A-B)&gt;&gt;i&amp;1)  X    X    X
+1    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+#A|B
+
+0    (OR)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (OR)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          ((A|B)&gt;&gt;i&amp;1)  X    X    X
+1    (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+
+#A^B
+
+0    (XOR)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (XOR)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          ((A^B)&gt;&gt;i&amp;1)  X    X    X
+1    (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+
+#A&amp;B
+
+0    (AND)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (AND)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          ((A&amp;B)&gt;&gt;i&amp;1)  X    X    X
+1    (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="360" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Flags</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK S          A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+loop (rep,32)
+
+##############################################################################################################
+#
+# 0 &lt;= A &lt; B &lt; 128
+
+let A = random(127);
+let B = A + 1 + random(126-A);
+let U = 1;
+let S = 1;
+let E = 0;
+
+let LTU   = 0;
+let LT    = 1;
+let EQUAL = 2;
+
+# LTU
+
+# Reset ALU
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+# Perform calculation
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+# Clock in flag
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+
+# Check
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+
+##############################################################################################################
+#
+# 0 &lt;= B &lt; A &lt; 128
+
+let A = 1 + random(127);
+let B = random(A);
+let U = 0;
+let S = 0;
+let E = 0;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+
+##############################################################################################################
+#
+# 0 &lt;= B &lt; 128 &lt;= A
+
+let A = 0x80 + random(128);
+let B = random(128);
+let U = 0;
+let S = 1;
+let E = 0;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+
+##############################################################################################################
+#
+# 0 &lt;= A &lt; 128 &lt;= B
+
+let A = random(128);
+let B = 0x80 + random(128);
+let U = 1;
+let S = 0;
+let E = 0;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+##############################################################################################################
+#
+# 128 &lt;= B &lt; A
+
+let A = 0x80 + 1 + random(127);
+let B = 0x80 + random(A - 128);
+let U = 0;
+let S = 0;
+let E = 0;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+
+##############################################################################################################
+#
+# 128 &lt;= A &lt; B
+
+let A = 0x80 + random(127);
+let B = A + 1 + random(255 - A);
+let U = 1;
+let S = 1;
+let E = 0;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+
+
+##############################################################################################################
+#
+# A = B
+
+let A = random(256);
+let B = A;
+let U = 0;
+let S = 0;
+let E = 1;
+
+# LTU
+
+0    (LTU)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (LTU)     0        0        1 1          1     0          1          0          X             X    X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+1    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+0    (LTU)     0        0        1 1          0     0          1          0          X             (U)  X    X
+
+# LT
+
+0    (LT)      0        0        1 1          0     0          1          0          X             X    X    X
+1    (LT)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+1    (LT)      0        0        1 1          1     0          1          0          X             X    X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+1    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+0    (LT)      0        0        1 1          0     0          1          0          X             (S)  X    X
+
+# Equal
+
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+1    (EQUAL)   0        0        1 1          1     0          1          0          X             X    X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+1    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+0    (EQUAL)   0        0        1 1          0     0          1          0          X             (E)  X    X
+
+end loop
+
+
+
+
+#CLK S0 S1 S2 A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="560" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>SLT/SLTU</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK S          A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+loop (rep,32)
+
+##############################################################################################################
+#
+# 0 &lt;= A &lt; B &lt; 128
+
+let A = random(127);
+let B = A + 1 + random(126-A);
+let U = 1;
+let S = 1;
+
+let SLTU = 4;
+let SLT  = 5;
+let ADD  = 0;
+
+# SLTU
+
+# Reset ALU
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+# Perform computation
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+# Set flag
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+# Output flag
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+# Output zeros
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+
+##############################################################################################################
+#
+# 0 &lt;= B &lt; A &lt; 128
+
+let A = 1 + random(127);
+let B = random(A);
+let U = 0;
+let S = 0;
+
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+
+
+##############################################################################################################
+#
+# 0 &lt;= B &lt; 128 &lt;= A
+
+let A = 0x80 + random(128);
+let B = random(128);
+let U = 0;
+let S = 1;
+
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+##############################################################################################################
+#
+# 0 &lt;= A &lt; 128 &lt;= B
+
+let A = random(128);
+let B = 0x80 + random(128);
+let U = 1;
+let S = 0;
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+
+##############################################################################################################
+#
+# 128 &lt;= B &lt; A
+
+let A = 0x80 + 1 + random(127);
+let B = 0x80 + random(A - 128);
+let U = 0;
+let S = 0;
+
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+
+##############################################################################################################
+#
+# 128 &lt;= A &lt; B
+
+let A = 0x80 + random(127);
+let B = A + 1 + random(255 - A);
+let U = 1;
+let S = 1;
+
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+
+##############################################################################################################
+#
+# A = B
+
+let A = random(256);
+let B = A;
+let U = 0;
+let S = 0;
+
+# SLTU
+
+0    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLTU)    (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLTU)    0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLTU)    0        0        1 1          0     0          1          0          (U)           X    X    X
+1    (SLTU)    0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+# SLT
+
+0    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+1    (SLT)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     0          1          0          X             X    X    X
+end loop
+
+0    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+1    (SLT)     0        0        1 1          1     0          1          0          X             X    X    X
+
+0    (SLT)     0        0        1 1          0     0          1          0          (S)           X    X    X
+1    (SLT)     0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,7)
+0    (ADD)     0        0        1 0          0     0          1          0          0             X    X    X
+1    (ADD)     0        0        1 0          0     0          1          0          X             X    X    X
+end loop
+
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>SLL/SRL</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK S          A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+loop (rep,32)
+
+let A = random(256);
+let B = random(8);
+
+let SLL = 6;
+
+# SLL
+
+let R = (A &lt;&lt; B) &amp; 0xFF;
+
+# Reset ALU
+
+0   (SLL)      0        0        0 1          0     0          1          0          X             X    X    X
+1   (SLL)      0        0        0 0          0     0          1          0          X             X    X    X
+
+# Load length
+
+loop (i,16)
+0   (SLL)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0     1          1          0          X             X    X    X
+1   (SLL)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0     1          1          0          X             X    X    X
+end loop
+
+# Latch in length
+
+0   (SLL)      0        0        0 1          0     0          1          1          X             X    X    X
+1   (SLL)      0        0        0 1          0     0          1          0          X             X    X    X
+
+# Load in argument
+
+loop (i,8)
+0   (SLL)      (A&gt;&gt;i&amp;1) 0        0 1          0     0          1          0          X             X    X    X
+1   (SLL)      (A&gt;&gt;i&amp;1) 0        0 1          0     0          1          0          X             X    X    X
+end loop
+
+# Output result
+
+loop (i,8)
+0   (SLL)      0        0        0 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SLL)      0        0        0 1          0     0          0          0          X             X    X    X
+end loop
+
+# SRL
+
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SLL)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SLL)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SLL)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SLL)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SLL)      0        0        0 1          0     0          1          1          X             X    X    X
+1   (SLL)      0        0        0 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SLL)      (A&gt;&gt;i&amp;1) 0        0 1          0     0          1          0          X             X    X    X
+1   (SLL)      (A&gt;&gt;i&amp;1) 0        0 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8)
+0   (SLL)      0        0        0 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SLL)      0        0        0 1          0     0          0          0          X             X    X    X
+end loop
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="900" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>SRA</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK S          A        B        N ~RESET_ALU CLK_F LOADLEN_SH ~OUTPUT_SH RESET_SH   OUT           FLAG DLEN DSUM
+
+loop (rep,32)
+
+let SRA = 7;
+
+# SRA
+
+let A = random(256);
+let S = (A &gt;&gt; 7) &amp; 1;
+
+let B = 0;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+# Reset ALU
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+# Load shift length
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+# Latch length
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+# Load argument
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+# Output result
+
+loop (i,8-0)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,0)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+
+let B = 1;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-1)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,1)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+let B = 2;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-2)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,2)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+let B = 3;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-3)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,3)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+
+let B = 4;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-4)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,4)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+
+let B = 5;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-5)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,5)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+
+let B = 6;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-6)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,6)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+
+
+
+
+
+
+let B = 7;
+let R = (A &gt;&gt; B) &amp; 0xFF;
+
+0   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      0        0        1 0          0     0          1          0          X             X    X    X
+
+loop (i,16)
+0   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+1   (SRA)      (7&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0     1          1          0          X             X    X    X
+end loop
+
+0   (SRA)      0        0        1 1          0     0          1          1          X             X    X    X
+1   (SRA)      0        0        1 1          0     0          1          0          X             X    X    X
+
+loop (i,8)
+0   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+1   (SRA)      (A&gt;&gt;i&amp;1) 0        1 1          0     0          1          0          X             X    X    X
+end loop
+
+loop (i,8-7)
+0   (SRA)      0        0        1 1          0     0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+loop (i,7)
+0   (SRA)      0        0        1 1          0     0          0          0          (S)           X    X    X
+1   (SRA)      0        0        1 1          0     0          0          0          X             X    X    X
+end loop
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="1020" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>~RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>D_FF_AS</elementName>
+      <elementAttributes/>
+      <pos x="660" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="620" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="620" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>CLK_F</string>
+        </entry>
+      </elementAttributes>
+      <pos x="620" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>CLK_F</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-720" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>3</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-760" y="620"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1020" y="0"/>
+      <p2 x="1200" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="0"/>
+      <p2 x="500" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="0"/>
+      <p2 x="860" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="-740" y="640"/>
+      <p2 x="-620" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="960"/>
+      <p2 x="-60" y="960"/>
+    </wire>
+    <wire>
+      <p1 x="620" y="320"/>
+      <p2 x="660" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-260"/>
+      <p2 x="-280" y="-260"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="900"/>
+      <p2 x="-40" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="-700" y="580"/>
+      <p2 x="-620" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="620" y="260"/>
+      <p2 x="660" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="260"/>
+      <p2 x="740" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="260"/>
+      <p2 x="1180" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-200"/>
+      <p2 x="-280" y="-200"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="840"/>
+      <p2 x="-720" y="840"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="140"/>
+      <p2 x="500" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="460"/>
+      <p2 x="-720" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="-60" y="400"/>
+      <p2 x="-40" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="400"/>
+      <p2 x="-220" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="720"/>
+      <p2 x="-40" y="720"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="80"/>
+      <p2 x="-100" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="80"/>
+      <p2 x="-240" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="80"/>
+      <p2 x="520" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="-20"/>
+      <p2 x="500" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="-20"/>
+      <p2 x="980" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="-380" y="660"/>
+      <p2 x="-300" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="660"/>
+      <p2 x="100" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="660"/>
+      <p2 x="-60" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="-740" y="660"/>
+      <p2 x="-700" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="20"/>
+      <p2 x="-720" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="20"/>
+      <p2 x="-100" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="20"/>
+      <p2 x="-240" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="900" y="20"/>
+      <p2 x="980" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-280"/>
+      <p2 x="-280" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="-280"/>
+      <p2 x="100" y="-280"/>
+    </wire>
+    <wire>
+      <p1 x="-200" y="920"/>
+      <p2 x="-40" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="920"/>
+      <p2 x="100" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="280"/>
+      <p2 x="440" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="280"/>
+      <p2 x="300" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="560" y="280"/>
+      <p2 x="660" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="280"/>
+      <p2 x="520" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-220"/>
+      <p2 x="-280" y="-220"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="220"/>
+      <p2 x="-720" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="80" y="-160"/>
+      <p2 x="140" y="-160"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="160"/>
+      <p2 x="-720" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="160"/>
+      <p2 x="500" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="160"/>
+      <p2 x="560" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="-280" y="480"/>
+      <p2 x="-200" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="800"/>
+      <p2 x="-720" y="800"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="100"/>
+      <p2 x="-720" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="100"/>
+      <p2 x="-100" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="420"/>
+      <p2 x="-60" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="-40"/>
+      <p2 x="500" y="-40"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="360"/>
+      <p2 x="-720" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="360"/>
+      <p2 x="80" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="360"/>
+      <p2 x="-60" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="40"/>
+      <p2 x="-100" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="40"/>
+      <p2 x="-240" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="980" y="40"/>
+      <p2 x="1000" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="40"/>
+      <p2 x="860" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="-200" y="680"/>
+      <p2 x="-40" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="680"/>
+      <p2 x="60" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-300"/>
+      <p2 x="-280" y="-300"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="-300"/>
+      <p2 x="-60" y="-300"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="940"/>
+      <p2 x="-40" y="940"/>
+    </wire>
+    <wire>
+      <p1 x="260" y="300"/>
+      <p2 x="300" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="620" y="300"/>
+      <p2 x="660" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="620"/>
+      <p2 x="-760" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="-740" y="620"/>
+      <p2 x="-700" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-240"/>
+      <p2 x="-280" y="-240"/>
+    </wire>
+    <wire>
+      <p1 x="-780" y="880"/>
+      <p2 x="-720" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="-320" y="-180"/>
+      <p2 x="-280" y="-180"/>
+    </wire>
+    <wire>
+      <p1 x="-340" y="820"/>
+      <p2 x="60" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="180"/>
+      <p2 x="500" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="120"/>
+      <p2 x="-100" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="120"/>
+      <p2 x="500" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="-60"/>
+      <p2 x="500" y="-60"/>
+    </wire>
+    <wire>
+      <p1 x="860" y="60"/>
+      <p2 x="880" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="60"/>
+      <p2 x="-100" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-300" y="60"/>
+      <p2 x="-240" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="-60" y="380"/>
+      <p2 x="-40" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="20" y="380"/>
+      <p2 x="80" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-180" y="380"/>
+      <p2 x="-140" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-100" y="700"/>
+      <p2 x="-40" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="-340" y="700"/>
+      <p2 x="-300" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="-700" y="700"/>
+      <p2 x="-620" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="40"/>
+      <p2 x="880" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="560" y="160"/>
+      <p2 x="560" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="-340" y="700"/>
+      <p2 x="-340" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="0"/>
+      <p2 x="740" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="-200" y="420"/>
+      <p2 x="-200" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="200"/>
+      <p2 x="520" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="20"/>
+      <p2 x="520" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="80"/>
+      <p2 x="440" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1000" y="20"/>
+      <p2 x="1000" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="-140" y="360"/>
+      <p2 x="-140" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-700" y="580"/>
+      <p2 x="-700" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="-700" y="660"/>
+      <p2 x="-700" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="60" y="680"/>
+      <p2 x="60" y="820"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

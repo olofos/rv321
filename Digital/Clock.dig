@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>Step-Counter.dig</elementName>
+      <elementAttributes/>
+      <pos x="900" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Substep-Counter.dig</elementName>
+      <elementAttributes/>
+      <pos x="900" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>STEP</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1140" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>LEN8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="480" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>LEN32</string>
+        </entry>
+      </elementAttributes>
+      <pos x="480" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~OPDONE</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~RESET</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Probe</elementName>
+      <elementAttributes/>
+      <pos x="1220" y="540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~LASTSUB</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1380" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~SUBDONE</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1380" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK ~CLK ~OPDONE ~RESET LEN8 LEN32  STEP ~LASTSUB ~SUBDONE
+
+0   1    1       0      0    0      0    0        X
+
+1   0    1       1      0    0      0    0        X
+0   1    1       1      0    0      1    0        X
+
+1   0    1       1      0    0      1    0        X
+0   1    1       1      0    0      2    0        X
+
+1   0    1       1      0    0      2    0        X
+0   1    1       1      1    0      3    1        0
+
+loop (i,6)
+1   0    1       1      1    0      3    1        1
+0   1    1       1      1    0      3    1        1
+end loop
+
+1   0    1       1      1    0      3    1        1
+0   1    1       1      1    0      3    0        1
+
+1   0    1       1      1    0      3    0        0
+0   1    1       1      0    0      4    0        0
+
+1   0    1       1      0    0      4    0        0
+0   1    1       1      0    1      5    1        0
+
+loop (i,30)
+1   0    1       1      0    1      5    1        1
+0   1    1       1      0    1      5    1        1
+end loop
+
+1   0    1       1      0    1      5    1        1
+0   1    1       1      0    1      5    0        1
+
+1   0    1       1      0    1      5    0        0
+0   1    1       1      0    1      6    1        0
+
+loop (i,30)
+1   0    1       1      0    1      6    1        1
+0   1    1       1      0    1      6    1        1
+end loop
+
+1   0    1       1      0    1      6    1        1
+0   1    1       1      0    1      6    0        1
+
+1   0    1       1      0    1      6    0        0
+0   1    1       1      1    0      7    1        0
+  
+loop (i,6)
+1   0    1       1      1    0      7    1        1
+0   1    1       1      1    0      7    1        1
+end loop
+
+1   0    1       1      1    0      7    1        1
+0   1    1       1      1    0      7    0        1
+
+1   0    1       1      1    0      7    0        0
+0   1    1       1      0    0      8    0        0
+
+1   0    1       1      0    0      8    0        0
+0   1    0       1      1    0      9    1        0
+
+loop (i,6)
+1   0    0       1      1    0      9    1        1
+0   1    0       1      1    0      9    1        1
+end loop
+
+1   0    0       1      1    0      9    1        1
+0   1    0       1      1    0      9    0        1
+
+1   0    0       1      1    0      9    0        0
+0   1    1       1      0    0      0    0        0
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="320" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="740" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="580"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1020" y="320"/>
+      <p2 x="1140" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="640"/>
+      <p2 x="1040" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="580"/>
+      <p2 x="900" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="860" y="520"/>
+      <p2 x="900" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1020" y="520"/>
+      <p2 x="1180" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="200"/>
+      <p2 x="860" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="360"/>
+      <p2 x="900" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="860" y="300"/>
+      <p2 x="900" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="460"/>
+      <p2 x="1080" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="460"/>
+      <p2 x="1380" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="560"/>
+      <p2 x="900" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1020" y="560"/>
+      <p2 x="1040" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="340"/>
+      <p2 x="900" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="340"/>
+      <p2 x="740" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="500"/>
+      <p2 x="900" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1020" y="500"/>
+      <p2 x="1080" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="500"/>
+      <p2 x="1380" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="660"/>
+      <p2 x="740" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="280"/>
+      <p2 x="540" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="280"/>
+      <p2 x="900" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="540"/>
+      <p2 x="900" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1020" y="540"/>
+      <p2 x="1220" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="700"/>
+      <p2 x="760" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="380"/>
+      <p2 x="740" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="340"/>
+      <p2 x="880" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="560"/>
+      <p2 x="1040" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="540"/>
+      <p2 x="740" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="560"/>
+      <p2 x="760" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="460"/>
+      <p2 x="1080" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="860" y="200"/>
+      <p2 x="860" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="860" y="300"/>
+      <p2 x="860" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="500"/>
+      <p2 x="1180" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="280"/>
+      <p2 x="540" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="380"/>
+      <p2 x="700" y="460"/>
+    </wire>
+  </wires>
+  <measurementOrdering>
+    <string>COUNT</string>
+    <string>LEN8</string>
+    <string>LEN32</string>
+    <string>~OPDONE</string>
+    <string>~RESET</string>
+  </measurementOrdering>
+</circuit>
