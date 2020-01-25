@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <circuit>
   <version>1</version>
-  <attributes/>
+  <attributes>
+    <entry>
+      <string>Width</string>
+      <int>6</int>
+    </entry>
+  </attributes>
   <visualElements>
     <visualElement>
       <elementName>Register-bank-0.dig</elementName>
@@ -62,16 +67,6 @@
         </entry>
       </elementAttributes>
       <pos x="660" y="200"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~EN</string>
-        </entry>
-      </elementAttributes>
-      <pos x="660" y="240"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -163,12 +158,12 @@
       <elementName>Tunnel</elementName>
       <elementAttributes>
         <entry>
-          <string>NetName</string>
-          <string>SA012</string>
-        </entry>
-        <entry>
           <string>rotation</string>
           <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>SA012</string>
         </entry>
       </elementAttributes>
       <pos x="1020" y="760"/>
@@ -337,43 +332,32 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK IN        ~EN ~EN_IN RESET SA   SB   SD     A        B
+            <dataString>CLK IN        ~EN_IN RESET SA   SB   SD     A        B
 
 loop (rep,32)
 
 let R1 = 1 + random(14);
-let R2 = 1 + R1 + random(15-R1);
+let R2 = R1 + 1 + random(15 - R1);
 
 let A = random(1&lt;&lt;32);
 let B = random(1&lt;&lt;32);
 
 
-0   0         1   1      1     0    0    0      0        0
+0   0         1      1     0    0    0      0        0
 
 loop (i,32)
-0   (A&gt;&gt;i&amp;1)  0   0      0     0    0    (R1)   0        0
-1   (A&gt;&gt;i&amp;1)  0   0      0     0    0    (R1)   X        X
+0   (A&gt;&gt;i&amp;1)  0      0     0    0    (R1)   0        0
+1   (A&gt;&gt;i&amp;1)  0      0     0    0    (R1)   X        X
 end loop
 
 loop (i,32)
-0   (B&gt;&gt;i&amp;1)  0   0      0     (R1) 0    (R2)   (A&gt;&gt;i&amp;1) 0
-1   (B&gt;&gt;i&amp;1)  0   0      0     (R1) 0    (R2)   X        X
+0   (B&gt;&gt;i&amp;1)  0      0     (R1) 0    (R2)   (A&gt;&gt;i&amp;1) 0
+1   (B&gt;&gt;i&amp;1)  0      0     (R1) 0    (R2)   X        X
 end loop
 
 loop (i,32)
-0   0         0   1      0     (R1) (R2) 0      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
-1   0         0   1      0     (R1) (R2) 0      X        X
-end loop
-
-loop (i,32)
-0   0         0   1      0     (R2) (R1) 0      (B&gt;&gt;i&amp;1) (A&gt;&gt;i&amp;1)
-1   0         0   1      0     (R2) (R1) 0      X        X
-end loop
-
-
-loop (i,32)
-0   0         0   1      0     (R2) (R2) 0      (B&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
-1   0         0   1      0     (R2) (R2) 0      X        X
+0   0         1      0     (R1) (R2) 0      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
+1   0         1      0     (R1) (R2) 0      X        X
 end loop
 
 end loop
@@ -382,6 +366,16 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="420" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="1020" y="240"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -522,7 +516,7 @@ end loop
       <p2 x="1560" y="240"/>
     </wire>
     <wire>
-      <p1 x="660" y="240"/>
+      <p1 x="1020" y="240"/>
       <p2 x="1060" y="240"/>
     </wire>
     <wire>

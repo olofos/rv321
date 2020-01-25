@@ -89,17 +89,13 @@
           <string>OUT</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="480"/>
+      <pos x="1400" y="360"/>
     </visualElement>
   </visualElements>
   <wires>
     <wire>
       <p1 x="1020" y="480"/>
       <p2 x="1100" y="480"/>
-    </wire>
-    <wire>
-      <p1 x="1200" y="480"/>
-      <p2 x="1400" y="480"/>
     </wire>
     <wire>
       <p1 x="920" y="320"/>
@@ -114,16 +110,20 @@
       <p2 x="1100" y="420"/>
     </wire>
     <wire>
+      <p1 x="1200" y="360"/>
+      <p2 x="1400" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="360"/>
+      <p2 x="1100" y="360"/>
+    </wire>
+    <wire>
       <p1 x="920" y="520"/>
       <p2 x="960" y="520"/>
     </wire>
     <wire>
       <p1 x="1020" y="520"/>
       <p2 x="1100" y="520"/>
-    </wire>
-    <wire>
-      <p1 x="1040" y="360"/>
-      <p2 x="1100" y="360"/>
     </wire>
     <wire>
       <p1 x="1020" y="460"/>
