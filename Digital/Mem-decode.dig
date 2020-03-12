@@ -21,7 +21,7 @@
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>8,4,2,</string>
+          <string>16,14,2,</string>
         </entry>
       </elementAttributes>
       <pos x="280" y="340"/>
@@ -196,7 +196,7 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>8</int>
+          <int>16</int>
         </entry>
         <entry>
           <string>intFormat</string>
@@ -233,12 +233,12 @@
       <elementName>RAMSinglePortSel</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>RAM</string>
+          <string>AddrBits</string>
+          <int>16</int>
         </entry>
         <entry>
-          <string>AddrBits</string>
-          <int>8</int>
+          <string>Label</string>
+          <string>RAM</string>
         </entry>
         <entry>
           <string>Bits</string>
