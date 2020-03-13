@@ -110,7 +110,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>IN_SH</string>
+          <string>SH-IN</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="840"/>
@@ -120,7 +120,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LENIN_SH</string>
+          <string>SH-LENIN</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="880"/>
@@ -150,7 +150,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LOADLEN_SH</string>
+          <string>SH-LOADLEN</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="920"/>
@@ -160,7 +160,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~OUTPUT_SH</string>
+          <string>SH-~OUTPUT</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="640"/>
@@ -170,7 +170,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>RESET_SH</string>
+          <string>SH-RESET</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="760"/>
@@ -185,7 +185,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>OUT_SH</string>
+          <string>SH-OUT</string>
         </entry>
       </elementAttributes>
       <pos x="2540" y="600"/>
@@ -224,7 +224,7 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK ~{L}A RESET_SH ~OUTPUT_SH IN_SH       LENIN_SH       LOADLEN_SH OUT_SH    DLEN
+            <dataString>CLK ~{L}A SH-RESET SH-~OUTPUT SH-IN       SH-LENIN       SH-LOADLEN SH-OUT    DLEN
 
 loop (rep,32)
 

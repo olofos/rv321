@@ -95,7 +95,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="80"/>
@@ -167,7 +167,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="380"/>
@@ -284,7 +284,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="680"/>
@@ -356,7 +356,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="980"/>
@@ -473,7 +473,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="1280"/>
@@ -545,7 +545,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="1580"/>
@@ -662,7 +662,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="1880"/>
@@ -734,7 +734,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="2180"/>
@@ -1191,7 +1191,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="-180" y="240"/>
@@ -1201,7 +1201,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>CLK_MEM</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="-140" y="240"/>
@@ -1257,24 +1257,24 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK IN          LATCH CLK_MEM ~PE ~RESET   ADDR
+            <dataString>CLK IN          LATCH ADDR-CLK ~PE ~RESET   ADDR
 
 let addr = 0x324384;
 
-0   0           0     0       1   0        0
+0   0           0     0        1   0        0
 
 loop (i,32)
-0   (addr&gt;&gt;i&amp;1) 0     0       0   1        X
-1   (addr&gt;&gt;i&amp;1) 0     0       0   1        X
+0   (addr&gt;&gt;i&amp;1) 0     0        0   1        X
+1   (addr&gt;&gt;i&amp;1) 0     0        0   1        X
 end loop
-0   0           1     0       0   1        0
-0   0           1     1       0   1        (addr)
-0   0           0     0       1   1        X
-0   0           0     1       1   1        (addr+1)
-0   0           0     0       1   1        X
-0   0           0     1       1   1        (addr+2)
-0   0           0     0       1   1        X
-0   0           0     1       1   1        (addr+3)
+0   0           1     0        0   1        0
+0   0           1     1        0   1        (addr)
+0   0           0     0        1   1        X
+0   0           0     1        1   1        (addr+1)
+0   0           0     0        1   1        X
+0   0           0     1        1   1        (addr+2)
+0   0           0     0        1   1        X
+0   0           0     1        1   1        (addr+3)
 </dataString>
           </testData>
         </entry>

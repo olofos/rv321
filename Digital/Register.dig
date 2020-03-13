@@ -67,16 +67,16 @@
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>Label</string>
           <string>CLK</string>
         </entry>
         <entry>
           <string>Frequency</string>
           <int>4</int>
-        </entry>
-        <entry>
-          <string>runRealTime</string>
-          <boolean>true</boolean>
         </entry>
       </elementAttributes>
       <pos x="320" y="460"/>
@@ -106,7 +106,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~EN_IN</string>
+          <string>~{IN-EN}</string>
         </entry>
       </elementAttributes>
       <pos x="320" y="320"/>

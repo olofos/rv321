@@ -455,7 +455,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LATCH_IN</string>
+          <string>IN-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="260" y="760"/>
@@ -465,7 +465,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LATCH_OUT</string>
+          <string>OUT-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="260" y="220"/>
@@ -475,7 +475,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>S~P_OUT</string>
+          <string>OUT-S~P</string>
         </entry>
       </elementAttributes>
       <pos x="260" y="180"/>
@@ -505,7 +505,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~PE_CNT</string>
+          <string>~{CNT-PE}</string>
         </entry>
       </elementAttributes>
       <pos x="260" y="660"/>
@@ -516,60 +516,60 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK BUS-CLK IN         LATCH_IN LATCH_OUT S~P_OUT EN_CNT ~PE_CNT ~RESET   OUT
+            <dataString>CLK BUS-CLK IN         IN-LATCH OUT-LATCH OUT-S~P CNT-EN ~{CNT-PE} ~RESET   OUT
 
 loop (rep, 32)
 
 let PC = random(1&lt;&lt;31) &lt;&lt; 1;
 
-0   0       0          0        0         0       0      1       0       X
+0   0       0          0        0         0       0      1         0       X
 
 # Input PC
 
 loop (i,32)
-0   0       (PC&gt;&gt;i&amp;1)  0        0         0       0      1       1       X
-1   1       (PC&gt;&gt;i&amp;1)  0        0         0       0      1       1       X
+0   0       (PC&gt;&gt;i&amp;1)  0        0         0       0      1         1       X
+1   1       (PC&gt;&gt;i&amp;1)  0        0         0       0      1         1       X
 end loop
 
 # Latch in
 
-0   0       0          1        0         0       1      0       1       X
-1   0       0          1        0         0       1      0       1       X
+0   0       0          1        0         0       1      0         1       X
+1   0       0          1        0         0       1      0         1       X
 
 # Latch out and load
 
-0   0       0          0        1         0       0      1       1       X
-1   0       0          0        1         0       0      1       1       X
+0   0       0          0        1         0       0      1         1       X
+1   0       0          0        1         0       0      1         1       X
 
 # Output PC
 
 loop (i,32)
-0   0       0          0        0         1       0      1       1       (PC&gt;&gt;i&amp;1)
-1   1       0          0        0         1       0      1       1       X
+0   0       0          0        0         1       0      1         1       (PC&gt;&gt;i&amp;1)
+1   1       0          0        0         1       0      1         1       X
 end loop
 
 # Increase PC
 
-0   0       0          0        0         0       1      1       1       X
-1   0       0          0        0         0       1      1       1       X
+0   0       0          0        0         0       1      1         1       X
+1   0       0          0        0         0       1      1         1       X
 
 # Output old PC
 
 loop (i,32)
-0   0       0          0        0         1       0      1       1       (PC&gt;&gt;i&amp;1)
-1   1       0          0        0         1       0      1       1       X
+0   0       0          0        0         1       0      1         1       (PC&gt;&gt;i&amp;1)
+1   1       0          0        0         1       0      1         1       X
 end loop
 
 # Latch out and load new PC
 
-0   0       0          0        1         0       0      1       1       X
-1   0       0          0        1         0       0      1       1       X
+0   0       0          0        1         0       0      1         1       X
+1   0       0          0        1         0       0      1         1       X
 
 # Output PC
 
 loop (i,32)
-0   0       0          0        0         1       0      1       1       ((PC+4)&gt;&gt;i&amp;1)
-1   1       0          0        0         1       0      1       1       X
+0   0       0          0        0         1       0      1         1       ((PC+4)&gt;&gt;i&amp;1)
+1   1       0          0        0         1       0      1         1       X
 end loop
 
 end loop
@@ -584,7 +584,7 @@ end loop
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>EN_CNT</string>
+          <string>CNT-EN</string>
         </entry>
       </elementAttributes>
       <pos x="260" y="540"/>

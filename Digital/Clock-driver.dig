@@ -277,7 +277,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>EN_CLK</string>
+          <string>CLK-EN</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="1160"/>
@@ -287,7 +287,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>EN_CLK</string>
+          <string>CLK-EN</string>
         </entry>
       </elementAttributes>
       <pos x="1500" y="660"/>

@@ -73,7 +73,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~EN_IN</string>
+          <string>~{IN-EN}</string>
         </entry>
       </elementAttributes>
       <pos x="660" y="500"/>
@@ -332,7 +332,7 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK IN        ~EN_IN RESET SA   SB   SD     A        B
+            <dataString>CLK IN        ~{IN-EN} RESET SA   SB   SD     A        B
 
 loop (rep,32)
 
@@ -343,21 +343,21 @@ let A = random(1&lt;&lt;32);
 let B = random(1&lt;&lt;32);
 
 
-0   0         1      1     0    0    0      0        0
+0   0         1        1     0    0    0      0        0
 
 loop (i,32)
-0   (A&gt;&gt;i&amp;1)  0      0     0    0    (R1)   0        0
-1   (A&gt;&gt;i&amp;1)  0      0     0    0    (R1)   X        X
+0   (A&gt;&gt;i&amp;1)  0        0     0    0    (R1)   0        0
+1   (A&gt;&gt;i&amp;1)  0        0     0    0    (R1)   X        X
 end loop
 
 loop (i,32)
-0   (B&gt;&gt;i&amp;1)  0      0     (R1) 0    (R2)   (A&gt;&gt;i&amp;1) 0
-1   (B&gt;&gt;i&amp;1)  0      0     (R1) 0    (R2)   X        X
+0   (B&gt;&gt;i&amp;1)  0        0     (R1) 0    (R2)   (A&gt;&gt;i&amp;1) 0
+1   (B&gt;&gt;i&amp;1)  0        0     (R1) 0    (R2)   X        X
 end loop
 
 loop (i,32)
-0   0         1      0     (R1) (R2) 0      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
-1   0         1      0     (R1) (R2) 0      X        X
+0   0         1        0     (R1) (R2) 0      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
+1   0         1        0     (R1) (R2) 0      X        X
 end loop
 
 end loop

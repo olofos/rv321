@@ -224,7 +224,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>IN_ADDR</string>
+          <string>ADDR-IN</string>
         </entry>
       </elementAttributes>
       <pos x="20" y="160"/>
@@ -234,7 +234,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LATCH_ADDR</string>
+          <string>ADDR-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="20" y="200"/>
@@ -244,7 +244,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CLK_ADDR</string>
+          <string>ADDR-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="20" y="240"/>
@@ -254,7 +254,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~PE_ADDR</string>
+          <string>~{ADDR-PE}</string>
         </entry>
       </elementAttributes>
       <pos x="20" y="280"/>
@@ -347,33 +347,11 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK BUS-CLK IN         ~OE ~WE IN_ADDR      LATCH_ADDR CLK_ADDR ~PE_ADDR ~RESET   OUT
+            <dataString>CLK BUS-CLK IN         ~OE ~WE ADDR-IN      ADDR-LATCH ADDR-CLK ~{ADDR-PE} ~RESET   OUT
 
-0   0       0          1   1   0            0          0        1        0        0
+0   0       0          1   1   0            0          0        1          0        0
 
 loop (rep,32)
-
-let addr = 0x00000000 | random(256);
-
-# Output address
-loop (i,32)
-0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
-1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
-end loop
-
-# Latch address
-0   0       0          1   1   0            1          0        0        1        X
-1   0       0          1   1   0            1          1        0        1        X
-
-# Enable output and latch
-0   0       0          0   1   0            0          0        1        1        X
-1   0       0          0   1   0            0          0        1        1        X
-
-# Output data
-loop (i,8)
-0   0       0          1   1   0            0          0        1        1        (addr&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          0        1        1        X
-end loop
 
 let addr = 0x80000000 | random(256);
 let d0 = random(256);
@@ -383,105 +361,103 @@ let d3 = random(256);
 
 # Output address
 loop (i,32)
-0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
-1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
+0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
+1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
 end loop
 
 # Latch address
-0   0       0          1   1   0            1          0        0        1        X
-1   0       0          1   1   0            1          1        0        1        X
+0   0       0          1   1   0            1          0        0          1        X
+1   0       0          1   1   0            1          1        0          1        X
 
 # Output data
 loop (i,8)
-0   0       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1        1        X
-1   1       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1        1        X
+0   0       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1          1        X
+1   1       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1          1        X
 end loop
 
 # Latch data and write
-0   0       0          1   1   0            0          0        1        1        X
-0   0       0          1   0   0            0          0        1        1        X
+0   0       0          1   1   0            0          0        1          1        X
+0   0       0          1   0   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
-1   1       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
+0   0       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
+1   1       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
 end loop
 
 # Latch data and write
-0   0       0          1   1   0            0          0        1        1        X
-0   0       0          1   0   0            0          0        1        1        X
+0   0       0          1   1   0            0          0        1          1        X
+0   0       0          1   0   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
-1   1       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
+0   0       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
+1   1       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
 end loop
 
 # Latch data and write
-0   0       0          1   1   0            0          0        1        1        X
-0   0       0          1   0   0            0          0        1        1        X
+0   0       0          1   1   0            0          0        1          1        X
+0   0       0          1   0   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
-1   1       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1        1        X
+0   0       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
+1   1       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
 end loop
 
 # Latch data and write
-0   0       0          1   1   0            0          0        1        1        X
-0   0       0          1   0   0            0          0        1        1        X
+0   0       0          1   1   0            0          0        1          1        X
+0   0       0          1   0   0            0          0        1          1        X
 
 # Output address
 loop (i,32)
-0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
-1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0        1        X
+0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
+1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
 end loop
 
 # Latch address
-0   0       0          1   1   0            1          0        0        1        X
-1   0       0          1   1   0            1          1        0        1        X
+0   0       0          1   1   0            1          0        0          1        X
+1   0       0          1   1   0            1          1        0          1        X
 
 # Enable output and latch
-0   0       0          0   1   0            0          0        1        1        X
-1   0       0          0   1   0            0          0        1        1        X
+0   0       0          0   1   0            0          0        1          1        X
+1   0       0          0   1   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       0          1   1   0            0          1        1        1        (d0&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1        1        X
+0   0       0          1   1   0            0          1        1          1        (d0&gt;&gt;i&amp;1)
+1   1       0          1   1   0            0          1        1          1        X
 end loop
 
 # Enable output and latch
-0   0       0          0   1   0            0          0        1        1        X
-1   0       0          0   1   0            0          0        1        1        X
+0   0       0          0   1   0            0          0        1          1        X
+1   0       0          0   1   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       0          1   1   0            0          1        1        1        (d1&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1        1        X
+0   0       0          1   1   0            0          1        1          1        (d1&gt;&gt;i&amp;1)
+1   1       0          1   1   0            0          1        1          1        X
 end loop
 
 # Enable output and latch
-0   0       0          0   1   0            0          0        1        1        X
-1   0       0          0   1   0            0          0        1        1        X
+0   0       0          0   1   0            0          0        1          1        X
+1   0       0          0   1   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       0          1   1   0            0          1        1        1        (d2&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1        1        X
+0   0       0          1   1   0            0          1        1          1        (d2&gt;&gt;i&amp;1)
+1   1       0          1   1   0            0          1        1          1        X
 end loop
 
 # Enable output and latch
-0   0       0          0   1   0            0          0        1        1        X
-1   0       0          0   1   0            0          0        1        1        X
+0   0       0          0   1   0            0          0        1          1        X
+1   0       0          0   1   0            0          0        1          1        X
 
 # Output data and increase address
 loop (i,8)
-0   0       0          1   1   0            0          1        1        1        (d3&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1        1        X
+0   0       0          1   1   0            0          1        1          1        (d3&gt;&gt;i&amp;1)
+1   1       0          1   1   0            0          1        1          1        X
 end loop
-
-
 
 end loop
 </dataString>

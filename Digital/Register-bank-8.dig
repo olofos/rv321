@@ -112,7 +112,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~EN_IN</string>
+          <string>~{IN-EN}</string>
         </entry>
       </elementAttributes>
       <pos x="620" y="1140"/>

@@ -147,7 +147,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LATCH_OP</string>
+          <string>OP-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="-220" y="420"/>
@@ -157,7 +157,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LATCH_IMM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="-300" y="-460"/>
@@ -516,7 +516,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>S~P_IMM</string>
+          <string>IMM-S~P</string>
         </entry>
       </elementAttributes>
       <pos x="-300" y="-420"/>
@@ -526,7 +526,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="-260" y="-460"/>
@@ -546,7 +546,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="-260" y="-420"/>
@@ -574,7 +574,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="-280"/>
@@ -588,7 +588,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="-260"/>
@@ -880,7 +880,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="80"/>
@@ -894,7 +894,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="100"/>
@@ -1142,7 +1142,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="480"/>
@@ -1156,7 +1156,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="500"/>
@@ -1422,7 +1422,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="960"/>
@@ -1436,7 +1436,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="740" y="980"/>
@@ -1800,7 +1800,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="460"/>
@@ -1814,7 +1814,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="480"/>
@@ -2142,7 +2142,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="680"/>
@@ -2156,7 +2156,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="700"/>
@@ -2218,7 +2218,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="920"/>
@@ -2232,7 +2232,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="1400" y="940"/>
@@ -2819,7 +2819,7 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK IN           ~RESET LATCH_OP LATCH_IMM S~P_IMM     ImmI        ImmB        RSA   RSB   RSD   FUNC3   OPCODE  SA_ALU
+            <dataString>CLK IN           ~RESET OP-LATCH IMM-LATCH IMM-S~P     ImmI        ImmB        RSA   RSB   RSD   FUNC3   OPCODE  ALU-SA
 
 loop (rep, 32)
 
@@ -3456,7 +3456,7 @@ end loop
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>SA_ALU</string>
+          <string>ALU-SA</string>
         </entry>
       </elementAttributes>
       <pos x="1620" y="-40"/>
@@ -3542,7 +3542,7 @@ end loop
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LATCH_IM</string>
+          <string>IMM-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="1900" y="680"/>
@@ -3556,7 +3556,7 @@ end loop
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SP_IMM</string>
+          <string>IMM-SP</string>
         </entry>
       </elementAttributes>
       <pos x="1900" y="700"/>

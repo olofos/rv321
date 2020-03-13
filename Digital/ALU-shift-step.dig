@@ -38,7 +38,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LOADLEN_SH</string>
+          <string>SH-LOADLEN</string>
         </entry>
       </elementAttributes>
       <pos x="1660" y="160"/>
@@ -48,7 +48,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~OUTPUT_SH</string>
+          <string>~{SH-OUTPUT}</string>
         </entry>
       </elementAttributes>
       <pos x="1660" y="220"/>
@@ -59,49 +59,49 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>~CLK ~EN MR  LOADLEN_SH ~OUTPUT_SH RESET_SH
+            <dataString>~CLK CLK ~EN ~RESET  SH-LOADLEN ~{SH-OUTPUT} SH-RESET
 
-1    1   1   0          1          0
-0    1   1   0          1          0
+1    0   1   0       1          1            0
+0    1   1   0       1          1            0
 
-1    1   0   0          1          0
-0    0   0   0          1          0
+1    0   1   1       1          1            0
+0    1   0   1       1          1            0
 
-1    0   0   1          1          0
-0    1   0   1          1          0
+1    0   0   1       0          1            1
+0    1   1   1       0          1            1
 
-1    1   0   1          1          0
-0    1   0   1          1          0
+1    0   1   1       0          1            1
+0    1   1   1       0          1            1
 
-1    1   0   1          1          0
-0    0   0   1          1          0
+1    0   1   1       0          1            1
+0    1   0   1       0          1            1
 
-1    0   0   0          1          1
-0    0   0   0          1          1
+1    0   0   1       0          1            0
+0    1   0   1       0          1            0
 
-1    0   0   0          1          0
-0    0   0   0          1          0
+1    0   0   1       0          0            0
+0    1   0   1       0          0            0
 
-1    0   0   0          0          0
-0    1   0   0          0          0
+1    0   0   1       1          1            0
+0    1   1   1       1          1            0
 
-1    1   0   0          0          0
-0    1   0   0          0          0
+1    0   1   1       1          1            0
+0    1   1   1       1          1            0
 
-1    1   0   0          0          0
-0    0   0   0          0          0
+1    0   1   1       1          1            0
+0    1   0   1       1          1            0
 
-1    0   0   0          1          0
-0    1   0   0          1          0
+1    0   0   1       1          1            0
+0    1   1   1       1          1            0
 
-1    1   0   0          1          0
-0    1   0   0          1          0
+1    0   1   1       1          1            0
+0    1   1   1       1          1            0
 
-1    1   0   0          1          0
-0    1   0   0          1          0
+1    0   1   1       1          1            0
+0    1   1   1       1          1            0
 
-1    1   0   0          1          0
-0    1   0   0          1          0
+1    0   1   1       1          1            0
+0    1   1   1       1          1            0
 </dataString>
           </testData>
         </entry>
@@ -128,7 +128,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>RESET_SH</string>
+          <string>SH-RESET</string>
         </entry>
       </elementAttributes>
       <pos x="1660" y="280"/>
