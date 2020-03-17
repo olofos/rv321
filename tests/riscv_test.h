@@ -43,8 +43,8 @@
 #define RVTEST_CODE_END        \
 fail:                          \
 1:      beqz TESTNUM, 1b;      \
-        slli a0, SUITENUM, 16; \
-	add a0, a0, TESTNUM;   \
+        slli x1, SUITENUM, 16; \
+	add gp, x1, TESTNUM;   \
 2:  j 2b; \
 pass:
 
@@ -63,8 +63,8 @@ pass:
 
 #define RVTEST_FAIL                             \
 1:  beqz TESTNUM, 1b;                           \
-    slli a0, SUITENUM, 16;                      \
-    add a0, a0, TESTNUM;                        \
+    slli gp, SUITENUM, 16;                      \
+    add gp, gp, TESTNUM;                        \
 2:  j 2b;
 
 //-----------------------------------------------------------------------

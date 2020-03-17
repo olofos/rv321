@@ -47,9 +47,7 @@ _start:
 
 	#include "rv32i/fence_i.S"
 
-
         .section .text.init
 
-	li TESTNUM, 1
-	li a0, 0
+	li gp, 1
 2:      j 2b
