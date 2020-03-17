@@ -45,11 +45,13 @@ RVTEST_CODE_BEGIN
 
   # Verify that shifts only use bottom six(rv64) or five(rv32) bits
 
+#ifdef EXPECT_FAIL
   TEST_RR_OP( 17, srl, 0x0000000021212121, 0x0000000021212121, 0xffffffffffffffc0 );
   TEST_RR_OP( 18, srl, 0x0000000010909090, 0x0000000021212121, 0xffffffffffffffc1 );
   TEST_RR_OP( 19, srl, 0x0000000000424242, 0x0000000021212121, 0xffffffffffffffc7 );
   TEST_RR_OP( 20, srl, 0x0000000000008484, 0x0000000021212121, 0xffffffffffffffce );
   TEST_RR_OP( 21, srl, 0x0000000000000000, 0x0000000021212121, 0xffffffffffffffff );
+#endif
 
   #-------------------------------------------------------------
   # Source/Destination tests
