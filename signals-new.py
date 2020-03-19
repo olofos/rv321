@@ -9,7 +9,7 @@ hideHidden = True
 
 # addGaps = False
 # removeConst = False
-removeCommon = False
+# removeCommon = False
 # hideHidden = False
 
 # Signals
@@ -231,7 +231,6 @@ hiddenSignals = [
     PC_OUT_LATCH,
     PC_CNT_EN,
     PC_CNT_PE,
-    BUS_EN,
     IMM_LATCH,
     ADDR_PE_FF,
 ] if hideHidden else []
@@ -282,7 +281,10 @@ def step(op, prev, next):
 
 
 opFetch = [
-    { PC_OUT_SP: 1, ADDR_LATCH: 0, ALU_A_MUX: 'PC', ALU_B_MUX: 'Zero', ALU_OP: 'OR', STEP_LEN: 32, META_SECTION: 'Fetch', META_COMMENT: {PC_OUT_SP: 'PC $\\to$ Addr'} },
+    { PC_OUT_SP: 1, ADDR_LATCH: 0, ALU_A_MUX: 'PC', ALU_B_MUX: 'Zero', ALU_OP: 'OR', STEP_LEN: 8, META_SECTION: 'Fetch', META_COMMENT: {PC_OUT_SP: 'PC $\\to$ Addr'} },
+    { STEP_LEN: 8 },
+    { STEP_LEN: 8 },
+    { STEP_LEN: 8 },
     { PC_OUT_SP: 0, ADDR_LATCH: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', ADDR_PE: 0, STEP_LEN: 1},
     { ADDR_CLK: 1, MEM_OE: 0, STEP_LEN: 1 },
     { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, OP_IN_MUX: 'MEM', STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
@@ -305,11 +307,11 @@ def simpleBinCommon(op):
 
     return [
         { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op},
-        { ALU_RESET: 1, PC_OUT_SP: pc_sp, REG_IN_EN: 0, ALU_OP: aluOp, ALU_A_MUX: A, ALU_B_MUX: B, REG_IN_MUX: 'ALU',  STEP_LEN: 32, META_COMMENT: {REG_IN_EN: '%s $%s$ %s $\\to$ RD' % (A, opSign, B)}},
-        # { STEP_LEN: 8 },
-        # { STEP_LEN: 8 },
-        # { STEP_LEN: 8 },
-        { PC_OUT_SP: 0, REG_IN_EN: 1, ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', REG_IN_MUX: 'U', STEP_LEN: 1, LAST_STEP: 1, },
+        { ALU_RESET: 1, PC_OUT_SP: pc_sp, REG_IN_EN: 0, ALU_OP: aluOp, ALU_A_MUX: A, ALU_B_MUX: B, REG_IN_MUX: 'ALU',  STEP_LEN: 8, META_COMMENT: {REG_IN_EN: '%s $%s$ %s $\\to$ RD' % (A, opSign, B)}},
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { PC_OUT_SP: 0, REG_IN_EN: 1, ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, STEP_LEN: 1, },
         { STEP_LEN: 1}
     ]
 
@@ -318,28 +320,41 @@ def setLowerCommon(op):
     B = 'ImmI' if 'I' in op else 'RS2'
     return [
         { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op + ' (Common)'},
-        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'RS1', ALU_B_MUX: B,  STEP_LEN: 32,},
+        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'RS1', ALU_B_MUX: B,  STEP_LEN: 8,},
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { ALU_FLAG_LATCH: 1,  ALU_N: 0, ALU_RESET: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', STEP_LEN: 1 },
     ]
 
 def setLowerTrue(op):
     return setLowerCommon(op) + [
-        { ALU_RESET: 1, ALU_FLAG_LATCH: 0,REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Const1', ALU_OP: 'OR', REG_IN_MUX: 'ALU', LAST_STEP: 1, STEP_LEN: 32, META_SECTION: op },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', STEP_LEN: 1 } #
-
+        { ALU_RESET: 1, ALU_FLAG_LATCH: 0,REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Const1', ALU_OP: 'OR', REG_IN_MUX: 'ALU', STEP_LEN: 8, META_SECTION: op },
+        { ALU_B_MUX: 'Zero', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, STEP_LEN: 1 },
+        { STEP_LEN: 1 }
     ]
 
 def setLowerFalse(op):
     return setLowerCommon(op) + [
-        { ALU_FLAG_LATCH: 0,REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', ALU_OP: 'ADD', REG_IN_MUX: 'ALU', LAST_STEP: 1, STEP_LEN: 32, META_SECTION: op },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', STEP_LEN: 1 }
+        { ALU_FLAG_LATCH: 0,REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', ALU_OP: 'ADD', REG_IN_MUX: 'ALU', STEP_LEN: 8, META_SECTION: op },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, STEP_LEN: 1 },
+        { STEP_LEN: 1 }
     ]
 
 def loadCommon(op):
     len = 8 if op[0:2] == 'LB' else 16 if op[0:2] == 'LH' else 32
     result = [
         { ALU_RESET: 0, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op},
-        { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', ALU_B_MUX: 'ImmI', STEP_LEN: 32},
+        { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', ALU_B_MUX: 'ImmI', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', STEP_LEN: 1 },
         { ADDR_CLK: 1, MEM_OE: 0, STEP_LEN: 1 },
         { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', STEP_LEN: 8 },
@@ -380,7 +395,10 @@ def storeCommon(op):
 
     result = [
         { ALU_RESET: 0, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op},
-        { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', ALU_B_MUX: 'ImmS', STEP_LEN: 32},
+        { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', ALU_B_MUX: 'ImmS', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', STEP_LEN: 1 },
         { ADDR_LATCH: 0, ADDR_CLK: 1, STEP_LEN: 8 },
         { ADDR_CLK: 0, ADDR_PE: 1, MEM_WE: 0, STEP_LEN: 1 }
@@ -423,7 +441,10 @@ def branchCommon(op):
 
     return [
         { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op + ' [Test]' },
-        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'RS1', ALU_B_MUX: 'RS2',  STEP_LEN: 32},
+        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'RS1', ALU_B_MUX: 'RS2',  STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { ALU_N: 0, ALU_FLAG_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', STEP_LEN: 1 },
     ]
 
@@ -436,7 +457,10 @@ def branchNotTaken(op):
 def branchTaken(op):
     return branchCommon(op) + [
         { ALU_FLAG_LATCH: 0, ALU_RESET: 0, STEP_LEN: 1, META_SECTION: op + ' [Taken]' },
-        { PC_OUT_SP: 1, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'PC', ALU_B_MUX: 'ImmB', PC_IN_MUX: 'ALU', STEP_LEN: 32 },
+        { PC_OUT_SP: 1, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'PC', ALU_B_MUX: 'ImmB', PC_IN_MUX: 'ALU', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { PC_OUT_SP: 0, PC_IN_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', PC_IN_MUX: 'U', STEP_LEN: 1, },
         { PC_IN_LATCH: 0, LAST_STEP: 1, STEP_LEN: 1 },
         { STEP_LEN: 1 },
@@ -449,7 +473,10 @@ def jumpCommon(op):
 
     return [
         { ALU_RESET: 0, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op},
-        { PC_OUT_SP: PCOut, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: A, ALU_B_MUX: B, PC_IN_MUX: 'ALU', STEP_LEN: 32 },
+        { PC_OUT_SP: PCOut, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: A, ALU_B_MUX: B, PC_IN_MUX: 'ALU', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { PC_IN_LATCH: 1, ALU_RESET: 0, PC_OUT_SP: 0, ALU_A_MUX: 'U', ALU_B_MUX: 'U', PC_IN_MUX: 'U', STEP_LEN: 1},
         { PC_IN_LATCH: 0, ALU_RESET: 1, PC_OUT_SP: 1, REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_A_MUX: 'PC', ALU_B_MUX: 'Zero', ALU_OP: 'ADD', STEP_LEN: 2},
         { REG_IN_EN: 1, STEP_LEN: 1 },
@@ -470,11 +497,20 @@ def shiftCommon(op):
 
     return [
         { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, STEP_LEN: 1, META_SECTION: op},
-        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'Const31', ALU_B_MUX: B, STEP_LEN: 32 },
+        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'Const31', ALU_B_MUX: B, STEP_LEN: 8 },
+        { STEP_LEN: 8, ALU_A_MUX: 'Zero' },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { ALU_N: 0, ALU_A_MUX: 'U', ALU_B_MUX: 'U', STEP_LEN: 1 },
-        { ALU_A_MUX: 'RS1', ALU_B_MUX: 'U', STEP_LEN: 32 },
-        { ALU_A_MUX: 'U', REG_IN_EN: 0, REG_IN_MUX: 'ALU', STEP_LEN: 32 },
-        { ALU_OP: 'U', LAST_STEP: 1, STEP_LEN: 1 },
+        { ALU_A_MUX: 'RS1', ALU_B_MUX: 'U', STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { ALU_A_MUX: 'U', REG_IN_EN: 0, REG_IN_MUX: 'ALU', STEP_LEN: 8 } ,
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { ALU_OP: 'U', REG_IN_EN: 1,  LAST_STEP: 1, STEP_LEN: 1 },
         { STEP_LEN: 1 },
     ]
 
@@ -483,10 +519,16 @@ def csrCommon(op):
     B = 'Imm' if 'I' in op else 'RS1'
 
     return [
-        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', CSR_ADDR_LATCH: 0, STEP_LEN: 32, META_SECTION: op },
+        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', CSR_ADDR_LATCH: 0, STEP_LEN: 8, META_SECTION: op },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { CSR_ADDR_LATCH: 1, STEP_LEN: 1},
         { CSR_ADDR_LATCH: 0, CSR_OUT_LATCH: 1, STEP_LEN: 1},
-        { CSR_OUT_LATCH: 0, CSR_IN_LATCH: 0, CSR_OP: 'Swap', CSR_IN_MUX: B, STEP_LEN: 32},
+        { CSR_OUT_LATCH: 0, CSR_IN_LATCH: 0, CSR_OP: 'Swap', CSR_IN_MUX: B, STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
+        { STEP_LEN: 8 },
         { CSR_IN_LATCH: 1, CSR_OP: 'U', CSR_IN_MUX: 'U', STEP_LEN: 1, LAST_STEP: 1},
         { STEP_LEN: 1},
     ]
@@ -961,11 +1003,11 @@ microcode = [0] * (1 << 16)
 
 plotList = [ 'SRL' ]
 
-for opName in opcodes.keys():
-    generateOp(opName, f, opName in plotList)
-
 # for opName in opcodes.keys():
-    # generateOp(opName, f, True)
+    # generateOp(opName, f, opName in plotList)
+
+for opName in opcodes.keys():
+    generateOp(opName, f, True)
 
 
 f.write('''\
