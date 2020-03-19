@@ -43,11 +43,11 @@
       <elementAttributes>
         <entry>
           <string>Input Splitting</string>
-          <string>1,1,1,1,1</string>
+          <string>1,1,1,1,1,1</string>
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>5</string>
+          <string>6</string>
         </entry>
       </elementAttributes>
       <pos x="1380" y="260"/>
@@ -101,7 +101,7 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>5</int>
+          <int>6</int>
         </entry>
       </elementAttributes>
       <pos x="1500" y="260"/>
@@ -153,6 +153,10 @@
       <p2 x="960" y="420"/>
     </wire>
     <wire>
+      <p1 x="1280" y="360"/>
+      <p2 x="1380" y="360"/>
+    </wire>
+    <wire>
       <p1 x="920" y="460"/>
       <p2 x="960" y="460"/>
     </wire>
@@ -183,6 +187,10 @@
     <wire>
       <p1 x="920" y="780"/>
       <p2 x="960" y="780"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="780"/>
+      <p2 x="1280" y="780"/>
     </wire>
     <wire>
       <p1 x="920" y="340"/>
@@ -271,6 +279,10 @@
     <wire>
       <p1 x="1200" y="280"/>
       <p2 x="1200" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="360"/>
+      <p2 x="1280" y="780"/>
     </wire>
     <wire>
       <p1 x="1220" y="300"/>

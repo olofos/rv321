@@ -9,8 +9,10 @@ hideHidden = True
 
 # addGaps = False
 # removeConst = False
-# removeCommon = False
+removeCommon = False
 # hideHidden = False
+
+stepBits = 6
 
 # Signals
 
@@ -151,7 +153,7 @@ signalValues = {
     STEP_LEN:       {1: 0,
                      2:      0b00000000_00000000_00000000_11000000,
                      8:      0b00000000_00000000_00000000_01000000,
-                     32:     0b00000000_00000000_00000000_10000000},
+                     },
     LAST_STEP:      {0: 0,
                      1:      0b00000000_00000000_00000001_00000000},
     REG_IN_EN:      {0: 0,
@@ -681,6 +683,7 @@ opcodeValues = {
     'IllOp': { 'op': 0b11111, 'func3': 0b111, 'sa': 1, 'flag': 1, 'sys': 1 },
 }
 
+
 def getOpcodeValues(opName):
     op = opcodeValues[opName]['op']
 
@@ -689,10 +692,10 @@ def getOpcodeValues(opName):
     if 'func3' in opcodeValues[opName]:
         func3 = opcodeValues[opName]['func3']
 
-        values.append(((func3 << 5) | op) << 5)
+        values.append(((func3 << 5) | op) << stepBits)
     else:
         for f in range(0,8):
-            values.append(((f << 5) | op) << 5)
+            values.append(((f << 5) | op) << stepBits)
 
 
     n = len(values)
@@ -700,36 +703,37 @@ def getOpcodeValues(opName):
     for i in range (0,n):
         if 'sa' in opcodeValues[opName].keys():
             sa = opcodeValues[opName]['sa']
-            values[i] |= (sa << 8) << 5
+            values[i] |= (sa << 8) << stepBits
         else:
-            values.append(values[i] | ((1 << 8) << 5))
+            values.append(values[i] | ((1 << 8) << stepBits))
 
     n = len(values)
 
     for i in range(0,n):
         if 'flag' in opcodeValues[opName].keys():
             flag = opcodeValues[opName]['flag']
-            values[i] |= flag << 14
+            values[i] |= flag << (9 + stepBits)
         else:
-            values.append(values[i] | (1 << 14))
+            values.append(values[i] | (1 << (9 + stepBits)))
 
     n = len(values)
     for i in range(0,n):
         if 'sys' in opcodeValues[opName].keys():
             sys = opcodeValues[opName]['flag']
-            values[i] |= sys << 15
+            values[i] |= sys << (10 + stepBits)
         else:
-            values.append(values[i] | (1 << 15))
+            values.append(values[i] | (1 << (10 + stepBits)))
 
     return values
 
 def formatOpcodeValues(opName):
     vals = opcodeValues[opName]
     op = format(vals['op'], '05b')
-    func3 = format(vals['func3'], '05b') if 'func3' in vals else 'XXX'
+    func3 = format(vals['func3'], '03b') if 'func3' in vals else 'XXX'
     sa = format(vals['sa'], '01b') if 'sa' in vals else 'X'
     flag = format(vals['flag'], '01b') if 'flag' in vals else 'X'
-    return flag + sa + func3 + op
+    sys = format(vals['sys'], '01b') if 'sys' in vals else 'X'
+    return sys + flag + sa + func3 + op
 
 def generateOp(opName, f, doPlot):
     op = opFetch + opcodes[opName]
@@ -989,7 +993,7 @@ f = open("signals.tex", "w")
 
 f.write('''\
 \\documentclass{article}
-\\usepackage[margin=0.5cm,landscape,a4paper]{geometry}
+\\usepackage[margin=0.5cm,landscape,a2paper]{geometry}
 \\usepackage{tikz-timing}[2009/12/09]
 \\usetikztiminglibrary{advnodes}
 \\usetikzlibrary{patterns}
@@ -999,15 +1003,15 @@ f.write('''\
 
 ''')
 
-microcode = [0] * (1 << 16)
+microcode = [0] * (1 << 17)
 
-plotList = [ 'SRL' ]
-
-# for opName in opcodes.keys():
-    # generateOp(opName, f, opName in plotList)
+plotList = [ 'ADD', 'BEQ [Taken]', 'JAL' ]
 
 for opName in opcodes.keys():
-    generateOp(opName, f, True)
+    generateOp(opName, f, opName in plotList)
+
+#for opName in opcodes.keys():
+#    generateOp(opName, f, True)
 
 
 f.write('''\
@@ -1017,11 +1021,11 @@ f.write('''\
 f.close()
 
 numUndef = 1
-for i in range(0, len(microcode), 32):
+for i in range(0, len(microcode), 1 << stepBits):
     if microcode[i] == 0:
         numUndef += 1
-        for j in range(0,32):
-            microcode[i | j] = microcode[0xFFE0 | j]
+        for j in range(0,1 << stepBits):
+            microcode[i | j] = microcode[(0x7FF << stepBits) | j]
 
 print('%d undefined opcodes\n' % numUndef)
 

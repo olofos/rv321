@@ -16,7 +16,7 @@
     <visualElement>
       <elementName>Substep-Counter.dig</elementName>
       <elementAttributes/>
-      <pos x="900" y="500"/>
+      <pos x="800" y="500"/>
     </visualElement>
     <visualElement>
       <elementName>Clock</elementName>
@@ -292,7 +292,7 @@ end loop
           <string>~OPDONE</string>
         </entry>
       </elementAttributes>
-      <pos x="760" y="360"/>
+      <pos x="660" y="360"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -321,7 +321,7 @@ end loop
       <p2 x="1380" y="320"/>
     </wire>
     <wire>
-      <p1 x="880" y="640"/>
+      <p1 x="760" y="640"/>
       <p2 x="1040" y="640"/>
     </wire>
     <wire>
@@ -337,8 +337,8 @@ end loop
       <p2 x="1100" y="740"/>
     </wire>
     <wire>
-      <p1 x="860" y="520"/>
-      <p2 x="900" y="520"/>
+      <p1 x="740" y="520"/>
+      <p2 x="800" y="520"/>
     </wire>
     <wire>
       <p1 x="1020" y="520"/>
@@ -350,10 +350,10 @@ end loop
     </wire>
     <wire>
       <p1 x="400" y="200"/>
-      <p2 x="860" y="200"/>
+      <p2 x="740" y="200"/>
     </wire>
     <wire>
-      <p1 x="760" y="360"/>
+      <p1 x="660" y="360"/>
       <p2 x="900" y="360"/>
     </wire>
     <wire>
@@ -377,7 +377,7 @@ end loop
       <p2 x="1380" y="780"/>
     </wire>
     <wire>
-      <p1 x="860" y="300"/>
+      <p1 x="740" y="300"/>
       <p2 x="900" y="300"/>
     </wire>
     <wire>
@@ -385,20 +385,20 @@ end loop
       <p2 x="1380" y="460"/>
     </wire>
     <wire>
-      <p1 x="760" y="560"/>
-      <p2 x="900" y="560"/>
+      <p1 x="580" y="560"/>
+      <p2 x="800" y="560"/>
     </wire>
     <wire>
       <p1 x="1020" y="560"/>
       <p2 x="1040" y="560"/>
     </wire>
     <wire>
-      <p1 x="880" y="340"/>
+      <p1 x="760" y="340"/>
       <p2 x="900" y="340"/>
     </wire>
     <wire>
       <p1 x="540" y="500"/>
-      <p2 x="900" y="500"/>
+      <p2 x="800" y="500"/>
     </wire>
     <wire>
       <p1 x="1020" y="500"/>
@@ -434,7 +434,7 @@ end loop
     </wire>
     <wire>
       <p1 x="600" y="540"/>
-      <p2 x="900" y="540"/>
+      <p2 x="800" y="540"/>
     </wire>
     <wire>
       <p1 x="460" y="540"/>
@@ -442,19 +442,27 @@ end loop
     </wire>
     <wire>
       <p1 x="480" y="700"/>
-      <p2 x="760" y="700"/>
-    </wire>
-    <wire>
-      <p1 x="880" y="340"/>
-      <p2 x="880" y="640"/>
+      <p2 x="580" y="700"/>
     </wire>
     <wire>
       <p1 x="1040" y="560"/>
       <p2 x="1040" y="640"/>
     </wire>
     <wire>
-      <p1 x="760" y="560"/>
-      <p2 x="760" y="700"/>
+      <p1 x="580" y="560"/>
+      <p2 x="580" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="200"/>
+      <p2 x="740" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="300"/>
+      <p2 x="740" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="340"/>
+      <p2 x="760" y="640"/>
     </wire>
     <wire>
       <p1 x="1080" y="460"/>
@@ -491,14 +499,6 @@ end loop
     <wire>
       <p1 x="460" y="280"/>
       <p2 x="460" y="340"/>
-    </wire>
-    <wire>
-      <p1 x="860" y="200"/>
-      <p2 x="860" y="300"/>
-    </wire>
-    <wire>
-      <p1 x="860" y="300"/>
-      <p2 x="860" y="520"/>
     </wire>
     <wire>
       <p1 x="540" y="280"/>
