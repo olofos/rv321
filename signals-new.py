@@ -528,8 +528,15 @@ def shiftCommon(op):
 
     return [
         { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, BUS_EN: 0, ALU_SHIFT_STEP_EN: 1, STEP_LEN: 1, META_SECTION: op},
-        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'Const31', ALU_B_MUX: B, BUS_EN: 1, STEP_LEN: 8 },
-        { BUS_EN: 1, ALU_A_MUX: 'Zero', STEP_LEN: 8 },
+        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'Const31', ALU_B_MUX: B, BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { ALU_SHIFT_STEP_EN: 0, BUS_EN: 1, STEP_LEN: 8 },
         { ALU_N: 0, ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
