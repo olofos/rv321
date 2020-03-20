@@ -184,7 +184,7 @@ signalValues = {
     ALU_A_MUX:      {'U': 0,
                      'RS1':     0b00000000_00000000_00000000_00000000,
                      'PC':      0b00000000_00000001_00000000_00000000,
-                     'Const31': 0b00000000_00000010_00000000_00000000,
+                     'One': 0b00000000_00000010_00000000_00000000,
                      'Zero':    0b00000000_00000011_00000000_00000000},
     ALU_B_MUX:      {'U': 0,
                      'RS2':    0b00000000_00000000_00000000_00000000,
@@ -193,7 +193,7 @@ signalValues = {
                      'ImmB':   0b00000000_00001100_00000000_00000000,
                      'ImmU':   0b00000000_00010000_00000000_00000000,
                      'ImmJ':   0b00000000_00010100_00000000_00000000,
-                     'Const1': 0b00000000_00011000_00000000_00000000,
+                     'One': 0b00000000_00011000_00000000_00000000,
                      'Zero':   0b00000000_00011100_00000000_00000000},
     REG_IN_MUX:     {'U': 0,
                      'ALU':  0b00000000_00000000_00000000_00000000,
@@ -356,7 +356,14 @@ def setLowerCommon(op):
 
 def setLowerTrue(op):
     return setLowerCommon(op) + [
-        { ALU_RESET: 1, REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Const1', ALU_OP: 'OR', REG_IN_MUX: 'ALU', BUS_EN: 1, STEP_LEN: 8, META_SECTION: op },
+        { ALU_RESET: 1, REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'One', ALU_OP: 'OR', REG_IN_MUX: 'ALU', BUS_EN: 1, STEP_LEN: 1, META_SECTION: op },
+        { ALU_B_MUX: 'Zero', BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
+        { BUS_EN: 1, STEP_LEN: 1 },
         { ALU_B_MUX: 'Zero', BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
@@ -508,7 +515,7 @@ def jumpCommon(op):
         { PC_IN_LATCH: 0, ALU_RESET: 1, PC_OUT_SP: 1, REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_A_MUX: 'PC', ALU_B_MUX: 'Zero', ALU_OP: 'ADD', BUS_EN: 1, STEP_LEN: 1},
         { BUS_EN: 1, STEP_LEN: 1 },
         { REG_IN_EN: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { REG_IN_EN: 0, ALU_B_MUX: 'Const1', BUS_EN: 1, STEP_LEN: 1 },
+        { REG_IN_EN: 0, ALU_B_MUX: 'One', BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
@@ -528,7 +535,7 @@ def shiftCommon(op):
 
     return [
         { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, BUS_EN: 0, ALU_SHIFT_STEP_EN: 1, STEP_LEN: 1, META_SECTION: op},
-        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'Const31', ALU_B_MUX: B, BUS_EN: 1, STEP_LEN: 1 },
+        { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'One', ALU_B_MUX: B, BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { BUS_EN: 1, STEP_LEN: 1 },
