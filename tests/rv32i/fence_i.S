@@ -18,8 +18,6 @@
 RVTEST_RV64U
 RVTEST_CODE_BEGIN
 
-#ifdef EXPECT_FAIL
-
 li a3, 111
 lh a0, insn
 lh a1, insn+2
@@ -45,8 +43,6 @@ fence.i
 .align 6
 1: addi a3, a3, 555
 TEST_CASE( 3, a3, 777, nop )
-
-#endif
 
 TEST_PASSFAIL
 

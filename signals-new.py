@@ -577,7 +577,11 @@ def csrCommon(op):
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
-
+def nopCommon(op):
+    return [
+            { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1, META_SECTION: op },
+            { BUS_EN: 0, STEP_LEN: 1 },
+        ]
 
 
 opcodes = {
@@ -648,6 +652,9 @@ opcodes = {
     'CSRRCI': csrCommon('CSRRCI'),
 
     'IllOp': [{BUS_EN: 0, STEP_LEN: 1}, {BUS_EN: 0, STEP_LEN: 1}, { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },],
+
+    'FENCE': nopCommon('FENCE'),
+    'FENCE.I': nopCommon('FENCE.I'),
 }
 
 opcodeValues = {
