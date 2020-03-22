@@ -313,7 +313,7 @@ opFetch = [
     { BUS_EN: 1, STEP_LEN: 8 },
     { BUS_EN: 1, STEP_LEN: 8 },
     { PC_OUT_SP: 0, ADDR_LATCH: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', ADDR_PE: 0, BUS_EN: 0, STEP_LEN: 1},
-    { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_LATCH: 0, ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
     { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { ADDR_CLK: 0, MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+1] $\\to$ Opcode \\#1'} },
