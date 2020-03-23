@@ -46,6 +46,7 @@ _start:
 	#include "rv32i/sb.S"
 
 	#include "rv32i/fence_i.S"
+	#include "rv32i/csr.S"
 
         .section .text.init
 

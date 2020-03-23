@@ -200,6 +200,15 @@ signalValues = {
                      'MEM':  0b00000000_00100000_00000000_00000000,
                      'CSR':  0b00000000_01000000_00000000_00000000,
                      'PC':   0b00000000_01100000_00000000_00000000},
+
+    CSR_ADDR_LATCH: {0: 0,
+                     1: 0b00000001_00000000_00000000_00000000},
+
+    CSR_OUT_LATCH: {0: 0,
+                     1: 0b00000010_00000000_00000000_00000000},
+    CSR_IN_LATCH: {0: 0,
+                     1: 0b00000100_00000000_00000000_00000000},
+
 }
 
 busSignals = [
@@ -563,17 +572,16 @@ def csrCommon(op):
     B = 'Imm' if 'I' in op else 'RS1'
 
     return [
-        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 8, META_SECTION: op },
+        { OP_LATCH: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 8, META_SECTION: op },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { CSR_ADDR_LATCH: 1, BUS_EN: 1, STEP_LEN: 8 },
+        { CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 8 },
+        { CSR_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
+        { REG_IN_MUX: 'CSR', REG_IN_EN: 0, CSR_OUT_LATCH: 0, CSR_IN_LATCH: 0, CSR_OP:csrOp, CSR_IN_MUX: B, BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
-        { CSR_ADDR_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
-        { CSR_ADDR_LATCH: 0, CSR_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
-        { CSR_OUT_LATCH: 0, CSR_IN_LATCH: 0, CSR_OP: 'Swap', CSR_IN_MUX: B, BUS_EN: 1, STEP_LEN: 8 },
-        { BUS_EN: 1, STEP_LEN: 8 },
-        { BUS_EN: 1, STEP_LEN: 8 },
-        { BUS_EN: 1, STEP_LEN: 8 },
-        { CSR_IN_LATCH: 1, CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1},
+        { REG_IN_MUX: 'U', REG_IN_EN: 1, CSR_IN_LATCH: 1, CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1},
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 

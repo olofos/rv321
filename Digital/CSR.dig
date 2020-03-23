@@ -319,9 +319,14 @@
       <pos x="780" y="540"/>
     </visualElement>
     <visualElement>
-      <elementName>PullDown</elementName>
-      <elementAttributes/>
-      <pos x="860" y="660"/>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>CSR-ADDR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1140" y="360"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -335,6 +340,10 @@
     </wire>
     <wire>
       <p1 x="1040" y="320"/>
+      <p2 x="1120" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="320"/>
       <p2 x="1140" y="320"/>
     </wire>
     <wire>
@@ -352,6 +361,10 @@
     <wire>
       <p1 x="500" y="360"/>
       <p2 x="520" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="360"/>
+      <p2 x="1140" y="360"/>
     </wire>
     <wire>
       <p1 x="500" y="520"/>
@@ -450,16 +463,16 @@
       <p2 x="880" y="580"/>
     </wire>
     <wire>
+      <p1 x="1120" y="320"/>
+      <p2 x="1120" y="360"/>
+    </wire>
+    <wire>
       <p1 x="1220" y="560"/>
       <p2 x="1220" y="600"/>
     </wire>
     <wire>
       <p1 x="860" y="540"/>
       <p2 x="860" y="620"/>
-    </wire>
-    <wire>
-      <p1 x="860" y="620"/>
-      <p2 x="860" y="660"/>
     </wire>
   </wires>
   <measurementOrdering/>
