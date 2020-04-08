@@ -62,6 +62,7 @@ CSR_OUT_LATCH = 'CSR_OUT_LATCH'
 CSR_IN_LATCH = 'CSR_IN_LATCH'
 CSR_OP = 'CSR_OP'
 CSR_IN_MUX = 'CSR_IN_MUX'
+SLEEP = 'SLEEP'
 
 BUS_CLK = 'BUS_CLK'
 INV_CLK = '\\neg{CLK}'
@@ -120,6 +121,7 @@ signalDefaults = {
     CSR_IN_LATCH: 1,
     CSR_OP: 'U',
     CSR_IN_MUX: 'U',
+    SLEEP: 0,
 
     BUS_CLK: 0,
 
@@ -205,10 +207,14 @@ signalValues = {
                      1: 0b00000001_00000000_00000000_00000000},
 
     CSR_OUT_LATCH: {0: 0,
-                     1: 0b00000010_00000000_00000000_00000000},
-    CSR_IN_LATCH: {0: 0,
-                     1: 0b00000100_00000000_00000000_00000000},
-
+                    1: 0b00000010_00000000_00000000_00000000},
+    CSR_IN_LATCH:  {0: 0,
+                    1: 0b00000100_00000000_00000000_00000000},
+    PC_IN_MUX:     {'U': 0,
+                    'ALU': 0b00000000_00000000_00000000_00000000,
+                    'CSR': 0b00001000_00000000_00000000_00000000},
+    SLEEP:         {0: 0,
+                    1: 0b00010000_00000000_00000000_00000000},
 }
 
 busSignals = [
@@ -382,7 +388,7 @@ def setLowerTrue(op):
 
 def setLowerFalse(op):
     return setLowerCommon(op) + [
-        { REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', ALU_OP: 'ADD', REG_IN_MUX: 'ALU', BUS_EN: 1, STEP_LEN: 8, META_SECTION: op },
+        { REG_IN_EN: 0, ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', ALU_OP: 'OR', REG_IN_MUX: 'ALU', BUS_EN: 1, STEP_LEN: 8, META_SECTION: op },
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
@@ -659,10 +665,33 @@ opcodes = {
     'CSRRSI': csrCommon('CSRRSI'),
     'CSRRCI': csrCommon('CSRRCI'),
 
-    'IllOp': [{BUS_EN: 0, STEP_LEN: 1}, {BUS_EN: 0, STEP_LEN: 1}, { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },],
+    'IllOp': [{OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1}, {BUS_EN: 0, STEP_LEN: 1}, { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },],
 
     'FENCE': nopCommon('FENCE'),
     'FENCE.I': nopCommon('FENCE.I'),
+
+    'TRAP': [
+        { OP_LATCH: 0, PC_OUT_SP: 1, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 8, META_SECTION: 'TRAP' },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { PC_OUT_SP: 0, PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { PC_IN_LATCH: 0, LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, }
+    ],
+
+    'MRET': [
+        { OP_LATCH: 0, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 8, META_SECTION: 'MRET' },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { BUS_EN: 1, STEP_LEN: 8 },
+        { PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { PC_IN_LATCH: 0, LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, }
+    ],
+
+    'WFI': [
+        { OP_LATCH: 0, SLEEP: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'WFI' },
+        { SLEEP: 0, LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1 },
+    ],
 }
 
 opcodeValues = {
@@ -776,7 +805,7 @@ def getOpcodeValues(opName):
     n = len(values)
     for i in range(0,n):
         if 'sys' in opcodeValues[opName].keys():
-            sys = opcodeValues[opName]['flag']
+            sys = opcodeValues[opName]['sys']
             values[i] |= sys << (10 + stepBits)
         else:
             values.append(values[i] | (1 << (10 + stepBits)))
@@ -1062,13 +1091,13 @@ f.write('''\
 
 microcode = [0] * (1 << 17)
 
-plotList = [ 'SLL' ]
+plotList = [ 'ADD', 'TRAP', 'MRET', 'CSRRW' ]
 
 for opName in opcodes.keys():
     generateOp(opName, f, opName in plotList)
 
-#for opName in opcodes.keys():
-#    generateOp(opName, f, True)
+# for opName in opcodes.keys():
+   # generateOp(opName, f, True)
 
 
 f.write('''\
