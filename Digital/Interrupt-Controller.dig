@@ -33,7 +33,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>IRQ-OP-S~P</string>
+          <string>TRAP-OP-S~P</string>
         </entry>
       </elementAttributes>
       <pos x="240" y="820"/>
@@ -53,7 +53,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>irq-op</string>
+          <string>trap-op</string>
         </entry>
       </elementAttributes>
       <pos x="700" y="760"/>
@@ -123,7 +123,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>IRQ-OP</string>
+          <string>TRAP-OP</string>
         </entry>
       </elementAttributes>
       <pos x="960" y="800"/>
@@ -143,7 +143,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~IRQ</string>
+          <string>~TRAP</string>
         </entry>
       </elementAttributes>
       <pos x="240" y="540"/>
@@ -229,7 +229,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>IRQ-OP-FETCH</string>
+          <string>TRAP-OP-FETCH</string>
         </entry>
       </elementAttributes>
       <pos x="960" y="580"/>

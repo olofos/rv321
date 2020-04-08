@@ -3393,7 +3393,7 @@ end loop
           <string>SYS</string>
         </entry>
       </elementAttributes>
-      <pos x="1620" y="140"/>
+      <pos x="1620" y="160"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -3407,7 +3407,7 @@ end loop
           <int>2</int>
         </entry>
       </elementAttributes>
-      <pos x="1620" y="200"/>
+      <pos x="1620" y="240"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -3435,7 +3435,7 @@ end loop
           <string>B28</string>
         </entry>
       </elementAttributes>
-      <pos x="1500" y="140"/>
+      <pos x="1500" y="180"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -3468,7 +3468,7 @@ end loop
           <string>B20</string>
         </entry>
       </elementAttributes>
-      <pos x="1500" y="200"/>
+      <pos x="1500" y="240"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -3482,7 +3482,7 @@ end loop
           <string>B21</string>
         </entry>
       </elementAttributes>
-      <pos x="1500" y="180"/>
+      <pos x="1500" y="220"/>
     </visualElement>
     <visualElement>
       <elementName>Splitter</elementName>
@@ -3500,7 +3500,7 @@ end loop
           <string>2</string>
         </entry>
       </elementAttributes>
-      <pos x="1560" y="200"/>
+      <pos x="1560" y="240"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -3515,6 +3515,25 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="960" y="-260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="1520" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>B25</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1500" y="140"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -3648,7 +3667,7 @@ end loop
     </wire>
     <wire>
       <p1 x="1500" y="140"/>
-      <p2 x="1620" y="140"/>
+      <p2 x="1520" y="140"/>
     </wire>
     <wire>
       <p1 x="540" y="780"/>
@@ -3823,6 +3842,10 @@ end loop
       <p2 x="1280" y="160"/>
     </wire>
     <wire>
+      <p1 x="1580" y="160"/>
+      <p2 x="1620" y="160"/>
+    </wire>
+    <wire>
       <p1 x="540" y="800"/>
       <p2 x="600" y="800"/>
     </wire>
@@ -3979,6 +4002,10 @@ end loop
       <p2 x="600" y="-180"/>
     </wire>
     <wire>
+      <p1 x="1500" y="180"/>
+      <p2 x="1520" y="180"/>
+    </wire>
+    <wire>
       <p1 x="2140" y="180"/>
       <p2 x="2160" y="180"/>
     </wire>
@@ -3993,10 +4020,6 @@ end loop
     <wire>
       <p1 x="120" y="180"/>
       <p2 x="240" y="180"/>
-    </wire>
-    <wire>
-      <p1 x="1500" y="180"/>
-      <p2 x="1560" y="180"/>
     </wire>
     <wire>
       <p1 x="540" y="820"/>
@@ -4157,14 +4180,6 @@ end loop
     <wire>
       <p1 x="120" y="200"/>
       <p2 x="240" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="1500" y="200"/>
-      <p2 x="1560" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="1580" y="200"/>
-      <p2 x="1620" y="200"/>
     </wire>
     <wire>
       <p1 x="540" y="840"/>
@@ -4329,6 +4344,10 @@ end loop
     <wire>
       <p1 x="2140" y="-220"/>
       <p2 x="2160" y="-220"/>
+    </wire>
+    <wire>
+      <p1 x="1500" y="220"/>
+      <p2 x="1560" y="220"/>
     </wire>
     <wire>
       <p1 x="2140" y="220"/>
@@ -4501,6 +4520,14 @@ end loop
     <wire>
       <p1 x="-40" y="-240"/>
       <p2 x="160" y="-240"/>
+    </wire>
+    <wire>
+      <p1 x="1500" y="240"/>
+      <p2 x="1560" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1580" y="240"/>
+      <p2 x="1620" y="240"/>
     </wire>
     <wire>
       <p1 x="2140" y="240"/>

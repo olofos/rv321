@@ -63,6 +63,7 @@ CSR_IN_LATCH = 'CSR_IN_LATCH'
 CSR_OP = 'CSR_OP'
 CSR_IN_MUX = 'CSR_IN_MUX'
 SLEEP = 'SLEEP'
+ILL_OP = '\\neg{ILL_OP}'
 
 BUS_CLK = 'BUS_CLK'
 INV_CLK = '\\neg{CLK}'
@@ -122,6 +123,7 @@ signalDefaults = {
     CSR_OP: 'U',
     CSR_IN_MUX: 'U',
     SLEEP: 0,
+    ILL_OP: 1,
 
     BUS_CLK: 0,
 
@@ -215,6 +217,8 @@ signalValues = {
                     'CSR': 0b00001000_00000000_00000000_00000000},
     SLEEP:         {0: 0,
                     1: 0b00010000_00000000_00000000_00000000},
+    ILL_OP:        {0: 0,
+                    1: 0b00100000_00000000_00000000_00000000},
 }
 
 busSignals = [
@@ -665,7 +669,11 @@ opcodes = {
     'CSRRSI': csrCommon('CSRRSI'),
     'CSRRCI': csrCommon('CSRRCI'),
 
-    'IllOp': [{OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1}, {BUS_EN: 0, STEP_LEN: 1}, { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },],
+    'IllOp': [
+        {OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
+        {BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
+        { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },
+    ],
 
     'FENCE': nopCommon('FENCE'),
     'FENCE.I': nopCommon('FENCE.I'),
@@ -737,14 +745,14 @@ opcodeValues = {
     'SLTIU [True]':  { 'op': 0b00100, 'func3': 0b011, 'flag': 1 },
     'SLTIU [False]': { 'op': 0b00100, 'func3': 0b011, 'flag': 0 },
 
-    'ADD':   { 'op': 0b01100, 'func3': 0b000, 'sa': 0 },
-    'SUB':   { 'op': 0b01100, 'func3': 0b000, 'sa': 1 },
-    'SLL':   { 'op': 0b01100, 'func3': 0b001, 'sa': 0 },
-    'XOR':   { 'op': 0b01100, 'func3': 0b100, 'sa': 0 },
-    'SRL':   { 'op': 0b01100, 'func3': 0b101, 'sa': 0 },
-    'SRA':   { 'op': 0b01100, 'func3': 0b101, 'sa': 1 },
-    'OR':    { 'op': 0b01100, 'func3': 0b110, 'sa': 0 },
-    'AND':   { 'op': 0b01100, 'func3': 0b111, 'sa': 0 },
+    'ADD':   { 'op': 0b01100, 'func3': 0b000, 'sa': 0, 'sys': 0 },
+    'SUB':   { 'op': 0b01100, 'func3': 0b000, 'sa': 1, 'sys': 0 },
+    'SLL':   { 'op': 0b01100, 'func3': 0b001, 'sa': 0, 'sys': 0 },
+    'XOR':   { 'op': 0b01100, 'func3': 0b100, 'sa': 0, 'sys': 0 },
+    'SRL':   { 'op': 0b01100, 'func3': 0b101, 'sa': 0, 'sys': 0 },
+    'SRA':   { 'op': 0b01100, 'func3': 0b101, 'sa': 1, 'sys': 0 },
+    'OR':    { 'op': 0b01100, 'func3': 0b110, 'sa': 0, 'sys': 0 },
+    'AND':   { 'op': 0b01100, 'func3': 0b111, 'sa': 0, 'sys': 0 },
 
     'SLTU [True]':  { 'op': 0b01100, 'func3': 0b011, 'sa': 0, 'flag': 1 },
     'SLTU [False]': { 'op': 0b01100, 'func3': 0b011, 'sa': 0, 'flag': 0 },
@@ -832,7 +840,7 @@ def generateOp(opName, f, doPlot):
 
     opcodeValues = getOpcodeValues(opName)
 
-    print('%s: %s ' % (opName, ', '.join(map(lambda v: '%03X' % (v >> 4), opcodeValues))))
+    print('%s: %s ' % (opName, ', '.join(map(lambda v: '%03X' % (v >> stepBits), opcodeValues))))
 
     for s in signals:
         if (s[CLK] == 0) and (s[SUBSTEP] == 0) and (s[STEP] >= 0):
@@ -1091,7 +1099,7 @@ f.write('''\
 
 microcode = [0] * (1 << 17)
 
-plotList = [ 'ADD', 'TRAP', 'MRET', 'CSRRW' ]
+plotList = [ 'IllOp', 'ADD', 'TRAP', 'MRET', 'CSRRW' ]
 
 for opName in opcodes.keys():
     generateOp(opName, f, opName in plotList)
