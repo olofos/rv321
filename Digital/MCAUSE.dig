@@ -814,10 +814,8 @@
 
 00 ECALL
 01 EBREAK
-10 
-11 Interrupt
-
-XX Illegal Operation</string>
+10 MRET
+11 Interrupt/Illegal Operation</string>
         </entry>
       </elementAttributes>
       <pos x="-700" y="160"/>
@@ -1204,7 +1202,7 @@ XX Illegal Operation</string>
           <string>BIT-LATCH</string>
         </entry>
       </elementAttributes>
-      <pos x="-660" y="700"/>
+      <pos x="-720" y="680"/>
     </visualElement>
     <visualElement>
       <elementName>Const</elementName>
@@ -1506,30 +1504,6 @@ XX Illegal Operation</string>
       </elementAttributes>
       <pos x="-960" y="440"/>
     </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>MRET</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-820" y="720"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Not</elementName>
-      <elementAttributes/>
-      <pos x="-800" y="720"/>
-    </visualElement>
-    <visualElement>
-      <elementName>And</elementName>
-      <elementAttributes/>
-      <pos x="-740" y="680"/>
-    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -1714,7 +1688,7 @@ XX Illegal Operation</string>
     </wire>
     <wire>
       <p1 x="-1040" y="680"/>
-      <p2 x="-740" y="680"/>
+      <p2 x="-720" y="680"/>
     </wire>
     <wire>
       <p1 x="-20" y="680"/>
@@ -1797,10 +1771,6 @@ XX Illegal Operation</string>
       <p2 x="480" y="700"/>
     </wire>
     <wire>
-      <p1 x="-680" y="700"/>
-      <p2 x="-660" y="700"/>
-    </wire>
-    <wire>
       <p1 x="460" y="60"/>
       <p2 x="480" y="60"/>
     </wire>
@@ -1869,10 +1839,6 @@ XX Illegal Operation</string>
       <p2 x="480" y="-80"/>
     </wire>
     <wire>
-      <p1 x="-820" y="720"/>
-      <p2 x="-800" y="720"/>
-    </wire>
-    <wire>
       <p1 x="-180" y="720"/>
       <p2 x="-160" y="720"/>
     </wire>
@@ -1883,10 +1849,6 @@ XX Illegal Operation</string>
     <wire>
       <p1 x="460" y="720"/>
       <p2 x="480" y="720"/>
-    </wire>
-    <wire>
-      <p1 x="-760" y="720"/>
-      <p2 x="-740" y="720"/>
     </wire>
     <wire>
       <p1 x="460" y="80"/>
