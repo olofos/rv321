@@ -63,7 +63,7 @@
           <string>CSR-IN-LATCH</string>
         </entry>
       </elementAttributes>
-      <pos x="-480" y="460"/>
+      <pos x="-500" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -339,6 +339,11 @@
       <pos x="-360" y="400"/>
     </visualElement>
     <visualElement>
+      <elementName>Not</elementName>
+      <elementAttributes/>
+      <pos x="-460" y="460"/>
+    </visualElement>
+    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes>
         <entry>
@@ -346,7 +351,7 @@
           <long>0</long>
         </entry>
       </elementAttributes>
-      <pos x="-120" y="440"/>
+      <pos x="-480" y="500"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -403,7 +408,11 @@
       <p2 x="-100" y="460"/>
     </wire>
     <wire>
-      <p1 x="-480" y="460"/>
+      <p1 x="-500" y="460"/>
+      <p2 x="-460" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="-420" y="460"/>
       <p2 x="-380" y="460"/>
     </wire>
     <wire>
@@ -439,6 +448,10 @@
       <p2 x="-100" y="500"/>
     </wire>
     <wire>
+      <p1 x="-480" y="500"/>
+      <p2 x="-260" y="500"/>
+    </wire>
+    <wire>
       <p1 x="-120" y="340"/>
       <p2 x="-20" y="340"/>
     </wire>
@@ -455,7 +468,7 @@
       <p2 x="-360" y="440"/>
     </wire>
     <wire>
-      <p1 x="-120" y="440"/>
+      <p1 x="-260" y="440"/>
       <p2 x="-100" y="440"/>
     </wire>
     <wire>
@@ -489,6 +502,10 @@
     <wire>
       <p1 x="-20" y="340"/>
       <p2 x="-20" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-260" y="440"/>
+      <p2 x="-260" y="500"/>
     </wire>
     <wire>
       <p1 x="-120" y="340"/>
