@@ -16,7 +16,7 @@
           <int>12</int>
         </entry>
       </elementAttributes>
-      <pos x="-420" y="400"/>
+      <pos x="-460" y="380"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -30,7 +30,7 @@
           <string>CSR-ADDR</string>
         </entry>
       </elementAttributes>
-      <pos x="-460" y="400"/>
+      <pos x="-500" y="380"/>
     </visualElement>
     <visualElement>
       <elementName>Const</elementName>
@@ -44,7 +44,7 @@
           <int>12</int>
         </entry>
       </elementAttributes>
-      <pos x="-440" y="420"/>
+      <pos x="-480" y="400"/>
     </visualElement>
     <visualElement>
       <elementName>HEF4557B.dig</elementName>
@@ -63,7 +63,7 @@
           <string>CSR-IN-LATCH</string>
         </entry>
       </elementAttributes>
-      <pos x="-400" y="500"/>
+      <pos x="-480" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -333,6 +333,21 @@
       </elementAttributes>
       <pos x="-220" y="140"/>
     </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-360" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="-120" y="440"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -364,11 +379,7 @@
       <p2 x="-100" y="580"/>
     </wire>
     <wire>
-      <p1 x="-440" y="420"/>
-      <p2 x="-420" y="420"/>
-    </wire>
-    <wire>
-      <p1 x="-360" y="420"/>
+      <p1 x="-300" y="420"/>
       <p2 x="-280" y="420"/>
     </wire>
     <wire>
@@ -392,6 +403,10 @@
       <p2 x="-100" y="460"/>
     </wire>
     <wire>
+      <p1 x="-480" y="460"/>
+      <p2 x="-380" y="460"/>
+    </wire>
+    <wire>
       <p1 x="-280" y="300"/>
       <p2 x="40" y="300"/>
     </wire>
@@ -404,20 +419,20 @@
       <p2 x="-40" y="140"/>
     </wire>
     <wire>
-      <p1 x="-120" y="560"/>
-      <p2 x="-100" y="560"/>
-    </wire>
-    <wire>
-      <p1 x="-460" y="400"/>
-      <p2 x="-420" y="400"/>
+      <p1 x="-480" y="400"/>
+      <p2 x="-460" y="400"/>
     </wire>
     <wire>
       <p1 x="-120" y="400"/>
       <p2 x="-100" y="400"/>
     </wire>
     <wire>
-      <p1 x="-400" y="500"/>
-      <p2 x="-320" y="500"/>
+      <p1 x="-400" y="400"/>
+      <p2 x="-360" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="560"/>
+      <p2 x="-100" y="560"/>
     </wire>
     <wire>
       <p1 x="-120" y="500"/>
@@ -436,7 +451,11 @@
       <p2 x="-100" y="600"/>
     </wire>
     <wire>
-      <p1 x="-320" y="440"/>
+      <p1 x="-380" y="440"/>
+      <p2 x="-360" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="440"/>
       <p2 x="-100" y="440"/>
     </wire>
     <wire>
@@ -444,8 +463,8 @@
       <p2 x="-160" y="120"/>
     </wire>
     <wire>
-      <p1 x="-120" y="540"/>
-      <p2 x="-100" y="540"/>
+      <p1 x="-500" y="380"/>
+      <p2 x="-460" y="380"/>
     </wire>
     <wire>
       <p1 x="-40" y="380"/>
@@ -462,6 +481,10 @@
     <wire>
       <p1 x="-20" y="380"/>
       <p2 x="20" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-120" y="540"/>
+      <p2 x="-100" y="540"/>
     </wire>
     <wire>
       <p1 x="-20" y="340"/>
@@ -488,8 +511,8 @@
       <p2 x="40" y="360"/>
     </wire>
     <wire>
-      <p1 x="-320" y="440"/>
-      <p2 x="-320" y="500"/>
+      <p1 x="-380" y="440"/>
+      <p2 x="-380" y="460"/>
     </wire>
   </wires>
   <measurementOrdering/>
