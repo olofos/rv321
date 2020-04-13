@@ -4,7 +4,7 @@
   <attributes>
     <entry>
       <string>Width</string>
-      <int>8</int>
+      <int>9</int>
     </entry>
   </attributes>
   <visualElements>
@@ -100,7 +100,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CLK</string>
+          <string>BUS-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="860" y="680"/>
@@ -224,7 +224,7 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK ~{L}A SH-RESET SH-~OUTPUT SH-IN       SH-LENIN       SH-LOADLEN SH-OUT    DLEN
+            <dataString>BUS-CLK ~{L}A SH-RESET SH-~OUTPUT SH-IN       SH-LENIN       SH-LOADLEN SH-OUT    DLEN
 
 loop (rep,32)
 
