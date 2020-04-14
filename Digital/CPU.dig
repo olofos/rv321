@@ -4634,20 +4634,6 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
         </entry>
         <entry>
           <string>NetName</string>
-          <string>~OPDONE</string>
-        </entry>
-      </elementAttributes>
-      <pos x="360" y="-460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
           <string>~STEPDONE</string>
         </entry>
       </elementAttributes>
@@ -11538,6 +11524,20 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
         </entry>
       </elementAttributes>
       <pos x="220" y="1080"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>OP-LATCH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="360" y="-460"/>
     </visualElement>
   </visualElements>
   <wires>
