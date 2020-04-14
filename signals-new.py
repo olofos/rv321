@@ -489,9 +489,8 @@ def storeCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
+        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', ADDR_LATCH: 1, ADDR_PE: 0, BUS_EN: 1, STEP_LEN: 4 },
         { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
         { ADDR_CLK: 0, ADDR_PE: 1, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 }
     ]
 
