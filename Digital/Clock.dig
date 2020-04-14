@@ -61,7 +61,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LEN8</string>
+          <string>LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="440" y="700"/>
