@@ -409,7 +409,7 @@ def loadCommon(op):
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
-        { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
         { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
     ]
 
