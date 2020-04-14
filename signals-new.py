@@ -339,16 +339,13 @@ opFetch = [
     { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
     { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
-    { BUS_EN: 1, STEP_LEN: 4 },
-    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+1] $\\to$ Opcode \\#1'} },
-    { BUS_EN: 1, STEP_LEN: 4 },
-    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+2] $\\to$ Opcode \\#2'} },
-    { BUS_EN: 1, STEP_LEN: 4 },
-    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+3] $\\to$ Opcode \\#3'} },
     { BUS_EN: 1, STEP_LEN: 4 },
@@ -443,36 +440,33 @@ def loadCommon(op):
         { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
         { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
         { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     ]
 
     if len > 8:
         result += [
-            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
             { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
             { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
         ]
     else:
         result += [
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
         ]
 
     if len > 16:
         result += [
-            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
             { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
             { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
-            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
             { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
         ]
     else:
         result += [
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
@@ -506,8 +500,8 @@ def storeCommon(op):
 
     if len > 8:
         result += [
-            { ADDR_CLK: 1, MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 }
         ]
     else:
@@ -518,11 +512,11 @@ def storeCommon(op):
 
     if len > 16:
         result += [
-            { ADDR_CLK: 1, MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 },
-            { ADDR_CLK: 1, MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { MEM_WE: 1, BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 },
         ]
     else:
@@ -1189,7 +1183,7 @@ f = open("signals.tex", "w")
 
 f.write('''\
 \\documentclass{article}
-\\usepackage[margin=0.5cm,landscape,a2paper]{geometry}
+\\usepackage[margin=0.5cm,landscape,a1paper]{geometry}
 \\usepackage{tikz-timing}[2009/12/09]
 \\usetikztiminglibrary{advnodes}
 \\usetikzlibrary{patterns}
