@@ -332,14 +332,18 @@ opFetch = [
     { BUS_EN: 1, STEP_LEN: 8 },
     { BUS_EN: 1, STEP_LEN: 8 },
     { PC_OUT_SP: 0, ADDR_LATCH: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', ADDR_PE: 0, BUS_EN: 0, STEP_LEN: 1},
-    { ADDR_LATCH: 0, ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-    { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
-    { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-    { ADDR_CLK: 0, MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+1] $\\to$ Opcode \\#1'} },
-    { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-    { ADDR_CLK: 0, MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+2] $\\to$ Opcode \\#2'} },
-    { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-    { ADDR_CLK: 0, MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+3] $\\to$ Opcode \\#3'} },
+    { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
+    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+1] $\\to$ Opcode \\#1'} },
+    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+2] $\\to$ Opcode \\#2'} },
+    { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 8, META_COMMENT: {MEM_OE: '[Addr+3] $\\to$ Opcode \\#3'} },
     { OP_LATCH: 1, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
 ]
 
@@ -409,14 +413,16 @@ def loadCommon(op):
         { BUS_EN: 1, STEP_LEN: 8 },
         { BUS_EN: 1, STEP_LEN: 8 },
         { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
-        { ADDR_LATCH: 0, ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-        { ADDR_CLK: 0, MEM_OE: 1, ADDR_PE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
+        { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
     ]
 
     if len > 8:
         result += [
-            { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-            { ADDR_CLK: 0, MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
+            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+            { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+            { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
         ]
     else:
         result += [
@@ -425,10 +431,12 @@ def loadCommon(op):
 
     if len > 16:
         result += [
-            { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-            { ADDR_CLK: 0, MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
-            { ADDR_CLK: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
-            { ADDR_CLK: 0, MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
+            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+            { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+            { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
+            { ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+            { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+            { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 8 },
         ]
     else:
         result += [
@@ -841,6 +849,13 @@ def generateOp(opName, f, doPlot):
     opcodeValues = getOpcodeValues(opName)
 
     print('%s: %s ' % (opName, ', '.join(map(lambda v: '%03X' % (v >> stepBits), opcodeValues))))
+
+    steps = list(map(lambda s: s[STEP_LEN], filter(lambda t: (t[CLK] == 0) and (t[SUBSTEP] == 0) and (t[STEP] >= 0), signals)))
+    sigLen = len(steps)
+    print('%s: %d steps' % (opName, sigLen))
+
+    if sigLen >= (1 << stepBits):
+        print('Warning: %s exceeds %d steps' % (opName, 1 << stepBits))
 
     for s in signals:
         if (s[CLK] == 0) and (s[SUBSTEP] == 0) and (s[STEP] >= 0):
