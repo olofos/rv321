@@ -22,7 +22,7 @@ CLK = 'CLK'
 ALU_N = 'ALU_N'
 ALU_RESET = '\\neg{ALU_RESET}'
 ALU_FLAG_LATCH = 'ALU_FLAG_LATCH'
-ALU_SHIFT_STEP_EN = '\\neg{ALU_SHIFT_STEP_EN}'
+ALU_SHIFT_STEP = '\\neg{ALU_SHIFT_STEP}'
 ALU_AUX = 'ALU_AUX'
 ALU_OP = 'ALU_OP'
 
@@ -86,7 +86,7 @@ signalDefaults = {
     ALU_N: 0,
     ALU_RESET: 1,
     ALU_FLAG_LATCH: 1,
-    ALU_SHIFT_STEP_EN: 1,
+    ALU_SHIFT_STEP: 1,
     ALU_AUX: 1,
 
     REG_IN_EN: 1,
@@ -277,7 +277,7 @@ def handleIdentifications(signal):
     signal[PC_CNT_EN] = signal[OP_LATCH]
     signal[IMM_SP] = signal[BUS_EN]
     signal[PC_CNT_PE] = ~signal[PC_IN_LATCH] & 1
-    signal[ALU_AUX] = signal[ALU_FLAG_LATCH] & signal[ALU_SHIFT_STEP_EN]
+    signal[ALU_AUX] = signal[ALU_FLAG_LATCH] & signal[ALU_SHIFT_STEP]
 
     if signal[BUS_EN] == 1:
         if signal[STEP_LEN] == 4:
@@ -607,7 +607,7 @@ def shiftCommon(op):
     n = 1 if 'R' in op else 0
 
     return [
-        { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, BUS_EN: 0, ALU_SHIFT_STEP_EN: 1, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, BUS_EN: 0, ALU_SHIFT_STEP: 1, STEP_LEN: 1, META_SECTION: op},
         { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'One', ALU_B_MUX: B, BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { ALU_A_MUX: 'Zero', ALU_B_MUX: 'Zero', BUS_EN: 1, STEP_LEN: 1 },
@@ -618,17 +618,18 @@ def shiftCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_SHIFT_STEP_EN: 0, BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_N: 0, ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
-        { ALU_A_MUX: 'RS1', ALU_B_MUX: 'U', ALU_SHIFT_STEP_EN: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ALU_SHIFT_STEP: 0, BUS_EN: 1, STEP_LEN: 4 },
+        { ALU_SHIFT_STEP: 1, ALU_N: 0, ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
+        { ALU_SHIFT_STEP: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { ALU_A_MUX: 'RS1', ALU_B_MUX: 'U', ALU_SHIFT_STEP: 1, BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_SHIFT_STEP_EN: 0, BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_A_MUX: 'U', REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_SHIFT_STEP_EN: 1, BUS_EN: 1, STEP_LEN: 4 } ,
+        { ALU_SHIFT_STEP: 0, BUS_EN: 1, STEP_LEN: 4 },
+        { ALU_A_MUX: 'U', REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_SHIFT_STEP: 1, BUS_EN: 1, STEP_LEN: 4 } ,
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
