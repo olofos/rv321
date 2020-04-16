@@ -42,7 +42,6 @@ PC_CNT_EN = 'PC_CNT_EN'
 ADDR_LATCH = 'ADDR_LATCH'
 ADDR_CLK = 'ADDR_CLK'
 ADDR_PE = '\\neg{ADDR_PE}'
-ADDR_PE_FF = '\\neg{ADDR_PE_FF}'
 
 MEM_OE = '\\neg{MEM_OE}'
 MEM_WE = '\\neg{MEM_WE}'
@@ -101,7 +100,6 @@ signalDefaults = {
     ADDR_LATCH: 0,
     ADDR_CLK: 0,
     ADDR_PE: 1,
-    ADDR_PE_FF: 1,
 
     MEM_OE: 1,
     MEM_WE: 1,
@@ -174,8 +172,6 @@ signalValues = {
                      1:      0b00000000_00000000_00001000_00000000},
     ADDR_CLK:       {0: 0,
                      1:      0b00000000_00000000_00010000_00000000},
-    ADDR_PE:        {0: 0,
-                     1:      0b00000000_00000000_00100000_00000000},
 
     MEM_OE:         {0: 0,
                      1:      0b00000000_00000000_01000000_00000000},
@@ -258,7 +254,6 @@ hiddenSignals = [
     PC_CNT_EN,
     PC_CNT_PE,
     IMM_LATCH,
-    ADDR_PE_FF,
     LENGTH_FIELD,
 ] if hideHidden else []
 
@@ -302,7 +297,7 @@ def onClockUp(prev, next):
     next[STEP_DONE] = ~prev[LAST_SUBSTEP] & 1
     next[OP_DONE] = ~(prev[LAST_STEP] & prev[LAST_SUBSTEP]) & 1
     next[IMM_LATCH] = prev[OP_LATCH]
-    next[ADDR_PE_FF] = prev[ADDR_PE]
+    next[ADDR_PE] = prev[ADDR_LATCH]
 
 def onClockDown(prev, next):
     next[CLK_COUNT] = prev[CLK_COUNT] + 1
@@ -335,9 +330,9 @@ opFetch = [
     { BUS_EN: 1, STEP_LEN: 4 },
     { BUS_EN: 1, STEP_LEN: 4 },
     { BUS_EN: 1, STEP_LEN: 4 },
-    { PC_OUT_SP: 0, ADDR_LATCH: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', ADDR_PE: 0, BUS_EN: 0, STEP_LEN: 1},
+    { PC_OUT_SP: 0, ADDR_LATCH: 1, ALU_A_MUX: 'U', ALU_B_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, STEP_LEN: 1},
     { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
-    { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
@@ -433,9 +428,9 @@ def loadCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ADDR_LATCH: 1, ADDR_PE: 0, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
         { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { ADDR_CLK: 0, ADDR_PE: 1, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
         { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
         { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     ]
@@ -489,9 +484,9 @@ def storeCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', ADDR_LATCH: 1, ADDR_PE: 0, BUS_EN: 1, STEP_LEN: 4 },
+        { ALU_OP: 'U', ALU_A_MUX: 'U', ALU_B_MUX: 'U', ADDR_LATCH: 1, BUS_EN: 1, STEP_LEN: 4 },
         { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
-        { ADDR_CLK: 0, ADDR_PE: 1, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 }
+        { ADDR_CLK: 0, MEM_WE: 0, BUS_EN: 0, STEP_LEN: 1 }
     ]
 
     if len > 8:
@@ -1186,7 +1181,7 @@ f.write('''\
 
 microcode = [0] * (1 << 17)
 
-plotList = [ 'IllOp', 'ADD', 'TRAP', 'MRET', 'CSRRW' ]
+plotList = [ 'SW' ]
 
 for opName in opcodes.keys():
     generateOp(opName, f, opName in plotList)
