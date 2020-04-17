@@ -4106,7 +4106,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>~RESET</string>
         </entry>
       </elementAttributes>
-      <pos x="1540" y="320"/>
+      <pos x="1540" y="300"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -4291,20 +4291,6 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
         </entry>
       </elementAttributes>
       <pos x="1540" y="260"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>~{PC-CNT-PE}</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1540" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -4704,16 +4690,6 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
         </entry>
       </elementAttributes>
       <pos x="1960" y="-420"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
-          <string>~{PC-CNT-PE}</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1380" y="440"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -5639,7 +5615,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>PC-CNT-EN</string>
         </entry>
       </elementAttributes>
-      <pos x="1540" y="300"/>
+      <pos x="1540" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -5692,25 +5668,6 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
         </entry>
       </elementAttributes>
       <pos x="1640" y="440"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>PC-IN-LATCH</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1300" y="440"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Not</elementName>
-      <elementAttributes/>
-      <pos x="1320" y="440"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -11889,12 +11846,12 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
       <p2 x="200" y="280"/>
     </wire>
     <wire>
-      <p1 x="1540" y="280"/>
-      <p2 x="1560" y="280"/>
-    </wire>
-    <wire>
       <p1 x="2180" y="280"/>
       <p2 x="2200" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1540" y="280"/>
+      <p2 x="1560" y="280"/>
     </wire>
     <wire>
       <p1 x="-660" y="1560"/>
@@ -12287,10 +12244,6 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
     <wire>
       <p1 x="-920" y="320"/>
       <p2 x="-900" y="320"/>
-    </wire>
-    <wire>
-      <p1 x="1540" y="320"/>
-      <p2 x="1560" y="320"/>
     </wire>
     <wire>
       <p1 x="2660" y="-580"/>
@@ -13035,14 +12988,6 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
     <wire>
       <p1 x="240" y="440"/>
       <p2 x="260" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="1360" y="440"/>
-      <p2 x="1380" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="1300" y="440"/>
-      <p2 x="1320" y="440"/>
     </wire>
     <wire>
       <p1 x="1640" y="440"/>
