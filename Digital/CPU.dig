@@ -4186,7 +4186,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>FLAG</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="-200"/>
+      <pos x="1400" y="-180"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -5524,7 +5524,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>SA</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="-220"/>
+      <pos x="1400" y="-200"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -6040,7 +6040,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>SYS</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="-180"/>
+      <pos x="1400" y="-220"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -9547,7 +9547,7 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
           <string>FLAG</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="-20"/>
+      <pos x="1400" y="0"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -9589,7 +9589,7 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
           <string>SA</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="-40"/>
+      <pos x="1400" y="-20"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -9603,7 +9603,7 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
           <string>SYS</string>
         </entry>
       </elementAttributes>
-      <pos x="1400" y="0"/>
+      <pos x="1400" y="-40"/>
     </visualElement>
     <visualElement>
       <elementName>Splitter</elementName>

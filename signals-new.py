@@ -868,26 +868,26 @@ def getOpcodeValues(opName):
     for i in range (0,n):
         if 'sa' in opcodeValues[opName].keys():
             sa = opcodeValues[opName]['sa']
-            values[i] |= (sa << 8) << stepBits
+            values[i] |= (sa << 9) << stepBits
         else:
-            values.append(values[i] | ((1 << 8) << stepBits))
+            values.append(values[i] | ((1 << 9) << stepBits))
 
     n = len(values)
 
     for i in range(0,n):
         if 'flag' in opcodeValues[opName].keys():
             flag = opcodeValues[opName]['flag']
-            values[i] |= flag << (9 + stepBits)
+            values[i] |= flag << (10 + stepBits)
         else:
-            values.append(values[i] | (1 << (9 + stepBits)))
+            values.append(values[i] | (1 << (10 + stepBits)))
 
     n = len(values)
     for i in range(0,n):
         if 'sys' in opcodeValues[opName].keys():
             sys = opcodeValues[opName]['sys']
-            values[i] |= sys << (10 + stepBits)
+            values[i] |= sys << (8 + stepBits)
         else:
-            values.append(values[i] | (1 << (10 + stepBits)))
+            values.append(values[i] | (1 << (8 + stepBits)))
 
     return values
 
