@@ -4106,7 +4106,7 @@ d1d0a82,1d0602,1d0302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1d1c0a8a,190202,130202,1d0242,
           <string>~RESET</string>
         </entry>
       </elementAttributes>
-      <pos x="1540" y="300"/>
+      <pos x="1540" y="320"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -11535,6 +11535,16 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
       </elementAttributes>
       <pos x="-900" y="1480"/>
     </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="1540" y="300"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -12252,6 +12262,10 @@ c5,0,0,13,5,f5,ee,73,25,5,34,b7,3,ad,b,93,4,80,0,63,10,75,2,73,25,0,34,b7,c3,ad,
     <wire>
       <p1 x="1860" y="-320"/>
       <p2 x="1960" y="-320"/>
+    </wire>
+    <wire>
+      <p1 x="1540" y="320"/>
+      <p2 x="1560" y="320"/>
     </wire>
     <wire>
       <p1 x="-920" y="320"/>
