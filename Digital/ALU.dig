@@ -867,7 +867,7 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK S          A        B        N ALU-~RESET FLAG-LATCH SH-LOADLEN SH-~OUTPUT SH-RESET   OUT           FLAG DLEN DSUM
+            <dataString>BUS-CLK S         A        B        N ALU-~RESET ALU-AUX   OUT           FLAG DLEN DSUM
 
 loop (rep,32)
 
@@ -881,54 +881,54 @@ let AND = 3;
 
 # A+B
 
-0    (ADD)     0        0        0 1          0          0          1          0          X             X    X    X
-1    (ADD)     0        0        0 0          0          0          1          0          X             X    X    X
+0       (ADD)     0        0        0 1          0         X             X    X    X
+1       (ADD)     0        0        0 0          0         X             X    X    X
 
 loop (i,32)
-0    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0          0          1          0          ((A+B)&gt;&gt;i&amp;1)  X    X    X
-1    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0          0          1          0          X             X    X    X
+0       (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0         ((A+B)&gt;&gt;i&amp;1)  X    X    X
+1       (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0         X             X    X    X
 end loop
 
 #A-B
 
-0    (ADD)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (ADD)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (ADD)     0        0        1 1          0         X             X    X    X
+1       (ADD)     0        0        1 0          0         X             X    X    X
 
 loop (i,32)
-0    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          ((A-B)&gt;&gt;i&amp;1)  X    X    X
-1    (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         ((A-B)&gt;&gt;i&amp;1)  X    X    X
+1       (ADD)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 #A|B
 
-0    (OR)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (OR)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (OR)      0        0        1 1          0         X             X    X    X
+1       (OR)      0        0        1 0          0         X             X    X    X
 
 loop (i,32)
-0    (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          ((A|B)&gt;&gt;i&amp;1)  X    X    X
-1    (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         ((A|B)&gt;&gt;i&amp;1)  X    X    X
+1       (OR)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 
 #A^B
 
-0    (XOR)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (XOR)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (XOR)     0        0        1 1          0         X             X    X    X
+1       (XOR)     0        0        1 0          0         X             X    X    X
 
 loop (i,32)
-0    (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          ((A^B)&gt;&gt;i&amp;1)  X    X    X
-1    (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         ((A^B)&gt;&gt;i&amp;1)  X    X    X
+1       (XOR)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 
 #A&amp;B
 
-0    (AND)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (AND)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (AND)     0        0        1 1          0         X             X    X    X
+1       (AND)     0        0        1 0          0         X             X    X    X
 
 loop (i,32)
-0    (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          ((A&amp;B)&gt;&gt;i&amp;1)  X    X    X
-1    (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         ((A&amp;B)&gt;&gt;i&amp;1)  X    X    X
+1       (AND)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 end loop
@@ -948,7 +948,7 @@ end loop
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK S          A        B        N ALU-~RESET FLAG-LATCH SH-LOADLEN SH-~OUTPUT SH-RESET   OUT           FLAG DLEN DSUM
+            <dataString>BUS-CLK S         A        B        N ALU-~RESET ALU-AUX   OUT           FLAG DLEN DSUM
 
 loop (rep,32)
 
@@ -970,67 +970,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 ##############################################################################################################
@@ -1047,67 +1047,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 
@@ -1125,67 +1125,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 
@@ -1203,67 +1203,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 ##############################################################################################################
@@ -1280,67 +1280,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 
@@ -1358,67 +1358,67 @@ let E = 0;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 
 
@@ -1436,68 +1436,67 @@ let E = 1;
 
 # Reset ALU
 
-0    (LTU)     0        0        1 1          0          0          1          0          X             X    X    X
-1    (LTU)     0        0        1 0          0          0          1          0          X             X    X    X
+0       (LTU)     0        0        1 1          0         X             X    X    X
+1       (LTU)     0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LTU)     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          1          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-1    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
-0    (LTU)     0        0        1 1          0          0          1          0          X             (U)  X    X
+0       (LTU)     0        0        1 1          1         X             (U)  X    X
+1       (LTU)     0        0        1 1          1         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
+1       (LTU)     0        0        1 1          0         X             (U)  X    X
+0       (LTU)     0        0        1 1          0         X             (U)  X    X
 
 # LT
 
 # Reset ALU
 
-0    (LT)      0        0        1 1          0          0          1          0          X             X    X    X
-1    (LT)      0        0        1 0          0          0          1          0          X             X    X    X
+0       (LT)      0        0        1 1          0         X             X    X    X
+1       (LT)      0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (LT)      (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag
 
-0    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          1          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-1    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
-0    (LT)      0        0        1 1          0          0          1          0          X             (S)  X    X
+0       (LT)      0        0        1 1          1         X             (S)  X    X
+1       (LT)      0        0        1 1          1         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
+1       (LT)      0        0        1 1          0         X             (S)  X    X
+0       (LT)      0        0        1 1          0         X             (S)  X    X
 
 # Equal
 
 # Reset ALU
 
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   0        0        1 0          0          0          1          0          X             X    X    X
+0       (EQUAL)   0        0        1 1          0         X             X    X    X
+1       (EQUAL)   0        0        1 0          0         X             X    X    X
 
 # Calculate
 
 loop (i,32)
-0    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
-1    (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          0          1          0          X             X    X    X
+0       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
+1       (EQUAL)   (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0         X             X    X    X
 end loop
 
 # Set and check flag 
 
-0    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          1          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-1    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-0    (EQUAL)   0        0        1 1          0          0          1          0          X             (E)  X    X
-
+0       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          1         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+1       (EQUAL)   0        0        1 1          0         X             (E)  X    X
+0       (EQUAL)   0        0        1 1          0         X             (E)  X    X
 
 end loop
 
@@ -1506,1168 +1505,6 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="560" y="420"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Testcase</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>SLL/SRL</string>
-        </entry>
-        <entry>
-          <string>Testdata</string>
-          <testData>
-            <dataString>CLK S          A         B        N ALU-~RESET FLAG-LATCH SH-LOADLEN SH-~OUTPUT SH-RESET   OUT           FLAG DLEN DSUM
-
-let SLL = 6;
-
-loop (rep,32)
-
-let A = random(1&lt;&lt;32);
-let B = random(32);
-
-# SLL
-
-let R = (A &lt;&lt; B) &amp; 0xFFFFFFFF;
-
-# Reset ALU
-
-0   (SLL)      0         0        0 1          0          0          1          0          X             X    X    X
-0   (SLL)      0         0        0 0          0          0          1          0          X             X    X    X
-
-# Load length
-
-loop (i,32)
-0   (SLL)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0          1          1          0          X             X    X    X
-1   (SLL)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 0 1          0          1          1          0          X             X    X    X
-end loop
-
-# Latch in length
-
-0   (SLL)      0         0        0 1          0          0          1          1          X             X    X    X
-0   (SLL)      0         0        0 1          0          0          1          1          X             X    X    X
-
-# Load in argument
-
-loop (i,32)
-0   (SLL)      (A&gt;&gt;i&amp;1)  0        0 1          0          0          1          0          X             X    X    X
-1   (SLL)      (A&gt;&gt;i&amp;1)  0        0 1          0          0          1          0          X             X    X    X
-end loop
-
-# Output result
-
-loop (i,32)
-0   (SLL)      0         0        0 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SLL)      0         0        0 1          0          0          0          0          X             X    X    X
-end loop
-
-# SRL
-
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SLL)      0         0        1 1          0          0          1          0          X             X    X    X
-0   (SLL)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SLL)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SLL)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SLL)      0         0        0 1          0          0          1          1          X             X    X    X
-0   (SLL)      0         0        0 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SLL)      (A&gt;&gt;i&amp;1)  0        0 1          0          0          1          0          X             X    X    X
-1   (SLL)      (A&gt;&gt;i&amp;1)  0        0 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32)
-0   (SLL)      0         0        0 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SLL)      0         0        0 1          0          0          0          0          X             X    X    X
-end loop
-
-end loop
-</dataString>
-          </testData>
-        </entry>
-      </elementAttributes>
-      <pos x="680" y="420"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Testcase</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>SRA</string>
-        </entry>
-        <entry>
-          <string>Testdata</string>
-          <testData>
-            <dataString>CLK S          A        B        N ALU-~RESET FLAG-LATCH  SH-LOADLEN SH-~OUTPUT SH-RESET   OUT           FLAG DLEN DSUM
-
-loop (rep,4)
-
-let SRA = 7;
-
-# SRA
-
-let A = random(1&lt;&lt;32);
-let S = (A &gt;&gt; 31) &amp; 1;
-
-let B = 0;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-# Reset ALU
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-# Load shift length
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-# Latch length
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-# Load argument
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-# Output result
-
-loop (i,32-0)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,0)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-let B = 1;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-1)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,1)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-let B = 2;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-2)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,2)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-let B = 3;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-3)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,3)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-let B = 4;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-4)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,4)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-let B = 5;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-5)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,5)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-let B = 6;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-6)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,6)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-let B = 7;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-7)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,7)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-let B = 8;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-8)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,8)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-let B = 9;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-9)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,9)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-let B = 10;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-10)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,10)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 11;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-11)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,11)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-let B = 12;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-12)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,12)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 13;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-13)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,13)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 14;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-14)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,14)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 15;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-15)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,15)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 16;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-16)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,16)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 17;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-17)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,17)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 18;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-18)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,18)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 19;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-19)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,19)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 20;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-20)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,20)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 21;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-21)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,21)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 22;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-22)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,22)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 23;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-23)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,23)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 24;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-24)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,24)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 25;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-25)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,25)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 26;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-26)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,26)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 27;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-27)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,27)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 28;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-28)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,28)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 29;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-29)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,29)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 30;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-30)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,30)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-let B = 31;
-let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
-
-0   (SRA)      0         0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      0         0        1 0          0          0          1          0          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-1   (SRA)      (31&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1) 1 1          0          1          1          0          X             X    X    X
-end loop
-
-0   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-1   (SRA)      0         0        1 1          0          0          1          1          X             X    X    X
-
-loop (i,32)
-0   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-1   (SRA)      (A&gt;&gt;i&amp;1)  0        1 1          0          0          1          0          X             X    X    X
-end loop
-
-loop (i,32-31)
-0   (SRA)      0         0        1 1          0          0          0          0          (R&gt;&gt;i&amp;1)      X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-loop (i,31)
-0   (SRA)      0         0        1 1          0          0          0          0          (S)           X    X    X
-1   (SRA)      0         0        1 1          0          0          0          0          X             X    X    X
-end loop
-
-
-
-
-
-end loop
-</dataString>
-          </testData>
-        </entry>
-      </elementAttributes>
-      <pos x="800" y="420"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>

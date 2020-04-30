@@ -347,7 +347,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="880" y="580"/>
+      <pos x="1040" y="580"/>
     </visualElement>
     <visualElement>
       <elementName>And</elementName>
@@ -357,7 +357,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="780" y="700"/>
+      <pos x="940" y="700"/>
     </visualElement>
     <visualElement>
       <elementName>And</elementName>
@@ -367,7 +367,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="780" y="820"/>
+      <pos x="580" y="820"/>
     </visualElement>
     <visualElement>
       <elementName>NOr</elementName>
@@ -387,7 +387,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="760" y="960"/>
+      <pos x="920" y="960"/>
     </visualElement>
     <visualElement>
       <elementName>NOr</elementName>
@@ -397,7 +397,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="1020" y="760"/>
+      <pos x="1180" y="760"/>
     </visualElement>
     <visualElement>
       <elementName>NOr</elementName>
@@ -407,7 +407,7 @@
           <boolean>true</boolean>
         </entry>
       </elementAttributes>
-      <pos x="1020" y="900"/>
+      <pos x="1180" y="900"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -490,6 +490,25 @@
       </elementAttributes>
       <pos x="1420" y="300"/>
     </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Explanation of ~{NEG}:
+
+Consider a and b to be the most significant bits of the signed numbers A and B
+~{NEG} is 0 if A &lt; B otherwise ~{NEG} is 1
+
+If a &amp; ~b is true, A is negative and B is positive, so A is always smaller than B and ~{NEG} is forced low
+If ~a &amp; b is true, A is positive and B is negative, so A is always larger than B and ~{NEG} is forced high
+
+If a = b , A and B have the same sign, and the result of the comparison depends on he sign of A-B.
+The MSB of the result is given by a + ~b + C, and since a + ~b = 1 we find ~{NEG} = C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="420" y="1100"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -502,19 +521,19 @@
     </wire>
     <wire>
       <p1 x="680" y="960"/>
-      <p2 x="760" y="960"/>
+      <p2 x="920" y="960"/>
     </wire>
     <wire>
       <p1 x="640" y="580"/>
-      <p2 x="720" y="580"/>
-    </wire>
-    <wire>
-      <p1 x="720" y="580"/>
       <p2 x="880" y="580"/>
     </wire>
     <wire>
-      <p1 x="920" y="900"/>
-      <p2 x="1020" y="900"/>
+      <p1 x="880" y="580"/>
+      <p2 x="1040" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="900"/>
+      <p2 x="1180" y="900"/>
     </wire>
     <wire>
       <p1 x="560" y="200"/>
@@ -525,11 +544,11 @@
       <p2 x="800" y="200"/>
     </wire>
     <wire>
-      <p1 x="860" y="840"/>
-      <p2 x="920" y="840"/>
+      <p1 x="660" y="840"/>
+      <p2 x="1080" y="840"/>
     </wire>
     <wire>
-      <p1 x="1120" y="780"/>
+      <p1 x="1280" y="780"/>
       <p2 x="1360" y="780"/>
     </wire>
     <wire>
@@ -537,8 +556,8 @@
       <p2 x="800" y="80"/>
     </wire>
     <wire>
-      <p1 x="860" y="720"/>
-      <p2 x="920" y="720"/>
+      <p1 x="1020" y="720"/>
+      <p2 x="1080" y="720"/>
     </wire>
     <wire>
       <p1 x="420" y="340"/>
@@ -553,19 +572,19 @@
       <p2 x="580" y="980"/>
     </wire>
     <wire>
-      <p1 x="860" y="980"/>
-      <p2 x="920" y="980"/>
+      <p1 x="1020" y="980"/>
+      <p2 x="1080" y="980"/>
     </wire>
     <wire>
       <p1 x="500" y="600"/>
       <p2 x="560" y="600"/>
     </wire>
     <wire>
-      <p1 x="960" y="600"/>
+      <p1 x="1120" y="600"/>
       <p2 x="1360" y="600"/>
     </wire>
     <wire>
-      <p1 x="1120" y="920"/>
+      <p1 x="1280" y="920"/>
       <p2 x="1360" y="920"/>
     </wire>
     <wire>
@@ -578,11 +597,11 @@
     </wire>
     <wire>
       <p1 x="500" y="860"/>
-      <p2 x="780" y="860"/>
+      <p2 x="580" y="860"/>
     </wire>
     <wire>
-      <p1 x="920" y="800"/>
-      <p2 x="1020" y="800"/>
+      <p1 x="1080" y="800"/>
+      <p2 x="1180" y="800"/>
     </wire>
     <wire>
       <p1 x="420" y="100"/>
@@ -594,7 +613,7 @@
     </wire>
     <wire>
       <p1 x="640" y="740"/>
-      <p2 x="780" y="740"/>
+      <p2 x="940" y="740"/>
     </wire>
     <wire>
       <p1 x="400" y="740"/>
@@ -606,7 +625,7 @@
     </wire>
     <wire>
       <p1 x="400" y="1000"/>
-      <p2 x="760" y="1000"/>
+      <p2 x="920" y="1000"/>
     </wire>
     <wire>
       <p1 x="420" y="300"/>
@@ -614,15 +633,15 @@
     </wire>
     <wire>
       <p1 x="640" y="620"/>
-      <p2 x="880" y="620"/>
+      <p2 x="1040" y="620"/>
     </wire>
     <wire>
       <p1 x="520" y="940"/>
       <p2 x="580" y="940"/>
     </wire>
     <wire>
-      <p1 x="920" y="940"/>
-      <p2 x="1020" y="940"/>
+      <p1 x="1080" y="940"/>
+      <p2 x="1180" y="940"/>
     </wire>
     <wire>
       <p1 x="0" y="240"/>
@@ -650,15 +669,15 @@
     </wire>
     <wire>
       <p1 x="520" y="820"/>
-      <p2 x="780" y="820"/>
+      <p2 x="580" y="820"/>
     </wire>
     <wire>
       <p1 x="0" y="120"/>
       <p2 x="40" y="120"/>
     </wire>
     <wire>
-      <p1 x="920" y="760"/>
-      <p2 x="1020" y="760"/>
+      <p1 x="1080" y="760"/>
+      <p2 x="1180" y="760"/>
     </wire>
     <wire>
       <p1 x="420" y="60"/>
@@ -669,12 +688,12 @@
       <p2 x="40" y="60"/>
     </wire>
     <wire>
-      <p1 x="720" y="700"/>
-      <p2 x="780" y="700"/>
+      <p1 x="880" y="700"/>
+      <p2 x="940" y="700"/>
     </wire>
     <wire>
-      <p1 x="720" y="580"/>
-      <p2 x="720" y="700"/>
+      <p1 x="880" y="580"/>
+      <p2 x="880" y="700"/>
     </wire>
     <wire>
       <p1 x="640" y="620"/>
@@ -713,20 +732,20 @@
       <p2 x="520" y="940"/>
     </wire>
     <wire>
-      <p1 x="920" y="720"/>
-      <p2 x="920" y="760"/>
+      <p1 x="1080" y="720"/>
+      <p2 x="1080" y="760"/>
     </wire>
     <wire>
-      <p1 x="920" y="800"/>
-      <p2 x="920" y="840"/>
+      <p1 x="1080" y="800"/>
+      <p2 x="1080" y="840"/>
     </wire>
     <wire>
-      <p1 x="920" y="940"/>
-      <p2 x="920" y="980"/>
+      <p1 x="1080" y="940"/>
+      <p2 x="1080" y="980"/>
     </wire>
     <wire>
-      <p1 x="920" y="840"/>
-      <p2 x="920" y="900"/>
+      <p1 x="1080" y="840"/>
+      <p2 x="1080" y="900"/>
     </wire>
   </wires>
   <measurementOrdering/>
