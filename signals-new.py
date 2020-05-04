@@ -665,9 +665,10 @@ def csrCommon(op):
 
 def nopCommon(op):
     return [
-            { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1, META_SECTION: op },
-            { BUS_EN: 0, STEP_LEN: 1 },
-        ]
+        { OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1, META_SECTION: op },
+        { BUS_EN: 0, STEP_LEN: 1 },
+    ]
 
 
 opcodes = {
