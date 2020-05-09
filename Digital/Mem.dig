@@ -284,119 +284,147 @@
       <elementName>Testcase</elementName>
       <elementAttributes>
         <entry>
+          <string>Label</string>
+          <string>Address</string>
+        </entry>
+        <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK BUS-CLK IN         ~OE ~WE ADDR-IN      ADDR-LATCH ADDR-CLK ~{ADDR-PE} ~RESET   OUT
+            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      DAddr    CS-ROM CS-RAM CS-IO
 
-0   0       0          1   1   0            0          0        1          0        0
+0   1    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
+0   1    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
+
+# ROM
 
 loop (rep,32)
 
-let addr = 0x80000000 | random(256);
-let d0 = random(256);
-let d1 = random(256);
-let d2 = random(256);
-let d3 = random(256);
+let rom = 0;
+let ram = 1;
+let io = 1;
+let hi2 = 0x0;
+
+let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
 
 # Output address
 loop (i,32)
-0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
-1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
+0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
 # Latch address
-0   0       0          1   1   0            1          0        0          1        X
-1   0       0          1   1   0            1          1        0          1        X
+0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
-# Output data
-loop (i,8)
-0   0       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1          1        X
-1   1       (d0&gt;&gt;i&amp;1)  1   1   0            0          0        1          1        X
-end loop
+# Output address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Latch data and write
-0   0       0          1   1   0            0          0        1          1        X
-0   0       0          1   0   0            0          0        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
 
-# Output data and increase address
-loop (i,8)
-0   0       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-1   1       (d1&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-end loop
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Latch data and write
-0   0       0          1   1   0            0          0        1          1        X
-0   0       0          1   0   0            0          0        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
 
-# Output data and increase address
-loop (i,8)
-0   0       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-1   1       (d2&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-end loop
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Latch data and write
-0   0       0          1   1   0            0          0        1          1        X
-0   0       0          1   0   0            0          0        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
 
-# Output data and increase address
-loop (i,8)
-0   0       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-1   1       (d3&gt;&gt;i&amp;1)  1   1   0            0          1        1          1        X
-end loop
+# RAM
 
-# Latch data and write
-0   0       0          1   1   0            0          0        1          1        X
-0   0       0          1   0   0            0          0        1          1        X
+let rom = 1;
+let ram = 0;
+let io = 1;
+let hi2 = 0x2;
+
+let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
 
 # Output address
 loop (i,32)
-0   0       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
-1   1       0          1   1   (addr&gt;&gt;i&amp;1)  0          0        0          1        X
+0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
 # Latch address
-0   0       0          1   1   0            1          0        0          1        X
-1   0       0          1   1   0            1          1        0          1        X
+0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
-# Enable output and latch
-0   0       0          0   1   0            0          0        1          1        X
-1   0       0          0   1   0            0          0        1          1        X
+# Output address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Output data and increase address
-loop (i,8)
-0   0       0          1   1   0            0          1        1          1        (d0&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+
+# IO
+
+let rom = 1;
+let ram = 1;
+let io = 0;
+let hi2 = 0x3;
+
+let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
+
+# Output address
+loop (i,32)
+0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
-# Enable output and latch
-0   0       0          0   1   0            0          0        1          1        X
-1   0       0          0   1   0            0          0        1          1        X
+# Latch address
+0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
-# Output data and increase address
-loop (i,8)
-0   0       0          1   1   0            0          1        1          1        (d1&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1          1        X
-end loop
+# Output address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Enable output and latch
-0   0       0          0   1   0            0          0        1          1        X
-1   0       0          0   1   0            0          0        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
 
-# Output data and increase address
-loop (i,8)
-0   0       0          1   1   0            0          1        1          1        (d2&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1          1        X
-end loop
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
-# Enable output and latch
-0   0       0          0   1   0            0          0        1          1        X
-1   0       0          0   1   0            0          0        1          1        X
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
 
-# Output data and increase address
-loop (i,8)
-0   0       0          1   1   0            0          1        1          1        (d3&gt;&gt;i&amp;1)
-1   1       0          1   1   0            0          1        1          1        X
-end loop
+# Increment address
+0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+
+# Check address
+0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
 
 end loop
 </dataString>
@@ -445,7 +473,7 @@ end loop
           <int>8</int>
         </entry>
       </elementAttributes>
-      <pos x="680" y="700"/>
+      <pos x="760" y="700"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -669,6 +697,10 @@ end loop
           <string>Bits</string>
           <int>8</int>
         </entry>
+        <entry>
+          <string>intFormat</string>
+          <intFormat>dec</intFormat>
+        </entry>
       </elementAttributes>
       <pos x="1720" y="520"/>
     </visualElement>
@@ -819,6 +851,188 @@ if FF has no ~{Q} output</string>
         </entry>
       </elementAttributes>
       <pos x="200" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>DIn</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+        <entry>
+          <string>InDefault</string>
+          <value v="0" z="true"/>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="680"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Data Out</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      OUT        DVal
+
+0   1    0       0            0          0        0        1   1   1        0      Z        X          X
+
+loop (rep,32)
+
+# Not sign extended
+
+let d = random(1&lt;&lt;8);
+
+# Output address
+0   1    0       0            0          0        0         1  1   1        1      Z        X          X
+1   0    1       0            0          0        0         1  1   1        1      Z        X          X
+
+# Latch address
+0   1    0       0            1          0        0         1  1   1        1      Z        X          X
+1   0    0       0            1          0        0         1  1   1        1      Z        X          X
+
+# Output address
+0   1    0       0            0          1        0         1  1   1        1      Z        X          X
+1   0    0       0            0          1        0         1  1   1        1      Z        X          X
+
+# Output data
+0   1    0       0            0          1        0         0  1   1        1      (d)      X          X
+1   0    0       0            0          1        0         0  1   1        1      (d)      X          X
+
+# Shift out data
+loop (i,8)
+0   1    0       0            0          1        0         1  1   1        1      Z        ((d&gt;&gt;i)&amp;1) X
+1   0    1       0            0          1        0         1  1   1        1      Z        X          X
+end loop
+
+# Check sign bit
+
+0   1    0       0            0          1        0         1  1   1        1      Z        0          X
+1   0    0       0            0          1        0         1  1   1        1      Z        X          X
+
+# Sign extended positive
+
+let s = 0;
+let d = (s &lt;&lt; 7) | random(1&lt;&lt;7);
+
+# Output address
+0   1    0       0            0          0        0         1  1   0        1      Z        X          X
+1   0    1       0            0          0        0         1  1   0        1      Z        X          X
+
+# Latch address
+0   1    0       0            1          0        0         1  1   0        1      Z        X          X
+1   0    0       0            1          0        0         1  1   0        1      Z        X          X
+
+# Output address
+0   1    0       0            0          1        0         1  1   0        1      Z        X          X
+1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+
+# Output data
+0   1    0       0            0          1        0         0  1   0        1      (d)      X          X
+1   0    0       0            0          1        0         0  1   0        1      (d)      X          X
+
+# Shift out data
+loop (i,8)
+0   1    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
+1   0    1       0            0          1        0         1  1   0        1      Z        X          X
+end loop
+
+# Check sign bit
+
+0   1    0       0            0          1        0         1  1   0        1      Z        (s)        X
+1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+
+
+# Sign extended negative
+
+let s = 1;
+let d = (s &lt;&lt; 7) | random(1&lt;&lt;7);
+
+# Output address
+0   1    0       0            0          0        0         1  1   0        1      Z        X          X
+1   0    1       0            0          0        0         1  1   0        1      Z        X          X
+
+# Latch address
+0   1    0       0            1          0        0         1  1   0        1      Z        X          X
+1   0    0       0            1          0        0         1  1   0        1      Z        X          X
+
+# Output address
+0   1    0       0            0          1        0         1  1   0        1      Z        X          X
+1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+
+# Output data
+0   1    0       0            0          1        0         0  1   0        1      (d)      X          X
+1   0    0       0            0          1        0         0  1   0        1      (d)      X          X
+
+# Shift out data
+loop (i,8)
+0   1    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
+1   0    1       0            0          1        0         1  1   0        1      Z        X          X
+end loop
+
+# Check sign bit
+
+0   1    0       0            0          1        0         1  1   0        1      Z        (s)        X
+1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="740" y="-40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Data In</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN         ~OE ~WE ~{S-EXT} ~RESET DIn      DATA
+
+0   1    0       0            0          0        0          1   1   1        0      Z        X
+
+loop (rep,32)
+
+let d = random(1&lt;&lt;8);
+
+# Clock in data
+
+loop (i,8)
+0   1    0       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
+1   0    1       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
+end loop
+
+# Output data
+0   1    0       0            0          0        0          1   0   1        1      Z        X
+1   0    0       0            0          0        0          1   0   1        1      Z        (d)
+
+# Check data
+
+0   1    0       0            0          0        0          1   1   1        1      Z        (d)
+1   0    0       0            0          0        0          1   1   1        1      Z        X
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="880" y="-40"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -1059,10 +1273,6 @@ if FF has no ~{Q} output</string>
       <p2 x="1540" y="560"/>
     </wire>
     <wire>
-      <p1 x="600" y="560"/>
-      <p2 x="680" y="560"/>
-    </wire>
-    <wire>
       <p1 x="460" y="560"/>
       <p2 x="500" y="560"/>
     </wire>
@@ -1071,7 +1281,15 @@ if FF has no ~{Q} output</string>
       <p2 x="340" y="560"/>
     </wire>
     <wire>
+      <p1 x="600" y="560"/>
+      <p2 x="680" y="560"/>
+    </wire>
+    <wire>
       <p1 x="680" y="560"/>
+      <p2 x="760" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="560"/>
       <p2 x="1460" y="560"/>
     </wire>
     <wire>
@@ -1148,7 +1366,7 @@ if FF has no ~{Q} output</string>
     </wire>
     <wire>
       <p1 x="680" y="560"/>
-      <p2 x="680" y="700"/>
+      <p2 x="680" y="680"/>
     </wire>
     <wire>
       <p1 x="140" y="180"/>
@@ -1157,6 +1375,10 @@ if FF has no ~{Q} output</string>
     <wire>
       <p1 x="940" y="340"/>
       <p2 x="940" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="120"/>
+      <p2 x="720" y="200"/>
     </wire>
     <wire>
       <p1 x="1680" y="480"/>
@@ -1175,12 +1397,12 @@ if FF has no ~{Q} output</string>
       <p2 x="240" y="600"/>
     </wire>
     <wire>
-      <p1 x="720" y="120"/>
-      <p2 x="720" y="200"/>
-    </wire>
-    <wire>
       <p1 x="400" y="240"/>
       <p2 x="400" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="560"/>
+      <p2 x="760" y="700"/>
     </wire>
     <wire>
       <p1 x="1240" y="520"/>

@@ -1259,7 +1259,9 @@
           <testData>
             <dataString>CLK IN          LATCH ADDR-CLK ~PE ~RESET   ADDR
 
-let addr = 0x324384;
+loop (rep,32)
+
+let addr = random(1&lt;&lt;32);
 
 0   0           0     0        1   0        0
 
@@ -1275,6 +1277,8 @@ end loop
 0   0           0     1        1   1        (addr+2)
 0   0           0     0        1   1        X
 0   0           0     1        1   1        (addr+3)
+
+end loop
 </dataString>
           </testData>
         </entry>
