@@ -7774,7 +7774,7 @@
           <string>ALU-OUT</string>
         </entry>
       </elementAttributes>
-      <pos x="540" y="700"/>
+      <pos x="540" y="740"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -7784,7 +7784,7 @@
           <string>ADDR-IN</string>
         </entry>
       </elementAttributes>
-      <pos x="580" y="700"/>
+      <pos x="580" y="740"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -7965,7 +7965,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>LEN4</string>
+          <string>~LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="520" y="-240"/>
@@ -8090,7 +8090,7 @@
           <string>RS2</string>
         </entry>
       </elementAttributes>
-      <pos x="240" y="700"/>
+      <pos x="240" y="740"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -8100,7 +8100,7 @@
           <string>MEM-IN</string>
         </entry>
       </elementAttributes>
-      <pos x="280" y="700"/>
+      <pos x="280" y="740"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -10955,7 +10955,7 @@ a,78,98,0,0,0,0,0,0,93,86,d6,14</data>
         </entry>
         <entry>
           <string>Frequency</string>
-          <int>10000</int>
+          <int>20000</int>
         </entry>
       </elementAttributes>
       <pos x="240" y="-600"/>
@@ -11519,7 +11519,7 @@ a,78,98,0,0,0,0,0,0,93,86,d6,14</data>
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LEN4</string>
+          <string>~LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="820" y="-560"/>
@@ -16770,14 +16770,6 @@ a,78,98,0,0,0,0,0,0,93,86,d6,14</data>
       <p2 x="3660" y="440"/>
     </wire>
     <wire>
-      <p1 x="240" y="700"/>
-      <p2 x="280" y="700"/>
-    </wire>
-    <wire>
-      <p1 x="540" y="700"/>
-      <p2 x="580" y="700"/>
-    </wire>
-    <wire>
       <p1 x="940" y="700"/>
       <p2 x="980" y="700"/>
     </wire>
@@ -17096,6 +17088,14 @@ a,78,98,0,0,0,0,0,0,93,86,d6,14</data>
     <wire>
       <p1 x="2120" y="480"/>
       <p2 x="2140" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="740"/>
+      <p2 x="280" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="540" y="740"/>
+      <p2 x="580" y="740"/>
     </wire>
     <wire>
       <p1 x="840" y="740"/>

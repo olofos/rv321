@@ -291,7 +291,7 @@ end loop
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LEN4</string>
+          <string>~LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="960" y="800"/>
@@ -359,7 +359,7 @@ end loop
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>LEN4</string>
+          <string>~LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="1000" y="800"/>
@@ -407,7 +407,7 @@ end loop
         </entry>
         <entry>
           <string>NetName</string>
-          <string>LEN4</string>
+          <string>~LEN4</string>
         </entry>
       </elementAttributes>
       <pos x="1600" y="500"/>
