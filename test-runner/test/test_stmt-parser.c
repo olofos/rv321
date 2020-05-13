@@ -108,7 +108,7 @@ static void should__ignore_leading_newlines(void **state)
 
 static void should__return_null_for_misformed_statements(void **state)
 {
-    char *inputs[] = {"1 (1", "repeat (a) 0 0", "repeat (8)\n0 0", "loop(i,8)\n1 1\nend\nloop", "loop (8,i)\n1 1\nend loop" };
+    char *inputs[] = {"1 (1", "repeat (a) 0 0", "repeat (8)\n0 0", "loop(i,8)\n1 1\nend\nloop", "loop (8,i)\n1 1\nend loop", "rpt (8) 1 2 3\n", "let a = 1\n1 2 3\n"};
 
     for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
         struct stmt *stmt = test_parse_stmt(inputs[i]);
