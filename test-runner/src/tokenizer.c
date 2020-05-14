@@ -34,12 +34,12 @@ void tokenizer_init(struct tokenizer_context *ctx, FILE *fp)
     ctx->fp = fp;
 }
 
-static void unread_char(struct tokenizer_context *ctx, int c)
+void tokenizer_unread_char(struct tokenizer_context *ctx, int c)
 {
     ctx->unread_char = c;
 }
 
-static int read_char_raw(struct tokenizer_context *ctx)
+int tokenizer_read_char_raw(struct tokenizer_context *ctx)
 {
     if(ctx->unread_char != CHAR_NONE) {
         int c = ctx->unread_char;
@@ -54,12 +54,12 @@ static int read_char_raw(struct tokenizer_context *ctx)
     return c;
 }
 
-static int read_char(struct tokenizer_context *ctx)
+int tokenizer_read_char(struct tokenizer_context *ctx)
 {
-    int c = read_char_raw(ctx);
+    int c = tokenizer_read_char_raw(ctx);
     if(c == '#') {
         do {
-            c = read_char_raw(ctx);
+            c = tokenizer_read_char_raw(ctx);
         } while(!((c == '\n') || (c < 0)));
     }
     return c;
@@ -67,11 +67,11 @@ static int read_char(struct tokenizer_context *ctx)
 
 static int next_char_is(struct tokenizer_context *ctx, int expect)
 {
-    int c = read_char(ctx);
+    int c = tokenizer_read_char(ctx);
     if(c == expect) {
         return 1;
     }
-    unread_char(ctx, c);
+    tokenizer_unread_char(ctx, c);
     return 0;
 }
 
@@ -84,7 +84,7 @@ enum token token_peek(struct tokenizer_context *ctx)
 
     int c;
     do {
-        c = read_char(ctx);
+        c = tokenizer_read_char(ctx);
     } while(isblank(c));
 
     if(c == -1) {
@@ -121,37 +121,37 @@ enum token token_peek(struct tokenizer_context *ctx)
         int i = 0;
         ctx->value[i++] = c;
 
-        c = read_char(ctx);
+        c = tokenizer_read_char(ctx);
 
         if(check_radix) {
             if(c == 'x' || c == 'X') { // Radix 16
                 do {
                     ctx->value[i++] = c;
-                    c = read_char(ctx);
+                    c = tokenizer_read_char(ctx);
                 } while(isxdigit(c) && (i < TOKEN_VALUE_LEN));
-                unread_char(ctx, c);
+                tokenizer_unread_char(ctx, c);
                 ctx->value[i] = 0;
             } else if(c == 'b' || c == 'B') { // Radix 2
                 do {
                     ctx->value[i++] = c;
-                    c = read_char(ctx);
+                    c = tokenizer_read_char(ctx);
                 } while((c == '0' || c == '1') && (i < TOKEN_VALUE_LEN));
-                unread_char(ctx, c);
+                tokenizer_unread_char(ctx, c);
                 ctx->value[i] = 0;
             } else { // Radix 8
                 while(('0' <= c) && (c < '8') && (i < TOKEN_VALUE_LEN)) {
                     ctx->value[i++] = c;
-                    c = read_char(ctx);
+                    c = tokenizer_read_char(ctx);
                 }
-                unread_char(ctx, c);
+                tokenizer_unread_char(ctx, c);
                 ctx->value[i] = 0;
             }
         } else { // Radix 10
             while(isdigit(c) && (i < TOKEN_VALUE_LEN)) {
                 ctx->value[i++] = c;
-                c = read_char(ctx);
+                c = tokenizer_read_char(ctx);
             }
-            unread_char(ctx, c);
+            tokenizer_unread_char(ctx, c);
             ctx->value[i] = 0;
         }
     } else if(isalpha(c) || c == '_') {
@@ -161,10 +161,10 @@ enum token token_peek(struct tokenizer_context *ctx)
 
         do {
             ctx->value[i++] = c;
-            c = read_char(ctx);
+            c = tokenizer_read_char(ctx);
         } while((isalnum(c) || c == '_') && (i < TOKEN_VALUE_LEN));
 
-        unread_char(ctx, c);
+        tokenizer_unread_char(ctx, c);
         ctx->value[i] = 0;
 
         for(const struct keyword_pair *kw = keywords; kw->name; kw++) {

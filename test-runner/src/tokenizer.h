@@ -50,6 +50,10 @@ struct tokenizer_context {
     char value[TOKEN_VALUE_LEN+1];
 };
 
+void tokenizer_unread_char(struct tokenizer_context *ctx, int c);
+int tokenizer_read_char_raw(struct tokenizer_context *ctx);
+int tokenizer_read_char(struct tokenizer_context *ctx);
+
 void tokenizer_init(struct tokenizer_context *ctx, FILE *fp);
 enum token token_peek(struct tokenizer_context *ctx);
 void token_consume(struct tokenizer_context *ctx);
