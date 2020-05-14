@@ -42,6 +42,25 @@ void *allocate(size_t size)
     return p;
 }
 
+#ifndef UNIT_TESTING
+void *reallocate(void *ptr, size_t size)
+#else
+    void *test_reallocate(void* ptr, size_t size, const char* file, const int line)
+#endif
+{
+#ifndef UNIT_TESTING
+    void *p = realloc(ptr, size);
+#else
+    void *p = _test_realloc(ptr, size, file, line);
+#endif
+
+    if(!p) {
+        panic("Failed to allocate memory"); // LCOV_EXCL_LINE
+    }
+
+    return p;
+}
+
 void print_error(struct tokenizer_context *ctx, const char *fmt, ...)
 {
     va_list ap;

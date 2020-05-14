@@ -5,6 +5,7 @@
 
 void panic(const char *fmt, ...);
 void *allocate(size_t size);
+void *reallocate(void *ptr, size_t size);
 
 struct tokenizer_context;
 
@@ -21,8 +22,10 @@ void print_error(struct tokenizer_context *ctx, const char *fmt, ...);
 #ifdef UNIT_TESTING
 
 void *test_allocate(size_t size, const char* file, const int line);
+void *test_reallocate(void *ptr, size_t size, const char* file, const int line);
 void* _test_malloc(const size_t size, const char* file, const int line);
 void* _test_calloc(const size_t number_of_elements, const size_t size, const char* file, const int line);
+void *_test_realloc(void *ptr, size_t size, const char* file, const int line);
 void _test_free(void* const ptr, const char* file, const int line);
 
 #define test_malloc(size) _test_malloc(size, __FILE__, __LINE__)
@@ -35,6 +38,7 @@ void _test_free(void* const ptr, const char* file, const int line);
 #define free test_free
 
 #define allocate(size) test_allocate(size,__FILE__,__LINE__)
+#define reallocate(ptr,size) test_allocate(ptr,size,__FILE__,__LINE__)
 #endif
 
 #endif
