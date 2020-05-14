@@ -103,7 +103,7 @@ static void parse_data__should__return_null_for_unknown_identifiers(void **state
 
 static void parse_data__should__return_null_for_misformed_exprs(void **state)
 {
-    char *inputs[] = {"(1", "(1+)", "bits(1,1+)", "bits(1+1,2)" };
+    char *inputs[] = {"(1", "(1+)", "bits(1,1+)", "bits(1+1,2)", "bits(a,2)" };
 
     for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
         struct data *data = test_parse_data(inputs[i]);

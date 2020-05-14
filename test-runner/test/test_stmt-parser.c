@@ -106,6 +106,13 @@ static void parse_stmt__should__ignore_leading_newlines(void **state)
     }
 }
 
+static void parse_stmt__should__ignore_comments(void **state)
+{
+    struct stmt *stmt = test_parse_stmt("#test\n#test\n(a) 1 2\n");
+    assert_non_null(stmt);
+    teardown_test_stmt(stmt);
+}
+
 static void parse_stmt__should__return_null_for_misformed_statements(void **state)
 {
     char *inputs[] = {"1 (1", "repeat (a) 0 0", "repeat (8)\n0 0", "loop(i,8)\n1 1\nend\nloop", "loop (8,i)\n1 1\nend loop", "rpt (8) 1 2 3\n", "let a = 1\n1 2 3\n"};
@@ -125,6 +132,7 @@ const struct CMUnitTest tests_for_parse_stmt[] = {
     cmocka_unit_test(parse_stmt__should__parse_loop),
     cmocka_unit_test(parse_stmt__should__parse_repeat),
     cmocka_unit_test(parse_stmt__should__ignore_leading_newlines),
+    cmocka_unit_test(parse_stmt__should__ignore_comments),
     cmocka_unit_test(parse_stmt__should__return_null_for_misformed_statements),
 };
 

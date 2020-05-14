@@ -219,26 +219,7 @@ int token_accept(struct tokenizer_context *ctx, enum token tok)
     return 0;
 }
 
-
-// int main(void)
-// {
-//     struct tokenizer_context ctx;
-
-//     tokenizer_init(&ctx, stdin);
-
-//     for(;;) {
-//         enum token token = token_peek(&ctx);
-//         printf("Read token: '%s'\n", token_to_string(&ctx));
-//         token_consume(&ctx);
-
-//         if(token == TOKEN_EOF) {
-//             break;
-//         }
-//     }
-
-//     return 0;
-// }
-
+// LCOV_EXCL_START
 const char* token_to_string(enum token token)
 {
     switch(token) {
@@ -278,3 +259,4 @@ const char* token_to_string(enum token token)
     }
     return "Not a token";
 }
+// LCOV_EXCL_STOP

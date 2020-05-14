@@ -48,15 +48,20 @@ void teardown_test_expr(struct expr *expr)
     deinit_test_context(test_ctx);
 }
 
-static void parse_expr__should__parse_a_number(void **state)
+static void parse_expr__should__parse_numbers(void **state)
 {
-    struct expr *expr = test_parse_expr("1");
+    char *inputs[] = {"42", "0x2A", "052", "0b101010" };
+    number_t nums[] = {42, 42, 42, 42 };
 
-    assert_non_null(expr);
-    assert_int_equal(expr->type, EXPR_NUMBER);
-    assert_int_equal(expr->number, 1);
+    for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
+        struct expr *expr = test_parse_expr(inputs[i]);
 
-    teardown_test_expr(expr);
+        assert_non_null(expr);
+        assert_int_equal(expr->type, EXPR_NUMBER);
+        assert_int_equal(expr->number, nums[i]);
+
+        teardown_test_expr(expr);
+    }
 }
 
 static void parse_expr__should__parse_a_function_call_0(void **state)
@@ -128,6 +133,23 @@ static void parse_expr__should__parse_sums(void **state)
     }
 }
 
+static void parse_expr__should__parse_binary_operators(void **state)
+{
+    char *inputs[] = {"1<<2", "1>>2", "1>=2", "1<=2", "1!=2", "1>2", "1<2", "1&2", "1|2", "1^2", "1+2", "1-2", "2*2", "1/2", "1%2" };
+    enum expr_type types[] = {EXPR_SHIFTLEFT, EXPR_SHIFTRIGHT, EXPR_GREATEREQUAL, EXPR_SMALLEREQUAL, EXPR_NOTEQUAL, '>', '<', '&', '|', '^', '+', '-', '*', '/', '%' };
+
+    for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
+        struct expr *expr = test_parse_expr(inputs[i]);
+
+        assert_non_null(expr);
+        assert_int_equal(expr->type, types[i]);
+        assert_non_null(expr->left);
+        assert_non_null(expr->right);
+
+        teardown_test_expr(expr);
+    }
+}
+
 static void parse_expr__should__parse_unary_minus(void **state)
 {
     char *inputs[] = {"-1", "-a", "-f1(1)", "-(a+b)" };
@@ -137,6 +159,22 @@ static void parse_expr__should__parse_unary_minus(void **state)
 
         assert_non_null(expr);
         assert_int_equal(expr->type, EXPR_UNARY_MINUS);
+        assert_non_null(expr->child);
+
+        teardown_test_expr(expr);
+    }
+}
+
+static void parse_expr__should__parse_unary_operators(void **state)
+{
+    char *inputs[] = {"-1", "~1", "!1", };
+    enum expr_type types[] = {EXPR_UNARY_MINUS, '~', '!'};
+
+    for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
+        struct expr *expr = test_parse_expr(inputs[i]);
+
+        assert_non_null(expr);
+        assert_int_equal(expr->type, types[i]);
         assert_non_null(expr->child);
 
         teardown_test_expr(expr);
@@ -183,7 +221,7 @@ static void parse_expr__should__return_null_for_wrong_number_of_parameters_to_fu
 
 static void parse_expr__should__return_null_for_misformed_exprs(void **state)
 {
-    char *inputs[] = { "1+", "*1", "1+(2+(3+4)", "1+\n2", "(a b)", "(1 2)", "a++", "f2(1,2", "^", "f2(1+," };
+    char *inputs[] = { "1+", "*1", "1+(2+(3+4)", "1+\n2", "(a b)", "(1 2)", "a++", "f2(1,2", "^", "f2(1+,", "$", "1+#\n2"};
 
     for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
         struct expr *expr = test_parse_expr(inputs[i]);
@@ -194,13 +232,15 @@ static void parse_expr__should__return_null_for_misformed_exprs(void **state)
 
 
 const struct CMUnitTest tests_for_parse_expr[] = {
-    cmocka_unit_test(parse_expr__should__parse_a_number),
+    cmocka_unit_test(parse_expr__should__parse_numbers),
     cmocka_unit_test(parse_expr__should__parse_a_variable),
     cmocka_unit_test(parse_expr__should__parse_a_function_call_0),
     cmocka_unit_test(parse_expr__should__parse_a_function_call_1),
     cmocka_unit_test(parse_expr__should__parse_a_function_call_2),
     cmocka_unit_test(parse_expr__should__parse_sums),
+    cmocka_unit_test(parse_expr__should__parse_binary_operators),
     cmocka_unit_test(parse_expr__should__parse_unary_minus),
+    cmocka_unit_test(parse_expr__should__parse_unary_operators),
     cmocka_unit_test(parse_expr__should__parse_binary_not),
     cmocka_unit_test(parse_expr__should__return_null_for_unknown_functions),
     cmocka_unit_test(parse_expr__should__return_null_for_wrong_number_of_parameters_to_function),
