@@ -40,7 +40,7 @@ void teardown_test_stmt(struct stmt *stmt)
 }
 
 
-static void should__parse_data_row_1(void **state)
+static void parse_stmt__should__parse_data_row_1(void **state)
 {
     char *inputs[] = {"Z\n", "1 \n", "(1+1)\n"};
 
@@ -53,7 +53,7 @@ static void should__parse_data_row_1(void **state)
     }
 }
 
-static void should__parse_data_row_2(void **state)
+static void parse_stmt__should__parse_data_row_2(void **state)
 {
     char *inputs[] = {"Z 1\n", "1 x\n", "(1+1) bits(3,a)"};
 
@@ -67,7 +67,7 @@ static void should__parse_data_row_2(void **state)
     }
 }
 
-static void should__parse_let(void **state)
+static void parse_stmt__should__parse_let(void **state)
 {
     struct stmt *stmt = test_parse_stmt("let a = 1;");
     assert_non_null(stmt);
@@ -76,7 +76,7 @@ static void should__parse_let(void **state)
     teardown_test_stmt(stmt);
 }
 
-static void should__parse_loop(void **state)
+static void parse_stmt__should__parse_loop(void **state)
 {
     struct stmt *stmt = test_parse_stmt("loop (i,8)\n1 0 1 0\nend loop");
     assert_non_null(stmt);
@@ -86,7 +86,7 @@ static void should__parse_loop(void **state)
     teardown_test_stmt(stmt);
 }
 
-static void should__parse_repeat(void **state)
+static void parse_stmt__should__parse_repeat(void **state)
 {
     struct stmt *stmt = test_parse_stmt("repeat (8) 1 0 1 0\n");
     assert_non_null(stmt);
@@ -95,7 +95,7 @@ static void should__parse_repeat(void **state)
     teardown_test_stmt(stmt);
 }
 
-static void should__ignore_leading_newlines(void **state)
+static void parse_stmt__should__ignore_leading_newlines(void **state)
 {
     char *inputs[] = {"\n\nZ 1\n", "\n\nlet a = 1;" };
 
@@ -106,7 +106,7 @@ static void should__ignore_leading_newlines(void **state)
     }
 }
 
-static void should__return_null_for_misformed_statements(void **state)
+static void parse_stmt__should__return_null_for_misformed_statements(void **state)
 {
     char *inputs[] = {"1 (1", "repeat (a) 0 0", "repeat (8)\n0 0", "loop(i,8)\n1 1\nend\nloop", "loop (8,i)\n1 1\nend loop", "rpt (8) 1 2 3\n", "let a = 1\n1 2 3\n"};
 
@@ -119,13 +119,13 @@ static void should__return_null_for_misformed_statements(void **state)
 
 
 const struct CMUnitTest tests_for_parse_stmt[] = {
-    cmocka_unit_test(should__parse_data_row_1),
-    cmocka_unit_test(should__parse_data_row_2),
-    cmocka_unit_test(should__parse_let),
-    cmocka_unit_test(should__parse_loop),
-    cmocka_unit_test(should__parse_repeat),
-    cmocka_unit_test(should__ignore_leading_newlines),
-    cmocka_unit_test(should__return_null_for_misformed_statements),
+    cmocka_unit_test(parse_stmt__should__parse_data_row_1),
+    cmocka_unit_test(parse_stmt__should__parse_data_row_2),
+    cmocka_unit_test(parse_stmt__should__parse_let),
+    cmocka_unit_test(parse_stmt__should__parse_loop),
+    cmocka_unit_test(parse_stmt__should__parse_repeat),
+    cmocka_unit_test(parse_stmt__should__ignore_leading_newlines),
+    cmocka_unit_test(parse_stmt__should__return_null_for_misformed_statements),
 };
 
 int main(void)

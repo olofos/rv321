@@ -41,7 +41,7 @@ void teardown_test_data(struct data *data)
 }
 
 
-static void should__parse_a_number(void **state)
+static void parse_data__should__parse_a_number(void **state)
 {
     struct data *data = test_parse_data("0");
 
@@ -52,7 +52,7 @@ static void should__parse_a_number(void **state)
     teardown_test_data(data);
 }
 
-static void should__parse_known_identifiers(void **state)
+static void parse_data__should__parse_known_identifiers(void **state)
 {
     char *inputs[] = {"Z", "X", "C", "z", "x", "c" };
 
@@ -67,7 +67,7 @@ static void should__parse_known_identifiers(void **state)
     }
 }
 
-static void should__parse_bits(void **state)
+static void parse_data__should__parse_bits(void **state)
 {
     struct data *data = test_parse_data("bits(2,3)");
 
@@ -79,7 +79,7 @@ static void should__parse_bits(void **state)
     teardown_test_data(data);
 }
 
-static void should__parse_an_expression(void **state)
+static void parse_data__should__parse_an_expression(void **state)
 {
     struct data *data = test_parse_data("(2)");
 
@@ -90,7 +90,7 @@ static void should__parse_an_expression(void **state)
     teardown_test_data(data);
 }
 
-static void should__return_null_for_unknown_identifiers(void **state)
+static void parse_data__should__return_null_for_unknown_identifiers(void **state)
 {
     char *inputs[] = {"A", "n", "XX", "Xx", "xX", "xxx", "Z0", "Z_0" };
 
@@ -101,7 +101,7 @@ static void should__return_null_for_unknown_identifiers(void **state)
     }
 }
 
-static void should__return_null_for_misformed_exprs(void **state)
+static void parse_data__should__return_null_for_misformed_exprs(void **state)
 {
     char *inputs[] = {"(1", "(1+)", "bits(1,1+)", "bits(1+1,2)" };
 
@@ -112,7 +112,7 @@ static void should__return_null_for_misformed_exprs(void **state)
     }
 }
 
-static void should__set_next_to_null(void **state)
+static void parse_data__should__set_next_to_null(void **state)
 {
     char *inputs[] = {"1", "(1)", "bits(1,1)", "Z" };
 
@@ -127,13 +127,13 @@ static void should__set_next_to_null(void **state)
 
 
 const struct CMUnitTest tests_for_parse_data[] = {
-    cmocka_unit_test(should__parse_a_number),
-    cmocka_unit_test(should__parse_known_identifiers),
-    cmocka_unit_test(should__parse_bits),
-    cmocka_unit_test(should__parse_an_expression),
-    cmocka_unit_test(should__return_null_for_unknown_identifiers),
-    cmocka_unit_test(should__return_null_for_misformed_exprs),
-    cmocka_unit_test(should__set_next_to_null),
+    cmocka_unit_test(parse_data__should__parse_a_number),
+    cmocka_unit_test(parse_data__should__parse_known_identifiers),
+    cmocka_unit_test(parse_data__should__parse_bits),
+    cmocka_unit_test(parse_data__should__parse_an_expression),
+    cmocka_unit_test(parse_data__should__return_null_for_unknown_identifiers),
+    cmocka_unit_test(parse_data__should__return_null_for_misformed_exprs),
+    cmocka_unit_test(parse_data__should__set_next_to_null),
 };
 
 int main(void)

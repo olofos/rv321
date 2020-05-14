@@ -48,7 +48,7 @@ void teardown_test_expr(struct expr *expr)
     deinit_test_context(test_ctx);
 }
 
-static void should__parse_a_number(void **state)
+static void parse_expr__should__parse_a_number(void **state)
 {
     struct expr *expr = test_parse_expr("1");
 
@@ -59,7 +59,7 @@ static void should__parse_a_number(void **state)
     teardown_test_expr(expr);
 }
 
-static void should__parse_a_function_call_0(void **state)
+static void parse_expr__should__parse_a_function_call_0(void **state)
 {
     struct expr *expr = test_parse_expr("f0()");
 
@@ -72,7 +72,7 @@ static void should__parse_a_function_call_0(void **state)
     teardown_test_expr(expr);
 }
 
-static void should__parse_a_function_call_1(void **state)
+static void parse_expr__should__parse_a_function_call_1(void **state)
 {
     struct expr *expr = test_parse_expr("f1(1)");
 
@@ -86,7 +86,7 @@ static void should__parse_a_function_call_1(void **state)
     teardown_test_expr(expr);
 }
 
-static void should__parse_a_function_call_2(void **state)
+static void parse_expr__should__parse_a_function_call_2(void **state)
 {
     struct expr *expr = test_parse_expr("f2(1,2)");
 
@@ -101,7 +101,7 @@ static void should__parse_a_function_call_2(void **state)
     teardown_test_expr(expr);
 }
 
-static void should__parse_a_variable(void **state)
+static void parse_expr__should__parse_a_variable(void **state)
 {
     struct expr *expr = test_parse_expr("x");
 
@@ -112,7 +112,7 @@ static void should__parse_a_variable(void **state)
     teardown_test_expr(expr);
 }
 
-static void should__parse_sums(void **state)
+static void parse_expr__should__parse_sums(void **state)
 {
     char *inputs[] = {"1+2", "1 + 2", "a+b", "1*2+3*4", "-1+-2" };
 
@@ -128,7 +128,7 @@ static void should__parse_sums(void **state)
     }
 }
 
-static void should__parse_unary_minus(void **state)
+static void parse_expr__should__parse_unary_minus(void **state)
 {
     char *inputs[] = {"-1", "-a", "-f1(1)", "-(a+b)" };
 
@@ -143,7 +143,7 @@ static void should__parse_unary_minus(void **state)
     }
 }
 
-static void should__parse_binary_not(void **state)
+static void parse_expr__should__parse_binary_not(void **state)
 {
     char *inputs[] = {"~1", "~a", "~f1(1)", "~(a+b)", "~~0xFF" };
 
@@ -159,7 +159,7 @@ static void should__parse_binary_not(void **state)
 }
 
 
-static void should__return_null_for_unknown_functions(void **state)
+static void parse_expr__should__return_null_for_unknown_functions(void **state)
 {
     char *inputs[] = {"g(1,2)", "1+g(a,b)" };
 
@@ -170,7 +170,7 @@ static void should__return_null_for_unknown_functions(void **state)
     }
 }
 
-static void should__return_null_for_wrong_number_of_parameters_to_function(void **state)
+static void parse_expr__should__return_null_for_wrong_number_of_parameters_to_function(void **state)
 {
     char *inputs[] = {"f0(1)", "f1()", "f0() + f0(1)" };
 
@@ -181,7 +181,7 @@ static void should__return_null_for_wrong_number_of_parameters_to_function(void 
     }
 }
 
-static void should__return_null_for_misformed_exprs(void **state)
+static void parse_expr__should__return_null_for_misformed_exprs(void **state)
 {
     char *inputs[] = { "1+", "*1", "1+(2+(3+4)", "1+\n2", "(a b)", "(1 2)", "a++", "f2(1,2", "^", "f2(1+," };
 
@@ -194,17 +194,17 @@ static void should__return_null_for_misformed_exprs(void **state)
 
 
 const struct CMUnitTest tests_for_parse_expr[] = {
-    cmocka_unit_test(should__parse_a_number),
-    cmocka_unit_test(should__parse_a_variable),
-    cmocka_unit_test(should__parse_a_function_call_0),
-    cmocka_unit_test(should__parse_a_function_call_1),
-    cmocka_unit_test(should__parse_a_function_call_2),
-    cmocka_unit_test(should__parse_sums),
-    cmocka_unit_test(should__parse_unary_minus),
-    cmocka_unit_test(should__parse_binary_not),
-    cmocka_unit_test(should__return_null_for_unknown_functions),
-    cmocka_unit_test(should__return_null_for_wrong_number_of_parameters_to_function),
-    cmocka_unit_test(should__return_null_for_misformed_exprs),
+    cmocka_unit_test(parse_expr__should__parse_a_number),
+    cmocka_unit_test(parse_expr__should__parse_a_variable),
+    cmocka_unit_test(parse_expr__should__parse_a_function_call_0),
+    cmocka_unit_test(parse_expr__should__parse_a_function_call_1),
+    cmocka_unit_test(parse_expr__should__parse_a_function_call_2),
+    cmocka_unit_test(parse_expr__should__parse_sums),
+    cmocka_unit_test(parse_expr__should__parse_unary_minus),
+    cmocka_unit_test(parse_expr__should__parse_binary_not),
+    cmocka_unit_test(parse_expr__should__return_null_for_unknown_functions),
+    cmocka_unit_test(parse_expr__should__return_null_for_wrong_number_of_parameters_to_function),
+    cmocka_unit_test(parse_expr__should__return_null_for_misformed_exprs),
 };
 
 int main(void)
