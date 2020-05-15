@@ -1,7 +1,7 @@
 # For a verbose build set V to an empty string when calling make: "V= make ..."
 V?=@
 
-SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c mt19937-64.c main.c
+SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c header-parser.c mt19937-64.c main.c
 
 TARGET := parser
 
@@ -41,6 +41,7 @@ all: $(BINDIR)$(TARGET)
 $(TSTBINDIR)test_expr-parser: $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
 $(TSTBINDIR)test_data-parser: $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
 $(TSTBINDIR)test_stmt-parser: $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
+$(TSTBINDIR)test_header-parser: $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
 
 -include $(DEPS)
 -include $(TST_DEPS)

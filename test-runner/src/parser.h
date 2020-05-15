@@ -99,11 +99,6 @@ struct data {
     };
 };
 
-// let: name, expr
-// loop: name, number, stmt
-// repeat: data, number
-// data: data
-
 struct stmt {
     enum stmt_type type;
     struct stmt *next;
@@ -120,14 +115,34 @@ struct stmt {
 
 };
 
+enum signal_type {
+    SIGNAL_NONE,
+    SIGNAL_INPUT,
+    SIGNAL_OUTPUT,
+};
+
+struct pin {
+    struct pin *next;
+    int number;
+};
+
+struct signal {
+    char *name;
+    struct signal *next;
+    enum signal_type type;
+    struct pin *pin;
+};
 
 struct expr *parse_expr(struct tokenizer_context *ctx);
 struct data *parse_data(struct tokenizer_context *ctx);
 struct stmt *parse_stmt(struct tokenizer_context *ctx);
+struct signal *parse_header(struct tokenizer_context *ctx);
+struct stmt *parse(struct tokenizer_context *ctx);
 
 void free_expr(struct expr*);
 void free_stmt(struct stmt*);
 void free_data(struct data*);
+void free_signal(struct signal *signal);
 
 
 extern struct function function_tab[];

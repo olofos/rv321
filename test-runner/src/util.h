@@ -1,7 +1,7 @@
 #ifndef UTIL_H_
 #define UTIL_H_
 
-// #define ARRAYSIZE(arr) (sizeof(arr) / sizeof(arr[0]))
+#define ARRAYSIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 
 void panic(const char *fmt, ...);
 void *allocate(size_t size);

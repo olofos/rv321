@@ -58,9 +58,14 @@ int tokenizer_read_char(struct tokenizer_context *ctx)
 {
     int c = tokenizer_read_char_raw(ctx);
     if(c == '#') {
-        do {
-            c = tokenizer_read_char_raw(ctx);
-        } while(!((c == '\n') || (c < 0)));
+        c = tokenizer_read_char_raw(ctx);
+        if(c == '!') {
+            c = '#';
+        } else {
+            while(!((c == '\n') || (c < 0))) {
+                c = tokenizer_read_char_raw(ctx);
+            }
+        }
     }
     return c;
 }
@@ -93,6 +98,8 @@ enum token token_peek(struct tokenizer_context *ctx)
         ctx->token =  c;
     } else if((c == '\n') || (c == '\r')) {
         ctx->token =  TOKEN_EOL;
+    } else if(c == '#') {
+        ctx->token = TOKEN_COMMAND;
     } else if(c == '<') {
         if(next_char_is(ctx, '<')) {
             ctx->token =  TOKEN_SHIFTLEFT;
@@ -256,6 +263,7 @@ const char* token_to_string(enum token token)
     case TOKEN_MOD: return "MOD";
     case TOKEN_SEMICOLON: return "SEMICOLON";
     case TOKEN_LOG_NOT: return "LOG_NOT";
+    case TOKEN_COMMAND: return "COMMAND";
     }
     return "Not a token";
 }

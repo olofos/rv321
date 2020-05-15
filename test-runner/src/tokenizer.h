@@ -9,7 +9,7 @@ enum token {
     TOKEN_NONE = 0,
     TOKEN_UNKNOWN = 'X',
     TOKEN_IDENT = 'I',
-    TOKEN_NUMBER = '#',
+    TOKEN_NUMBER = 'n',
     TOKEN_EOL = '\n',
     TOKEN_EOF = 'q',
     TOKEN_SHIFTLEFT = 'L',
@@ -40,6 +40,8 @@ enum token {
     TOKEN_MOD = '%',
     TOKEN_SEMICOLON = ';',
     TOKEN_LOG_NOT = '!',
+
+    TOKEN_COMMAND = '#',
 };
 
 struct tokenizer_context {
