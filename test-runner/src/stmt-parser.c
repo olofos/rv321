@@ -47,7 +47,7 @@ void free_stmt(struct stmt *stmt)
     }
 }
 
-struct data *parse_data_row(struct tokenizer_context *ctx)
+static struct data *parse_data_row(struct tokenizer_context *ctx)
 {
     const enum token row_tokens[] = { TOKEN_NUMBER, TOKEN_IDENT, TOKEN_BITS, '(', 0 };
 
