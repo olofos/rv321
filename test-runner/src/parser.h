@@ -136,6 +136,7 @@ struct signal {
 struct expr *parse_expr(struct tokenizer_context *ctx);
 struct data *parse_data(struct tokenizer_context *ctx);
 struct stmt *parse_stmt(struct tokenizer_context *ctx);
+struct stmt *parse_stmts(struct tokenizer_context *ctx);
 struct signal *parse_header(struct tokenizer_context *ctx);
 struct stmt *parse(struct tokenizer_context *ctx);
 

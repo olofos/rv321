@@ -141,7 +141,7 @@ struct stmt *parse_stmt(struct tokenizer_context *ctx)
 
         token_expect(ctx, ')');
 
-        stmt->stmt = parse_stmt(ctx);
+        stmt->stmt = parse_stmts(ctx);
 
         if(!stmt->stmt) {
             goto err;
@@ -180,4 +180,20 @@ struct stmt *parse_stmt(struct tokenizer_context *ctx)
 err:
     free_stmt(stmt);
     return 0;
+}
+
+struct stmt *parse_stmts(struct tokenizer_context *ctx)
+{
+    struct stmt *first = 0, *stmt = 0, *prev = 0;
+
+    while((stmt = parse_stmt(ctx))) {
+        if(prev) {
+            prev->next = stmt;
+        } else {
+            first = stmt;
+        }
+        prev = stmt;
+    }
+
+    return first;
 }
