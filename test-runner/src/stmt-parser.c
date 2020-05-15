@@ -171,7 +171,7 @@ struct stmt *parse_stmt(struct tokenizer_context *ctx)
         if(!(token_accept(ctx,'\n') || token_accept(ctx,TOKEN_EOF))) {
             parse_error(ctx, "Expected end of line");
         }
-    } else if(tok != TOKEN_EOF) {
+    } else if((tok != TOKEN_EOF) && (tok != TOKEN_END)) {
         print_error(ctx, "Unexpected token of type %s", token_to_string(ctx->token));
     }
 
