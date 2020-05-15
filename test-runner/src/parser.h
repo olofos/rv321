@@ -133,17 +133,27 @@ struct signal {
     struct pin *pin;
 };
 
+struct test_file {
+    struct stmt *stmt;
+    struct signal *signal;
+};
+
 struct expr *parse_expr(struct tokenizer_context *ctx);
 struct data *parse_data(struct tokenizer_context *ctx);
 struct stmt *parse_stmt(struct tokenizer_context *ctx);
 struct stmt *parse_stmts(struct tokenizer_context *ctx);
 struct signal *parse_header(struct tokenizer_context *ctx);
-struct stmt *parse(struct tokenizer_context *ctx);
+struct test_file *parse_test_file(FILE *f);
+
+struct test_file *test_file_open(const char *filename);
+
+#define test_file_close free_test_file
 
 void free_expr(struct expr*);
 void free_stmt(struct stmt*);
 void free_data(struct data*);
 void free_signal(struct signal *signal);
+void free_test_file(struct test_file *test_file);
 
 
 extern struct function function_tab[];
