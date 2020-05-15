@@ -1,7 +1,7 @@
 # For a verbose build set V to an empty string when calling make: "V= make ..."
 V?=@
 
-SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c header-parser.c mt19937-64.c main.c
+SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c header-parser.c parser.c mt19937-64.c main.c
 
 TARGET := parser
 
