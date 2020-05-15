@@ -66,7 +66,8 @@ void print_error(struct tokenizer_context *ctx, const char *fmt, ...)
     va_list ap;
 
     if(ctx) {
-        fprintf(stderr, "Error on line %d: ", ctx->line + 1);
+        int line = ctx->line + (ctx->token != '\n');
+        fprintf(stderr, "Error on line %d: ", line);
     }
 
     va_start(ap, fmt);
