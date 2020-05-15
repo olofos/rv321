@@ -38,7 +38,7 @@ void _test_free(void* const ptr, const char* file, const int line);
 #define free test_free
 
 #define allocate(size) test_allocate(size,__FILE__,__LINE__)
-#define reallocate(ptr,size) test_allocate(ptr,size,__FILE__,__LINE__)
+#define reallocate(ptr,size) test_reallocate(ptr,size,__FILE__,__LINE__)
 #endif
 
 #endif
