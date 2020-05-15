@@ -92,7 +92,6 @@ static struct signal *read_signals(struct tokenizer_context *ctx)
     char *ident;
 
     while((ident = read_identifier(ctx))) {
-        printf("Signal: '%s'\n", ident);
         struct signal *signal = allocate(sizeof(*signal));
         signal->name = ident;
 
@@ -244,18 +243,6 @@ static int read_mapping(struct tokenizer_context *ctx, struct signal *first_sign
 
     signal->type = type;
     signal->pin = pin;
-
-    printf("%s: ", signal->name);
-    if(signal->type == SIGNAL_INPUT) printf("INPUT ");
-    if(signal->type == SIGNAL_OUTPUT) printf("OUTPUT ");
-    if(signal->type == SIGNAL_NONE) printf("IGNORE ");
-
-    for(struct pin *p = pin; p; p = p->next) {
-        printf("%d", p->number);
-        if(p->next) printf(", ");
-    }
-
-    printf("\n");
 
     free(name);
     return 1;
