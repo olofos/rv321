@@ -83,6 +83,8 @@ struct stmt *parse_stmt(struct tokenizer_context *ctx)
     enum token tok = token_peek(ctx);
     struct stmt *stmt = 0;
 
+    int line = ctx->line;
+
     const enum token row_tokens[] = { TOKEN_NUMBER, TOKEN_IDENT, TOKEN_BITS, '(', 0 };
 
     if(token_match(tok, row_tokens)) {
@@ -173,6 +175,10 @@ struct stmt *parse_stmt(struct tokenizer_context *ctx)
         }
     } else if((tok != TOKEN_EOF) && (tok != TOKEN_END)) {
         print_error(ctx, "Unexpected token of type %s", token_to_string(ctx->token));
+    }
+
+    if(stmt) {
+        stmt->line = line;
     }
 
     return stmt;

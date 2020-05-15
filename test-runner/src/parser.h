@@ -112,7 +112,7 @@ struct stmt {
         struct stmt *stmt; // loop
     };
     number_t number; // loop, data
-
+    int line;
 };
 
 enum signal_type {
