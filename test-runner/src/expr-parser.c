@@ -71,68 +71,64 @@ void free_expr(struct expr *expr)
     free(expr);
 }
 
-struct expr *parse_function_or_variable(struct tokenizer_context *ctx)
+static struct expr *parse_function_or_variable(struct tokenizer_context *ctx)
 {
     struct expr *expr = 0;
 
-    if(token_peek(ctx) == TOKEN_IDENT) {
-        char name[strlen(ctx->value)+1];
-        strcpy(name, ctx->value);
-        token_consume(ctx);
+    char name[strlen(ctx->value)+1];
+    strcpy(name, ctx->value);
+    token_consume(ctx);
 
-        if(token_accept(ctx, '(')) {
-            expr = new_expr(EXPR_FUNCTION);
+    if(token_accept(ctx, '(')) {
+        expr = new_expr(EXPR_FUNCTION);
 
-            for(struct function *func = function_tab; func->name; func++) {
-                if(strcmp(name, func->name) == 0) {
-                    expr->function = func;
-                    break;
-                }
+        for(struct function *func = function_tab; func->name; func++) {
+            if(strcmp(name, func->name) == 0) {
+                expr->function = func;
+                break;
+            }
+        }
+
+        if(!expr->function) {
+            parse_error(ctx, "Unknown function %s", name);
+        }
+
+        int nparams = 0;
+        struct function_param *param = 0;
+
+        do {
+            if(token_peek(ctx) == ')') {
+                break;
             }
 
-            if(!expr->function) {
-                parse_error(ctx, "Unknown function %s", name);
+            struct expr *pexpr = parse_expr(ctx);
+            if(!pexpr){
+                break;
             }
 
-            int nparams = 0;
-            struct function_param *param = 0;
+            struct function_param *p = allocate(sizeof(*p));
+            p->expr = pexpr;
 
-            do {
-                if(token_peek(ctx) == ')') {
-                    break;
-                }
-
-                struct expr *pexpr = parse_expr(ctx);
-                if(!pexpr){
-                    break;
-                }
-
-                struct function_param *p = allocate(sizeof(*p));
-                p->expr = pexpr;
-
-                if(param) {
-                    param->next = p;
-                } else {
-                    expr->param = p;
-                }
-
-                nparams++;
-                param = p;
-            } while(token_accept(ctx, ','));
-
-            token_expect(ctx, ')');
-
-            if(nparams != expr->function->nparams) {
-                parse_error(ctx, "Function %s expected %d parameters but %d were found\n", expr->function->name, expr->function->nparams, nparams);
-                goto err;
+            if(param) {
+                param->next = p;
+            } else {
+                expr->param = p;
             }
-        } else {
-            expr = new_expr(EXPR_VARIABLE);
-            expr->name = allocate(strlen(name)+1);
-            strcpy(expr->name, name);
+
+            nparams++;
+            param = p;
+        } while(token_accept(ctx, ','));
+
+        token_expect(ctx, ')');
+
+        if(nparams != expr->function->nparams) {
+            parse_error(ctx, "Function %s expected %d parameters but %d were found\n", expr->function->name, expr->function->nparams, nparams);
+            goto err;
         }
     } else {
-        print_error(ctx, "Expected an identifier");
+        expr = new_expr(EXPR_VARIABLE);
+        expr->name = allocate(strlen(name)+1);
+        strcpy(expr->name, name);
     }
 
     return expr;
