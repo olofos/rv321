@@ -3,6 +3,8 @@
 
 #include "tokenizer.h"
 
+#define PIN_MAX 63
+
 enum expr_type {
     EXPR_SHIFTLEFT = TOKEN_SHIFTLEFT,
     EXPR_SHIFTRIGHT = TOKEN_SHIFTRIGHT,

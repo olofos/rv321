@@ -8,24 +8,6 @@
 #include "parser.h"
 #include "util.h"
 
-// enum signal_type {
-//     SIGNAL_NONE,
-//     SIGNAL_INPUT,
-//     SIGNAL_OUTPUT,
-// };
-
-// struct pin {
-//     struct pin *next;
-//     int number;
-// };
-
-// struct signal {
-//     char *name;
-//     struct signal *next;
-//     enum signal_type type;
-//     struct pin *pin;
-// };
-
 static void free_pin(struct pin *pin)
 {
     while(pin) {
@@ -185,6 +167,10 @@ static struct pin *read_pins(struct tokenizer_context *ctx)
                 first = pin;
             }
             prev = pin;
+
+            if(pin->number > PIN_MAX) {
+                parse_error(ctx, "Pin number %d is larger than %d", pin->number, PIN_MAX);
+            }
         } else {
             parse_error(ctx, "Unexpected token %s", token_to_string(tok));
         }
