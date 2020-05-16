@@ -35,10 +35,7 @@ struct test_file *parse_test_file(FILE *f)
         goto err;
     }
 
-    if(!(test_file = allocate(sizeof(*test_file)))) {
-        goto err;
-    }
-
+    test_file = allocate(sizeof(*test_file));
     test_file->stmt = stmt;
     test_file->signal = signal;
 
