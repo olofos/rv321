@@ -21,7 +21,7 @@ BUILD_DIRS = $(BINDIR) $(OBJDIR) $(DEPDIR) $(RESULTDIR) $(TSTOBJDIR) $(TSTBINDIR
 OBJ := $(SOURCES:%.c=$(OBJDIR)%.o)
 DEPS := $(SOURCES:%.c=$(DEPDIR)%.d)
 
-SOURCES_TST = $(wildcard $(TSTDIR)*.c)
+SOURCES_TST = $(wildcard $(TSTDIR)test_*.c)
 
 CC = gcc
 CFLAGS = -Wall -pedantic -g -I$(SRCDIR)
@@ -57,7 +57,10 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	$(V)$(CC) -MM -MT $@ $(CFLAGS)  $(INCLUDES) $< > $(DEPDIR)$*.d
 
 test: build_dirs $(TST_RESULTS)
-	@echo $(TST_RESULTS)
+	@echo "-----------------------"
+	@echo Reading test results from:
+	@echo -n "  "
+	@echo $(TST_RESULTS) | sed 's/ /\n  /g'
 	@echo "-----------------------"
 	@echo "SKIPPED:" `grep -o '\[  SKIPPED \]' $(RESULTDIR)*.txt|wc -l`
 	@echo "-----------------------"
