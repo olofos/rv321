@@ -17,7 +17,7 @@ void free_test_file(struct test_file *test_file)
     free(test_file);
 }
 
-struct test_file *parse_test_file(FILE *f)
+static struct test_file *parse_test_file(FILE *f)
 {
     struct test_file *test_file = 0;
     struct signal *signal = 0;
