@@ -42,7 +42,9 @@ static struct test_file *parse_test_file(FILE *f)
     return test_file;
 
 err:
-    free_test_file(test_file);
+    free_signal(signal);
+    free_stmt(stmt);
+    free(test_file);
     return 0;
 }
 
