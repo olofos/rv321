@@ -27,7 +27,7 @@ CC = gcc
 CFLAGS = -Wall -pedantic -g -I$(SRCDIR)
 
 TST_CC = gcc
-TST_WRAP =
+TST_WRAP = -Wl,--wrap=fopen,--wrap=fclose
 TST_CFLAGS = -DUNIT_TESTING -Wall -I$(SRCDIR) -g --coverage $(TST_WRAP)
 
 TST_RESULTS = $(patsubst $(TSTDIR)test_%.c,$(RESULTDIR)test_%.txt,$(SOURCES_TST))
@@ -38,10 +38,11 @@ TST_DEPS = $(TSTDEPDIR)*.d
 
 all: $(BINDIR)$(TARGET)
 
-$(TSTBINDIR)test_expr-parser: $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
-$(TSTBINDIR)test_data-parser: $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
-$(TSTBINDIR)test_stmt-parser: $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
-$(TSTBINDIR)test_header-parser: $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
+$(TSTBINDIR)test_expr-parser: $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+$(TSTBINDIR)test_data-parser: $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+$(TSTBINDIR)test_stmt-parser: $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+$(TSTBINDIR)test_header-parser: $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+#$(TSTBINDIR)test_parser: $(TSTOBJDIR)parser.o $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o
 
 -include $(DEPS)
 -include $(TST_DEPS)
