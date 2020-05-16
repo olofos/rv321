@@ -7,18 +7,12 @@
 
 #include "parser.h"
 
-number_t func_f(number_t param[])
-{
-    return 0;
-}
-
 struct function function_tab[] = {
-    { .name = "f0", .nparams = 0, .func = func_f },
-    { .name = "f1", .nparams = 1, .func = func_f },
-    { .name = "f2", .nparams = 2, .func = func_f },
+    { .name = "f0", .nparams = 0, .func = 0 },
+    { .name = "f1", .nparams = 1, .func = 0 },
+    { .name = "f2", .nparams = 2, .func = 0 },
     { .name = 0, .nparams = 0, .func = 0 },
 };
-
 
 struct tokenizer_context *init_test_context(char *input)
 {
