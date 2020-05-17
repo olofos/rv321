@@ -33,6 +33,7 @@ TST_CFLAGS = -DUNIT_TESTING -Wall -I$(SRCDIR) -g --coverage $(TST_WRAP)
 TST_RESULTS = $(patsubst $(TSTDIR)test_%.c,$(RESULTDIR)test_%.txt,$(SOURCES_TST))
 TST_DEPS = $(TSTDEPDIR)*.d
 
+TST_RESULT_FORMATTER = ./test/result-formatter.py
 
 .PHONY: all bin clean erase test build_dirs coverage
 
@@ -57,23 +58,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	$(V)$(CC) -MM -MT $@ $(CFLAGS)  $(INCLUDES) $< > $(DEPDIR)$*.d
 
 test: build_dirs $(TST_RESULTS)
-	@echo "-----------------------"
-	@echo Reading test results from:
-	@echo -n "  "
-	@echo $(TST_RESULTS) | sed 's/ /\n  /g'
-	@echo "-----------------------"
-	@echo "SKIPPED:" `grep -o '\[  SKIPPED \]' $(RESULTDIR)*.txt|wc -l`
-	@echo "-----------------------"
-	@grep -s '\[  SKIPPED \]' $(RESULTDIR)*.txt || true
-	@echo "\n-----------------------"
-	@echo "FAILED:" `grep -o '\[  FAILED  \]' $(RESULTDIR)*.txt|wc -l`
-	@echo "-----------------------"
-	@grep -s 'FAILED\|LINE\|ERROR' $(RESULTDIR)*.txt || true
-	@echo "\n-----------------------"
-	@echo "PASSED:" `grep -o '\[       OK \]' $(RESULTDIR)*.txt|wc -l`
-	@echo "-----------------------"
-	@echo
-	@! grep -s '\[  FAILED  \]' $(RESULTDIR)*.txt 2>&1 1>/dev/null
+	$(V)$(TST_RESULT_FORMATTER) $(TST_RESULTS)
 
 build_dirs:
 	$(V)mkdir -p $(BUILD_DIRS)
@@ -82,7 +67,7 @@ build_dirs:
 $(RESULTDIR)%.txt: $(TSTBINDIR)%
 	@echo Running $<
 	@echo
-	$(V)./$< > $@ 2>&1 || true
+	$(V) CMOCKA_MESSAGE_OUTPUT=subunit ./$< > $@ 2> $(RESULTDIR)$(*F).err || true
 
 $(TSTOBJDIR)%.o : $(TSTDIR)%.c
 	@echo CC $@
