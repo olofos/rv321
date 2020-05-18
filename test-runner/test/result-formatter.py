@@ -23,7 +23,9 @@ def readFile(file):
             break
         parts = line.strip().split(' ')
         if parts[0] == 'test:':
-            tests[parts[1]] = { }
+            tests[parts[1]] = { 'result': '' }
+        elif parts[0] == 'error:':
+            tests[parts[1]]['result'] = 'failure'
         elif parts[0] == 'success:':
             tests[parts[1]]['result'] = 'success'
         elif parts[0] == 'skip:':
@@ -68,7 +70,10 @@ print(f'Failed:  {fail_color}{len(failed)} / {len(tests)}{bcolors.ENDC}')
 if len(failed) > 0:
     print('');
 for k, v in failed.items():
-    print(f'  {k} (' + v['file'] + ':' + v['line']  + ')')
+    if 'file' in v:
+        print(f'  {k} (' + v['file'] + ':' + v['line']  + ')')
+    else:
+        print(f'  {k}')
 if len(failed) > 0:
     print('');
 print('---------------------------------------------')
