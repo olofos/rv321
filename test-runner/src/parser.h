@@ -138,6 +138,18 @@ struct test_file {
     struct signal *signal;
 };
 
+struct variable {
+    char *name;
+    number_t value;
+    struct variable *next;
+};
+
+struct eval_context {
+    struct eval_context *up;
+    struct variable *variable;
+    const char *error;
+};
+
 struct expr *parse_expr(struct tokenizer_context *ctx);
 struct data *parse_data(struct tokenizer_context *ctx);
 struct stmt *parse_stmt(struct tokenizer_context *ctx);
@@ -153,6 +165,12 @@ void free_stmt(struct stmt*);
 void free_data(struct data*);
 void free_signal(struct signal *signal);
 void free_test_file(struct test_file *test_file);
+void free_eval_context(struct eval_context *eval_ctx);
+
+number_t eval_expr(struct expr *expr, struct eval_context *eval_ctx);
+
+void set_variable(struct eval_context *eval_ctx, const char *name, number_t value);
+number_t get_variable(struct eval_context *eval_ctx, const char *name);
 
 
 extern struct function function_tab[];

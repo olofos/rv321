@@ -45,6 +45,8 @@ $(TSTBINDIR)test_stmt-parser: $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.
 $(TSTBINDIR)test_header-parser: $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
 $(TSTBINDIR)test_parser: $(TSTOBJDIR)parser.o $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
 
+$(TSTBINDIR)test_expr-eval: $(TSTOBJDIR)expr-eval.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+
 -include $(DEPS)
 -include $(TST_DEPS)
 
