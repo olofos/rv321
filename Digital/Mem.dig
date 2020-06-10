@@ -134,16 +134,6 @@
       <pos x="60" y="-20"/>
     </visualElement>
     <visualElement>
-      <elementName>Clock</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~CLK</string>
-        </entry>
-      </elementAttributes>
-      <pos x="20" y="20"/>
-    </visualElement>
-    <visualElement>
       <elementName>74HC597.dig</elementName>
       <elementAttributes/>
       <pos x="1540" y="460"/>
@@ -290,10 +280,10 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      DAddr    CS-ROM CS-RAM CS-IO
+            <dataString>CLK  BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      DAddr    CS-ROM CS-RAM CS-IO
 
-0   1    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
-0   1    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
+0    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
+0    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
 
 # ROM
 
@@ -308,37 +298,37 @@ let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
 
 # Output address
 loop (i,32)
-0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
 # Latch address
-0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
 # Output address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
 
 # RAM
 
@@ -351,37 +341,37 @@ let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
 
 # Output address
 loop (i,32)
-0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
 # Latch address
-0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
 # Output address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
 
 # IO
 
@@ -394,37 +384,37 @@ let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
 
 # Output address
 loop (i,32)
-0   1    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1   0    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
 end loop
 
 # Latch address
-0   1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
 
 # Output address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
 
 # Increment address
-0   1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1   0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
 
 # Check address
-0   1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1   0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
 
 end loop
 </dataString>
@@ -731,16 +721,6 @@ end loop
       <elementName>Tunnel</elementName>
       <elementAttributes>
         <entry>
-          <string>NetName</string>
-          <string>~CLK</string>
-        </entry>
-      </elementAttributes>
-      <pos x="60" y="20"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
           <string>rotation</string>
           <rotation rotation="2"/>
         </entry>
@@ -851,9 +831,9 @@ if FF has no ~{Q} output</string>
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      OUT        DVal
+            <dataString>CLK  BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      OUT        DVal
 
-0   1    0       0            0          0        0        1   1   1        0      Z        X          X
+0    0       0            0          0        0        1   1   1        0      Z        X          X
 
 loop (rep,32)
 
@@ -862,31 +842,31 @@ loop (rep,32)
 let d = random(1&lt;&lt;8);
 
 # Output address
-0   1    0       0            0          0        0         1  1   1        1      Z        X          X
-1   0    1       0            0          0        0         1  1   1        1      Z        X          X
+0    0       0            0          0        0         1  1   1        1      Z        X          X
+1    1       0            0          0        0         1  1   1        1      Z        X          X
 
 # Latch address
-0   1    0       0            1          0        0         1  1   1        1      Z        X          X
-1   0    0       0            1          0        0         1  1   1        1      Z        X          X
+0    0       0            1          0        0         1  1   1        1      Z        X          X
+1    0       0            1          0        0         1  1   1        1      Z        X          X
 
 # Output address
-0   1    0       0            0          1        0         1  1   1        1      Z        X          X
-1   0    0       0            0          1        0         1  1   1        1      Z        X          X
+0    0       0            0          1        0         1  1   1        1      Z        X          X
+1    0       0            0          1        0         1  1   1        1      Z        X          X
 
 # Output data
-0   1    0       0            0          1        0         0  1   1        1      (d)      X          X
-1   0    0       0            0          1        0         0  1   1        1      (d)      X          X
+0    0       0            0          1        0         0  1   1        1      (d)      X          X
+1    0       0            0          1        0         0  1   1        1      (d)      X          X
 
 # Shift out data
 loop (i,8)
-0   1    0       0            0          1        0         1  1   1        1      Z        ((d&gt;&gt;i)&amp;1) X
-1   0    1       0            0          1        0         1  1   1        1      Z        X          X
+0    0       0            0          1        0         1  1   1        1      Z        ((d&gt;&gt;i)&amp;1) X
+1    1       0            0          1        0         1  1   1        1      Z        X          X
 end loop
 
 # Check sign bit
 
-0   1    0       0            0          1        0         1  1   1        1      Z        0          X
-1   0    0       0            0          1        0         1  1   1        1      Z        X          X
+0    0       0            0          1        0         1  1   1        1      Z        0          X
+1    0       0            0          1        0         1  1   1        1      Z        X          X
 
 # Sign extended positive
 
@@ -894,31 +874,31 @@ let s = 0;
 let d = (s &lt;&lt; 7) | random(1&lt;&lt;7);
 
 # Output address
-0   1    0       0            0          0        0         1  1   0        1      Z        X          X
-1   0    1       0            0          0        0         1  1   0        1      Z        X          X
+0    0       0            0          0        0         1  1   0        1      Z        X          X
+1    1       0            0          0        0         1  1   0        1      Z        X          X
 
 # Latch address
-0   1    0       0            1          0        0         1  1   0        1      Z        X          X
-1   0    0       0            1          0        0         1  1   0        1      Z        X          X
+0    0       0            1          0        0         1  1   0        1      Z        X          X
+1    0       0            1          0        0         1  1   0        1      Z        X          X
 
 # Output address
-0   1    0       0            0          1        0         1  1   0        1      Z        X          X
-1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        X          X
+1    0       0            0          1        0         1  1   0        1      Z        X          X
 
 # Output data
-0   1    0       0            0          1        0         0  1   0        1      (d)      X          X
-1   0    0       0            0          1        0         0  1   0        1      (d)      X          X
+0    0       0            0          1        0         0  1   0        1      (d)      X          X
+1    0       0            0          1        0         0  1   0        1      (d)      X          X
 
 # Shift out data
 loop (i,8)
-0   1    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
-1   0    1       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
+1    1       0            0          1        0         1  1   0        1      Z        X          X
 end loop
 
 # Check sign bit
 
-0   1    0       0            0          1        0         1  1   0        1      Z        (s)        X
-1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        (s)        X
+1    0       0            0          1        0         1  1   0        1      Z        X          X
 
 
 # Sign extended negative
@@ -927,31 +907,31 @@ let s = 1;
 let d = (s &lt;&lt; 7) | random(1&lt;&lt;7);
 
 # Output address
-0   1    0       0            0          0        0         1  1   0        1      Z        X          X
-1   0    1       0            0          0        0         1  1   0        1      Z        X          X
+0    0       0            0          0        0         1  1   0        1      Z        X          X
+1    1       0            0          0        0         1  1   0        1      Z        X          X
 
 # Latch address
-0   1    0       0            1          0        0         1  1   0        1      Z        X          X
-1   0    0       0            1          0        0         1  1   0        1      Z        X          X
+0    0       0            1          0        0         1  1   0        1      Z        X          X
+1    0       0            1          0        0         1  1   0        1      Z        X          X
 
 # Output address
-0   1    0       0            0          1        0         1  1   0        1      Z        X          X
-1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        X          X
+1    0       0            0          1        0         1  1   0        1      Z        X          X
 
 # Output data
-0   1    0       0            0          1        0         0  1   0        1      (d)      X          X
-1   0    0       0            0          1        0         0  1   0        1      (d)      X          X
+0    0       0            0          1        0         0  1   0        1      (d)      X          X
+1    0       0            0          1        0         0  1   0        1      (d)      X          X
 
 # Shift out data
 loop (i,8)
-0   1    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
-1   0    1       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        ((d&gt;&gt;i)&amp;1) X
+1    1       0            0          1        0         1  1   0        1      Z        X          X
 end loop
 
 # Check sign bit
 
-0   1    0       0            0          1        0         1  1   0        1      Z        (s)        X
-1   0    0       0            0          1        0         1  1   0        1      Z        X          X
+0    0       0            0          1        0         1  1   0        1      Z        (s)        X
+1    0       0            0          1        0         1  1   0        1      Z        X          X
 
 end loop
 </dataString>
@@ -970,9 +950,9 @@ end loop
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK ~CLK BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN         ~OE ~WE ~{S-EXT} ~RESET DIn      DATA
+            <dataString>CLK  BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN         ~OE ~WE ~{S-EXT} ~RESET DIn      DATA
 
-0   1    0       0            0          0        0          1   1   1        0      Z        X
+0    0       0            0          0        0          1   1   1        0      Z        X
 
 loop (rep,32)
 
@@ -981,18 +961,18 @@ let d = random(1&lt;&lt;8);
 # Clock in data
 
 loop (i,8)
-0   1    0       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
-1   0    1       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
+0    0       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
+1    1       0            0          0        ((d&gt;&gt;i)&amp;1) 1   1   1        1      Z        X
 end loop
 
 # Output data
-0   1    0       0            0          0        0          1   0   1        1      Z        X
-1   0    0       0            0          0        0          1   0   1        1      Z        (d)
+0    0       0            0          0        0          1   0   1        1      Z        X
+1    0       0            0          0        0          1   0   1        1      Z        (d)
 
 # Check data
 
-0   1    0       0            0          0        0          1   1   1        1      Z        (d)
-1   0    0       0            0          0        0          1   1   1        1      Z        X
+0    0       0            0          0        0          1   1   1        1      Z        (d)
+1    0       0            0          0        0          1   1   1        1      Z        X
 
 end loop
 </dataString>
@@ -1168,10 +1148,6 @@ end loop
     <wire>
       <p1 x="920" y="340"/>
       <p2 x="940" y="340"/>
-    </wire>
-    <wire>
-      <p1 x="20" y="20"/>
-      <p2 x="60" y="20"/>
     </wire>
     <wire>
       <p1 x="1480" y="660"/>
