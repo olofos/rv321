@@ -1,7 +1,7 @@
 # For a verbose build set V to an empty string when calling make: "V= make ..."
 V?=@
 
-SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c header-parser.c parser.c mt19937-64.c main.c
+SOURCES := util.c tokenizer.c expr-parser.c stmt-parser.c data-parser.c header-parser.c parser.c expr-eval.c stmt-eval.c mt19937-64.c main.c
 
 TARGET := parser
 
@@ -46,6 +46,7 @@ $(TSTBINDIR)test_header-parser: $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)util.o $
 $(TSTBINDIR)test_parser: $(TSTOBJDIR)parser.o $(TSTOBJDIR)header-parser.o $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
 
 $(TSTBINDIR)test_expr-eval: $(TSTOBJDIR)expr-eval.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
+$(TSTBINDIR)test_stmt-eval: $(TSTOBJDIR)stmt-eval.o $(TSTOBJDIR)expr-eval.o $(TSTOBJDIR)stmt-parser.o $(TSTOBJDIR)data-parser.o $(TSTOBJDIR)expr-parser.o $(TSTOBJDIR)util.o $(TSTOBJDIR)tokenizer.o $(TSTOBJDIR)test-util.o
 
 -include $(DEPS)
 -include $(TST_DEPS)

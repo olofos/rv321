@@ -172,6 +172,8 @@ number_t eval_expr(struct expr *expr, struct eval_context *eval_ctx);
 void set_variable(struct eval_context *eval_ctx, const char *name, number_t value);
 number_t get_variable(struct eval_context *eval_ctx, const char *name);
 
+struct data *eval_data_row(struct data *data_in, struct eval_context *eval_ctx);
+struct stmt *eval_stmts(struct stmt *stmt_in, struct eval_context *eval_ctx);
 
 extern struct function function_tab[];
 
