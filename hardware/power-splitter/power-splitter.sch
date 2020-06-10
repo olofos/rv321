@@ -1,0 +1,205 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L riscv-serial:Conn_Power J1
+U 1 1 5EDB576B
+P 4450 2700
+F 0 "J1" H 4450 2850 50  0000 C CNN
+F 1 "Conn_Power" V 4150 2700 50  0000 C CNN
+F 2 "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal" H 4450 2800 50  0001 C CNN
+F 3 "" H 4450 2800 50  0001 C CNN
+	1    4450 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 5EDB5864
+P 4650 3050
+F 0 "#PWR03" H 4650 2800 50  0001 C CNN
+F 1 "GND" H 4655 2877 50  0000 C CNN
+F 2 "" H 4650 3050 50  0001 C CNN
+F 3 "" H 4650 3050 50  0001 C CNN
+	1    4650 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR01
+U 1 1 5EDB59B9
+P 4700 2550
+F 0 "#PWR01" H 4700 2400 50  0001 C CNN
+F 1 "+5V" H 4715 2723 50  0000 C CNN
+F 2 "" H 4700 2550 50  0001 C CNN
+F 3 "" H 4700 2550 50  0001 C CNN
+	1    4700 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J3
+U 1 1 5EDB5C01
+P 4200 3900
+F 0 "J3" H 4094 3575 50  0000 C CNN
+F 1 "Conn_01x02_Female" V 4300 3850 50  0000 C CNN
+F 2 "riscv-serial:TerminalBlock_01x02_p5.08" H 4200 3900 50  0001 C CNN
+F 3 "https://www.mouser.se/datasheet/2/670/tb007-508-1550621.pdf" H 4200 3900 50  0001 C CNN
+	1    4200 3900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J4
+U 1 1 5EDB5CEB
+P 5300 3850
+F 0 "J4" H 5194 3525 50  0000 C CNN
+F 1 "Conn_01x02_Female" V 5450 3800 50  0000 C CNN
+F 2 "riscv-serial:TerminalBlock_01x02_p5.08" H 5300 3850 50  0001 C CNN
+F 3 "https://www.mouser.se/datasheet/2/670/tb007-508-1550621.pdf" H 5300 3850 50  0001 C CNN
+	1    5300 3850
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C1
+U 1 1 5EDB5DA8
+P 6250 3950
+F 0 "C1" H 6365 3996 50  0000 L CNN
+F 1 "CP1" H 6365 3905 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_5x5.3" H 6250 3950 50  0001 C CNN
+F 3 "~" H 6250 3950 50  0001 C CNN
+	1    6250 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR05
+U 1 1 5EDB6061
+P 4500 3700
+F 0 "#PWR05" H 4500 3550 50  0001 C CNN
+F 1 "+5V" H 4515 3873 50  0000 C CNN
+F 2 "" H 4500 3700 50  0001 C CNN
+F 3 "" H 4500 3700 50  0001 C CNN
+	1    4500 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 3700 4500 3800
+Wire Wire Line
+	4500 3800 4400 3800
+$Comp
+L power:GND #PWR08
+U 1 1 5EDB6193
+P 4500 4000
+F 0 "#PWR08" H 4500 3750 50  0001 C CNN
+F 1 "GND" H 4505 3827 50  0000 C CNN
+F 2 "" H 4500 4000 50  0001 C CNN
+F 3 "" H 4500 4000 50  0001 C CNN
+	1    4500 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 3900 4500 3900
+Wire Wire Line
+	4500 3900 4500 4000
+$Comp
+L power:+5V #PWR07
+U 1 1 5EDB62F5
+P 5600 3750
+F 0 "#PWR07" H 5600 3600 50  0001 C CNN
+F 1 "+5V" H 5615 3923 50  0000 C CNN
+F 2 "" H 5600 3750 50  0001 C CNN
+F 3 "" H 5600 3750 50  0001 C CNN
+	1    5600 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3750 5600 3850
+Wire Wire Line
+	5600 3850 5500 3850
+$Comp
+L power:GND #PWR09
+U 1 1 5EDB62FD
+P 5600 4050
+F 0 "#PWR09" H 5600 3800 50  0001 C CNN
+F 1 "GND" H 5605 3877 50  0000 C CNN
+F 2 "" H 5600 4050 50  0001 C CNN
+F 3 "" H 5600 4050 50  0001 C CNN
+	1    5600 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 3950 5600 3950
+Wire Wire Line
+	5600 3950 5600 4050
+$Comp
+L power:+5V #PWR06
+U 1 1 5EDB64B4
+P 6250 3700
+F 0 "#PWR06" H 6250 3550 50  0001 C CNN
+F 1 "+5V" H 6265 3873 50  0000 C CNN
+F 2 "" H 6250 3700 50  0001 C CNN
+F 3 "" H 6250 3700 50  0001 C CNN
+	1    6250 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 3700 6250 3800
+$Comp
+L power:GND #PWR010
+U 1 1 5EDB64BC
+P 6250 4200
+F 0 "#PWR010" H 6250 3950 50  0001 C CNN
+F 1 "GND" H 6255 4027 50  0000 C CNN
+F 2 "" H 6250 4200 50  0001 C CNN
+F 3 "" H 6250 4200 50  0001 C CNN
+	1    6250 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 4100 6250 4200
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5EDB767A
+P 7150 3300
+F 0 "H1" H 7250 3346 50  0000 L CNN
+F 1 "MountingHole" H 7250 3255 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 7150 3300 50  0001 C CNN
+F 3 "~" H 7150 3300 50  0001 C CNN
+	1    7150 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 5EDB7707
+P 7150 3550
+F 0 "H2" H 7250 3596 50  0000 L CNN
+F 1 "MountingHole" H 7250 3505 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 7150 3550 50  0001 C CNN
+F 3 "~" H 7150 3550 50  0001 C CNN
+	1    7150 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2950 4450 3000
+Wire Wire Line
+	4450 3000 4700 3000
+Wire Wire Line
+	4650 2750 4650 3050
+Wire Wire Line
+	4700 3000 4700 2650
+Wire Wire Line
+	4700 2650 4700 2550
+Connection ~ 4700 2650
+Wire Wire Line
+	4600 2650 4700 2650
+Wire Wire Line
+	4650 2750 4600 2750
+$EndSCHEMATC
