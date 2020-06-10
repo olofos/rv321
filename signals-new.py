@@ -100,7 +100,7 @@ signalDefaults = {
 
     ADDR_LATCH: 0,
     ADDR_CLK: 0,
-    ADDR_PE: 1,
+    ADDR_PE: 0,
 
     MEM_OE: 1,
     MEM_WE: 1,
