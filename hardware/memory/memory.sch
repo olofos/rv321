@@ -1925,8 +1925,8 @@ Wire Wire Line
 Wire Wire Line
 	10250 13100 10750 13100
 Wire Wire Line
-	11700 12700 12200 12700
-Text Label 11700 12700 0    50   ~ 0
+	11700 12500 12200 12500
+Text Label 10250 13200 0    50   ~ 0
 A24
 Text Label 10250 13100 0    50   ~ 0
 A25
@@ -2649,14 +2649,14 @@ Wire Wire Line
 Connection ~ 3050 2700
 Wire Wire Line
 	3050 2700 3050 2850
-Text Label 11700 12500 0    50   ~ 0
-A31
 Text Label 11700 12600 0    50   ~ 0
+A31
+Text Label 11700 12700 0    50   ~ 0
 A30
 Wire Wire Line
-	11700 12500 12200 12500
+	11700 12600 12200 12600
 Wire Wire Line
-	12200 12600 11700 12600
+	12200 12700 11700 12700
 Wire Wire Line
 	12200 15200 12100 15200
 Wire Wire Line
@@ -3223,4 +3223,9 @@ F 3 "~" H 8600 11450 50  0001 C CNN
 	1    8600 11450
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	10250 13200 10750 13200
+NoConn ~ 10750 13200
+Text Label 11700 12500 0    50   ~ 0
+~RESET
 $EndSCHEMATC

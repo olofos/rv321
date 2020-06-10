@@ -584,10 +584,6 @@ Wire Wire Line
 Wire Wire Line
 	14150 3400 14950 3400
 Wire Wire Line
-	13750 2800 14950 2800
-Wire Wire Line
-	13750 2700 14950 2700
-Wire Wire Line
 	13750 2200 14950 2200
 Wire Wire Line
 	13750 2100 14950 2100
@@ -667,90 +663,10 @@ $EndComp
 NoConn ~ 2800 1200
 NoConn ~ 2800 1600
 NoConn ~ 2800 1500
-$Comp
-L Device:R R1
-U 1 1 5F47700B
-P 3850 850
-F 0 "R1" V 3750 850 50  0000 C CNN
-F 1 "DNP" V 3850 850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3780 850 50  0001 C CNN
-F 3 "~" H 3850 850 50  0001 C CNN
-	1    3850 850 
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R2
-U 1 1 5F47FE06
-P 3850 950
-F 0 "R2" V 3950 950 50  0000 C CNN
-F 1 "DNP" V 3850 950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3780 950 50  0001 C CNN
-F 3 "~" H 3850 950 50  0001 C CNN
-	1    3850 950 
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 5F47FE40
-P 3850 1300
-F 0 "R3" V 3750 1300 50  0000 C CNN
-F 1 "0" V 3850 1300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3780 1300 50  0001 C CNN
-F 3 "~" H 3850 1300 50  0001 C CNN
-	1    3850 1300
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 5F47FE80
-P 3850 1400
-F 0 "R4" V 3950 1400 50  0000 C CNN
-F 1 "0" V 3850 1400 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3780 1400 50  0001 C CNN
-F 3 "~" H 3850 1400 50  0001 C CNN
-	1    3850 1400
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2800 1400 3350 1400
-Wire Wire Line
-	3700 1300 3450 1300
-Wire Wire Line
-	3350 1400 3350 850 
-Wire Wire Line
-	3350 850  3700 850 
-Connection ~ 3350 1400
-Wire Wire Line
-	3350 1400 3700 1400
-Wire Wire Line
-	3700 950  3450 950 
-Wire Wire Line
-	3450 950  3450 1300
-Connection ~ 3450 1300
-Wire Wire Line
-	3450 1300 2800 1300
-Wire Wire Line
-	4000 950  4250 950 
-Wire Wire Line
-	4250 950  4250 1400
-Wire Wire Line
-	4250 1400 4000 1400
-Wire Wire Line
-	4000 1300 4150 1300
-Wire Wire Line
-	4150 1300 4150 850 
-Wire Wire Line
-	4150 850  4000 850 
 Text Label 4700 1400 2    50   ~ 0
 UART2_RX
-Wire Wire Line
-	4700 1400 4250 1400
-Connection ~ 4250 1400
 Text Label 4700 1300 2    50   ~ 0
 UART2_TX
-Wire Wire Line
-	4700 1300 4150 1300
-Connection ~ 4150 1300
 $Comp
 L power:GND #PWR01
 U 1 1 5F501B21
@@ -1318,7 +1234,6 @@ NoConn ~ 8650 1750
 NoConn ~ 8650 1650
 NoConn ~ 8650 1550
 NoConn ~ 14950 2600
-NoConn ~ 14950 2900
 NoConn ~ 14950 3000
 NoConn ~ 14950 3100
 NoConn ~ 14950 3200
@@ -1765,4 +1680,24 @@ F 3 "" H 9100 1550 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	9100 1550 9100 1650
+Wire Wire Line
+	2800 1300 4700 1300
+Wire Wire Line
+	2800 1400 4700 1400
+Wire Wire Line
+	13750 2800 14250 2800
+Wire Wire Line
+	14250 2800 14250 2900
+Wire Wire Line
+	14250 2900 14950 2900
+Wire Wire Line
+	13750 2700 14350 2700
+Wire Wire Line
+	14350 2700 14350 2800
+Wire Wire Line
+	14350 2800 14950 2800
+Text Label 14500 2700 0    50   ~ 0
+~RESET
+Wire Wire Line
+	14500 2700 14950 2700
 $EndSCHEMATC

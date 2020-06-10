@@ -229,8 +229,6 @@ Text Label 1750 3700 2    50   ~ 0
 A22
 Text Label 1750 3600 2    50   ~ 0
 A23
-Text Label 1750 3500 2    50   ~ 0
-A24
 Text Label 1750 3200 2    50   ~ 0
 ~WAIT
 Text Label 1750 3100 2    50   ~ 0
@@ -312,14 +310,14 @@ Wire Wire Line
 	1750 4100 1250 4100
 Wire Wire Line
 	1750 4200 1250 4200
-Text Label 1750 3300 2    50   ~ 0
-A31
 Text Label 1750 3400 2    50   ~ 0
+A31
+Text Label 1750 3500 2    50   ~ 0
 A30
 Wire Wire Line
-	1750 3300 1250 3300
+	1750 3400 1250 3400
 Wire Wire Line
-	1250 3400 1750 3400
+	1250 3500 1750 3500
 $Comp
 L riscv-serial:Conn_Power J?
 U 1 1 5ED661AA
@@ -1041,9 +1039,6 @@ Wire Wire Line
 	1250 3700 1900 3700
 Wire Wire Line
 	1250 3600 1900 3600
-Wire Wire Line
-	1250 3500 1900 3500
-NoConn ~ 1900 3500
 NoConn ~ 1900 3600
 NoConn ~ 1900 3700
 NoConn ~ 1900 3800
@@ -1105,4 +1100,9 @@ Wire Wire Line
 Wire Wire Line
 	5600 6550 4850 6550
 Connection ~ 4850 6550
+Wire Wire Line
+	1250 3300 1900 3300
+NoConn ~ 1900 3300
+Text Label 1750 3300 2    50   ~ 0
+~RESET
 $EndSCHEMATC

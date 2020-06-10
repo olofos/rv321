@@ -224,8 +224,6 @@ Text Label 1950 3900 2    50   ~ 0
 A22
 Text Label 1950 3800 2    50   ~ 0
 A23
-Text Label 1950 3700 2    50   ~ 0
-A24
 Text Label 1950 3400 2    50   ~ 0
 ~WAIT
 Text Label 1950 3300 2    50   ~ 0
@@ -308,14 +306,14 @@ Wire Wire Line
 	1950 4300 1450 4300
 Wire Wire Line
 	1950 4400 1450 4400
-Text Label 1950 3500 2    50   ~ 0
-A31
 Text Label 1950 3600 2    50   ~ 0
+A31
+Text Label 1950 3700 2    50   ~ 0
 A30
 Wire Wire Line
-	1950 3500 1450 3500
+	1950 3600 1450 3600
 Wire Wire Line
-	1450 3600 1950 3600
+	1450 3700 1950 3700
 $Comp
 L Mechanical:MountingHole H?
 U 1 1 5EC7AA1F
@@ -412,7 +410,7 @@ Wire Wire Line
 	1600 2300 1450 2300
 Connection ~ 1600 6200
 Wire Wire Line
-	1450 3700 2050 3700
+	1450 3500 2050 3500
 Wire Wire Line
 	1450 3800 2050 3800
 Wire Wire Line
@@ -1128,8 +1126,10 @@ Wire Wire Line
 	9950 3600 10100 3600
 Wire Wire Line
 	10100 3600 10100 3400
-NoConn ~ 2050 3700
+NoConn ~ 2050 3500
 NoConn ~ 2050 3800
 NoConn ~ 2050 3900
 NoConn ~ 2050 4000
+Text Label 1950 3500 2    50   ~ 0
+~RESET
 $EndSCHEMATC
