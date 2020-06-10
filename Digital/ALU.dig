@@ -1642,6 +1642,41 @@ end loop
       </elementAttributes>
       <pos x="-60" y="-240"/>
     </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Simple</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>BUS-CLK S         A        B        N ALU-~RESET ALU-AUX   OUT           FLAG DLEN DSUM
+
+let ADD = 0;
+let OR  = 1;
+let XOR = 2;
+let AND = 3;
+
+
+0       0         0        0        0 0          0         X             X    X    X
+0       0         0        0        0 1          0         X             X    X    X
+
+loop (a,2)
+loop (b,2)
+0       (OR)      (a)      (b)      0 1          0         (a|b)         X    X    X
+0       (AND)     (a)      (b)      0 1          0         (a&amp;b)         X    X    X
+0       (XOR)     (a)      (b)      0 1          0         (a^b)         X    X    X
+0       (ADD)     (a)      (b)      0 1          0         (a+b)         X    X    X
+end loop
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="220" y="420"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
