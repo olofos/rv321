@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name riscv-serial)(type Legacy)(uri /home/olof/Documents/Projects/riscv-serial/hardware/riscv-serial.lib)(options "")(descr ""))
+)
