@@ -736,9 +736,14 @@
     (pad 1 thru_hole rect (at 1.27 -5.08) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask)
       (net 6 /A18))
     (model /home/olof/Documents/Projects/riscv-serial/hardware/plcc32_p1-27_l14-05_w11-51.stp
-      (offset (xyz 0 0 3))
+      (offset (xyz 0 0 8))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 180))
+    )
+    (model /home/olof/Documents/Projects/riscv-serial/hardware/8432-11b1-01.stp
+      (offset (xyz 16.85 13.75 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 180))
     )
   )
 
