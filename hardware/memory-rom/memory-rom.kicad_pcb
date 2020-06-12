@@ -559,11 +559,6 @@
       (net 37 /B19))
     (pad 1 smd roundrect (at -1.025 0 270) (size 1.15 1.4) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.217391)
       (net 3 VCC))
-    (model ${KISYS3DMOD}/Resistor_SMD.3dshapes/R_0805_2012Metric.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder (layer F.Cu) (tedit 5B36C52B) (tstamp 5EEBE70A)
@@ -631,11 +626,6 @@
       (net 36 /B20))
     (pad 1 smd roundrect (at -1.025 0 270) (size 1.15 1.4) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.217391)
       (net 3 VCC))
-    (model ${KISYS3DMOD}/Resistor_SMD.3dshapes/R_0805_2012Metric.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module riscv-serial:PLCC-32-socket-2M-8432-11B1-RK-TP (layer F.Cu) (tedit 5ED28A4B) (tstamp 5EEBF0E1)
