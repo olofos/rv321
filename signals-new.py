@@ -1,6 +1,7 @@
 from itertools import groupby
 from itertools import accumulate
 from functools import reduce
+import sys
 
 addGaps = True
 removeConst = True
@@ -906,7 +907,7 @@ def formatOpcodeValues(opName):
     sys = format(vals['sys'], '01b') if 'sys' in vals else 'X'
     return sys + flag + sa + func3 + op
 
-def generateOp(opName, f, doPlot):
+def generateOp(opName):
     op = opFetch + opcodes[opName]
 
     signals = [ signalDefaults.copy() ]
@@ -934,11 +935,10 @@ def generateOp(opName, f, doPlot):
             for opVal in opcodeValues:
                 microcode[opVal | s[STEP]] = val
 
-    if not doPlot:
-        return
-
     signals.append(signalDefaults.copy())
+    return signals
 
+def plotOp(opName, signals, f):
     f.write('\\vspace*{\\fill}\n')
     f.write('\\begin{tikztimingtable}[')
     f.write('xscale=0.85,')
@@ -1164,39 +1164,18 @@ def generateOp(opName, f, doPlot):
     f.write('\\end{pgfonlayer}\n')
     f.write('\\end{tikztimingtable}')
     f.write('\\vspace*{\\fill}\n\n')
-    f.write('\\newpage\n\n')
+    # f.write('\\newpage\n\n')
 
 
-f = open("signals.tex", "w")
 
-f.write('''\
-\\documentclass{article}
-\\usepackage[margin=0.5cm,landscape,a1paper]{geometry}
-\\usepackage{tikz-timing}[2009/12/09]
-\\usetikztiminglibrary{advnodes}
-\\usetikzlibrary{patterns}
-\\renewcommand{\\neg}[1]{$\\overline{\\mbox{#1}}$}
-\\pagestyle{empty}
-\\begin{document}
 
-''')
 
 microcode = [0] * (1 << 17)
 
-plotList = [ 'ADD', 'ADDI' ]
+opSignals = {}
 
 for opName in opcodes.keys():
-    generateOp(opName, f, opName in plotList)
-
-# for opName in opcodes.keys():
-   # generateOp(opName, f, True)
-
-
-f.write('''\
-\\end{document}
-''')
-
-f.close()
+    opSignals[opName] = generateOp(opName)
 
 numUndef = 1
 for i in range(0, len(microcode), 1 << stepBits):
@@ -1215,3 +1194,28 @@ for val in microcode:
     f.write('%X\n' % val)
 
 f.close()
+
+
+plotList = sys.argv[1:]
+if plotList:
+    print('Generating plot data:')
+    f = open("signals.tex", "w")
+
+    f.write('\\documentclass{article}\n')
+    f.write('\\usepackage[margin=0.5cm,landscape,a1paper]{geometry}\n')
+    f.write('\\usepackage{tikz-timing}[2009/12/09]\n')
+    f.write('\\usetikztiminglibrary{advnodes}\n')
+    f.write('\\usetikzlibrary{patterns}\n')
+    f.write('\\renewcommand{\\neg}[1]{$\\overline{\\mbox{#1}}$}\n')
+    f.write('\\pagestyle{empty}\n')
+    f.write('\\begin{document}\n')
+
+    for opName in plotList:
+        if opName in opSignals:
+            print('%s' % opName)
+            plotOp(opName, opSignals[opName], f)
+        else:
+            print('%s -- Unknown instruction' % opName)
+
+    f.write('\\end{document}\n\n')
+    f.close()
