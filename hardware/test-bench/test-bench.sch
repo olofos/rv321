@@ -527,16 +527,12 @@ F 3 "" H 1300 1100 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	1200 1000 1300 1000
-Wire Wire Line
 	1300 1000 1300 1100
 Wire Wire Line
-	1200 900  1650 900 
-Wire Wire Line
 	1200 800  1650 800 
-Text Label 1650 900  2    50   ~ 0
-SWDIO
 Text Label 1650 800  2    50   ~ 0
+SWDIO
+Text Label 1650 900  2    50   ~ 0
 SWCLK
 $Comp
 L Connector:Conn_01x06_Male J5
@@ -2223,4 +2219,8 @@ Text Label 2100 2100 2    50   ~ 0
 ~RESET
 Wire Wire Line
 	2100 2100 1650 2100
+Wire Wire Line
+	1200 900  1650 900 
+Wire Wire Line
+	1200 1000 1300 1000
 $EndSCHEMATC
