@@ -507,36 +507,36 @@ Wire Wire Line
 $Comp
 L Connector:Conn_01x03_Male J3
 U 1 1 5F42A36C
-P 1050 1550
-F 0 "J3" H 1022 1480 50  0000 R CNN
-F 1 "SWD" H 1022 1571 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1050 1550 50  0001 C CNN
-F 3 "~" H 1050 1550 50  0001 C CNN
-	1    1050 1550
+P 1000 900
+F 0 "J3" H 972 830 50  0000 R CNN
+F 1 "SWD" H 972 921 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1000 900 50  0001 C CNN
+F 3 "~" H 1000 900 50  0001 C CNN
+	1    1000 900 
 	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5F43A491
-P 1350 1750
-F 0 "#PWR?" H 1350 1500 50  0001 C CNN
-F 1 "GND" H 1355 1577 50  0000 C CNN
-F 2 "" H 1350 1750 50  0001 C CNN
-F 3 "" H 1350 1750 50  0001 C CNN
-	1    1350 1750
+P 1300 1100
+F 0 "#PWR?" H 1300 850 50  0001 C CNN
+F 1 "GND" H 1305 927 50  0000 C CNN
+F 2 "" H 1300 1100 50  0001 C CNN
+F 3 "" H 1300 1100 50  0001 C CNN
+	1    1300 1100
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	1250 1650 1350 1650
+	1200 1000 1300 1000
 Wire Wire Line
-	1350 1650 1350 1750
+	1300 1000 1300 1100
 Wire Wire Line
-	1250 1550 1700 1550
+	1200 900  1650 900 
 Wire Wire Line
-	1250 1450 1700 1450
-Text Label 1700 1550 2    50   ~ 0
+	1200 800  1650 800 
+Text Label 1650 900  2    50   ~ 0
 SWDIO
-Text Label 1700 1450 2    50   ~ 0
+Text Label 1650 800  2    50   ~ 0
 SWCLK
 $Comp
 L Connector:Conn_01x06_Male J5
@@ -2161,4 +2161,66 @@ NoConn ~ 15100 2800
 NoConn ~ 15100 2900
 NoConn ~ 15100 3000
 NoConn ~ 15100 3100
+$Comp
+L riscv-serial:J_LINK_SWD J7
+U 1 1 5F4D5DF0
+P 1200 1900
+F 0 "J7" H 1200 2325 50  0000 C CNN
+F 1 "J_LINK_SWD" H 1200 2234 50  0000 C CNN
+F 2 "Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical_SMD" H 1200 1900 50  0001 C CNN
+F 3 "~" H 1200 1900 50  0001 C CNN
+	1    1200 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 1800 2100 1800
+Wire Wire Line
+	1650 1700 2100 1700
+Text Label 2100 1800 2    50   ~ 0
+SWDIO
+Text Label 2100 1700 2    50   ~ 0
+SWCLK
+$Comp
+L power:VCC #PWR?
+U 1 1 5F542329
+P 650 1600
+F 0 "#PWR?" H 650 1450 50  0001 C CNN
+F 1 "VCC" H 667 1773 50  0000 C CNN
+F 2 "" H 650 1600 50  0001 C CNN
+F 3 "" H 650 1600 50  0001 C CNN
+	1    650  1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  1600 650  1700
+Wire Wire Line
+	650  1700 750  1700
+NoConn ~ 750  2000
+NoConn ~ 750  2100
+NoConn ~ 1650 2000
+NoConn ~ 1650 1900
+$Comp
+L power:GND #PWR?
+U 1 1 5F5F9065
+P 650 2200
+F 0 "#PWR?" H 650 1950 50  0001 C CNN
+F 1 "GND" H 655 2027 50  0000 C CNN
+F 2 "" H 650 2200 50  0001 C CNN
+F 3 "" H 650 2200 50  0001 C CNN
+	1    650  2200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	750  1800 650  1800
+Wire Wire Line
+	650  1800 650  1900
+Wire Wire Line
+	750  1900 650  1900
+Connection ~ 650  1900
+Wire Wire Line
+	650  1900 650  2200
+Text Label 2100 2100 2    50   ~ 0
+~RESET
+Wire Wire Line
+	2100 2100 1650 2100
 $EndSCHEMATC
