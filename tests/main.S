@@ -1,6 +1,7 @@
         .section .text.init
-        .globl _start
+        .global _start
 _start:
+#if 1
         #include "rv32i/add.S"
 	#include "rv32i/sub.S"
         #include "rv32i/and.S"
@@ -44,6 +45,7 @@ _start:
 	#include "rv32i/sw.S"
 	#include "rv32i/sh.S"
 	#include "rv32i/sb.S"
+#endif
 
 	#include "rv32i/fence_i.S"
 	#include "rv32i/csr.S"
