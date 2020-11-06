@@ -118,7 +118,7 @@ signalDefaults = {
     PC_IN_MUX: 'U',
     OP_IN_MUX: 'U',
 
-    CSR_ADDR_LATCH: 0,
+    CSR_ADDR_LATCH: 1,
     CSR_OUT_LATCH: 0,
     CSR_IN_LATCH: 1,
     CSR_OP: 'U',
@@ -649,7 +649,7 @@ def csrCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { CSR_ADDR_LATCH: 1, BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { CSR_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
         { REG_IN_MUX: 'CSR', REG_IN_EN: 0, CSR_OUT_LATCH: 0, CSR_IN_LATCH: 0, IMM_MUX: 'ImmCSR', CSR_OP:csrOp, CSR_IN_MUX: B, BUS_EN: 1, STEP_LEN: 4 },
@@ -740,8 +740,8 @@ opcodes = {
     'CSRRCI': csrCommon('CSRRCI'),
 
     'IllOp': [
-        {OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
-        {BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
+        { BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
         { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },
     ],
 
