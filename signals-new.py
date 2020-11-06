@@ -939,7 +939,7 @@ def generateOp(opName):
     return signals
 
 def plotOp(opName, signals, f):
-    f.write('\\vspace*{\\fill}\n')
+    f.write('\\vfill\n')
     f.write('\\begin{tikztimingtable}[')
     f.write('xscale=0.85,')
     f.write('yscale=1,')
@@ -1163,7 +1163,7 @@ def plotOp(opName, signals, f):
     f.write('\\end{scope}\n')
     f.write('\\end{pgfonlayer}\n')
     f.write('\\end{tikztimingtable}')
-    f.write('\\vspace*{\\fill}\n\n')
+    f.write('\\vfill\n\n')
     # f.write('\\newpage\n\n')
 
 
