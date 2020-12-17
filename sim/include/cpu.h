@@ -14,10 +14,6 @@
 class CPU
 {
     MaskedRegister pc_reg;
-    // MaskedRegister mstatus_reg;
-    // ValueRegister mscratch_reg;
-    // ValueRegister mepc_reg;
-    // ValueRegister mtvec_reg;
 public:
     CPU(std::function<void(uint32_t,uint32_t,const std::string& s)> on_opcode_decode_, std::function<void(const std::string& s)> on_info_);
 
