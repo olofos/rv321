@@ -29,6 +29,8 @@
 
 #include "riscv_c2g_lut.h"
 
+#include "lcd.h"
+
 const uint32_t OpCodeTable::any;
 
 class Window;
@@ -276,6 +278,7 @@ int main(int argc, char *argv[])
     InfoWindow infowin(LINES-16-2, COLS/2, 16, COLS/2);
 
     Term term(infowin.get_update_function());
+    LCD lcd(20,4);
 
     curses.add(asmwin);
     curses.add(regwin);
@@ -297,6 +300,9 @@ int main(int argc, char *argv[])
     }
     cpu.memory.add(std::make_shared<MemoryRegisterWO>(0xC0000000, [&] (uint8_t c) { term.write(c); }, infowin.get_update_function()));
     cpu.memory.add(std::make_shared<MemoryRegisterRO>(0xC0000001, [&] () { return term.read(); }, infowin.get_update_function()));
+
+    cpu.memory.add(std::make_shared<MemoryRegister>(0x40000000, [&] () { return lcd.read_address(); }, [&] (uint8_t c) { lcd.write_command(c); }));
+    cpu.memory.add(std::make_shared<MemoryRegister>(0x40000001, [&] () { return lcd.read_data(); }, [&] (uint8_t c) { lcd.write_data(c); }));
 
     cpu.memory.add(std::make_shared<RAM>(0x80000000, 128 * 1024));
 
@@ -324,6 +330,10 @@ int main(int argc, char *argv[])
         bool breakpoint = true;
         uint64_t cycle_accum = 0;
         for(;;) {
+            if(lcd.is_closed()) {
+                break;
+            }
+
             term.update();
 
             uint32_t prev_pc;
