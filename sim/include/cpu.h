@@ -22,8 +22,8 @@ public:
     Memory memory;
     CSR csr;
 
-    Register& pc;
-    bool sleeping;
+    Register& pc = pc_reg;
+    bool sleeping = false;
 
     std::shared_ptr<OpCode> opcode;
 

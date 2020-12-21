@@ -90,8 +90,6 @@ CPU::CPU(std::function<void(uint32_t,uint32_t,const std::string& s)> on_opcode_d
     pc_reg(0xFFFFFFFE),
     memory(on_info_),
     csr(on_info_),
-    pc{pc_reg},
-    sleeping(false),
     on_opcode_decode(on_opcode_decode_)
 {
     opcode_table = {
