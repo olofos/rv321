@@ -56,16 +56,12 @@ class LCD {
     const sf::Color off{111, 185, 0};
     const sf::Color bg{168, 198, 78};
 
-    std::atomic<bool> window_is_initialized = false;
-    std::atomic<bool> window_should_close = false;
-
     sf::RenderWindow window;
     std::vector<sf::RectangleShape> pixels;
 
     std::thread thread;
     std::mutex mutex;
 
-    void init_window();
     void run();
     void handle_events();
     void render();

@@ -69,27 +69,14 @@ LCD::LCD(int w, int h) :
     lcd(w,h),
     width(lcd.width()),
     height(lcd.height()),
-    window(),
+    window(sf::VideoMode(2*margin + pixel_size * width, 2*margin + pixel_size * height), "LCD"),
     pixels(width * height)
 {
-    thread = std::thread(&LCD::run, this);
-}
+    std::stringstream ss;
+    ss << "LCD (" << width << " x " << height << ")";
+    window.setTitle(ss.str());
+    window.setVisible(false);
 
-LCD::~LCD()
-{
-    {
-        const std::lock_guard<std::mutex> lock(mutex);
-        window_should_close = true;
-        if(window.isOpen()) {
-            window.close();
-        }
-    }
-    thread.join();
-}
-
-void LCD::init_window()
-{
-    window.create(sf::VideoMode(2*margin + pixel_size * width, 2*margin + pixel_size * height), "LCD");
     for(int y = 0; y < height; y++) {
         for(int x = 0; x < width; x++) {
             pixels[width*y + x].setPosition(margin + pixel_size * x + pixel_border_left, margin + pixel_size * y + pixel_border_top);
@@ -97,21 +84,24 @@ void LCD::init_window()
         }
     }
 
-    std::stringstream ss;
-    ss << "LCD (" << width << " x " << height << ")";
-    window.setTitle(ss.str());
+    thread = std::thread(&LCD::run, this);
+}
 
-    window_is_initialized = true;
+LCD::~LCD()
+{
+    {
+        const std::lock_guard<std::mutex> lock(mutex);
+        if(window.isOpen()) {
+            window.close();
+        }
+    }
+    thread.join();
 }
 
 bool LCD::is_closed()
 {
     const std::lock_guard<std::mutex> lock(mutex);
-    if(window_is_initialized) {
-        return !window.isOpen();
-    } else {
-        return window_should_close;
-    }
+    return !window.isOpen();
 }
 
 void LCD::handle_events()
@@ -120,8 +110,11 @@ void LCD::handle_events()
     sf::Event event;
     while (window.pollEvent(event))
     {
-        if (event.type == sf::Event::Closed)
+        if (event.type == sf::Event::Closed) {
             window.close();
+        } else if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)) {
+            window.close();
+        }
     }
 }
 
@@ -136,10 +129,8 @@ void LCD::render()
 void LCD::run()
 {
     while(!is_closed()) {
-        if(window_is_initialized) {
-            handle_events();
-            render();
-        }
+        handle_events();
+        render();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
@@ -148,18 +139,14 @@ void LCD::write_command(uint8_t d)
 {
     const std::lock_guard<std::mutex> lock(mutex);
     lcd.write_command(d);
-    if(!window_is_initialized) {
-        init_window();
-    }
+    window.setVisible(true);
 }
 
 void LCD::write_data(uint8_t d)
 {
     const std::lock_guard<std::mutex> lock(mutex);
     lcd.write_data(d);
-    if(!window_is_initialized) {
-        init_window();
-    }
+    window.setVisible(true);
 }
 
 uint8_t LCD::read_address()
