@@ -507,66 +507,66 @@ Wire Wire Line
 $Comp
 L Connector:Conn_01x03_Male J3
 U 1 1 5F42A36C
-P 1000 900
-F 0 "J3" H 972 830 50  0000 R CNN
-F 1 "SWD" H 972 921 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1000 900 50  0001 C CNN
-F 3 "~" H 1000 900 50  0001 C CNN
-	1    1000 900 
+P 700 850
+F 0 "J3" H 672 780 50  0000 R CNN
+F 1 "SWD" H 672 871 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 700 850 50  0001 C CNN
+F 3 "~" H 700 850 50  0001 C CNN
+	1    700  850 
 	1    0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5F43A491
-P 1300 1100
-F 0 "#PWR?" H 1300 850 50  0001 C CNN
-F 1 "GND" H 1305 927 50  0000 C CNN
-F 2 "" H 1300 1100 50  0001 C CNN
-F 3 "" H 1300 1100 50  0001 C CNN
-	1    1300 1100
+P 1000 1050
+F 0 "#PWR?" H 1000 800 50  0001 C CNN
+F 1 "GND" H 1005 877 50  0000 C CNN
+F 2 "" H 1000 1050 50  0001 C CNN
+F 3 "" H 1000 1050 50  0001 C CNN
+	1    1000 1050
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	1300 1000 1300 1100
+	1000 950  1000 1050
 Wire Wire Line
-	1200 800  1650 800 
-Text Label 1650 800  2    50   ~ 0
+	900  750  1350 750 
+Text Label 1350 750  2    50   ~ 0
 SWDIO
-Text Label 1650 900  2    50   ~ 0
+Text Label 1350 850  2    50   ~ 0
 SWCLK
 $Comp
 L Connector:Conn_01x06_Male J5
 U 1 1 5F454060
-P 2600 1500
-F 0 "J5" H 2706 1878 50  0000 C CNN
-F 1 "FTDI" H 2700 1050 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 2600 1500 50  0001 C CNN
-F 3 "~" H 2600 1500 50  0001 C CNN
-	1    2600 1500
+P 2800 1250
+F 0 "J5" H 2906 1628 50  0000 C CNN
+F 1 "FTDI" H 2900 800 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 2800 1250 50  0001 C CNN
+F 3 "~" H 2800 1250 50  0001 C CNN
+	1    2800 1250
 	1    0    0    1   
 $EndComp
-NoConn ~ 2800 1200
-NoConn ~ 2800 1600
-NoConn ~ 2800 1500
-Text Label 3700 1400 2    50   ~ 0
+NoConn ~ 3000 950 
+NoConn ~ 3000 1350
+NoConn ~ 3000 1250
+Text Label 3900 1150 2    50   ~ 0
 UART2_RX
-Text Label 3700 1300 2    50   ~ 0
+Text Label 3900 1050 2    50   ~ 0
 UART2_TX
 $Comp
 L power:GND #PWR?
 U 1 1 5F501B21
-P 2900 1800
-F 0 "#PWR?" H 2900 1550 50  0001 C CNN
-F 1 "GND" H 2905 1627 50  0000 C CNN
-F 2 "" H 2900 1800 50  0001 C CNN
-F 3 "" H 2900 1800 50  0001 C CNN
-	1    2900 1800
+P 3100 1550
+F 0 "#PWR?" H 3100 1300 50  0001 C CNN
+F 1 "GND" H 3105 1377 50  0000 C CNN
+F 2 "" H 3100 1550 50  0001 C CNN
+F 3 "" H 3100 1550 50  0001 C CNN
+	1    3100 1550
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 1700 2900 1700
+	3000 1450 3100 1450
 Wire Wire Line
-	2900 1700 2900 1800
+	3100 1450 3100 1550
 $Comp
 L riscv-serial:Conn_Power J6
 U 1 1 5F523654
@@ -719,21 +719,21 @@ $EndComp
 Wire Wire Line
 	9300 9450 9300 9350
 Connection ~ 9300 9350
-Text Label 2850 1300 0    50   ~ 0
+Text Label 3050 1050 0    50   ~ 0
 FTDI_RX
-Text Label 2850 1400 0    50   ~ 0
+Text Label 3050 1150 0    50   ~ 0
 FTDI_TX
-Text Notes 2550 1250 2    50   ~ 0
+Text Notes 2750 1000 2    50   ~ 0
 DTR/RTS
-Text Notes 2550 1350 2    50   ~ 0
+Text Notes 2750 1100 2    50   ~ 0
 RXD
-Text Notes 2550 1450 2    50   ~ 0
+Text Notes 2750 1200 2    50   ~ 0
 TXD
-Text Notes 2550 1550 2    50   ~ 0
+Text Notes 2750 1300 2    50   ~ 0
 VCC
-Text Notes 2550 1650 2    50   ~ 0
+Text Notes 2750 1400 2    50   ~ 0
 CTS
-Text Notes 2550 1750 2    50   ~ 0
+Text Notes 2750 1500 2    50   ~ 0
 GND
 Text Label 750  4800 0    50   ~ 0
 ~CS
@@ -1557,9 +1557,9 @@ $EndComp
 Wire Wire Line
 	6950 1450 6950 1550
 Wire Wire Line
-	2800 1300 3700 1300
+	3000 1050 3900 1050
 Wire Wire Line
-	2800 1400 3700 1400
+	3000 1150 3900 1150
 Wire Wire Line
 	15450 4350 14250 4350
 Wire Wire Line
@@ -2216,9 +2216,9 @@ Text Label 2100 2100 2    50   ~ 0
 Wire Wire Line
 	2100 2100 1650 2100
 Wire Wire Line
-	1200 900  1650 900 
+	900  850  1350 850 
 Wire Wire Line
-	1200 1000 1300 1000
+	900  950  1000 950 
 $Comp
 L Device:R R3
 U 1 1 5EF2C377
@@ -2325,4 +2325,6 @@ $EndComp
 Wire Wire Line
 	6500 3950 6500 3900
 Connection ~ 6500 3900
+Text Notes 1550 1500 0    50   ~ 0
+Warning: SWCLK and\nSWDIO have been\nswitched!
 $EndSCHEMATC
