@@ -3526,446 +3526,6 @@ D39
 Text Label 13800 5050 0    50   ~ 0
 D40
 $Comp
-L Connector:TestPoint TP1
-U 1 1 60CB561A
-P 14150 1150
-F 0 "TP1" V 14100 1050 50  0000 L CNN
-F 1 "TestPoint" V 14150 1350 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1150 50  0001 C CNN
-F 3 "~" H 14350 1150 50  0001 C CNN
-	1    14150 1150
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP2
-U 1 1 60CE79AF
-P 14150 1250
-F 0 "TP2" V 14100 1150 50  0000 L CNN
-F 1 "TestPoint" V 14150 1450 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1250 50  0001 C CNN
-F 3 "~" H 14350 1250 50  0001 C CNN
-	1    14150 1250
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP3
-U 1 1 60CE7B9F
-P 14150 1350
-F 0 "TP3" V 14100 1250 50  0000 L CNN
-F 1 "TestPoint" V 14150 1550 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1350 50  0001 C CNN
-F 3 "~" H 14350 1350 50  0001 C CNN
-	1    14150 1350
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP4
-U 1 1 60CE7BA6
-P 14150 1450
-F 0 "TP4" V 14100 1350 50  0000 L CNN
-F 1 "TestPoint" V 14150 1650 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1450 50  0001 C CNN
-F 3 "~" H 14350 1450 50  0001 C CNN
-	1    14150 1450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP5
-U 1 1 60D18B6E
-P 14150 1550
-F 0 "TP5" V 14100 1450 50  0000 L CNN
-F 1 "TestPoint" V 14150 1750 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1550 50  0001 C CNN
-F 3 "~" H 14350 1550 50  0001 C CNN
-	1    14150 1550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP6
-U 1 1 60D18B75
-P 14150 1650
-F 0 "TP6" V 14100 1550 50  0000 L CNN
-F 1 "TestPoint" V 14150 1850 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1650 50  0001 C CNN
-F 3 "~" H 14350 1650 50  0001 C CNN
-	1    14150 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP7
-U 1 1 60D18B7C
-P 14150 1750
-F 0 "TP7" V 14100 1650 50  0000 L CNN
-F 1 "TestPoint" V 14150 1950 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1750 50  0001 C CNN
-F 3 "~" H 14350 1750 50  0001 C CNN
-	1    14150 1750
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP8
-U 1 1 60D18B83
-P 14150 1850
-F 0 "TP8" V 14100 1750 50  0000 L CNN
-F 1 "TestPoint" V 14150 2050 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1850 50  0001 C CNN
-F 3 "~" H 14350 1850 50  0001 C CNN
-	1    14150 1850
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP9
-U 1 1 60D49C43
-P 14150 1950
-F 0 "TP9" V 14100 1850 50  0000 L CNN
-F 1 "TestPoint" V 14150 2150 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 1950 50  0001 C CNN
-F 3 "~" H 14350 1950 50  0001 C CNN
-	1    14150 1950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP10
-U 1 1 60D49C4A
-P 14150 2050
-F 0 "TP10" V 14100 1950 50  0000 L CNN
-F 1 "TestPoint" V 14150 2250 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2050 50  0001 C CNN
-F 3 "~" H 14350 2050 50  0001 C CNN
-	1    14150 2050
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP11
-U 1 1 60D49C51
-P 14150 2150
-F 0 "TP11" V 14100 2050 50  0000 L CNN
-F 1 "TestPoint" V 14150 2350 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2150 50  0001 C CNN
-F 3 "~" H 14350 2150 50  0001 C CNN
-	1    14150 2150
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP12
-U 1 1 60D49C58
-P 14150 2250
-F 0 "TP12" V 14100 2150 50  0000 L CNN
-F 1 "TestPoint" V 14150 2450 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2250 50  0001 C CNN
-F 3 "~" H 14350 2250 50  0001 C CNN
-	1    14150 2250
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP13
-U 1 1 60D49C5F
-P 14150 2350
-F 0 "TP13" V 14100 2250 50  0000 L CNN
-F 1 "TestPoint" V 14150 2550 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2350 50  0001 C CNN
-F 3 "~" H 14350 2350 50  0001 C CNN
-	1    14150 2350
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP14
-U 1 1 60D49C66
-P 14150 2450
-F 0 "TP14" V 14100 2350 50  0000 L CNN
-F 1 "TestPoint" V 14150 2650 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2450 50  0001 C CNN
-F 3 "~" H 14350 2450 50  0001 C CNN
-	1    14150 2450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP15
-U 1 1 60D49C6D
-P 14150 2550
-F 0 "TP15" V 14100 2450 50  0000 L CNN
-F 1 "TestPoint" V 14150 2750 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2550 50  0001 C CNN
-F 3 "~" H 14350 2550 50  0001 C CNN
-	1    14150 2550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP16
-U 1 1 60D49C74
-P 14150 2650
-F 0 "TP16" V 14100 2550 50  0000 L CNN
-F 1 "TestPoint" V 14150 2850 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2650 50  0001 C CNN
-F 3 "~" H 14350 2650 50  0001 C CNN
-	1    14150 2650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP17
-U 1 1 60D7AC08
-P 14150 2750
-F 0 "TP17" V 14100 2650 50  0000 L CNN
-F 1 "TestPoint" V 14150 2950 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2750 50  0001 C CNN
-F 3 "~" H 14350 2750 50  0001 C CNN
-	1    14150 2750
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP18
-U 1 1 60D7AC0F
-P 14150 2850
-F 0 "TP18" V 14100 2750 50  0000 L CNN
-F 1 "TestPoint" V 14150 3050 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2850 50  0001 C CNN
-F 3 "~" H 14350 2850 50  0001 C CNN
-	1    14150 2850
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP19
-U 1 1 60D7AC16
-P 14150 2950
-F 0 "TP19" V 14100 2850 50  0000 L CNN
-F 1 "TestPoint" V 14150 3150 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 2950 50  0001 C CNN
-F 3 "~" H 14350 2950 50  0001 C CNN
-	1    14150 2950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP20
-U 1 1 60D7AC1D
-P 14150 3050
-F 0 "TP20" V 14100 2950 50  0000 L CNN
-F 1 "TestPoint" V 14150 3250 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3050 50  0001 C CNN
-F 3 "~" H 14350 3050 50  0001 C CNN
-	1    14150 3050
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP21
-U 1 1 60D7AC24
-P 14150 3150
-F 0 "TP21" V 14100 3050 50  0000 L CNN
-F 1 "TestPoint" V 14150 3350 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3150 50  0001 C CNN
-F 3 "~" H 14350 3150 50  0001 C CNN
-	1    14150 3150
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP22
-U 1 1 60D7AC2B
-P 14150 3250
-F 0 "TP22" V 14100 3150 50  0000 L CNN
-F 1 "TestPoint" V 14150 3450 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3250 50  0001 C CNN
-F 3 "~" H 14350 3250 50  0001 C CNN
-	1    14150 3250
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP23
-U 1 1 60D7AC32
-P 14150 3350
-F 0 "TP23" V 14100 3250 50  0000 L CNN
-F 1 "TestPoint" V 14150 3550 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3350 50  0001 C CNN
-F 3 "~" H 14350 3350 50  0001 C CNN
-	1    14150 3350
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP24
-U 1 1 60D7AC39
-P 14150 3450
-F 0 "TP24" V 14100 3350 50  0000 L CNN
-F 1 "TestPoint" V 14150 3650 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3450 50  0001 C CNN
-F 3 "~" H 14350 3450 50  0001 C CNN
-	1    14150 3450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP25
-U 1 1 60DAC0A9
-P 14150 3550
-F 0 "TP25" V 14100 3450 50  0000 L CNN
-F 1 "TestPoint" V 14150 3750 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3550 50  0001 C CNN
-F 3 "~" H 14350 3550 50  0001 C CNN
-	1    14150 3550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP26
-U 1 1 60DAC0B0
-P 14150 3650
-F 0 "TP26" V 14100 3550 50  0000 L CNN
-F 1 "TestPoint" V 14150 3850 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3650 50  0001 C CNN
-F 3 "~" H 14350 3650 50  0001 C CNN
-	1    14150 3650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP27
-U 1 1 60DAC0B7
-P 14150 3750
-F 0 "TP27" V 14100 3650 50  0000 L CNN
-F 1 "TestPoint" V 14150 3950 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3750 50  0001 C CNN
-F 3 "~" H 14350 3750 50  0001 C CNN
-	1    14150 3750
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP28
-U 1 1 60DAC0BE
-P 14150 3850
-F 0 "TP28" V 14100 3750 50  0000 L CNN
-F 1 "TestPoint" V 14150 4050 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3850 50  0001 C CNN
-F 3 "~" H 14350 3850 50  0001 C CNN
-	1    14150 3850
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP29
-U 1 1 60DAC0C5
-P 14150 3950
-F 0 "TP29" V 14100 3850 50  0000 L CNN
-F 1 "TestPoint" V 14150 4150 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 3950 50  0001 C CNN
-F 3 "~" H 14350 3950 50  0001 C CNN
-	1    14150 3950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP30
-U 1 1 60DAC0CC
-P 14150 4050
-F 0 "TP30" V 14100 3950 50  0000 L CNN
-F 1 "TestPoint" V 14150 4250 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4050 50  0001 C CNN
-F 3 "~" H 14350 4050 50  0001 C CNN
-	1    14150 4050
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP31
-U 1 1 60DAC0D3
-P 14150 4150
-F 0 "TP31" V 14100 4050 50  0000 L CNN
-F 1 "TestPoint" V 14150 4350 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4150 50  0001 C CNN
-F 3 "~" H 14350 4150 50  0001 C CNN
-	1    14150 4150
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP32
-U 1 1 60DAC0DA
-P 14150 4250
-F 0 "TP32" V 14100 4150 50  0000 L CNN
-F 1 "TestPoint" V 14150 4450 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4250 50  0001 C CNN
-F 3 "~" H 14350 4250 50  0001 C CNN
-	1    14150 4250
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP33
-U 1 1 60DDD04E
-P 14150 4350
-F 0 "TP33" V 14100 4250 50  0000 L CNN
-F 1 "TestPoint" V 14150 4550 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4350 50  0001 C CNN
-F 3 "~" H 14350 4350 50  0001 C CNN
-	1    14150 4350
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP34
-U 1 1 60DDD055
-P 14150 4450
-F 0 "TP34" V 14100 4350 50  0000 L CNN
-F 1 "TestPoint" V 14150 4650 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4450 50  0001 C CNN
-F 3 "~" H 14350 4450 50  0001 C CNN
-	1    14150 4450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP35
-U 1 1 60DDD05C
-P 14150 4550
-F 0 "TP35" V 14100 4450 50  0000 L CNN
-F 1 "TestPoint" V 14150 4750 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4550 50  0001 C CNN
-F 3 "~" H 14350 4550 50  0001 C CNN
-	1    14150 4550
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP36
-U 1 1 60DDD063
-P 14150 4650
-F 0 "TP36" V 14100 4550 50  0000 L CNN
-F 1 "TestPoint" V 14150 4850 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4650 50  0001 C CNN
-F 3 "~" H 14350 4650 50  0001 C CNN
-	1    14150 4650
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP37
-U 1 1 60DDD06A
-P 14150 4750
-F 0 "TP37" V 14100 4650 50  0000 L CNN
-F 1 "TestPoint" V 14150 4950 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4750 50  0001 C CNN
-F 3 "~" H 14350 4750 50  0001 C CNN
-	1    14150 4750
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP38
-U 1 1 60DDD071
-P 14150 4850
-F 0 "TP38" V 14100 4750 50  0000 L CNN
-F 1 "TestPoint" V 14150 5050 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4850 50  0001 C CNN
-F 3 "~" H 14350 4850 50  0001 C CNN
-	1    14150 4850
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP39
-U 1 1 60DDD078
-P 14150 4950
-F 0 "TP39" V 14100 4850 50  0000 L CNN
-F 1 "TestPoint" V 14150 5150 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 4950 50  0001 C CNN
-F 3 "~" H 14350 4950 50  0001 C CNN
-	1    14150 4950
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:TestPoint TP40
-U 1 1 60DDD07F
-P 14150 5050
-F 0 "TP40" V 14100 4950 50  0000 L CNN
-F 1 "TestPoint" V 14150 5250 50  0000 L CNN
-F 2 "riscv-serial:TestPoint-0805" H 14350 5050 50  0001 C CNN
-F 3 "~" H 14350 5050 50  0001 C CNN
-	1    14150 5050
-	0    1    1    0   
-$EndComp
-$Comp
 L Graphic:Logo_Open_Hardware_Small G1
 U 1 1 60E0FB86
 P 1600 6550
@@ -3988,10 +3548,10 @@ F 3 "~" H 1600 7100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP?
+L Connector:TestPoint TP41
 U 1 1 60EA7527
 P 14250 5350
-F 0 "TP?" V 14200 5250 50  0000 L CNN
+F 0 "TP41" V 14200 5250 50  0000 L CNN
 F 1 "TestPoint" V 14250 5550 50  0000 L CNN
 F 2 "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm" H 14450 5350 50  0001 C CNN
 F 3 "~" H 14450 5350 50  0001 C CNN
@@ -3999,36 +3559,14 @@ F 3 "~" H 14450 5350 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Connector:TestPoint TP?
+L Connector:TestPoint TP42
 U 1 1 60EA7E51
 P 14250 5500
-F 0 "TP?" V 14200 5400 50  0000 L CNN
+F 0 "TP42" V 14200 5400 50  0000 L CNN
 F 1 "TestPoint" V 14250 5700 50  0000 L CNN
 F 2 "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm" H 14450 5500 50  0001 C CNN
 F 3 "~" H 14450 5500 50  0001 C CNN
 	1    14250 5500
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 60EA7FCD
-P 14250 5650
-F 0 "TP?" V 14200 5550 50  0000 L CNN
-F 1 "TestPoint" V 14250 5850 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm" H 14450 5650 50  0001 C CNN
-F 3 "~" H 14450 5650 50  0001 C CNN
-	1    14250 5650
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Connector:TestPoint TP?
-U 1 1 60EA814D
-P 14250 5800
-F 0 "TP?" V 14200 5700 50  0000 L CNN
-F 1 "TestPoint" V 14250 6000 50  0000 L CNN
-F 2 "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm" H 14450 5800 50  0001 C CNN
-F 3 "~" H 14450 5800 50  0001 C CNN
-	1    14250 5800
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
@@ -4037,16 +3575,7 @@ Wire Wire Line
 	14450 5350 14450 5500
 Wire Wire Line
 	14450 5500 14250 5500
-Wire Wire Line
-	14250 5650 14450 5650
-Wire Wire Line
-	14450 5650 14450 5500
 Connection ~ 14450 5500
-Wire Wire Line
-	14250 5800 14450 5800
-Wire Wire Line
-	14450 5800 14450 5650
-Connection ~ 14450 5650
 $Comp
 L power:GND #PWR?
 U 1 1 60F3F8C9
@@ -4058,7 +3587,17 @@ F 3 "" H 14450 5900 50  0001 C CNN
 	1    14450 5900
 	-1   0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_01x40 J4
+U 1 1 60FA7B64
+P 14350 3050
+F 0 "J4" H 14430 3042 50  0000 L CNN
+F 1 "Conn_01x40" H 14430 2951 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical" H 14350 3050 50  0001 C CNN
+F 3 "~" H 14350 3050 50  0001 C CNN
+	1    14350 3050
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	14450 5800 14450 5900
-Connection ~ 14450 5800
+	14450 5500 14450 5900
 $EndSCHEMATC
