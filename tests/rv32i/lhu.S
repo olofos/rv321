@@ -83,7 +83,7 @@ RVTEST_CODE_BEGIN
 
 RVTEST_CODE_END
 
-  .data
+  .section .rodata
 RVTEST_DATA_BEGIN
 
   TEST_DATA

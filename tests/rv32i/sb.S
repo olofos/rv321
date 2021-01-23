@@ -18,6 +18,12 @@
 RVTEST_RV64U
 RVTEST_CODE_BEGIN
 
+  la x1, tdat_sb1
+  li x2, 0xefefefef
+  sw x2, 0(x1)
+  sw x2, 4(x1)
+  sw x2, 8(x1)
+
   #-------------------------------------------------------------
   # Basic tests
   #-------------------------------------------------------------
@@ -86,16 +92,18 @@ RVTEST_DATA_BEGIN
 
   TEST_DATA
 
+.bss
 tdat_sb:
-tdat_sb1:  .byte 0xef
-tdat_sb2:  .byte 0xef
-tdat_sb3:  .byte 0xef
-tdat_sb4:  .byte 0xef
-tdat_sb5:  .byte 0xef
-tdat_sb6:  .byte 0xef
-tdat_sb7:  .byte 0xef
-tdat_sb8:  .byte 0xef
-tdat_sb9:  .byte 0xef
-tdat_sb10: .byte 0xef
+tdat_sb1:  .skip 1
+tdat_sb2:  .skip 1
+tdat_sb3:  .skip 1
+tdat_sb4:  .skip 1
+tdat_sb5:  .skip 1
+tdat_sb6:  .skip 1
+tdat_sb7:  .skip 1
+tdat_sb8:  .skip 1
+tdat_sb9:  .skip 1
+tdat_sb10: .skip 1
+           .skip 2
 
 RVTEST_DATA_END

@@ -27,7 +27,8 @@
 LABEL(SUITE,testnum): \
     code; \
     li  x7, MASK_XLEN(correctval); \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     bne testreg, x7, fail;
 
 # We use a macro hack to simpify code generation for various numbers
@@ -244,7 +245,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_LD_DEST_BYPASS( testnum, nop_cycles, inst, result, offset, base ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  la  x1, base; \
     inst x14, offset(x1); \
@@ -258,7 +260,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_LD_SRC1_BYPASS( testnum, nop_cycles, inst, result, offset, base ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  la  x1, base; \
     TEST_INSERT_NOPS_ ## nop_cycles \
@@ -271,7 +274,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_ST_SRC12_BYPASS( testnum, src1_nops, src2_nops, load_inst, store_inst, result, offset, base ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  li  x1, result; \
     TEST_INSERT_NOPS_ ## src1_nops \
@@ -287,7 +291,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_ST_SRC21_BYPASS( testnum, src1_nops, src2_nops, load_inst, store_inst, result, offset, base ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  la  x2, base; \
     TEST_INSERT_NOPS_ ## src1_nops \
@@ -303,7 +308,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_BR2_OP_TAKEN( testnum, inst, val1, val2 ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x1, val1; \
     li  x2, val2; \
     inst x1, x2, 2f; \
@@ -315,7 +321,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_BR2_OP_NOTTAKEN( testnum, inst, val1, val2 ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x1, val1; \
     li  x2, val2; \
     inst x1, x2, 1f; \
@@ -326,7 +333,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_BR2_SRC12_BYPASS( testnum, src1_nops, src2_nops, inst, val1, val2 ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  li  x1, val1; \
     TEST_INSERT_NOPS_ ## src1_nops \
@@ -339,7 +347,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_BR2_SRC21_BYPASS( testnum, src1_nops, src2_nops, inst, val1, val2 ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  li  x2, val2; \
     TEST_INSERT_NOPS_ ## src1_nops \
@@ -356,7 +365,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_JR_SRC1_BYPASS( testnum, nop_cycles, inst ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  la  x6, 2f; \
     TEST_INSERT_NOPS_ ## nop_cycles \
@@ -368,7 +378,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_JALR_SRC1_BYPASS( testnum, nop_cycles, inst ) \
 LABEL(SUITE,testnum): \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     li  x4, 0; \
 1:  la  x6, 2f; \
     TEST_INSERT_NOPS_ ## nop_cycles \
@@ -394,7 +405,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_FP_OP_S_INTERNAL( testnum, flags, result, val1, val2, val3, code... ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   flw f0, 0(a0); \
   flw f1, 4(a0); \
@@ -416,7 +428,8 @@ LABEL_DATA(SUITE,testnum): \
 
 #define TEST_FP_OP_D_INTERNAL( testnum, flags, result, val1, val2, val3, code... ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   fld f0, 0(a0); \
   fld f1, 8(a0); \
@@ -439,7 +452,8 @@ LABEL(SUITE,testnum): \
 // TODO: assign a separate mem location for the comparison address?
 #define TEST_FP_OP_D32_INTERNAL( testnum, flags, result, val1, val2, val3, code... ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   fld f0, 0(a0); \
   fld f1, 8(a0); \
@@ -570,7 +584,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_INT_FP_OP_S( testnum, inst, result, val1 ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   lw  a3, 0(a0); \
   li  a0, val1; \
@@ -586,7 +601,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_INT_FP_OP_D32( testnum, inst, result, val1 ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   lw  a3, 0(a0); \
   lw  a4, 4(a0); \
@@ -608,7 +624,8 @@ LABEL(SUITE,testnum): \
 
 #define TEST_INT_FP_OP_D( testnum, inst, result, val1 ) \
 LABEL(SUITE,testnum): \
-  li  TESTNUM, testnum; \
+  li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
   la  a0, test_ ## testnum ## _data ;\
   ld  a3, 0(a0); \
   li  a0, val1; \
@@ -630,7 +647,8 @@ LABEL(SUITE,testnum): \
     la  x15, test_ ## testnum ## _data ; \
     lw  x7, 0(x15); \
     lw  x15, 4(x15); \
-    li  TESTNUM, testnum; \
+    li  TESTNUM, (SUITE << 16) | testnum; \
+    addi TESTCOUNT, TESTCOUNT, 1; \
     bne testreg1, x7, fail;\
     bne testreg2, x15, fail;\
     .pushsection .data; \
@@ -645,10 +663,7 @@ LABEL(SUITE,testnum): \
 # Pass and fail code (assumes test num is in TESTNUM)
 #-----------------------------------------------------------------------
 
-#define TEST_PASSFAIL \
-    beq x0, TESTNUM, fail; \
-    j pass
-
+#define TEST_PASSFAIL
 
 #-----------------------------------------------------------------------
 # Test data section

@@ -82,16 +82,19 @@ RVTEST_DATA_BEGIN
 
   TEST_DATA
 
+  .bss
 tdat_sw:
-tdat_sw1:  .word 0xdeadbeef
-tdat_sw2:  .word 0xdeadbeef
-tdat_sw3:  .word 0xdeadbeef
-tdat_sw4:  .word 0xdeadbeef
-tdat_sw5:  .word 0xdeadbeef
-tdat_sw6:  .word 0xdeadbeef
-tdat_sw7:  .word 0xdeadbeef
-tdat_sw8:  .word 0xdeadbeef
-tdat_sw9:  .word 0xdeadbeef
-tdat_sw10: .word 0xdeadbeef
+tdat_sw1:  .skip 4
+tdat_sw2:  .skip 4
+tdat_sw3:  .skip 4
+tdat_sw4:  .skip 4
+tdat_sw5:  .skip 4
+tdat_sw6:  .skip 4
+tdat_sw7:  .skip 4
+tdat_sw8:  .skip 4
+tdat_sw9:  .skip 4
+tdat_sw10: .skip 4
+
+
 
 RVTEST_DATA_END

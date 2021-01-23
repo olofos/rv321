@@ -18,6 +18,14 @@
 RVTEST_RV64U
 RVTEST_CODE_BEGIN
 
+  la x1, tdat_sh
+  li x2, 0xbeefbeef
+  sw x2, 0(x1)
+  sw x2, 4(x1)
+  sw x2, 8(x1)
+  sw x2, 16(x1)
+  sw x2, 20(x1)
+
   #-------------------------------------------------------------
   # Basic tests
   #-------------------------------------------------------------
@@ -86,16 +94,17 @@ RVTEST_DATA_BEGIN
 
   TEST_DATA
 
+  .bss
 tdat_sh:
-tdat_sh1:  .half 0xbeef
-tdat_sh2:  .half 0xbeef
-tdat_sh3:  .half 0xbeef
-tdat_sh4:  .half 0xbeef
-tdat_sh5:  .half 0xbeef
-tdat_sh6:  .half 0xbeef
-tdat_sh7:  .half 0xbeef
-tdat_sh8:  .half 0xbeef
-tdat_sh9:  .half 0xbeef
-tdat_sh10: .half 0xbeef
+tdat_sh1:  .skip 2
+tdat_sh2:  .skip 2
+tdat_sh3:  .skip 2
+tdat_sh4:  .skip 2
+tdat_sh5:  .skip 2
+tdat_sh6:  .skip 2
+tdat_sh7:  .skip 2
+tdat_sh8:  .skip 2
+tdat_sh9:  .skip 2
+tdat_sh10: .skip 2
 
 RVTEST_DATA_END

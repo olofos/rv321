@@ -23,49 +23,29 @@
 #define EXTRA_INIT
 #define EXTRA_INIT_TIMER
 
-
+#ifdef USE_LCD
 #define RVTEST_CODE_BEGIN                       \
         .section .text.init;                    \
-        li SUITENUM, SUITE
-
-#define FAIL_PASTER2(x) fail_ ## x
-#define PASS_PASTER2(x) pass_ ## x
-#define FAIL_PASTER(x) FAIL_PASTER2(x)
-#define PASS_PASTER(x) PASS_PASTER2(x)
-
-#define fail FAIL_PASTER(SUITE)
-#define pass PASS_PASTER(SUITE)
+        li a0, SUITE;                           \
+        li a1, 13;                              \
+        call put_dec;
+#else
+#define RVTEST_CODE_BEGIN                       \
+    .section .text.init
+#endif
 
 //-----------------------------------------------------------------------
 // End Macro
 //-----------------------------------------------------------------------
 
-#define RVTEST_CODE_END        \
-fail:                          \
-1:      beqz TESTNUM, 1b;      \
-        slli x1, SUITENUM, 16; \
-	add gp, x1, TESTNUM;   \
-2:  j 2b; \
-pass:
-
+#define RVTEST_CODE_END
 
 //-----------------------------------------------------------------------
 // Pass/Fail Macro
 //-----------------------------------------------------------------------
 
-#define SUITENUM x8
+#define TESTCOUNT x8
 #define TESTNUM x9
-
-#define RVTEST_PASS                             \
-    li TESTNUM, 1;                              \
-    li a0, 0;                                   \
-2:  j 2b;
-
-#define RVTEST_FAIL                             \
-1:  beqz TESTNUM, 1b;                           \
-    slli gp, SUITENUM, 16;                      \
-    add gp, gp, TESTNUM;                        \
-2:  j 2b;
 
 //-----------------------------------------------------------------------
 // Data Section Macro
