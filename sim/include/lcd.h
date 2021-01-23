@@ -41,20 +41,20 @@ public:
 class LCD {
     LCDEmu lcd;
 
-    const int pixel_size = 10;
+    const int pixel_size = 7;
     const int margin = 10;
 
     const int pixel_border_top = 1;
-    const int pixel_border_bottom = 1;
+    const int pixel_border_bottom = 0;
     const int pixel_border_left = 1;
-    const int pixel_border_right = 1;
+    const int pixel_border_right = 0;
 
     const int width;
     const int height;
 
-    const sf::Color on{60, 65, 44};
-    const sf::Color off{111, 185, 0};
-    const sf::Color bg{168, 198, 78};
+    const sf::Color on{240, 240, 255};
+    const sf::Color off{0, 0, 224};
+    const sf::Color bg{31, 31, 255};
 
     sf::RenderWindow window;
     std::vector<sf::RectangleShape> pixels;

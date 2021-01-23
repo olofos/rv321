@@ -69,11 +69,11 @@ LCD::LCD(int w, int h) :
     lcd(w,h),
     width(lcd.width()),
     height(lcd.height()),
-    window(sf::VideoMode(2*margin + pixel_size * width, 2*margin + pixel_size * height), "LCD"),
+    window(sf::VideoMode(2*margin + pixel_size*width - pixel_border_left - pixel_border_right, 2*margin + pixel_size*height - pixel_border_top - pixel_border_bottom), "LCD", sf::Style::Close),
     pixels(width * height)
 {
     std::stringstream ss;
-    ss << "LCD (" << width << " x " << height << ")";
+    ss << "LCD (" << w << " x " << h << ")";
     window.setTitle(ss.str());
     window.setVisible(false);
 

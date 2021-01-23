@@ -392,7 +392,4 @@ int main(int argc, char *argv[])
     } catch(std::runtime_error err) {
         infowin.update(err.what());
     }
-    curses.refresh_now();
-    nodelay(stdscr, 0);
-    getch();
 }
