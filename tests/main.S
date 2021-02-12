@@ -1,13 +1,13 @@
         .section .text.init
         .global _start
 
-#define USE_LCD 1
+#define USE_LCD 0
 #define LCD_BASE 0x40000000
 
 _start:
         // .option norvc
 
-#ifdef USE_LCD
+#if USE_LCD
         li a1, LCD_BASE
 	li a2, 0x0C
 	sb a2, 0(a1)
@@ -19,7 +19,7 @@ _start:
         call puts
 #endif
 
-#if 1
+#if 0
         #include "rv32i/add.S"
 	#include "rv32i/sub.S"
         #include "rv32i/and.S"
@@ -54,7 +54,8 @@ _start:
 
 	#include "rv32i/jal.S"
 	#include "rv32i/jalr.S"
-
+#endif
+#if 1
 	#include "rv32i/lw.S"
 	#include "rv32i/lh.S"
 	#include "rv32i/lhu.S"
@@ -73,7 +74,7 @@ _start:
 
         .section .text.init
 
-#ifdef USE_LCD
+#if USE_LCD
         la a0, str_success
 	li a1, 0
 	call puts
@@ -89,7 +90,7 @@ _start:
 
 fail:
 //real_fail:
-#ifdef USE_LCD
+#if USE_LCD
 	la a0, str_failure
 	li a1, 0
 	call puts
@@ -115,7 +116,7 @@ fail:
         mv gp, TESTNUM
 2:      j 2b
 
-#ifdef USE_LCD
+#if USE_LCD
 puts:   li t0, LCD_BASE
         bltz a1, 1f
         li t1, 0x80

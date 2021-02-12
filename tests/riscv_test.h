@@ -23,7 +23,7 @@
 #define EXTRA_INIT
 #define EXTRA_INIT_TIMER
 
-#ifdef USE_LCD
+#if USE_LCD
 #define RVTEST_CODE_BEGIN                       \
         .section .text.init;                    \
         li a0, SUITE;                           \
