@@ -433,23 +433,23 @@ def loadCommon(op):
         { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
         { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
         { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
-        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     ]
 
     if len > 8:
         result += [
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
             { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
-            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
         ]
     else:
         result += [
             { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
-            { BUS_EN: 1, STEP_LEN: 4 },
+            { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
         ]
 
     if len > 16:
         result += [
+            { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
             { MEM_OE: 1, REG_IN_EN: 0, REG_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
@@ -459,6 +459,7 @@ def loadCommon(op):
         ]
     else:
         result += [
+            { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
             { ADDR_CLK: 0, BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
             { BUS_EN: 1, STEP_LEN: 4 },
