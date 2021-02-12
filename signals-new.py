@@ -2,6 +2,8 @@ from itertools import groupby
 from itertools import accumulate
 from functools import reduce
 import sys
+import re
+import argparse
 
 addGaps = True
 removeConst = True
@@ -262,6 +264,8 @@ metaSignals = [
     META_SECTION,
     META_COMMENT,
 ]
+
+highlighted = []
 
 specialSignals = list(filter(lambda s: s not in hiddenSignals, clockSignals + counterSignals))
 
@@ -1135,6 +1139,8 @@ def plotOp(opName, signals, f):
             else:
                 f.write('%s%d%s' % (styleFormat[val['value']], val['count'], valueFormat[val['value']]))
 
+        if normalize_signal(sigName) in highlighted:
+            f.write('[red]')
         f.write('\\\\\n')
 
     markerList = list(accumulate(map(lambda ev: ev['count'], talliedSignals[META_SECTION])))[0:-2]
@@ -1168,9 +1174,18 @@ def plotOp(opName, signals, f):
     f.write('\\vfill\n\n')
     # f.write('\\newpage\n\n')
 
+def normalize_signal(s):
+    return re.sub(r'[-_]', '', re.sub(r'\\[a-zA-Z]+\{([a-zA-Z_]*)\}', r'\1',s)).upper()
 
 
+# Main
 
+parser = argparse.ArgumentParser(description='Generate microcode')
+
+parser.add_argument('opcode', nargs='*', help = 'Opcode to plot')
+parser.add_argument('-H', '--highlight', metavar = 'signal', help = 'Signal to highlight', action='append')
+
+args = parser.parse_args()
 
 microcode = [0] * (1 << 17)
 
@@ -1197,9 +1212,23 @@ for val in microcode:
 
 f.close()
 
+f = open("microcode.txt", "w")
 
-plotList = sys.argv[1:]
+for val in microcode:
+    f.write('{0:032b}\n'.format(val))
+
+f.close()
+
+
+plotList = args.opcode
+highlighted = list(map(normalize_signal, args.highlight))
 if plotList:
+    if highlighted:
+        print('Highlighted signals: ')
+        for h in args.highlight:
+            print(h)
+        print()
+
     print('Generating plot data:')
     f = open("signals.tex", "w")
 
