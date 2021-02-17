@@ -4,7 +4,7 @@
   <attributes>
     <entry>
       <string>Width</string>
-      <int>5</int>
+      <int>6</int>
     </entry>
   </attributes>
   <visualElements>
@@ -92,7 +92,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CLK</string>
+          <string>BUS-CLK</string>
         </entry>
       </elementAttributes>
       <pos x="660" y="-180"/>
@@ -106,26 +106,6 @@
         </entry>
       </elementAttributes>
       <pos x="660" y="-140"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~{IN-EN}</string>
-        </entry>
-      </elementAttributes>
-      <pos x="620" y="1140"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~EN</string>
-        </entry>
-      </elementAttributes>
-      <pos x="660" y="-100"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -182,6 +162,16 @@
       <pos x="800" y="980"/>
     </visualElement>
     <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~{IN-EN}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="620" y="1140"/>
+    </visualElement>
+    <visualElement>
       <elementName>Demultiplexer</elementName>
       <elementAttributes>
         <entry>
@@ -204,15 +194,101 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
+          <string>~{A-EN}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1800" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Register.dig</elementName>
+      <elementAttributes/>
+      <pos x="1340" y="-40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Const</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Value</string>
+          <long>0</long>
+        </entry>
+      </elementAttributes>
+      <pos x="1180" y="-100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>DriverInvSel</elementName>
+      <elementAttributes/>
+      <pos x="1860" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>DriverInvSel</elementName>
+      <elementAttributes/>
+      <pos x="1840" y="1140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~{B-EN}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1800" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
           <string>RESET</string>
         </entry>
       </elementAttributes>
       <pos x="660" y="-60"/>
     </visualElement>
     <visualElement>
-      <elementName>Register.dig</elementName>
-      <elementAttributes/>
-      <pos x="1340" y="-40"/>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>BUS-CLK RESET IN       ~{IN-EN} ~{A-EN} ~{B-EN} SA   SB   SD   A B
+
+loop (rep,32)
+
+let RA = 1 + random(6);
+let RB = 1 + RA + random(7-RA);
+
+let A = random(1&lt;&lt;32);
+let B = random(1&lt;&lt;32);
+
+0       1     0        1        1       1       0    0    0    X        X
+0       0     0        1        1       1       0    0    0    X        X
+
+loop (i,32)
+0       0     (A&gt;&gt;i&amp;1) 0        1       1       0    0    (RA) X        X
+1       0     (A&gt;&gt;i&amp;1) 0        1       1       0    0    (RA) X        X
+end loop
+
+loop (i,32)
+0       0     (B&gt;&gt;i&amp;1) 0        0       1       (RA) 0    (RB)  (A&gt;&gt;i&amp;1) X
+1       0     (B&gt;&gt;i&amp;1) 0        0       1       (RA) 0    (RB)  X        X
+end loop
+
+
+loop (i,32)
+0       0     0        1        0       0       (RA) (RB) 0     (A&gt;&gt;i&amp;1) (B&gt;&gt;i&amp;1)
+1       0     0        1        0       0       (RA) (RB) 0     X        X
+end loop
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="280"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -393,6 +469,10 @@
       <p2 x="1340" y="700"/>
     </wire>
     <wire>
+      <p1 x="1800" y="60"/>
+      <p2 x="1860" y="60"/>
+    </wire>
+    <wire>
       <p1 x="1440" y="320"/>
       <p2 x="1540" y="320"/>
     </wire>
@@ -450,6 +530,10 @@
     </wire>
     <wire>
       <p1 x="1820" y="220"/>
+      <p2 x="1840" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1880" y="220"/>
       <p2 x="1920" y="220"/>
     </wire>
     <wire>
@@ -473,10 +557,6 @@
       <p2 x="980" y="1120"/>
     </wire>
     <wire>
-      <p1 x="660" y="-100"/>
-      <p2 x="1180" y="-100"/>
-    </wire>
-    <wire>
       <p1 x="1140" y="360"/>
       <p2 x="1340" y="360"/>
     </wire>
@@ -497,12 +577,16 @@
       <p2 x="1340" y="880"/>
     </wire>
     <wire>
+      <p1 x="1800" y="880"/>
+      <p2 x="1840" y="880"/>
+    </wire>
+    <wire>
       <p1 x="1580" y="1140"/>
       <p2 x="1760" y="1140"/>
     </wire>
     <wire>
       <p1 x="1800" y="1140"/>
-      <p2 x="1920" y="1140"/>
+      <p2 x="1820" y="1140"/>
     </wire>
     <wire>
       <p1 x="820" y="1140"/>
@@ -511,6 +595,10 @@
     <wire>
       <p1 x="620" y="1140"/>
       <p2 x="780" y="1140"/>
+    </wire>
+    <wire>
+      <p1 x="1860" y="1140"/>
+      <p2 x="1920" y="1140"/>
     </wire>
     <wire>
       <p1 x="1180" y="500"/>
@@ -555,6 +643,10 @@
     <wire>
       <p1 x="900" y="160"/>
       <p2 x="900" y="1080"/>
+    </wire>
+    <wire>
+      <p1 x="1860" y="60"/>
+      <p2 x="1860" y="200"/>
     </wire>
     <wire>
       <p1 x="1640" y="280"/>
@@ -615,6 +707,10 @@
     <wire>
       <p1 x="1520" y="160"/>
       <p2 x="1520" y="1080"/>
+    </wire>
+    <wire>
+      <p1 x="1840" y="880"/>
+      <p2 x="1840" y="1120"/>
     </wire>
     <wire>
       <p1 x="1620" y="260"/>
