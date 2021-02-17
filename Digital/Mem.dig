@@ -280,141 +280,48 @@
         <entry>
           <string>Testdata</string>
           <testData>
-            <dataString>CLK  BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      DAddr    CS-ROM CS-RAM CS-IO
+            <dataString>CLK  BUS-CLK ADDR-IN      ADDR-LATCH ADDR-CLK IN       ~OE ~WE ~{S-EXT} ~RESET DIn      DATA-ADDR    
 
-0    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
-0    0       0            0          0        0        1   1   1        0      Z        X        X      X      X
-
-# ROM
+0    0       0            0          0        0        1   1   1        0      Z        X    
+0    0       0            0          0        0        1   1   1        0      Z        X    
 
 loop (rep,32)
 
-let rom = 0;
-let ram = 1;
-let io = 1;
-let hi2 = 0x0;
-
-let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
+let addr = random(1&lt;&lt;32);
 
 # Output address
 loop (i,32)
-0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
+0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X    
+1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X    
 end loop
 
 # Latch address
-0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
+0    0       0            1          0        0         1  1   1        1      Z        X    
+1    0       0            1          0        0         1  1   1        1      Z        X    
 
 # Output address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X    
+1    0       0            0          1        0         1  1   1        1      Z        X    
 
 # Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr)  
+1    0       0            0          0        0         1  1   1        1      Z        (addr)  
 
 # Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X    
+1    0       0            0          1        0         1  1   1        1      Z        X    
 
 # Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+1)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+1)
 
 # Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
+0    0       0            0          1        0         1  1   1        1      Z        X    
+1    0       0            0          1        0         1  1   1        1      Z        X    
 
 # Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-
-# RAM
-
-let rom = 1;
-let ram = 0;
-let io = 1;
-let hi2 = 0x2;
-
-let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
-
-# Output address
-loop (i,32)
-0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-end loop
-
-# Latch address
-0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-
-# Output address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-
-# Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-
-# Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-
-# IO
-
-let rom = 1;
-let ram = 1;
-let io = 0;
-let hi2 = 0x3;
-
-let addr = (hi2 &lt;&lt; 30) | random(1&lt;&lt;29);
-
-# Output address
-loop (i,32)
-0    0       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-1    1       (addr&gt;&gt;i&amp;1)  0          0        0         1  1   1        1      Z        X        X      X      X
-end loop
-
-# Latch address
-0    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-1    0       0            1          0        0         1  1   1        1      Z        X        X      X      X
-
-# Output address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr)   (rom)  (ram)  (io)
-
-# Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+1) (rom)  (ram)  (io)
-
-# Increment address
-0    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-1    0       0            0          1        0         1  1   1        1      Z        X        X      X      X
-
-# Check address
-0    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
-1    0       0            0          0        0         1  1   1        1      Z        (addr+2) (rom)  (ram)  (io)
+0    0       0            0          0        0         1  1   1        1      Z        (addr+2)
+1    0       0            0          0        0         1  1   1        1      Z        (addr+2)
 
 end loop
 </dataString>
@@ -460,10 +367,10 @@ end loop
         </entry>
         <entry>
           <string>Bits</string>
-          <int>16</int>
+          <int>32</int>
         </entry>
       </elementAttributes>
-      <pos x="860" y="200"/>
+      <pos x="880" y="200"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -488,26 +395,6 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="60" y="60"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>CS-ROM</string>
-        </entry>
-      </elementAttributes>
-      <pos x="960" y="280"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>CS-RAM</string>
-        </entry>
-      </elementAttributes>
-      <pos x="960" y="320"/>
     </visualElement>
     <visualElement>
       <elementName>D_FF</elementName>
@@ -585,58 +472,6 @@ end loop
       <elementName>NOr</elementName>
       <elementAttributes/>
       <pos x="1480" y="800"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Splitter</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Input Splitting</string>
-          <string>32</string>
-        </entry>
-        <entry>
-          <string>Output Splitting</string>
-          <string>16,14,2,</string>
-        </entry>
-      </elementAttributes>
-      <pos x="760" y="200"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Demultiplexer</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Selector Bits</string>
-          <int>2</int>
-        </entry>
-        <entry>
-          <string>flipSelPos</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Default</string>
-          <long>1</long>
-        </entry>
-      </elementAttributes>
-      <pos x="880" y="280"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Value</string>
-          <long>0</long>
-        </entry>
-      </elementAttributes>
-      <pos x="860" y="320"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>CS-IO</string>
-        </entry>
-      </elementAttributes>
-      <pos x="960" y="360"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -1022,14 +857,6 @@ end loop
   </visualElements>
   <wires>
     <wire>
-      <p1 x="860" y="320"/>
-      <p2 x="880" y="320"/>
-    </wire>
-    <wire>
-      <p1 x="920" y="320"/>
-      <p2 x="960" y="320"/>
-    </wire>
-    <wire>
       <p1 x="100" y="640"/>
       <p2 x="120" y="640"/>
     </wire>
@@ -1074,12 +901,8 @@ end loop
       <p2 x="720" y="200"/>
     </wire>
     <wire>
-      <p1 x="780" y="200"/>
-      <p2 x="860" y="200"/>
-    </wire>
-    <wire>
       <p1 x="720" y="200"/>
-      <p2 x="760" y="200"/>
+      <p2 x="880" y="200"/>
     </wire>
     <wire>
       <p1 x="460" y="520"/>
@@ -1146,10 +969,6 @@ end loop
       <p2 x="60" y="340"/>
     </wire>
     <wire>
-      <p1 x="920" y="340"/>
-      <p2 x="940" y="340"/>
-    </wire>
-    <wire>
       <p1 x="1480" y="660"/>
       <p2 x="1540" y="660"/>
     </wire>
@@ -1160,10 +979,6 @@ end loop
     <wire>
       <p1 x="200" y="280"/>
       <p2 x="220" y="280"/>
-    </wire>
-    <wire>
-      <p1 x="920" y="280"/>
-      <p2 x="960" y="280"/>
     </wire>
     <wire>
       <p1 x="100" y="600"/>
@@ -1238,10 +1053,6 @@ end loop
       <p2 x="1540" y="680"/>
     </wire>
     <wire>
-      <p1 x="940" y="360"/>
-      <p2 x="960" y="360"/>
-    </wire>
-    <wire>
       <p1 x="1480" y="620"/>
       <p2 x="1540" y="620"/>
     </wire>
@@ -1276,10 +1087,6 @@ end loop
     <wire>
       <p1 x="20" y="240"/>
       <p2 x="80" y="240"/>
-    </wire>
-    <wire>
-      <p1 x="780" y="240"/>
-      <p2 x="900" y="240"/>
     </wire>
     <wire>
       <p1 x="400" y="240"/>
@@ -1342,20 +1149,12 @@ end loop
       <p2 x="1280" y="820"/>
     </wire>
     <wire>
-      <p1 x="900" y="240"/>
-      <p2 x="900" y="280"/>
-    </wire>
-    <wire>
       <p1 x="680" y="560"/>
       <p2 x="680" y="680"/>
     </wire>
     <wire>
       <p1 x="140" y="180"/>
       <p2 x="140" y="260"/>
-    </wire>
-    <wire>
-      <p1 x="940" y="340"/>
-      <p2 x="940" y="360"/>
     </wire>
     <wire>
       <p1 x="720" y="120"/>
