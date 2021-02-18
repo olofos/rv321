@@ -153,25 +153,25 @@ static struct pin *read_pins(struct tokenizer_context *ctx)
 
     while((ident = read_identifier(ctx))) {
         if(strlen(ident) != 3) {
-            print_error(ctx, "Unexpected pin %s\n", ident);
+            print_error(ctx, "Unexpected pin %s", ident);
             free(ident);
             goto err;
         }
 
         if((ident[0] < '0') || (ident[0] > '0' + PIN_CHIP_MAX)) {
-            print_error(ctx, "Unexpected chip number %c\n", ident[0]);
+            print_error(ctx, "Unexpected chip number %c", ident[0]);
             free(ident);
             goto err;
         }
 
         if((ident[1] != 'A') && (ident[1] != 'a') && (ident[1] != 'B') && (ident[1] != 'b')) {
-            print_error(ctx, "Unexpected bank %c\n", ident[1]);
+            print_error(ctx, "Unexpected bank %c", ident[1]);
             free(ident);
             goto err;
         }
 
         if((ident[2] < '0') || (ident[2] > '7')) {
-            print_error(ctx, "Unexpected pin number %c\n", ident[2]);
+            print_error(ctx, "Unexpected pin number %c", ident[2]);
             free(ident);
             goto err;
         }
