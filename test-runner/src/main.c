@@ -21,6 +21,8 @@ number_t func_random(number_t param[])
     number_t max = param[0];
     const uint64_t rand_max = 0xFFFFFFFFFFFFFFFF;
 
+    if(max <= 1) return 0;
+
     return genrand64_int64() / ( 1 + (rand_max - max + 1) / max );
 }
 
