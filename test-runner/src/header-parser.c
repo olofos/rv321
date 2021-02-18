@@ -149,30 +149,49 @@ static struct pin *read_pins(struct tokenizer_context *ctx)
 {
     struct pin *first = 0, *prev = 0;
 
-    for(;;) {
-        enum token tok = token_peek(ctx);
+    char *ident;
 
-        if(tok == '\n') {
-            break;
-        } else if(tok == TOKEN_NUMBER) {
-            struct pin *pin = allocate(sizeof(*pin));
-
-            pin->number = token_get_number(ctx);
-            token_consume(ctx);
-
-            if(prev) {
-                prev->next = pin;
-            } else {
-                first = pin;
-            }
-            prev = pin;
-
-            if(pin->number > PIN_MAX) {
-                parse_error(ctx, "Pin number %d is larger than %d", pin->number, PIN_MAX);
-            }
-        } else {
-            parse_error(ctx, "Unexpected token %s", token_to_string(tok));
+    while((ident = read_identifier(ctx))) {
+        if(strlen(ident) != 3) {
+            print_error(ctx, "Unexpected pin %s\n", ident);
+            free(ident);
+            goto err;
         }
+
+        if((ident[0] < '0') || (ident[0] > '0' + PIN_CHIP_MAX)) {
+            print_error(ctx, "Unexpected chip number %c\n", ident[0]);
+            free(ident);
+            goto err;
+        }
+
+        if((ident[1] != 'A') && (ident[1] != 'a') && (ident[1] != 'B') && (ident[1] != 'b')) {
+            print_error(ctx, "Unexpected bank %c\n", ident[1]);
+            free(ident);
+            goto err;
+        }
+
+        if((ident[2] < '0') || (ident[2] > '7')) {
+            print_error(ctx, "Unexpected pin number %c\n", ident[2]);
+            free(ident);
+            goto err;
+        }
+
+        int chip = ident[0] - '0';
+        int bank = ((ident[1] == 'B') || (ident[1] == 'b')) ? 1 : 0;
+        int number = ident[2] - '0';
+
+        struct pin *pin = allocate(sizeof(*pin));
+        pin->number = number;
+        pin->bank = (chip << 1) | bank;
+
+        if(prev) {
+            prev->next = pin;
+        } else {
+            first = pin;
+        }
+        prev = pin;
+
+        free(ident);
     }
 
     return first;

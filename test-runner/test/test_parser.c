@@ -44,7 +44,7 @@ int __wrap_fclose(FILE *stream)
 
 static void test_file_open__should__open_and_parse_file(void **state)
 {
-    char *input = "a b c\n#! a input 0\n#! b input 1\n#! c output 2\n0 0 0\n";
+    char *input = "a b c\n#! a input 0a0\n#! b input 1a3\n#! c output 2b7\n0 0 0\n";
     FILE *f = fmemopen(input, strlen(input), "r");
 
     expect_string(__wrap_fopen, pathname, "test.tst");
@@ -79,7 +79,7 @@ static void test_file_open__should__return_null_if_fopen_fails(void **state)
 
 static void test_file_open__should__return_null_if_header_is_invalid(void **state)
 {
-    char *input = "a b c\n#! x x\n0 0 0\n";
+    char *input = "a b c\n#! x w\n0 0 0\n";
     FILE *f = fmemopen(input, strlen(input), "r");
 
     expect_string(__wrap_fopen, pathname, "test.tst");
@@ -98,7 +98,7 @@ static void test_file_open__should__return_null_if_header_is_invalid(void **stat
 
 static void test_file_open__should__return_null_if_test_contains_syntax_error(void **state)
 {
-    char *input = "a b c\n#! a input 0\n#! b input 1\n#! c output 2\nlet a=1\n0 0 0\n";
+    char *input = "a b c\n#! a input 0a0\n#! b input 1b1\n#! c output 2a7\nlet a=1\n0 0 0\n";
     FILE *f = fmemopen(input, strlen(input), "r");
 
     expect_string(__wrap_fopen, pathname, "test.tst");

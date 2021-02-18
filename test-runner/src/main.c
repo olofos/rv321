@@ -239,7 +239,7 @@ void print_file_content(struct test_file *test_file)
         if(signal->type == SIGNAL_OUTPUT) printf("OUTPUT ");
         if(signal->type == SIGNAL_NONE)   printf("IGNORE ");
         for(struct pin *p = signal->pin; p; p = p->next) {
-            printf("%d", p->number);
+            printf("%d%c%d", p->bank >> 1, 'A' + (p->bank & 1), p->number);
             if(p->next) printf(", ");
         }
         printf("\n");

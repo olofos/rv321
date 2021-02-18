@@ -3,7 +3,7 @@
 
 #include "tokenizer.h"
 
-#define PIN_MAX 63
+#define PIN_CHIP_MAX 4
 
 enum expr_type {
     EXPR_SHIFTLEFT = TOKEN_SHIFTLEFT,
@@ -124,6 +124,7 @@ enum signal_type {
 struct pin {
     struct pin *next;
     int number;
+    int bank;
 };
 
 struct signal {
