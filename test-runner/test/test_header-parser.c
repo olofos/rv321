@@ -118,9 +118,10 @@ static void parse_header__should__parse_signals(void **states)
 static void parse_header__should__parse_skipped_signals(void **states)
 {
     char *input =
-        "A B\n"
+        "A B C\n"
         "#! A input 0A0 X 0A1\n"
         "#! B output 0B0 X[2] 0B1\n"
+        "#! C output x 1A0\n"
         "0\n";
 
     struct signal *signal = test_parse_header(input);
@@ -154,6 +155,15 @@ static void parse_header__should__parse_skipped_signals(void **states)
 
     assert_int_equal(signal->next->pin->next->next->next->bank, 1);
     assert_int_equal(signal->next->pin->next->next->next->number, 1);
+
+    assert_non_null(signal->next->next);
+
+    assert_int_equal(signal->next->next->pin->bank, PIN_SKIP);
+    assert_int_equal(signal->next->next->pin->number, PIN_SKIP);
+
+    assert_int_equal(signal->next->next->pin->next->bank, 2);
+    assert_int_equal(signal->next->next->pin->next->number, 0);
+
 
     teardown_test_signal(signal);
 }
@@ -365,19 +375,19 @@ static void parse_header__should__return_null_for_misformed_pin_mappings(void **
         "0 0 0\n",
 
         "a b c\n"
-        "#! a input a xx\n"
+        "#! a input 1a0 xx\n"
         "0 0 0\n",
 
         "a b c\n"
-        "#! a input a x[-1]\n"
+        "#! a input 1a0 x[-1]\n"
         "0 0 0\n",
 
         "a b c\n"
-        "#! a input a x[]\n"
+        "#! a input 1a0 x[]\n"
         "0 0 0\n",
 
         "a b c\n"
-        "#! a input a x[2]]\n"
+        "#! a input 1a0 x[2]]\n"
         "0 0 0\n",
     };
 
