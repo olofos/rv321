@@ -115,6 +115,49 @@ static void parse_header__should__parse_signals(void **states)
     teardown_test_signal(signal);
 }
 
+static void parse_header__should__parse_skipped_signals(void **states)
+{
+    char *input =
+        "A B\n"
+        "#! A input 0A0 X 0A1\n"
+        "#! B output 0B0 X[2] 0B1\n"
+        "0\n";
+
+    struct signal *signal = test_parse_header(input);
+
+    assert_non_null(signal);
+    assert_int_equal(signal->type, SIGNAL_INPUT);
+    assert_non_null(signal->pin);
+    assert_non_null(signal->pin->next);
+    assert_non_null(signal->pin->next->next);
+    assert_null(signal->pin->next->next->next);
+
+    assert_int_equal(signal->pin->bank, 0);
+    assert_int_equal(signal->pin->number, 0);
+
+    assert_int_equal(signal->pin->next->bank, PIN_SKIP);
+    assert_int_equal(signal->pin->next->number, PIN_SKIP);
+
+    assert_int_equal(signal->pin->next->next->bank, 0);
+    assert_int_equal(signal->pin->next->next->number, 1);
+
+    assert_non_null(signal->next);
+
+    assert_int_equal(signal->next->pin->bank, 1);
+    assert_int_equal(signal->next->pin->number, 0);
+
+    assert_int_equal(signal->next->pin->next->bank, PIN_SKIP);
+    assert_int_equal(signal->next->pin->next->number, PIN_SKIP);
+
+    assert_int_equal(signal->next->pin->next->next->bank, PIN_SKIP);
+    assert_int_equal(signal->next->pin->next->next->number, PIN_SKIP);
+
+    assert_int_equal(signal->next->pin->next->next->next->bank, 1);
+    assert_int_equal(signal->next->pin->next->next->next->number, 1);
+
+    teardown_test_signal(signal);
+}
+
 static void parse_header__should__parse_header_without_signals(void **states)
 {
     char *input =
@@ -307,19 +350,35 @@ static void parse_header__should__return_null_for_misformed_pin_mappings(void **
     char *inputs[] = {
         "a b c\n"
         "#! a input w\n"
-        "0\n",
+        "0 0 0\n",
 
         "a b c\n"
         "#! a input 1c0\n"
-        "0\n",
+        "0 0 0\n",
 
         "a b c\n"
         "#! a input 9a0\n"
-        "0\n",
+        "0 0 0\n",
 
         "a b c\n"
         "#! a input 1a8\n"
-        "0\n",
+        "0 0 0\n",
+
+        "a b c\n"
+        "#! a input a xx\n"
+        "0 0 0\n",
+
+        "a b c\n"
+        "#! a input a x[-1]\n"
+        "0 0 0\n",
+
+        "a b c\n"
+        "#! a input a x[]\n"
+        "0 0 0\n",
+
+        "a b c\n"
+        "#! a input a x[2]]\n"
+        "0 0 0\n",
     };
 
     for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
@@ -332,6 +391,7 @@ static void parse_header__should__return_null_for_misformed_pin_mappings(void **
 const struct CMUnitTest tests_for_parse_header[] = {
     cmocka_unit_test(parse_header__should__parse_header_with_signals),
     cmocka_unit_test(parse_header__should__parse_signals),
+    cmocka_unit_test(parse_header__should__parse_skipped_signals),
     cmocka_unit_test(parse_header__should__parse_header_without_signals),
     cmocka_unit_test(parse_header__should__parse_really_long_signal_names),
     cmocka_unit_test(parse_header__should__accept_weird_signal_names),

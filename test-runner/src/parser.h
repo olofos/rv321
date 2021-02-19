@@ -121,6 +121,10 @@ enum signal_type {
     SIGNAL_OUTPUT,
 };
 
+enum pin_type {
+    PIN_SKIP = -1,
+};
+
 struct pin {
     struct pin *next;
     int number;

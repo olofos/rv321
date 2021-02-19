@@ -152,44 +152,74 @@ static struct pin *read_pins(struct tokenizer_context *ctx)
     char *ident;
 
     while((ident = read_identifier(ctx))) {
-        if(strlen(ident) != 3) {
-            print_error(ctx, "Unexpected pin %s", ident);
-            free(ident);
-            goto err;
-        }
+        if((ident[0] == 'X') || (ident[0] == 'x')) {
+            int skip_num = 1;
+            if(ident[1] == '[') {
+                char *endp;
+                skip_num = strtol(&ident[2], &endp, 10);
+                if((skip_num <= 0) || (strcmp(endp, "]") != 0)) {
+                    print_error(ctx, "Unexpected pin %s", ident);
+                    free(ident);
+                    goto err;
+                }
+            } else if(ident[1] != 0) {
+                print_error(ctx, "Unexpected pin %s", ident);
+                free(ident);
+                goto err;
+            }
 
-        if((ident[0] < '0') || (ident[0] > '0' + PIN_CHIP_MAX)) {
-            print_error(ctx, "Unexpected chip number %c", ident[0]);
-            free(ident);
-            goto err;
-        }
+            for(int i = 0; i < skip_num; i++) {
+                struct pin *pin = allocate(sizeof(*pin));
+                pin->number = PIN_SKIP;
+                pin->bank = PIN_SKIP;
 
-        if((ident[1] != 'A') && (ident[1] != 'a') && (ident[1] != 'B') && (ident[1] != 'b')) {
-            print_error(ctx, "Unexpected bank %c", ident[1]);
-            free(ident);
-            goto err;
-        }
-
-        if((ident[2] < '0') || (ident[2] > '7')) {
-            print_error(ctx, "Unexpected pin number %c", ident[2]);
-            free(ident);
-            goto err;
-        }
-
-        int chip = ident[0] - '0';
-        int bank = ((ident[1] == 'B') || (ident[1] == 'b')) ? 1 : 0;
-        int number = ident[2] - '0';
-
-        struct pin *pin = allocate(sizeof(*pin));
-        pin->number = number;
-        pin->bank = (chip << 1) | bank;
-
-        if(prev) {
-            prev->next = pin;
+                if(prev) {
+                    prev->next = pin;
+                } else {
+                    first = pin;
+                }
+                prev = pin;
+            }
         } else {
-            first = pin;
+            if(strlen(ident) != 3) {
+                print_error(ctx, "Unexpected pin %s", ident);
+                free(ident);
+                goto err;
+            }
+
+            if((ident[0] < '0') || (ident[0] > '0' + PIN_CHIP_MAX)) {
+                print_error(ctx, "Unexpected chip number %c", ident[0]);
+                free(ident);
+                goto err;
+            }
+
+            if((ident[1] != 'A') && (ident[1] != 'a') && (ident[1] != 'B') && (ident[1] != 'b')) {
+                print_error(ctx, "Unexpected bank %c", ident[1]);
+                free(ident);
+                goto err;
+            }
+
+            if((ident[2] < '0') || (ident[2] > '7')) {
+                print_error(ctx, "Unexpected pin number %c", ident[2]);
+                free(ident);
+                goto err;
+            }
+
+            int chip = ident[0] - '0';
+            int bank = ((ident[1] == 'B') || (ident[1] == 'b')) ? 1 : 0;
+            int number = ident[2] - '0';
+
+            struct pin *pin = allocate(sizeof(*pin));
+            pin->number = number;
+            pin->bank = (chip << 1) | bank;
+
+            if(prev) {
+                prev->next = pin;
+            } else {
+                first = pin;
+            }
+            prev = pin;
         }
-        prev = pin;
 
         free(ident);
     }
