@@ -249,6 +249,41 @@ static enum signal_type to_signal_type(const char *str)
     return SIGNAL_NONE;
 }
 
+static int read_signal_type(struct tokenizer_context *ctx)
+{
+    char *type_str = read_identifier(ctx);
+
+    if(!type_str) {
+        parse_error(ctx, "Expected INPUT, OUTPUT or IGNORE");
+    }
+
+    enum signal_type type = 0;
+
+    char *flag_start = strchr(type_str, '[');
+    if(flag_start) {
+        if((strcmp(flag_start, "[PU]") == 0) || (strcmp(flag_start, "[pu]") == 0)) {
+            type |= SIGNAL_PULLUP;
+        } else {
+            parse_error(ctx, "Excpected signal type");
+        }
+
+        *flag_start = 0;
+    }
+
+    if(!is_signal_type(type_str)) {
+        parse_error(ctx, "Expected INPUT, OUTPUT or IGNORE");
+    }
+
+    type |= to_signal_type(type_str);
+
+    free(type_str);
+    return type;
+
+err:
+    free(type_str);
+    return -1;
+}
+
 static int read_mapping(struct tokenizer_context *ctx, struct signal *first_signal)
 {
     enum token tok = token_peek(ctx);
@@ -257,16 +292,12 @@ static int read_mapping(struct tokenizer_context *ctx, struct signal *first_sign
     }
     token_consume(ctx);
 
-    char *name = 0;
     struct pin *pin = 0;
 
-    name = read_identifier(ctx);
+    char *name = read_identifier(ctx);
 
-    if((token_peek(ctx) != TOKEN_IDENT) || !is_signal_type(ctx->value)) {
-        parse_error(ctx, "Expected INPUT, OUTPUT or IGNORE", token_to_string(ctx->token));
-    }
-    enum signal_type type = to_signal_type(ctx->value);
-    token_consume(ctx);
+    int type = read_signal_type(ctx);
+    if(type < 0) goto err;
 
     pin = read_pins(ctx);
 

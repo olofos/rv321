@@ -67,6 +67,26 @@ static void parse_header__should__parse_header_with_signals(void **states)
     teardown_test_signal(signal);
 }
 
+static void parse_header__should__parse_header_with_signal_flags(void **states)
+{
+    char *input =
+        "A B C\n"
+        "#! A input[pu] 0A0\n"
+        "#! B INPUT[PU] 0A1\n"
+        "0 0 0\n";
+
+    struct signal *signal = test_parse_header(input);
+
+    assert_non_null(signal);
+    assert_int_equal(signal->type, SIGNAL_INPUT | SIGNAL_PULLUP);
+    assert_non_null(signal->pin);
+
+    assert_non_null(signal->next);
+    assert_int_equal(signal->next->type, SIGNAL_INPUT | SIGNAL_PULLUP);
+
+    teardown_test_signal(signal);
+}
+
 static void parse_header__should__parse_signals(void **states)
 {
     char *input =
@@ -389,7 +409,15 @@ static void parse_header__should__return_null_for_misformed_pin_mappings(void **
         "a b c\n"
         "#! a input 1a0 x[2]]\n"
         "0 0 0\n",
-    };
+
+        "a b c\n"
+        "#! a input[ 1a0\n"
+        "0 0 0\n",
+
+        "a b c\n"
+        "#! a input[pu]] 1a0\n"
+        "0 0 0\n",
+};
 
     for(int i = 0; i < sizeof(inputs)/sizeof(inputs[0]); i++) {
         struct signal *signal = test_parse_header(inputs[i]);
@@ -400,6 +428,7 @@ static void parse_header__should__return_null_for_misformed_pin_mappings(void **
 
 const struct CMUnitTest tests_for_parse_header[] = {
     cmocka_unit_test(parse_header__should__parse_header_with_signals),
+    cmocka_unit_test(parse_header__should__parse_header_with_signal_flags),
     cmocka_unit_test(parse_header__should__parse_signals),
     cmocka_unit_test(parse_header__should__parse_skipped_signals),
     cmocka_unit_test(parse_header__should__parse_header_without_signals),

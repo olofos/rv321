@@ -235,9 +235,18 @@ void print_file_content(struct test_file *test_file)
     printf("Signals:\n");
     for(struct signal *signal = test_file->signal; signal; signal = signal->next) {
         printf("%-*s ", max_len, signal->name);
-        if(signal->type == SIGNAL_INPUT)  printf("INPUT  ");
-        if(signal->type == SIGNAL_OUTPUT) printf("OUTPUT ");
-        if(signal->type == SIGNAL_NONE)   printf("IGNORE ");
+        if(signal->type & SIGNAL_INPUT) {
+            printf("INPUT  ");
+        } else if(signal->type & SIGNAL_OUTPUT) {
+            printf("OUTPUT ");
+        } else {
+            printf("IGNORE ");
+        }
+        if(signal->type & SIGNAL_PULLUP) {
+            printf("[PU]  ");
+        } else {
+            printf("      ");
+        }
         for(struct pin *p = signal->pin; p; p = p->next) {
             printf("%d%c%d", p->bank >> 1, 'A' + (p->bank & 1), p->number);
             if(p->next) printf(", ");

@@ -116,9 +116,10 @@ struct stmt {
 };
 
 enum signal_type {
-    SIGNAL_NONE,
-    SIGNAL_INPUT,
-    SIGNAL_OUTPUT,
+    SIGNAL_NONE   = 0x00,
+    SIGNAL_INPUT  = 0x01,
+    SIGNAL_OUTPUT = 0x02,
+    SIGNAL_PULLUP = 0x04,
 };
 
 enum pin_type {
