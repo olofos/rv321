@@ -752,6 +752,21 @@ static void eval_expr__should__return_error_for_unknown_variable(void **state)
     teardown(state);
 }
 
+static void eval_expr__should__return_error_for_previous_error(void **state)
+{
+    struct test_var vars[] = {{.name = "a", .value = 42}, {.name = 0, .value = 0}};
+    struct expr *expr = test_get_expr(state, "b");
+    struct eval_context *eval_ctx = test_get_eval_context(state, vars);
+    eval_ctx->error = "error";
+
+    eval_expr(expr, eval_ctx);
+
+    assert_non_null(eval_ctx->error);
+    assert_string_equal(eval_ctx->error, "error");
+
+    teardown(state);
+}
+
 static const struct CMUnitTest tests_for_get_variable[] = {
     cmocka_unit_test_setup(get_variable__should__get_the_value, setup),
     cmocka_unit_test_setup(get_variable__should__return_error_for_unknown_variable, setup),
@@ -821,7 +836,7 @@ static const struct CMUnitTest tests_for_eval_expr[] = {
     cmocka_unit_test_setup(eval_expr__should__return_error_for_unknown_variable, setup),
     cmocka_unit_test_setup(eval_expr__should__return_error_for_division_by_zero, setup),
     cmocka_unit_test_setup(eval_expr__should__return_error_for_mod_by_zero, setup),
-
+    cmocka_unit_test_setup(eval_expr__should__return_error_for_previous_error, setup),
 };
 
 int main(void)
