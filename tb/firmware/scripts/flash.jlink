@@ -1,0 +1,8 @@
+device STM32G030F6
+si 1
+speed 4000
+connect
+loadbin bin/tb.bin 0x8000000
+r
+g
+exit

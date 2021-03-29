@@ -1,0 +1,6 @@
+device STM32G030F6
+si 1
+speed 400
+connect
+erase
+exit
