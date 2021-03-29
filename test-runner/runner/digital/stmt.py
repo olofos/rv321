@@ -1,5 +1,4 @@
-from eval_context import EvalContext
-import data
+from . import evaluated
 
 class List :
     def __init__(self, stmts):
@@ -11,14 +10,13 @@ class List :
     def __str__(self):
         return self.format('  ')
 
-    def eval(self, ctx):
+    def eval(self, ctx = None):
+        if ctx is None:
+            ctx = evaluated.Context()
         result = []
         for stmt in self.stmts:
             result.extend(stmt.eval(ctx))
-        return List(result)
-
-    def map(self, signals):
-        return [ stmt.map(signals) for stmt in self.stmts ]
+        return evaluated.List(result)
 
 class Stmt : pass
 
@@ -38,8 +36,8 @@ class Let(Stmt):
         ctx.set_variable(self.variable, self.expr.eval(ctx))
         return []
 
-class Data(Stmt):
-    def __init__(self, line, data):
+class DataRow(Stmt):
+    def __init__(self, line, data, vars = None):
         self.line = line
         self.data = data
 
@@ -53,14 +51,10 @@ class Data(Stmt):
         entries = []
         for entry in self.data:
             entries.extend(entry.eval(ctx))
-        return [ Data(self.line, entries) ]
+        return [ evaluated.DataRow(self.line, entries, ctx.vars) ]
 
-    def map(self, signals):
-        entries = [ entry.get_value() for entry in self.data ]
-        if len(entries) != len(signals):
-            print('Len oops')
-        else:
-            return { signals[i]: entries[i] for i in range(0, len(signals)) }
+    def get_values(self):
+        return [ entry.get_value() for entry in self.data ]
 
 class Repeat(Stmt):
     def __init__(self, line, number, data):
@@ -76,13 +70,14 @@ class Repeat(Stmt):
 
     def eval(self, ctx):
         result = []
-        inner_ctx = EvalContext(ctx)
+        ctx.push()
         for n in range(0, self.number):
-            inner_ctx.set_variable('n', n)
+            ctx.set_variable('n', n)
             entries = []
             for entry in self.data:
-                entries.extend(entry.eval(inner_ctx))
-            result.append(Data(self.line, entries))
+                entries.extend(entry.eval(ctx))
+            result.append(evaluated.DataRow(self.line, entries))
+        ctx.pop()
         return result
 
 class Loop(Stmt):
@@ -106,8 +101,9 @@ class Loop(Stmt):
 
     def eval(self, ctx):
         result = []
+        ctx.push()
         for n in range(0, self.number):
-            inner_ctx = EvalContext(ctx)
-            inner_ctx.set_variable(self.variable, n)
-            result.extend(self.stmt_list.eval(inner_ctx).stmts)
+            ctx.set_variable(self.variable, n)
+            result.extend(self.stmt_list.eval(ctx).rows)
+        ctx.pop()
         return result

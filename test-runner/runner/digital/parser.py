@@ -1,9 +1,11 @@
 import ply.yacc as yacc
-from lexer import tokens
+import re
 
-import stmt
-import data
-import expr
+from .lexer import tokens
+
+from . import stmt
+from . import data
+from . import expr
 
 def p_start(p):
     '''start : stmt_list'''
@@ -38,7 +40,7 @@ def p_stmt_repeat(p):
 
 def p_stmt_data_row(p):
     '''stmt : data_row EOL'''
-    p[0] = stmt.Data(p.lineno(2), p[1])
+    p[0] = stmt.DataRow(p.lineno(2), p[1])
     return p
 
 def p_stmt_empty(p):
@@ -156,3 +158,8 @@ def p_error(p):
 
 # Build the parser
 parser = yacc.yacc()
+
+def parse(input):
+    # Remove the signals line
+    input = re.sub(r'[^ \t\f\r\n][^\n]*\n', '\n', input, count=1)
+    return parser.parse(input)

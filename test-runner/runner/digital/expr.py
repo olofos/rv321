@@ -1,3 +1,5 @@
+import random
+
 class Expr : pass
 
 class BinOp(Expr):
@@ -41,7 +43,7 @@ class BinOp(Expr):
         elif self.op == '*':
             return (left * right)
         elif self.op == '/':
-            return (left / right)
+            return (left // right)
         elif self.op == '%':
             return (left % right)
 
@@ -82,6 +84,15 @@ class Variable(Expr):
     def eval(self, ctx):
         return ctx.get_variable(self.name)
 
+
+def func_random(params):
+    assert len(params) == 1
+    return random.randrange(params[0])
+
+func_tab = {
+    'random': func_random
+}
+
 class Function(Expr):
     def __init__(self, name, params):
         self.name = name
@@ -92,5 +103,5 @@ class Function(Expr):
 
     def eval(self, ctx):
         params = [ p.eval(ctx) for p in self.params ]
-        func = ctx.get_function(self.name)
+        func = func_tab[self.name]
         return func(params)
