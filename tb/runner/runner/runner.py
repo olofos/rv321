@@ -1,10 +1,10 @@
-from .digital.file import load
+from .digital import file
 from .digital import parser
 from . import header
 
 def load(filename):
     try:
-        tests = load(filename)
+        tests = file.load(filename)
     except:
         with open(filename, 'r') as f:
             tests = [{'name': filename, 'test': f.read()}]
