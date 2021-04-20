@@ -139,17 +139,21 @@ class HardwareState:
 
     @property
     def mismatched_signals(self):
-        mismatched_signals = set()
+        mismatched = set()
 
         for sig, sig_bits in self.input_signals.items():
             for chip, bit in sig_bits.values():
                 expected = (self.expected_input[chip] & self.input_mask[chip]) & (1 << bit)
                 read = (self.read_input[chip] & self.input_mask[chip]) & (1 << bit)
                 if expected != read:
-                    mismatched_signals.add(sig)
+                    mismatched.add(sig)
                     break
 
-        return { sig: self.get_input_values(sig) for sig in mismatched_signals }
+        return { sig: self.get_input_values(sig) for sig in mismatched }
+
+    @property
+    def needs_input(self):
+        return any([m != 0 for m in self.input_mask])
 
     def get_input_values(self, signal):
         expected = 0
