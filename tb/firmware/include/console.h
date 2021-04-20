@@ -29,6 +29,6 @@ void console_process(void);
 void console_write_string(const char *buf);
 int console_parameter_uint16_hex(const char *buf, unsigned n, uint16_t *val);
 
-
+void console_set_echo(int echo);
 
 #endif

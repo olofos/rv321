@@ -8,6 +8,7 @@
 #define CONSOLE_FLAG_ESCAPE 0x01
 #define CONSOLE_FLAG_CSI    0x02
 #define CONSOLE_FLAG_CR     0x04
+#define CONSOLE_FLAG_ECHO   0x08
 
 struct console_state {
     unsigned write_index;
@@ -51,9 +52,34 @@ static void console_reset(void)
 void console_init(void)
 {
     console_reset();
-    // console_write_string("Ready." CONSOLE_EOL);
+    console_write_string("Ready." CONSOLE_EOL);
+    state.flags = CONSOLE_FLAG_ECHO;
     console_write_string(CONSOLE_PROMPT);
 }
+
+void console_set_echo(int echo)
+{
+    if(echo) {
+        state.flags |= CONSOLE_FLAG_ECHO;
+    } else {
+        state.flags &= ~CONSOLE_FLAG_ECHO;
+    }
+}
+
+static void console_echo_string(const char *s)
+{
+    if(state.flags & CONSOLE_FLAG_ECHO) {
+        console_write(s, strlen(s));
+    }
+}
+
+static void console_echo(char c)
+{
+    if(state.flags & CONSOLE_FLAG_ECHO) {
+        console_write(&c, 1);
+    }
+}
+
 
 static int is_hex_digit(char c)
 {
@@ -129,13 +155,13 @@ static void handle_command(void)
         }
     }
     console_reset();
-    console_write_string(CONSOLE_PROMPT);
+    console_echo_string(CONSOLE_PROMPT);
 }
 
 static void tab_completion(void)
 {
     if(find_nth_separator(state.buf, 1) != state.write_index) {
-        console_write("\a", 1);
+        console_echo('\a');
         return;
     }
 
@@ -159,7 +185,7 @@ static void tab_completion(void)
     }
 
     if(matches == 0) {
-        console_write("\a", 1);
+        console_echo('\a');
         return;
     }
 
@@ -167,7 +193,7 @@ static void tab_completion(void)
         for(const char *p = common_tail; *p; p++) {
             state.buf[state.write_index++] = *p;
         }
-        console_write_string(common_tail);
+        console_echo_string(common_tail);
         return;
     }
 
@@ -175,7 +201,7 @@ static void tab_completion(void)
         for(const char *p = common_tail; *p; p++) {
             state.buf[state.write_index++] = *p;
         }
-        console_write_string(common_tail);
+        console_echo_string(common_tail);
         return;
     } else {
         console_write_string(CONSOLE_EOL);
@@ -187,7 +213,7 @@ static void tab_completion(void)
             }
         }
         console_write_string(CONSOLE_PROMPT);
-        console_write_string(state.buf);
+        console_echo_string(state.buf);
     }
 }
 
@@ -232,9 +258,7 @@ void console_process(void)
         state.flags |= CONSOLE_FLAG_CR;
         // Fall through
     case '\n':
-        console_write_string(CONSOLE_EOL);
-        // console_write_string("\r");
-        // console_write_string("\n");
+        console_write(CONSOLE_EOL, 2);
         handle_command();
         break;
 
@@ -242,7 +266,7 @@ void console_process(void)
     case '\x7F': // DEL
         if(state.write_index > 0) {
             state.buf[--state.write_index] = 0;
-            console_write_string("\b \b");
+            console_echo_string("\b \b");
         }
         break;
 
@@ -258,11 +282,10 @@ void console_process(void)
     case '\t':
         tab_completion();
         break;
-
     case ' ':
         if((state.write_index > 0) && (state.write_index < CONSOLE_BUF_SIZE) && (state.buf[state.write_index-1] != ' ')) {
             state.buf[state.write_index++] = c;
-            console_write(&c, 1);
+            console_echo(c);
         }
         break;
 
@@ -270,9 +293,11 @@ void console_process(void)
         if((0x20 <= c) && (c < 0x7F)) { // Ignore control characters and non-ascii characters
             if(state.write_index < CONSOLE_BUF_SIZE) {
                 state.buf[state.write_index++] = c;
-                console_write(&c, 1);
+                if(state.flags & CONSOLE_FLAG_ECHO) {
+                    console_echo(c);
+                }
             } else {
-                console_write_string("\a");
+                console_echo('\a');
             }
         }
         break;
