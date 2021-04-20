@@ -231,7 +231,7 @@ loop (rep,32)
 # SRA
 
 let A = random(1&lt;&lt;32);
-let L = 3;
+let L = 7;
 let R = (A &gt;&gt; (31 - L));
 
 # Load shift length
@@ -252,12 +252,12 @@ loop (i,32)
 end loop
 
 # Output result
-loop (i,3)
+loop (i,7)
 0   1    0         0          0           0              0          (R&gt;&gt;i&amp;1)  X
 1   1    0         0          0           0              0          X         X
 end loop
 
-loop (i,32-3)
+loop (i,32-7)
 0   1    0         0          0           0              0          (A&gt;&gt;31&amp;1) X
 1   1    0         0          0           0              0          X         X
 end loop

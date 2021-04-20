@@ -830,6 +830,10 @@
           <string>Bits</string>
           <int>6</int>
         </entry>
+        <entry>
+          <string>intFormat</string>
+          <intFormat>dec</intFormat>
+        </entry>
       </elementAttributes>
       <pos x="720" y="-300"/>
     </visualElement>
@@ -1676,6 +1680,173 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="220" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Testcase</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Shift</string>
+        </entry>
+        <entry>
+          <string>Testdata</string>
+          <testData>
+            <dataString>BUS-CLK S         A            B          N ALU-~RESET ALU-AUX   OUT           FLAG DLEN DSUM
+
+let SL = 6;
+let SA = 7;
+
+loop(rep,32)
+
+let A = random(1&lt;&lt;31);
+let H = A &gt;&gt; 16;
+let B = 1 + random(31);
+
+################################################################################################
+# SLL
+
+let R = (A &lt;&lt; B) &amp; 0xFFFFFFFF;
+
+# Reset
+0       (SL)       0           0          0 0          1         X             X    X    X
+1       (SL)       0           0          0 0          1         X             X    X    X
+
+# Calculate length
+loop (i,6)
+0       (SL)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 0 1          1         X             X    X    (((31+B)&gt;&gt;i)&amp;1)
+1       (SL)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 0 1          1         X             X    X    X
+end loop
+
+loop (i,32-6)
+0       (SL)       0           0          0 1          0         X             X    X    0
+1       (SL)       0           0          0 1          0         X             X    X    X
+end loop
+
+# Clock state machine
+0       (SL)       0           0          0 1          1         X             X    X    X
+1       (SL)       0           0          0 1          1         X             X    X    X
+
+0       (SL)       0           0          0 1          0         X             X    X    X
+1       (SL)       0           0          0 1          0         X             X    X    X
+
+# Clock state machine and shift in argument
+loop (i,16)
+0       (SL)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+1       (SL)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+end loop
+
+loop (i,16)
+0       (SL)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+1       (SL)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+end loop
+
+# Clock state machine and shift out result
+loop (i,32)
+0       (SL)       0           0          0 1          1         ((R&gt;&gt;i)&amp;1)    X    X    X
+1       (SL)       0           0          0 1          1         X             X    X    X
+end loop
+
+
+
+################################################################################################
+# SRL
+let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
+
+# Reset
+0       (SL)       0           0          1 0          1         X             X    X    X
+1       (SL)       0           0          1 0          1         X             X    X    X
+
+# Calculate length
+loop (i,6)
+0       (SL)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 1 1          1         X             X    X    (((31-B)&gt;&gt;i)&amp;1)
+1       (SL)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 1 1          1         X             X    X    X
+end loop
+
+loop (i,32-6)
+0       (SL)       0           0          1 1          0         X             X    X    0
+1       (SL)       0           0          1 1          0         X             X    X    X
+end loop
+
+# Clock state machine
+0       (SL)       0           0          0 1          1         X             X    X    X
+1       (SL)       0           0          0 1          1         X             X    X    X
+
+0       (SL)       0           0          0 1          0         X             X    X    X
+1       (SL)       0           0          0 1          0         X             X    X    X
+
+# Clock state machine and shift in argument
+loop (i,16)
+0       (SL)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+1       (SL)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+end loop
+
+loop (i,16)
+0       (SL)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+1       (SL)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+end loop
+
+# Clock state machine and shift out result
+loop (i,32)
+0       (SL)       0           0          0 1          1         ((R&gt;&gt;i)&amp;1)    X    X    X
+1       (SL)       0           0          0 1          1         X             X    X    X
+end loop
+
+
+################################################################################################
+# SRA
+let B = 7;
+let R = (A &gt;&gt; B) &amp; 0xFFFFFFFF;
+
+# Reset
+0       (SA)       0           0          1 0          1         X             X    X    X
+1       (SA)       0           0          1 0          1         X             X    X    X
+
+# Calculate length
+loop (i,6)
+0       (SA)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 1 1          1         X             X    X    (((31-B)&gt;&gt;i)&amp;1)
+1       (SA)       ((31&gt;&gt;i)&amp;1) ((B&gt;&gt;i)&amp;1) 1 1          1         X             X    X    X
+end loop
+
+loop (i,32-6)
+0       (SA)       0           0          1 1          0         X             X    X    0
+1       (SA)       0           0          1 1          0         X             X    X    X
+end loop
+
+# Clock state machine
+0       (SA)       0           0          0 1          1         X             X    X    X
+1       (SA)       0           0          0 1          1         X             X    X    X
+
+0       (SA)       0           0          0 1          0         X             X    X    X
+1       (SA)       0           0          0 1          0         X             X    X    X
+
+# Clock state machine and shift in argument
+loop (i,16)
+0       (SA)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+1       (SA)       ((A&gt;&gt;i)&amp;1)  0          0 1          1         X             X    X    X
+end loop
+
+loop (i,16)
+0       (SA)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+1       (SA)       ((H&gt;&gt;i)&amp;1)  0          0 1          0         X             X    X    X
+end loop
+
+# Clock state machine and shift out result
+loop (i,32-7)
+0       (SA)       0           0          0 1          1         ((R&gt;&gt;i)&amp;1)    X    X    X
+1       (SA)       0           0          0 1          1         X             X    X    X
+end loop
+
+loop (i,7)
+0       (SA)       0           0          0 1          1         ((A&gt;&gt;31)&amp;1)    X    X    X
+1       (SA)       0           0          0 1          1         X             X    X    X
+end loop
+
+end loop
+</dataString>
+          </testData>
+        </entry>
+      </elementAttributes>
+      <pos x="700" y="420"/>
     </visualElement>
   </visualElements>
   <wires>
