@@ -9,8 +9,7 @@
 #define UART_TX_DMA 0
 #define UART_TX_IRQ 1
 
-// #define BAUD 38400
-#define BAUD 2000000
+#define BAUD 1000000
 
 // LEN should be power of 2 and strictly less than 2^sizeof(head)
 
@@ -132,6 +131,34 @@ ssize_t _write_r(struct _reent *reent, int fd, const void *buf, size_t count)
     }
 }
 
+void uart_puts(const char *s, unsigned count)
+{
+    if(USART2->CR3 & USART_CR3_DMAT) {
+        while(count > 0) {
+            unsigned cap = cbuf_capacity(tx_cbuf);
+            unsigned num_to_write = count < cap ? count : cap;
+
+            count -= num_to_write;
+
+            while(num_to_write) {
+                cbuf_push(tx_cbuf, *s++);
+                num_to_write--;
+            }
+
+            if(!(DMA1_Channel2->CCR & DMA_CCR_EN)) {
+                uart_dma_tx_start();
+            }
+        }
+    } else {
+        for(unsigned i = 0; i < count; i++) {
+            while(!(USART2->ISR & USART_ISR_TXE_TXFNF)) {
+            }
+
+            USART2->TDR = s[i];
+        }
+    }
+}
+
 void DMA1_Channel2_3_IRQHandler(void)
 {
     if(DMA1->ISR & DMA_ISR_TCIF2) {
@@ -155,9 +182,8 @@ ssize_t _write_r(struct _reent *reent, int fd, const void *buf, size_t count)
     if(fd == 1) {
         const uint8_t *s = buf;
         for(size_t i = 0; i < count; i++) {
-            if(cbuf_full(tx_cbuf)) {
-                pwm_set_anim(1);
-                // USART2->CR1 |= USART_CR1_TXEIE_TXFNFIE;
+            while(cbuf_full(tx_cbuf)) {
+                USART2->CR1 |= USART_CR1_TXEIE_TXFNFIE;
             }
 
             cbuf_push(tx_cbuf, s[i]);
@@ -166,6 +192,18 @@ ssize_t _write_r(struct _reent *reent, int fd, const void *buf, size_t count)
         return count;
     } else {
         return -1;
+    }
+}
+
+void uart_puts(const char *s, unsigned count)
+{
+    for(unsigned i = 0; i < count; i++) {
+        while(cbuf_full(tx_cbuf)) {
+            USART2->CR1 |= USART_CR1_TXEIE_TXFNFIE;
+        }
+
+        cbuf_push(tx_cbuf, s[i]);
+        USART2->CR1 |= USART_CR1_TXEIE_TXFNFIE;
     }
 }
 
@@ -194,6 +232,7 @@ void USART2_IRQHandler(void)
 {
     if(USART2->ISR & USART_ISR_RXNE_RXFNE) {
         uint8_t c = USART2->RDR;
+        if(cbuf_full(rx_cbuf)) pwm_set_anim(1);
         cbuf_push(rx_cbuf, c);
     }
 
@@ -202,6 +241,7 @@ void USART2_IRQHandler(void)
         USART2->ICR = USART_ICR_ORECF;
     }
 
+#if UART_TX_IRQ
     if(USART2->ISR & USART_ISR_TXE_TXFNF) {
         if(cbuf_empty(tx_cbuf)) {
             USART2->CR1 &= ~USART_CR1_TXEIE_TXFNFIE;
@@ -209,4 +249,5 @@ void USART2_IRQHandler(void)
             USART2->TDR = cbuf_pop(tx_cbuf);
         }
     }
+#endif
 }

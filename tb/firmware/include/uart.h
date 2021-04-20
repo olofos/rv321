@@ -12,4 +12,6 @@ struct rx_cbuf {
 };
 extern struct rx_cbuf rx_cbuf;
 
+void uart_puts(const char *s, unsigned count);
+
 #endif
