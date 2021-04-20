@@ -1221,8 +1221,9 @@ f.close()
 
 
 plotList = args.opcode
-highlighted = list(map(normalize_signal, args.highlight))
 if plotList:
+    if args.highlight:
+        highlighted = list(map(normalize_signal, args.highlight))
     if highlighted:
         print('Highlighted signals: ')
         for h in args.highlight:
