@@ -9,40 +9,39 @@
 
 static inline void spi_mcp2317_cs_assert(void)
 {
-    // GPIOA->BSRR = GPIO_BSRR_BR4;
-    GPIOA->BSRR = (1UL << 4) << 16;
+    GPIOA->BSRR = GPIO_BSRR_BR4;
 }
 
 static inline void spi_mcp2317_cs_deassert(void)
 {
-    // GPIOA->BSRR = GPIO_BSRR_BS4;
-    GPIOA->BSRR = (1UL << 4);
+    GPIOA->BSRR = GPIO_BSRR_BS4;
 }
 
 
-void mcp2317_write(uint8_t dev, uint8_t address, uint8_t data)
+void mcp2317_write(uint8_t dev, uint8_t address, uint16_t data)
 {
     spi_mcp2317_cs_assert();
 
-    spi_write_byte(MCP2317_WRITE(dev));
-    spi_write_byte(address);
-    spi_write_byte(data);
+    uint16_t packet[] = { MCP2317_WRITE(dev) | (address << 8), data };
+
+    spi_write_words(packet, 2);
 
     spi_mcp2317_cs_deassert();
 }
 
-uint8_t mcp2317_read(uint8_t dev, uint8_t address)
+uint16_t mcp2317_read(uint8_t dev, uint8_t address)
 {
     spi_mcp2317_cs_assert();
 
-    spi_write_byte(MCP2317_READ(dev));
-    spi_write_byte(address);
+    uint16_t packet[] = { MCP2317_READ(dev) | (address << 8), 0 };
+    uint16_t reply[2];
 
-    uint8_t res = spi_read_byte();
+    spi_transfer_words(packet, reply, 2);
 
     spi_mcp2317_cs_deassert();
 
-    return res;
+    return reply[1];
+    // return res;
 }
 
 void mcp2317_init(void)
@@ -59,13 +58,19 @@ void mcp2317_init(void)
     };
 
     for(int i = 0; i < MCP2317_NUM; i++) {
-        mcp2317_write(i, MCP2317_REG_IOCON, MCP2317_MIRROR | MCP2317_HAEN | MCP2317_ODR);
+        spi_mcp2317_cs_assert();
+        spi_write_byte(MCP2317_WRITE(i));
+        spi_write_byte(MCP2317_REG_IOCON);
+        spi_write_byte(MCP2317_MIRROR | MCP2317_HAEN | MCP2317_ODR);
+        spi_mcp2317_cs_deassert();
+
+        // mcp2317_write(i, MCP2317_REG_IOCON, MCP2317_MIRROR | MCP2317_HAEN | MCP2317_ODR);
 
         spi_mcp2317_cs_assert();
 
         spi_write_byte(MCP2317_WRITE(i));
         spi_write_byte(0x00);
-        spi_write(init_seq, sizeof(init_seq));
+        spi_write_bytes(init_seq, sizeof(init_seq));
 
         spi_mcp2317_cs_deassert();
     }

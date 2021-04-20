@@ -4,8 +4,8 @@
 #define MCP2317_NUM 5
 
 void mcp2317_init(void);
-uint8_t mcp2317_read(uint8_t dev, uint8_t address);
-void mcp2317_write(uint8_t dev, uint8_t address, uint8_t data);
+uint16_t mcp2317_read(uint8_t dev, uint8_t address);
+void mcp2317_write(uint8_t dev, uint8_t address, uint16_t data);
 
 // This mapping assumes BANK=0 (default)
 
@@ -31,6 +31,18 @@ void mcp2317_write(uint8_t dev, uint8_t address, uint8_t data);
 #define MCP2317_REG_GPIOB     0x13
 #define MCP2317_REG_OLATA     0x14
 #define MCP2317_REG_OLATB     0x15
+
+#define MCP2317_REG_IODIR     0x00
+#define MCP2317_REG_IPOL      0x02
+#define MCP2317_REG_GPINTEN   0x04
+#define MCP2317_REG_DEFVAL    0x06
+#define MCP2317_REG_INTCON    0x08
+#define MCP2317_REG_IOCON     0x0A
+#define MCP2317_REG_GPPU      0x0C
+#define MCP2317_REG_INTF      0x0E
+#define MCP2317_REG_INTCAP    0x10
+#define MCP2317_REG_GPIO      0x12
+#define MCP2317_REG_OLAT      0x14
 
 #define MCP2317_BANK   (1 << 7)
 #define MCP2317_MIRROR (1 << 6)
