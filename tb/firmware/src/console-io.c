@@ -6,7 +6,7 @@
 
 void console_write(const char *buf, unsigned len)
 {
-    write(1, buf, len);
+    uart_puts(buf, len);
 }
 
 int console_getchar(void)
