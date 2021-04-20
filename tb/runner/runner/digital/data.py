@@ -10,7 +10,6 @@ class Bits(Data):
 
     def eval(self, ctx):
         value = self.expr.eval(ctx)
-        # return [ Number((value >> (self.number - n - 1)) & 1) for n in range(0, self.number) ]
         return [ ((value >> (self.number - n - 1)) & 1) for n in range(0, self.number) ]
 
 class Expr(Data):
@@ -22,7 +21,6 @@ class Expr(Data):
 
     def eval(self, ctx):
         return [ self.expr.eval(ctx) ]
-        # return [ Number(self.expr.eval(ctx)) ]
 
 class Number(Data):
     def __init__(self, value):
@@ -34,18 +32,12 @@ class Number(Data):
     def eval(self, ctx):
         return [self.value]
 
-    # def get_value(self):
-        # return self.value
-
 class Id(Data):
     def __init__(self, name):
         self.name = name
 
     def __str__(self):
         return self.name
-
-    # def get_value(self):
-        # return self.name
 
     def eval(self, ctx):
         return [self.name]
