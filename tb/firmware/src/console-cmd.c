@@ -13,16 +13,18 @@ void cmd_read_io(const char *cmd)
             return;
         }
 
-        uint8_t a = mcp2317_read(chip, MCP2317_REG_GPIOA);
-        uint8_t b = mcp2317_read(chip, MCP2317_REG_GPIOB);
+        uint16_t val = mcp2317_read(chip, MCP2317_REG_GPIO);
 
-        printf("Read %u: %02X%02X\r\n", chip, b, a);
+        printf("Read %u: %04X\r\n", chip, val);
     } else {
         for(int i = 0; i < 5; i++) {
-            uint8_t a = mcp2317_read(i, MCP2317_REG_GPIOA);
-            uint8_t b = mcp2317_read(i, MCP2317_REG_GPIOB);
+            uint16_t val = mcp2317_read(i, MCP2317_REG_GPIO);
 
-            printf(" %02X%02X", b, a);
+            if(i > 0) {
+                printf(" ");
+            }
+
+            printf("%04X", val);
         }
         printf("\r\n");
     }
@@ -41,8 +43,7 @@ void cmd_write_io(const char *cmd)
     }
 
     for(unsigned chip = 0; chip < 5; chip++) {
-        mcp2317_write(chip, MCP2317_REG_OLATA, values[chip] & 0xFF);
-        mcp2317_write(chip, MCP2317_REG_OLATB, (values[chip] >> 8) & 0xFF);
+        mcp2317_write(chip, MCP2317_REG_OLAT, values[chip]);
     }
 }
 
@@ -58,8 +59,7 @@ void cmd_write_iodir(const char *cmd)
     }
 
     for(unsigned chip = 0; chip < 5; chip++) {
-        mcp2317_write(chip, MCP2317_REG_IODIRA, values[chip] & 0xFF);
-        mcp2317_write(chip, MCP2317_REG_IODIRB, (values[chip] >> 8) & 0xFF);
+        mcp2317_write(chip, MCP2317_REG_IODIR, values[chip]);
     }
 }
 
@@ -75,8 +75,7 @@ void cmd_write_pullup(const char *cmd)
     }
 
     for(unsigned chip = 0; chip < 5; chip++) {
-        mcp2317_write(chip, MCP2317_REG_GPPUA, values[chip] & 0xFF);
-        mcp2317_write(chip, MCP2317_REG_GPPUB, (values[chip] >> 8) & 0xFF);
+        mcp2317_write(chip, MCP2317_REG_GPPU, values[chip]);
     }
 }
 
@@ -90,6 +89,17 @@ void cmd_set_anim(const char *cmd)
     }
 
     pwm_set_anim(anim);
+}
+
+void cmd_echo(const char *cmd)
+{
+    if(strcmp(cmd, "echo on") == 0) {
+        console_set_echo(1);
+    } else if(strcmp(cmd, "echo off") == 0) {
+        console_set_echo(0);
+    } else {
+        console_write_string("Usage console on|off\r\n");
+    }
 }
 
 void cmd_version(const char __attribute__((__unused__)) *cmd)
@@ -147,6 +157,7 @@ const struct console_command_entry commands[] = {
     { "write-iodir", cmd_write_iodir, "Write IO directions" },
     { "write-pullup", cmd_write_pullup, "Write IO pullups" },
     { "set-anim", cmd_set_anim, "Set animation 0-3" },
+    { "echo", cmd_echo, "Echo on/off" },
     { "test", cmd_test, "A simple test" },
     { "test-u16", cmd_test_u16, "A test with a parameter" },
     { "version", cmd_version, "Get version of firmware" },
