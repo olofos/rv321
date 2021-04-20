@@ -89,8 +89,15 @@ def func_random(params):
     assert len(params) == 1
     return random.randrange(params[0])
 
+def func_ite(params):
+    assert len(params) == 3
+    if params[0] != 0:
+        return params[1]
+    return params[2]
+
 func_tab = {
-    'random': func_random
+    'random': func_random,
+    'ite': func_ite,
 }
 
 class Function(Expr):
