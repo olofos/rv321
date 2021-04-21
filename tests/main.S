@@ -1,13 +1,14 @@
         .section .text.init
         .global _start
 
-#define USE_LCD 1
+#define TEST_BRIEF 1
+#define USE_LCD 0
 #define LCD_BASE 0x40000000
 
 _start:
         // .option norvc
 
-#ifdef USE_LCD
+#if defined(USE_LCD) && USE_LCD
         li a1, LCD_BASE
 	li a2, 0x0C
 	sb a2, 0(a1)
@@ -21,18 +22,22 @@ _start:
 
 #if 1
         #include "rv32i/add.S"
+#if !TEST_BRIEF
 	#include "rv32i/sub.S"
         #include "rv32i/and.S"
         #include "rv32i/or.S"
 	#include "rv32i/xor.S"
         #include "rv32i/slt.S"
+#endif
         #include "rv32i/sltu.S"
 
 	#include "rv32i/addi.S"
+#if !TEST_BRIEF
 	#include "rv32i/andi.S"
 	#include "rv32i/ori.S"
 	#include "rv32i/xori.S"
 	#include "rv32i/slti.S"
+#endif
 	#include "rv32i/sltiu.S"
 
 	#include "rv32i/lui.S"
@@ -40,22 +45,25 @@ _start:
 
 	#include "rv32i/sll.S"
 	#include "rv32i/srl.S"
+#if !TEST_BRIEF
 	#include "rv32i/sra.S"
 	#include "rv32i/slli.S"
 	#include "rv32i/srli.S"
 	#include "rv32i/srai.S"
-
+#endif
 	#include "rv32i/beq.S"
+#if !TEST_BRIEF
 	#include "rv32i/bge.S"
 	#include "rv32i/bgeu.S"
 	#include "rv32i/blt.S"
 	#include "rv32i/bltu.S"
 	#include "rv32i/bne.S"
-
+#endif
 	#include "rv32i/jal.S"
 	#include "rv32i/jalr.S"
 
 	#include "rv32i/lw.S"
+#if !TEST_BRIEF
 	#include "rv32i/lh.S"
 	#include "rv32i/lhu.S"
 	#include "rv32i/lb.S"
@@ -63,6 +71,7 @@ _start:
 
 	#include "rv32i/sw.S"
 	#include "rv32i/sh.S"
+#endif
 	#include "rv32i/sb.S"
 #endif
 
@@ -73,7 +82,7 @@ _start:
 
         .section .text.init
 
-#ifdef USE_LCD
+#if defined(USE_LCD) && USE_LCD
         la a0, str_success
 	li a1, 0
 	call puts
@@ -89,7 +98,7 @@ _start:
 
 fail:
 //real_fail:
-#ifdef USE_LCD
+#if defined(USE_LCD) && USE_LCD
 	la a0, str_failure
 	li a1, 0
 	call puts
@@ -115,7 +124,7 @@ fail:
         mv gp, TESTNUM
 2:      j 2b
 
-#ifdef USE_LCD
+#if defined(USE_LCD) && USE_LCD
 puts:   li t0, LCD_BASE
         bltz a1, 1f
         li t1, 0x80
