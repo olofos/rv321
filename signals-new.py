@@ -50,6 +50,7 @@ MEM_OE = '\\neg{MEM_OE}'
 MEM_WE = '\\neg{MEM_WE}'
 
 OP_LATCH = 'OP_LATCH'
+OP_LATCH_LSB = 'OP_LATCH_LSB'
 IMM_LATCH = 'IMM_LATCH'
 IMM_SP = 'IMM_S\\neg{P}'
 
@@ -108,7 +109,8 @@ signalDefaults = {
     MEM_OE: 1,
     MEM_WE: 1,
 
-    OP_LATCH: 0,
+    OP_LATCH: 1,
+    OP_LATCH_LSB: 0,
     IMM_LATCH: 0,
     IMM_SP: 0,
 
@@ -186,6 +188,9 @@ signalValues = {
                      1:      0b00000000_00000001_00000000_00000000},
     ALU_RESET:      {0: 0,
                      1:      0b00000000_00000010_00000000_00000000},
+
+    OP_LATCH_LSB:   {0: 0,
+                     1:      0b00000000_00000100_00000000_00000000},
 
     CSR_ADDR_LATCH: {0: 0,
                      1:      0b00000000_00100000_00000000_00000000},
@@ -337,20 +342,20 @@ opFetch = [
     { BUS_EN: 1, STEP_LEN: 4 },
     { BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, STEP_LEN: 1},
-    { ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+    { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr] $\\to$ Opcode \\#0'} },
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+1] $\\to$ Opcode \\#1'} },
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
-    { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+    { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+2] $\\to$ Opcode \\#2'} },
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+3] $\\to$ Opcode \\#3'} },
-    { BUS_EN: 1, STEP_LEN: 4 },
-    { OP_LATCH: 1, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
+    { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+    { OP_LATCH: 1, OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
 ]
 
 def simpleBinCommon(op):
@@ -361,7 +366,7 @@ def simpleBinCommon(op):
     opSign = '-' if op == 'SUB' else '+' if aluOp == 'ADD' else '\\&' if aluOp == 'AND' else '|' if aluOp == 'OR' else '\\wedge'
 
     return [
-        { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
         { ALU_RESET: 1, REG_IN_EN: 0, ALU_OP: aluOp, ALU_A_MUX: A, IMM_MUX: B, REG_IN_MUX: 'ALU',  BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {REG_IN_EN: '%s $%s$ %s $\\to$ RD' % (A, opSign, B)}},
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -378,7 +383,7 @@ def setLowerCommon(op):
     aluOp = 'SLTU' if 'U' in op else 'SLT'
     B = 'ImmI' if 'I' in op else 'RS2'
     return [
-        { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' (Common)'},
+        { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' (Common)'},
         { ALU_RESET: 1, ALU_FLAG_LATCH: 0, ALU_OP: aluOp, ALU_A_MUX: 'RS1', IMM_MUX: B,  BUS_EN: 1, STEP_LEN: 4,},
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -424,7 +429,7 @@ def setLowerFalse(op):
 def loadCommon(op):
     len = 8 if op[0:2] == 'LB' else 16 if op[0:2] == 'LH' else 32
     result = [
-        { ALU_RESET: 0, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
         { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', IMM_MUX: 'ImmI', BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -481,7 +486,7 @@ def storeCommon(op):
     len = 8 if op == 'SB' else 16 if op == 'SH' else 32
 
     result = [
-        { ALU_RESET: 0, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
         { ADDR_LATCH: 0, ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: 'RS1', IMM_MUX: 'ImmS', BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -537,7 +542,7 @@ def branchCommon(op):
     aluOp = 'XOR' if op in ['BEQ', 'BNE'] else 'SLT' if op in ['BLT', 'BGE'] else 'SLTU' if op in ['BLTU', 'BGEU'] else 'ERROR'
 
     return [
-        { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' [Test]' },
+        { ALU_RESET: 0, ALU_N: 1, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' [Test]' },
         { ALU_RESET: 1, ALU_FLAG_LATCH: 0, ALU_OP: aluOp, ALU_A_MUX: 'RS1', IMM_MUX: 'RS2',  BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -576,7 +581,7 @@ def jumpCommon(op):
     B = 'ImmJ' if op == 'JAL' else 'ImmI' if op == 'JALR' else 'ERROR'
 
     return [
-        { ALU_RESET: 0, OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op},
         # Store the new PC = PC + J in the incoming shift register
         { ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: A, IMM_MUX: B, PC_IN_MUX: 'ALU', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {
             PC_IN_MUX: 'PC${}_{\\mbox{out}}$ $+$ J $\\to$ PC${}_{\\mbox{in}}$' if op == 'JAL' else 'RS1 $+$ I $\\to$ PC${}_{\\mbox{in}}$'
@@ -610,7 +615,7 @@ def shiftCommon(op):
     n = 1 if 'R' in op else 0
 
     return [
-        { ALU_RESET: 0, ALU_N: n, OP_LATCH: 0, BUS_EN: 0, ALU_SHIFT_STEP: 1, STEP_LEN: 1, META_SECTION: op},
+        { ALU_RESET: 0, ALU_N: n, OP_LATCH: 1, BUS_EN: 0, ALU_SHIFT_STEP: 1, STEP_LEN: 1, META_SECTION: op},
         { ALU_RESET: 1, ALU_OP: aluOp, ALU_A_MUX: 'One', IMM_MUX: B, BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 1 },
         { ALU_A_MUX: 'Zero', IMM_MUX: 'Zero', BUS_EN: 1, STEP_LEN: 1 },
@@ -649,7 +654,7 @@ def csrCommon(op):
     B = 'Imm' if 'I' in op else 'RS1'
 
     return [
-        { OP_LATCH: 0, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'ImmI', CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 4, META_SECTION: op },
+        { OP_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'ImmI', CSR_ADDR_LATCH: 0, BUS_EN: 1, STEP_LEN: 4, META_SECTION: op },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -672,7 +677,7 @@ def csrCommon(op):
 
 def nopCommon(op):
     return [
-        { OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1, PC_OUT_LATCH: 1, META_SECTION: op },
         { BUS_EN: 0, STEP_LEN: 1 },
     ]
@@ -746,7 +751,7 @@ opcodes = {
     'CSRRCI': csrCommon('CSRRCI'),
 
     'IllOp': [
-        { OP_LATCH: 0, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
+        { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
         { BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
         { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },
     ],
@@ -755,7 +760,7 @@ opcodes = {
     'FENCE.I': nopCommon('FENCE.I'),
 
     'TRAP': [
-        { OP_LATCH: 0, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 4, META_SECTION: 'TRAP' },
+        { OP_LATCH: 1, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 4, META_SECTION: 'TRAP' },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -768,7 +773,7 @@ opcodes = {
     ],
 
     'MRET': [
-        { OP_LATCH: 0, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 4, META_SECTION: 'MRET' },
+        { OP_LATCH: 1, PC_IN_MUX: 'CSR', BUS_EN: 1, STEP_LEN: 4, META_SECTION: 'MRET' },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -781,7 +786,7 @@ opcodes = {
     ],
 
     'WFI': [
-        { OP_LATCH: 0, SLEEP: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'WFI' },
+        { OP_LATCH: 1, SLEEP: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'WFI' },
         { SLEEP: 0, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
     ],
 }
