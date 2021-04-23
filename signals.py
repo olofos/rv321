@@ -12,7 +12,6 @@ hideHidden = True
 
 # addGaps = False
 # removeConst = False
-removeCommon = False
 # hideHidden = False
 
 stepBits = 6
@@ -110,7 +109,7 @@ signalDefaults = {
     MEM_OE: 1,
     MEM_WE: 1,
 
-    OP_LATCH: 1,
+    OP_LATCH: 0,
     OP_LATCH_FF: 1,
     OP_LATCH_LSB: 0,
     IMM_LATCH: 0,
@@ -146,7 +145,7 @@ signalDefaults = {
     STEP: -1,
     SUBSTEP: 0,
 
-    META_SECTION: 'Fetch Opcode',
+    META_SECTION: '',
     META_COMMENT: {}
 }
 
@@ -361,7 +360,9 @@ opFetch = [
     { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
     { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[Addr+3] $\\to$ Opcode \\#3'} },
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
-    { OP_LATCH: 1, OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
+    { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+    { BUS_EN: 0, STEP_LEN: 1},
+    # { OP_LATCH: 1, OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
 ]
 
 def simpleBinCommon(op):
@@ -369,7 +370,9 @@ def simpleBinCommon(op):
     B = 'ImmU' if op in ['LUI', 'AUIPC'] else 'ImmI' if 'I' in op else 'RS2'
     aluOp = 'ADD' if op in ['SUB', 'LUI', 'AUIPC'] else op[0:-1] if op[-1] == 'I' else op
     sign = 1 if op == 'SUB' else 0
-    opSign = '-' if op == 'SUB' else '+' if aluOp == 'ADD' else '\\&' if aluOp == 'AND' else '|' if aluOp == 'OR' else '\\wedge'
+    opName = 'SUB' if op == 'SUB' else aluOp
+    opSigns = {'ADD': '+', 'SUB': '-', 'AND': '\\&', 'OR': '|', 'XOR': '\\wedge'}
+    opSign = opSigns[opName]
 
     return [
         { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, META_SECTION: op},
@@ -381,7 +384,7 @@ def simpleBinCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1, },
+        { REG_IN_EN: 1, ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1, },
         { BUS_EN: 0, STEP_LEN: 1}
     ]
 
@@ -414,7 +417,7 @@ def setLowerTrue(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1 }
     ]
 
@@ -428,7 +431,7 @@ def setLowerFalse(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1 }
     ]
 
@@ -482,7 +485,7 @@ def loadCommon(op):
         ]
 
     result += [
-        { LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { LAST_STEP: 0, REG_IN_EN: 1, REG_IN_MUX: 'U', PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
@@ -537,7 +540,7 @@ def storeCommon(op):
 
 
     result += [
-        { MEM_WE: 1, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_WE: 1, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
@@ -562,7 +565,7 @@ def branchCommon(op):
 
 def branchNotTaken(op):
     return branchCommon(op) + [
-        { LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' [Not taken]' },
+        { LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' [Not taken]' },
         { BUS_EN: 0, STEP_LEN: 1 },
     ]
 
@@ -578,7 +581,7 @@ def branchTaken(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', PC_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, },
-        { PC_IN_LATCH: 0, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1 },
     ]
 
@@ -611,7 +614,7 @@ def jumpCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, REG_IN_MUX: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
+        { REG_IN_EN: 1, REG_IN_MUX: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1}
     ]
 
@@ -651,7 +654,7 @@ def shiftCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { ALU_OP: 'U', REG_IN_EN: 1,  LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ALU_OP: 'U', REG_IN_EN: 1,  LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1 },
     ]
 
@@ -660,7 +663,8 @@ def csrCommon(op):
     B = 'Imm' if 'I' in op else 'RS1'
 
     return [
-        { OP_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'ImmI', CSR_ADDR_LATCH: 0, BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: op },
+        { OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, },
+        { ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'ImmI', CSR_ADDR_LATCH: 0, BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: op },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -677,14 +681,14 @@ def csrCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_MUX: 'U', REG_IN_EN: 1, CSR_IN_LATCH: 1, IMM_MUX: 'U', CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, LAST_STEP: 1, PC_OUT_LATCH: 1},
+        { REG_IN_MUX: 'U', REG_IN_EN: 1, CSR_IN_LATCH: 1, IMM_MUX: 'U', CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, LAST_STEP: 0, PC_OUT_LATCH: 1},
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def nopCommon(op):
     return [
         { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 1, PC_OUT_LATCH: 1, META_SECTION: op },
+        { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 0, PC_OUT_LATCH: 1, META_SECTION: op },
         { BUS_EN: 0, STEP_LEN: 1 },
     ]
 
@@ -759,14 +763,15 @@ opcodes = {
     'IllOp': [
         { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
         { BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
-        { LAST_STEP: 1, BUS_EN: 0, STEP_LEN: 1, },
+        { LAST_STEP: 0, BUS_EN: 0, STEP_LEN: 1, },
     ],
 
     'FENCE': nopCommon('FENCE'),
     'FENCE.I': nopCommon('FENCE.I'),
 
     'TRAP': [
-        { OP_LATCH: 1, PC_IN_MUX: 'CSR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'TRAP' },
+        { OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, },
+        { PC_IN_MUX: 'CSR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'TRAP' },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -775,11 +780,12 @@ opcodes = {
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { PC_IN_LATCH: 0, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
+        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
     ],
 
     'MRET': [
-        { OP_LATCH: 1, PC_IN_MUX: 'CSR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'MRET' },
+        { OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, },
+        { PC_IN_MUX: 'CSR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'MRET' },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -788,12 +794,12 @@ opcodes = {
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { PC_IN_LATCH: 0, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
+        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
     ],
 
     'WFI': [
         { OP_LATCH: 1, SLEEP: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'WFI' },
-        { SLEEP: 0, LAST_STEP: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { SLEEP: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
     ],
 }
 
@@ -925,7 +931,7 @@ def formatOpcodeValues(opName):
     return sys + flag + sa + func3 + op
 
 def generateOp(opName):
-    op = opFetch + opcodes[opName]
+    op = opcodes[opName] + opFetch
 
     signals = [ signalDefaults.copy() ]
 
@@ -995,17 +1001,6 @@ def plotOp(opName, signals, f):
             event['start'] = t
             t += event['count']
             event['end'] = t
-
-    commonRemain = 4
-    commonEnd = 0
-
-    if removeCommon:
-        commonEnd = talliedSignals[OP_LATCH][1]['start']
-        for sigName in signalNames:
-            talliedSignals[sigName] = list(filter(lambda ev: ev['end'] > commonEnd - commonRemain, talliedSignals[sigName]))
-            for ev in filter(lambda ev: ev['start'] < commonEnd - commonRemain, talliedSignals[sigName]):
-                ev['count'] -= commonEnd - commonRemain - ev['start']
-                ev['start'] = commonEnd - commonRemain
 
     if removeConst:
         talliedSignals = {k: v for k, v in talliedSignals.items() if len(v) > 1}
@@ -1092,9 +1087,6 @@ def plotOp(opName, signals, f):
             removed += gaps[i][1] - gaps[i][0] - gapRemain
         gaps = newGaps
 
-    shift = commonEnd - commonRemain if addGaps and removeCommon else 0
-    shiftedGaps = [ (g[0] - shift, g[1] - shift) for g in gaps ]
-
     for ev in talliedSignals[META_COMMENT]:
         for sigName, comment in ev['value'].items():
             if sigName in talliedSignals:
@@ -1172,9 +1164,9 @@ def plotOp(opName, signals, f):
     f.write('\\vertlines[gray]{%s}\n' % ', '.join(map(str, stepValues)))
     # f.write('\\vertlines[very thick,red,dashed]{%d}\n' % (fetchLinePos))
     f.write('\\vertlines[very thick,red,dashed]{%s}\n' % ', '.join(map(str,markerList)))
-    if len(shiftedGaps) > 0:
-        f.write('\\vertlines[thick, gray, dashed]{%s}\n' % ', '.join(map(lambda g: str(g[0]), shiftedGaps)))
-        f.write('\\vertlines[thick, gray, dashed]{%s}\n' % ', '.join(map(lambda g: str(g[1]), shiftedGaps)))
+    if len(gaps) > 0:
+        f.write('\\vertlines[thick, gray, dashed]{%s}\n' % ', '.join(map(lambda g: str(g[0]), gaps)))
+        f.write('\\vertlines[thick, gray, dashed]{%s}\n' % ', '.join(map(lambda g: str(g[1]), gaps)))
     f.write('\\end{scope}\n')
     f.write('\\begin{scope}[semithick]\n')
     for i in range(0, commentCount):
