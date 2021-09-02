@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A2 16535 23386 portrait
 encoding utf-8
@@ -1712,7 +1712,7 @@ DOUT_LATCH
 Wire Wire Line
 	11600 1850 11800 1850
 Text Label 11950 1750 0    50   ~ 0
-D0
+D7
 Wire Wire Line
 	11950 1750 12150 1750
 Wire Wire Line
@@ -3190,22 +3190,22 @@ Text Label 9250 8700 0    50   ~ 0
 Text Label 9250 8500 0    50   ~ 0
 ~MEM_WE
 $Comp
-L riscv-serial:74LVC1G38 U21
+L riscv-serial:74LVC1G00 U21
 U 1 1 5EE3A29F
 P 10000 8600
 F 0 "U21" H 10000 8925 50  0000 C CNN
-F 1 "74LVC1G38" H 10000 8834 50  0000 C CNN
+F 1 "74LVC1G00" H 10000 8834 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-5_HandSoldering" H 10000 8650 50  0001 C CNN
 F 3 "" H 10000 8650 50  0001 C CNN
 	1    10000 8600
 	1    0    0    -1  
 $EndComp
 $Comp
-L riscv-serial:74LVC1G38 U21
+L riscv-serial:74LVC1G00 U21
 U 2 1 5EE3BA4A
 P 14750 19550
 F 0 "U21" H 14750 19550 50  0000 C CNN
-F 1 "74LVC1G38" V 14600 19550 50  0000 C CNN
+F 1 "74LVC1G00" V 14600 19550 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-5_HandSoldering" H 14750 19600 50  0001 C CNN
 F 3 "" H 14750 19600 50  0001 C CNN
 	2    14750 19550
@@ -3251,4 +3251,8 @@ F 3 "" H 7350 7850 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7350 7750 7350 7850
+Text Notes 9100 9100 0    50   ~ 0
+74LVC1G38 has open drain output\nAdd a pullup resistor or replace with 74LVC1G00
+Text Notes 12000 1500 0    50   ~ 0
+The sign bit is D7!
 $EndSCHEMATC
