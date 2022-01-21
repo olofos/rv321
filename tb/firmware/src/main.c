@@ -197,9 +197,9 @@ int main(void)
     //     printf("%d: %02X %02X\r\n", i, d1, d2);
     // }
 
-    mcp2317_write(0, MCP2317_REG_IODIRB, (uint8_t)~0xC0);
-    mcp2317_write(1, MCP2317_REG_IODIRA, (uint8_t)~0xFF);
-    mcp2317_write(1, MCP2317_REG_IODIRB, (uint8_t)~0xFF);
+    // mcp2317_write(0, MCP2317_REG_IODIRB, (uint8_t)~0xC0);
+    // mcp2317_write(1, MCP2317_REG_IODIRA, (uint8_t)~0xFF);
+    // mcp2317_write(1, MCP2317_REG_IODIRB, (uint8_t)~0xFF);
 
     // for(uint32_t j = 0 ;; j++) {
     //     printf("%04lx\r\n", j);
