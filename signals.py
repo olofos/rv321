@@ -362,7 +362,6 @@ opFetch = [
     { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
     { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
     { BUS_EN: 0, STEP_LEN: 1},
-    # { OP_LATCH: 1, OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, STEP_LEN: 1 },
 ]
 
 def simpleBinCommon(op):
@@ -375,17 +374,20 @@ def simpleBinCommon(op):
     opSign = opSigns[opName]
 
     return [
-        { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, META_SECTION: op},
-        { ALU_RESET: 1, REG_IN_EN: 0, ALU_OP: aluOp, ALU_A_MUX: A, IMM_MUX: B, REG_IN_MUX: 'ALU',  BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_COMMENT: {REG_IN_EN: '%s $%s$ %s $\\to$ RD' % (A, opSign, B)}},
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1, },
-        { BUS_EN: 0, STEP_LEN: 1}
+        { ALU_RESET: 0, ALU_N: sign, OP_LATCH: 1, MEM_OE: 0, ADDR_CLK: 0, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, META_SECTION: op},
+        { OP_LATCH: 0, ALU_RESET: 1, REG_IN_EN: 0, ALU_OP: aluOp, ALU_A_MUX: A, IMM_MUX: B, REG_IN_MUX: 'ALU', MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_COMMENT: {REG_IN_EN: '%s $%s$ %s $\\to$ RD' % (A, opSign, B), MEM_OE: '[PC] $\\to$ Opcode \\#0'}},
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { PC_OUT_LATCH: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { PC_OUT_LATCH: 0, MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { REG_IN_EN: 1,ALU_N: 0, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', REG_IN_MUX: 'U', OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', IMM_PC_OUT_SP: 0, BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def setLowerCommon(op):
@@ -417,8 +419,31 @@ def setLowerTrue(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1 }
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', PC_OUT_LATCH: 1, IMM_PC_OUT_SP: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def setLowerFalse(op):
@@ -431,8 +456,32 @@ def setLowerFalse(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1 }
+        { REG_IN_EN: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', REG_IN_MUX: 'U', PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def loadCommon(op):
@@ -486,6 +535,29 @@ def loadCommon(op):
 
     result += [
         { LAST_STEP: 0, REG_IN_EN: 1, REG_IN_MUX: 'U', PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
@@ -540,7 +612,30 @@ def storeCommon(op):
 
 
     result += [
-        { MEM_WE: 1, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_WE: 1, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
@@ -566,7 +661,30 @@ def branchCommon(op):
 def branchNotTaken(op):
     return branchCommon(op) + [
         { LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: op + ' [Not taken]' },
-        { BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def branchTaken(op):
@@ -581,8 +699,31 @@ def branchTaken(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_LATCH: 1, ALU_OP: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', PC_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, },
-        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1 },
+        { PC_IN_LATCH: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def jumpCommon(op):
@@ -593,7 +734,7 @@ def jumpCommon(op):
         { ALU_RESET: 0, OP_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, META_SECTION: op},
         # Store the new PC = PC + J in the incoming shift register
         { ALU_RESET: 1, ALU_OP: 'ADD', ALU_A_MUX: A, IMM_MUX: B, PC_IN_MUX: 'ALU', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_COMMENT: {
-            PC_IN_MUX: 'PC${}_{\\mbox{out}}$ $+$ J $\\to$ PC${}_{\\mbox{in}}$' if op == 'JAL' else 'RS1 $+$ I $\\to$ PC${}_{\\mbox{in}}$'
+            PC_IN_MUX: 'PC${}_{\\mbox{out}}$ $+$ J $\\to$ PC${}_{\\mbox{in}}, ADDR$' if op == 'JAL' else 'RS1 $+$ I $\\to$ PC${}_{\\mbox{in}}, ADDR$'
         }},
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -602,11 +743,11 @@ def jumpCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        # Latch increased PC from counter to outgoing shift register
-        { PC_OUT_LATCH: 1, ALU_RESET: 0, ALU_A_MUX: 'U', IMM_MUX: 'U', PC_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
-        { PC_OUT_LATCH: 0, PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
+        # Latch increased PC from counter to outgoing shift register and to memory address
+        { ADDR_LATCH: 1, PC_OUT_LATCH: 1, ALU_RESET: 0, ALU_A_MUX: 'U', IMM_MUX: 'U', PC_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { ADDR_LATCH: 0, ADDR_CLK: 1, PC_OUT_LATCH: 0, PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1},
         # Output increased PC to RD
-        { PC_IN_LATCH: 0, ALU_RESET: 1, REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_COMMENT: {REG_IN_MUX: 'PC $\\to$ RD' }},
+        { ADDR_CLK: 0, PC_IN_LATCH: 0, ALU_RESET: 1, REG_IN_EN: 0, REG_IN_MUX: 'ALU', ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_COMMENT: {REG_IN_MUX: 'PC $\\to$ RD' }},
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
@@ -614,8 +755,31 @@ def jumpCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_EN: 1, REG_IN_MUX: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1}
+        { REG_IN_EN: 1, REG_IN_MUX: 'U', ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', PC_OUT_LATCH: 1, BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1 },
+        # { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        # { BUS_EN: 1, STEP_LEN: 4 },
+        { PC_OUT_LATCH: 0, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def shiftCommon(op):
@@ -655,7 +819,30 @@ def shiftCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { ALU_OP: 'U', REG_IN_EN: 1,  LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def csrCommon(op):
@@ -681,15 +868,61 @@ def csrCommon(op):
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
-        { REG_IN_MUX: 'U', REG_IN_EN: 1, CSR_IN_LATCH: 1, IMM_MUX: 'U', CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, LAST_STEP: 0, PC_OUT_LATCH: 1},
+        { REG_IN_MUX: 'U', REG_IN_EN: 1, CSR_IN_LATCH: 1, IMM_MUX: 'U', CSR_OP: 'U', CSR_IN_MUX: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1, PC_OUT_LATCH: 1},
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
         { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 def nopCommon(op):
     return [
         { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { BUS_EN: 0, STEP_LEN: 1, LAST_STEP: 0, PC_OUT_LATCH: 1, META_SECTION: op },
-        { BUS_EN: 0, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1, PC_OUT_LATCH: 1, META_SECTION: op },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ]
 
 
@@ -763,7 +996,30 @@ opcodes = {
     'IllOp': [
         { OP_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'IllOp' },
         { BUS_EN: 0, ILL_OP: 0, STEP_LEN: 1},
-        { LAST_STEP: 0, BUS_EN: 0, STEP_LEN: 1, },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ],
 
     'FENCE': nopCommon('FENCE'),
@@ -780,7 +1036,31 @@ opcodes = {
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
+        { PC_IN_LATCH: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ],
 
     'MRET': [
@@ -794,12 +1074,60 @@ opcodes = {
         { BUS_EN: 1, STEP_LEN: 4 },
         { BUS_EN: 1, STEP_LEN: 4 },
         { PC_IN_MUX: 'U', PC_IN_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
-        { PC_IN_LATCH: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, }
+        { PC_IN_LATCH: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1, },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ],
 
     'WFI': [
         { OP_LATCH: 1, SLEEP: 1, BUS_EN: 0, STEP_LEN: 1, META_SECTION: 'WFI' },
-        { SLEEP: 0, LAST_STEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { SLEEP: 0, PC_OUT_LATCH: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_LATCH: 0, PC_OUT_LATCH: 0, ALU_A_MUX: 'PC', IMM_MUX: 'Zero', ALU_OP: 'OR', BUS_EN: 1, IMM_PC_OUT_SP: 1, STEP_LEN: 4, META_SECTION: 'Fetch', META_COMMENT: {ALU_A_MUX: 'PC $\\to$ Addr'} },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_LATCH: 1, ALU_A_MUX: 'U', IMM_MUX: 'U', ALU_OP: 'U', BUS_EN: 0, IMM_PC_OUT_SP: 0, STEP_LEN: 1},
+        { OP_LATCH: 0, ADDR_LATCH: 0, ADDR_CLK: 1, BUS_EN: 0, STEP_LEN: 1 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, OP_IN_MUX: 'MEM', BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC] $\\to$ Opcode \\#0'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+1] $\\to$ Opcode \\#1'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 1, ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+2] $\\to$ Opcode \\#2'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { ADDR_CLK: 0, MEM_OE: 0, BUS_EN: 0, STEP_LEN: 1 },
+        { MEM_OE: 1, BUS_EN: 1, STEP_LEN: 4, META_COMMENT: {MEM_OE: '[PC+3] $\\to$ Opcode \\#3'} },
+        { ADDR_CLK: 1, BUS_EN: 1, STEP_LEN: 4 },
+        { OP_LATCH_LSB: 0, ADDR_CLK: 0, OP_IN_MUX: 'U', BUS_EN: 0, LAST_STEP: 1, STEP_LEN: 1 },
+        { BUS_EN: 0, STEP_LEN: 1},
     ],
 }
 
@@ -931,7 +1259,7 @@ def formatOpcodeValues(opName):
     return sys + flag + sa + func3 + op
 
 def generateOp(opName):
-    op = opcodes[opName] + opFetch
+    op = opcodes[opName] #+ opFetch
 
     signals = [ signalDefaults.copy() ]
 
@@ -967,7 +1295,7 @@ def plotOp(opName, signals, f):
     f.write('xscale=0.85,')
     f.write('yscale=1,')
     f.write('thick,')
-    f.write('timing/slope=0,')
+    f.write('timing/slope=0.2,')
     f.write('timing/u/background/.style={pattern=north west lines,')
     f.write('pattern color=black!10},')
     f.write('timing/d/background/.style={fill=black!5},')
@@ -981,18 +1309,19 @@ def plotOp(opName, signals, f):
     for sigName in signalNames:
         if sigName == 'SUBSTEP':
             talliedSignals[sigName] = [{'value': -1, 'count': 1}] + [{'value': n, 'count': 2} for i, n in enumerate(list(map(lambda s: s[sigName], signals))[1::2])]
-            talliedSignals[sigName][-1]['value'] = -1
+            talliedSignals[sigName][-1] = {'value': -1, 'count': 1}
         else:
             talliedSignals[sigName] = [{'value': g, 'count': len(list(v))} for g, v in groupby(map(lambda s: s[sigName], signals))]
 
         if sigName == 'STEP_LEN':
             stepLenList = [{'value': -1, 'count': 1} ]
-            for ev in talliedSignals['STEP_LEN'][1:]:
+            for ev in talliedSignals['STEP_LEN'][0:]:
                 val = ev['value']
                 count = ev['count']
                 for i in range(0, count // (2 * val)):
                     stepLenList.append({'value': val, 'count': 2 * val})
-            stepLenList[-1]['value'] = -1
+            stepLenList.append({'value': -1, 'count': 1})
+            # stepLenList[-1]['value'] = -1
             talliedSignals[sigName] = stepLenList
 
 
@@ -1254,3 +1583,82 @@ if plotList:
 
     f.write('\\end{document}\n\n')
     f.close()
+
+# def outputJson():
+#     import json
+#     signalNames = list(filter(lambda s: s not in metaSignals, list(set([k for o in opcodes.values() for r in o for k in r.keys()]))))
+
+#     result = {}
+#     for opName in opSignals.keys():
+#         result[opName] = {}
+#         op = opSignals[opName]
+#         for signame in signalNames:
+#             sigs = [{'time': (i-1)//2, 'duration': 1, 'value': op[i][signame]} for i in range(0,len(op))][1:-1:2]
+#             new_sigs = []
+#             for s in sigs:
+#                 if len(new_sigs) == 0:
+#                     new_sigs.append(s)
+#                 else:
+#                     if(s['value'] == new_sigs[-1]['value']):
+#                         new_sigs[-1]['duration'] += 1
+#                     else:
+#                         new_sigs.append(s)
+#             result[opName][signame] = new_sigs
+
+#     json_object = json.dumps(result, indent = 2)
+#     print(json_object)
+
+jsonNames = {
+    'CSR_IN_MUX': 'CSR_IN_MUX',
+    'IMM_PC_OUT_S\\neg{P}': 'IMM_PC_OUT_SP',
+    'CSR_IN_LATCH': 'CSR_IN_LATCH',
+    'ALU_OP': 'ALU_OP',
+    'ADDR_CLK': 'ADDR_CLK',
+    'IMM_MUX': 'IMM_MUX',
+    'CSR_ADDR_LATCH': 'CSR_ADDR_LATCH',
+    '\\neg{MEM_WE}': '~MEM_WE',
+    '\\neg{ILL_OP}': '~ILL_OP',
+    'CSR_OUT_LATCH': 'CSR_OUT_LATCH',
+    'OP_LATCH_LSB': 'OP_LATCH_LSB',
+    'REG_IN_MUX': 'REG_IN_MUX',
+    '\\neg{MEM_OE}': '~MEM_OE',
+    'BUS_EN': 'BUS_EN',
+    '\\neg{ALU_RESET}': '~ALU_RESET',
+    '\\neg{REG_IN_EN}': '~REG_IN_EN',
+    'SLEEP': 'SLEEP',
+    'ALU_FLAG_LATCH': 'ALU_FLAG_LATCH',
+    'ALU_N': 'ALU_N',
+    'OP_IN_MUX': 'OP_IN_MUX',
+    'ALU_A_MUX': 'ALU_A_MUX',
+    'PC_IN_MUX': 'PC_IN_MUX',
+    'PC_IN_LATCH': 'PC_IN_LATCH',
+    '\\neg{ALU_SHIFT_STEP}': '~ALU_SHIFT_STEP',
+    'PC_OUT_LATCH': 'PC_OUT_LATCH',
+    'ADDR_LATCH': 'ADDR_LATCH',
+    'CSR_OP': 'CSR_OP',
+    'STEP_LEN': 'STEP_LEN',
+    'LAST_STEP': 'LAST_STEP',
+    'OP_LATCH': 'OP_LATCH'
+}
+
+def outputJson():
+    import json
+    signalNames = list(filter(lambda s: s not in metaSignals, list(set([k for o in opcodes.values() for r in o for k in r.keys()]))))
+
+    result = {}
+    for opname in opSignals.keys():
+        sigresult = {}
+        for signame in signalNames:
+            entries = [signalDefaults[signame]]
+            for row in opcodes[opname]:
+                if signame in row:
+                    entries.append(row[signame])
+                else:
+                    entries.append(entries[-1])
+            sigresult[jsonNames[signame]] = entries[0:]
+        result[opname] = sigresult
+    json_object = json.dumps(result)
+    print(json_object)
+
+
+outputJson()

@@ -854,6 +854,54 @@ end loop
       </elementAttributes>
       <pos x="1100" y="500"/>
     </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~{MEM-OE-OUT}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1660" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~WE</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>~{MEM-WE-OUT}</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1660" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>~OE</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1640" y="140"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -961,6 +1009,10 @@ end loop
       <p2 x="560" y="140"/>
     </wire>
     <wire>
+      <p1 x="1640" y="140"/>
+      <p2 x="1660" y="140"/>
+    </wire>
+    <wire>
       <p1 x="20" y="-20"/>
       <p2 x="60" y="-20"/>
     </wire>
@@ -1043,6 +1095,10 @@ end loop
     <wire>
       <p1 x="20" y="100"/>
       <p2 x="60" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="1640" y="100"/>
+      <p2 x="1660" y="100"/>
     </wire>
     <wire>
       <p1 x="20" y="420"/>
