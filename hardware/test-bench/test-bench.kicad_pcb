@@ -858,7 +858,7 @@
       (net 15 /GREEN))
     (pad 4 smd roundrect (at -1.65 0.85 270) (size 1.7 0.9) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.1)
       (net 113 /LED_G_K))
-    (model /home/olof/Documents/Projects/riscv-serial/hardware/Wurth-WL-SBTW.step
+    (model ${KIPRJMOD}/../package3d/Wurth-WL-SBTW.step
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))

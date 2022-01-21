@@ -1360,7 +1360,7 @@
       (net 1 GND))
     (pad MP smd roundrect (at 3.35 -2.9 270) (size 1.5 3.4) (layers B.Cu B.Paste B.Mask) (roundrect_rratio 0.166667)
       (net 1 GND))
-    (model /home/olof/Documents/Projects/riscv-serial/hardware/S2B-PH-SM4-TB.STEP
+    (model ${KIPRJMOD}/../package3d/S2B-PH-SM4-TB.STEP
       (offset (xyz -7.9 12.5 0))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 0))

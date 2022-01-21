@@ -1,4 +1,4 @@
 (fp_lib_table
-  (lib (name Logo)(type KiCad)(uri /home/olof/Documents/Projects/riscv-serial/hardware/Logo.pretty)(options "")(descr ""))
-  (lib (name riscv-serial)(type KiCad)(uri /home/olof/Documents/Projects/riscv-serial/hardware/riscv-serial.pretty)(options "")(descr ""))
+  (lib (name Logo)(type KiCad)(uri ${KIPRJMOD}/../Logo.pretty)(options "")(descr ""))
+  (lib (name riscv-serial)(type KiCad)(uri ${KIPRJMOD}/../riscv-serial.pretty)(options "")(descr ""))
 )
