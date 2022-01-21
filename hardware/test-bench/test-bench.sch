@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:test-bench-cache
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
@@ -172,7 +171,7 @@ F 1 "Conn_PC" H 8450 6200 50  0000 R CNN
 F 2 "Connector_IDC:IDC-Header_2x07_P2.54mm_Vertical" H 8400 5500 50  0001 C CNN
 F 3 "" H 8400 5500 50  0001 C CNN
 	1    8400 5400
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR?
