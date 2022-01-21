@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:pc-cache
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A2 16535 23386 portrait
 encoding utf-8
@@ -1522,7 +1521,7 @@ $Comp
 L riscv-serial:74LVC1G38 U18
 U 1 1 5F0A6688
 P 6350 19550
-F 0 "U18" H 6350 19550 50  0000 C CNN
+F 0 "U18" V 6250 19550 50  0000 C CNN
 F 1 "74LVC1G38" H 6350 19800 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23-5_HandSoldering" H 6350 19600 50  0001 C CNN
 F 3 "" H 6350 19600 50  0001 C CNN
@@ -4190,4 +4189,6 @@ F 3 "" H 11550 3150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	11550 3050 11550 3150
+Text Notes 6250 19250 0    50   ~ 0
+74LVC1G38 has open drain outputs.\nPopulate R32 with a 4.7k resistor!
 $EndSCHEMATC
