@@ -54,7 +54,7 @@ void mcp2317_init(void)
         0x00, 0x00, // INTCONA, INTCONB
         MCP2317_MIRROR | MCP2317_HAEN | MCP2317_ODR, // IOCONA
         MCP2317_MIRROR | MCP2317_HAEN | MCP2317_ODR, // IOCONB
-        0x00, 0x00, // GPPUA, GPPUB
+        0xFF, 0xFF, // GPPUA, GPPUB
     };
 
     for(int i = 0; i < MCP2317_NUM; i++) {
