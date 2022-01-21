@@ -30,6 +30,59 @@ void cmd_read_io(const char *cmd)
     }
 }
 
+void cmd_read_iodir(const char *cmd)
+{
+    uint16_t chip;
+    if(console_parameter_uint16_hex(cmd, 1, &chip)) {
+        if(chip > 4) {
+            console_write_string("Chip shoud be in the range [0,4]\r\n");
+            return;
+        }
+
+        uint16_t val = mcp2317_read(chip, MCP2317_REG_IODIR);
+
+        printf("Read %u: %04X\r\n", chip, val);
+    } else {
+        for(int i = 0; i < 5; i++) {
+            uint16_t val = mcp2317_read(i, MCP2317_REG_IODIR);
+
+            if(i > 0) {
+                printf(" ");
+            }
+
+            printf("%04X", val);
+        }
+        printf("\r\n");
+    }
+}
+
+void cmd_read_pullup(const char *cmd)
+{
+    uint16_t chip;
+    if(console_parameter_uint16_hex(cmd, 1, &chip)) {
+        if(chip > 4) {
+            console_write_string("Chip shoud be in the range [0,4]\r\n");
+            return;
+        }
+
+        uint16_t val = mcp2317_read(chip, MCP2317_REG_GPPU);
+
+        printf("Read %u: %04X\r\n", chip, val);
+    } else {
+        for(int i = 0; i < 5; i++) {
+            uint16_t val = mcp2317_read(i, MCP2317_REG_GPPU);
+
+            if(i > 0) {
+                printf(" ");
+            }
+
+            printf("%04X", val);
+        }
+        printf("\r\n");
+    }
+}
+
+
 
 void cmd_write_io(const char *cmd)
 {
@@ -156,6 +209,8 @@ const struct console_command_entry commands[] = {
     { "write-io", cmd_write_io, "Write GPIO" },
     { "write-iodir", cmd_write_iodir, "Write IO directions" },
     { "write-pullup", cmd_write_pullup, "Write IO pullups" },
+    { "read-iodir", cmd_read_iodir, "Read IO directions" },
+    { "read-pullup", cmd_read_pullup, "Read IO pullups" },
     { "set-anim", cmd_set_anim, "Set animation 0-3" },
     { "echo", cmd_echo, "Echo on/off" },
     { "test", cmd_test, "A simple test" },
