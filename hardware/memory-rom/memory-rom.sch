@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:memory-rom-cache
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -392,7 +391,6 @@ $EndComp
 Wire Wire Line
 	1450 3400 2050 3400
 NoConn ~ 2050 3400
-NoConn ~ 2900 2600
 $Comp
 L riscv-serial:Conn_Mem_Ext J1
 U 1 1 5EEB841A
@@ -1158,4 +1156,6 @@ F 3 "" H 5300 3600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5300 3500 5300 3600
+Text Notes 6000 4100 0    79   ~ 0
+Why are ~CE~ and ~OE~ swapped?
 $EndSCHEMATC
