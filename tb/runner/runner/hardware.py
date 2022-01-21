@@ -15,7 +15,7 @@ class PinState:
 
 class PinConfig:
     def __init__(self, chip, bit):
-        assert 0 <= chip < 5
+        assert 0 <= chip < NUM_CHIPS
         assert 0 <= bit < 16
 
         self.chip = chip
@@ -95,14 +95,22 @@ class HardwareConfig:
             for pin in filter(any_filter, self.pins.values()):
                 pin.pullup = True
 
-    def get_state(self, signals):
+    def get_state(self, signals, line, vars, prev=None):
         pins = { pin: self.pins[pin].get_state(signals) for pin in self.pins }
-        return HardwareState(pins, self.input_signals)
+        return HardwareState(pins, self.input_signals, line, vars, prev)
+
+class HardwareStateDelta:
+    def __init__(self, output, pullup, iodir):
+        self.output = output
+        self.pullup = pullup
+        self.iodir = iodir
 
 class HardwareState:
-    def __init__(self, pins, input_signals):
+    def __init__(self, pins, input_signals, line, vars, prev):
         self.pins = pins
         self.input_signals = input_signals
+        self.line = line
+        self.vars = vars
 
         self.output = [0] * NUM_CHIPS
         self.expected_input = [0] * NUM_CHIPS
@@ -125,6 +133,12 @@ class HardwareState:
 
                 if pin.pullup:
                     self.pullup[chip] |= 1 << bit
+
+        delta_output = self.output if ((prev is None) or (prev.output != self.output)) else None
+        delta_pullup = self.pullup if ((prev is None) or (prev.pullup != self.pullup)) else None
+        delta_iodir = self.iodir if ((prev is None) or (prev.iodir != self.iodir)) else None
+
+        self.delta = HardwareStateDelta(delta_output, delta_pullup, delta_iodir)
 
     def __len__(self):
         return NUM_CHIPS
@@ -162,19 +176,20 @@ class HardwareState:
             chip, bit = pin
             expected |= ((self.expected_input[chip] >> bit) & 1) << sig_bit
             read |= ((self.read_input[chip] >> bit) & 1) << sig_bit
-        return (expected, read)
+        return {'expected': expected, 'found': read}
 
 if __name__ == "__main__":
     hardware = HardwareConfig()
-    hardware.add_connector('20', ['x', '0b6', '0b7', '1b7', '1b6', '1b5', '1b4', '1b3', '1b2', '1b1', '1b0', '1a7', '1a6', '1a5', '1a4', '1a3', '1a2', '1a1', '1a0', 'x'])
+    hardware.add_connector('20', [None, (0, 14), (0, 15), (1, 15), (1, 14), (1, 13), (1, 12), (1, 11), (1, 10), (1, 9), (1, 8), (1, 7), (1, 6), (1, 5), (1, 4), (1, 3), (1, 2), (1, 1), (1, 0), None])
 
-    for s in [('20:1', None, None),('20:2', 'BUS-CLK', None),('20:3', None, 'GND'),('20:4', 'IN', None),('20:5', None, 'A'),('20:6', None, 'B'),('20:7', 'RESET', None),('20:8', '~{IN-EN}', None),('20:9', '~{A-EN}', None),('20:10', '~{B-EN}', None),('20:11', 'SD:0', None),('20:12', 'SD:1', None),('20:13', 'SD:2', None),('20:14', 'SB:0', None),('20:15', 'SB:1', None),('20:16', 'SB:2', None),('20:17', 'SA:0', None),('20:18', 'SA:1', None),('20:19', 'SA:2', None),('20:20', None, None)]:
+    for s in [(('20', 0), None, None),(('20', 1), ('BUS-CLK',0), None),(('20', 2), None, ('GND',0)),(('20', 3), ('IN',0), None),(('20', 4), None, ('A',0)),(('20', 5), None, ('B',0)),(('20', 6), ('RESET',0), None),(('20', 7), ('~{IN-EN}',0), None),(('20', 8), ('~{A-EN}',0), None),(('20', 9), ('~{B-EN}',0), None), (('20', 10), ('SD',0), None),(('20', 11), ('SD',1), None),(('20', 12), ('SD',2), None), (('20', 13), ('SB',0), None),(('20', 14), ('SB',1), None),(('20', 15), ('SB',2), None),(('20', 16), ('SA',0), None),(('20', 17), ('SA',1), None),(('20', 18), ('SA',2), None), (('20', 19), None, None)]:
         hardware.add_connector_signals(*s)
 
     for d in [('BUS-CLK', 0), ('IN', 0), ('RESET', 1), ('~{IN-EN}', 1), ('~{A-EN}', 1), ('~{B-EN}', 1), ('SA', 0), ('SB', 0), ('SD', 0), ('A', 'P'), ('B', 'P'), ('GND', 'Z')]:
         hardware.add_signal_default(*d)
 
-    state = hardware.get_state({})
-    row = state.to_binary()
-    for chip in range(0,NUM_CHIPS):
-        print(', '.join(['{:016b}'.format(n) for n in [ row.iodir[chip], row.output[chip], row.expected_input[chip], row.input_mask[chip], row.pullup[chip]]]))
+    state = hardware.get_state({}, 1)
+    print(state)
+    # row = state.to_binary()
+    # for chip in range(0,NUM_CHIPS):
+        # print(', '.join(['{:016b}'.format(n) for n in [ row.iodir[chip], row.output[chip], row.expected_input[chip], row.input_mask[chip], row.pullup[chip]]]))
