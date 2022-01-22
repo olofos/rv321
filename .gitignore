@@ -1,1 +1,12 @@
 *~
+
+tb/firmware/.deps/
+tb/firmware/.vscode/
+tb/firmware/bin/
+tb/firmware/obj/
+
+*-rescue.dcm
+*-rescue.lib
+*.kicad_pcb-bak
+*.sch-bak
+*fp-info-cache
