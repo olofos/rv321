@@ -151,14 +151,14 @@ F 3 "" H 8000 4050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8000 4000 8000 4050
-Text Label 7050 3650 0    50   ~ 0
+Text Label 7050 3750 0    50   ~ 0
 ~MEM_OE
 Text Label 7050 3450 0    50   ~ 0
 ~MEM_WE
 Wire Wire Line
 	7050 3450 7400 3450
 Wire Wire Line
-	7400 3650 7050 3650
+	7400 3750 7050 3750
 Wire Wire Line
 	1950 5800 1450 5800
 Wire Wire Line
@@ -369,10 +369,10 @@ F 3 "~" H 10350 6150 50  0001 C CNN
 	1    10350 6150
 	1    0    0    -1  
 $EndComp
-Text Label 7050 3750 0    50   ~ 0
+Text Label 7050 3650 0    50   ~ 0
 ~CE
 Wire Wire Line
-	7050 3750 7400 3750
+	7050 3650 7400 3650
 Wire Wire Line
 	1450 6200 1600 6200
 Wire Wire Line
@@ -1156,6 +1156,4 @@ F 3 "" H 5300 3600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5300 3500 5300 3600
-Text Notes 6000 4100 0    79   ~ 0
-Why are ~CE~ and ~OE~ swapped?
 $EndSCHEMATC
