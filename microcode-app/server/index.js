@@ -16,43 +16,6 @@ app.use(morgan('[:date[iso] #:id] Completed :status :res[content-length] in :res
 
 app.use(bodyParser.json({limit: '50mb'}));
 
-// function loadInstructionFragments(input) {
-//     for (let fragmentName in input) {
-//         const signalData = input[fragmentName].signals;
-//         const empty_row = signalData['STEP_LEN'].values.map(() => '');
-
-//         for (let signalName in signalData) {
-//             const signal = signalData[signalName];
-//             if (!signal.captions) {
-//                 signal.captions = [...empty_row];
-//             }
-//         }
-//     }
-//     return input;
-// }
-
-// function loadSignals(input) {
-//     for (let signalName in input) {
-//         const signal = input[signalName];
-//         if (signal.type === 'binary') {
-//             signal.options = [0, 1];
-//         }
-//     }
-//     return input;
-// }
-
-
-// function load_data()
-// {
-//     const instructions = JSON.parse(fs.readFileSync('./data/instructions.json'));
-//     const instructionFragments = loadInstructionFragments(JSON.parse(fs.readFileSync('./data/instructionFragments.json')));
-//     const signalSettings = loadSignals(JSON.parse(fs.readFileSync('./data/signals.json')));
-
-//     return { instructions, fragments: instructionFragments, signals: signalSettings.signals, order: signalSettings.order };
-// }
-
-// let data = load_data();
-
 let data = JSON.parse(fs.readFileSync('./data/data.json'));
 
 app.get('/api/data', (req, res) => {
@@ -70,6 +33,24 @@ app.put('/api/data', (req, res) => {
 
 
 
-app.listen(port, () => {
+app.get('/api/exit', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send('Exiting');
+
+    console.log('Terminating process');
+    process.kill(process.pid, 'SIGTERM');
+});
+
+app.use(express.static('public'));
+
+const server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+process.on('SIGTERM', () => {
+    console.log('Caught SIGTERM');
+    
+    server.close(() => {
+      console.log('Process terminated')
+    })
+  });
