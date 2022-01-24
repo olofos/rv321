@@ -10,3 +10,12 @@ tb/firmware/obj/
 *.kicad_pcb-bak
 *.sch-bak
 *fp-info-cache
+
+*__pycache__
+*.o
+*.elf
+*.hex
+*.bin
+
+tb/runner/runner/digital/parser.out
+tb/runner/runner/digital/parsetab.py
