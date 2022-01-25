@@ -33,7 +33,7 @@ app.put('/api/data', (req, res) => {
 
 
 
-app.get('/api/exit', (req, res) => {
+app.post('/api/exit', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.send('Exiting');
 

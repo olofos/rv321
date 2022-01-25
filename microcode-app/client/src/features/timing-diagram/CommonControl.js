@@ -21,6 +21,12 @@ function doExport(microcode) {
     tempLink.click();
 }
 
+function doExit() {
+    fetch('/api/exit', {
+        method: 'POST',
+        body: 'exit',
+    }).then(() =>  window.close());
+}
 
 export const CommonControl = () => {
     const dispatch = useDispatch();
@@ -41,6 +47,7 @@ export const CommonControl = () => {
             <button onClick={(ev) => { ev.preventDefault(); dispatch(saveData()); }}>Save</button>
             <button onClick={(ev) => { ev.preventDefault(); doExport(microcode); }}>Export</button>
             <button onClick={(ev) => { ev.preventDefault(); dispatch(loadData()); }}>Revert</button>
+            <button onClick={(ev) => { ev.preventDefault(); doExit(); }}>Exit</button>
             <label htmlFor="hideConstant">Hide constant signals:</label>
             <input type="checkbox" name="hideConstant" checked={hideConstant} onChange={(ev) => dispatch(setHideConstant(!hideConstant))} />
         </div>
