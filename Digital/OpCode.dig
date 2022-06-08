@@ -3410,7 +3410,7 @@ end loop
           <string>CNT-2</string>
         </entry>
       </elementAttributes>
-      <pos x="2120" y="780"/>
+      <pos x="2240" y="800"/>
     </visualElement>
     <visualElement>
       <elementName>Or</elementName>
@@ -15233,6 +15233,25 @@ A001   c.j 0</string>
       </elementAttributes>
       <pos x="-1000" y="-180"/>
     </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>OP-LATCH-LSB</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2020" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="2120" y="780"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -15696,6 +15715,10 @@ A001   c.j 0</string>
       <p2 x="1960" y="800"/>
     </wire>
     <wire>
+      <p1 x="2180" y="800"/>
+      <p2 x="2240" y="800"/>
+    </wire>
+    <wire>
       <p1 x="1300" y="160"/>
       <p2 x="1360" y="160"/>
     </wire>
@@ -15978,6 +16001,10 @@ A001   c.j 0</string>
     <wire>
       <p1 x="500" y="820"/>
       <p2 x="560" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="2080" y="820"/>
+      <p2 x="2120" y="820"/>
     </wire>
     <wire>
       <p1 x="-440" y="-440"/>
@@ -16792,6 +16819,10 @@ A001   c.j 0</string>
       <p2 x="560" y="880"/>
     </wire>
     <wire>
+      <p1 x="2020" y="880"/>
+      <p2 x="2080" y="880"/>
+    </wire>
+    <wire>
       <p1 x="1320" y="-500"/>
       <p2 x="1360" y="-500"/>
     </wire>
@@ -16998,6 +17029,10 @@ A001   c.j 0</string>
     <wire>
       <p1 x="160" y="360"/>
       <p2 x="160" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="2080" y="820"/>
+      <p2 x="2080" y="880"/>
     </wire>
     <wire>
       <p1 x="-740" y="180"/>
