@@ -26385,8 +26385,8 @@
     },
     "~ADDR_CLK": {
       "type": "binary",
-      "pre": 0,
-      "post": 0,
+      "pre": 1,
+      "post": 1,
       "bitmap": {
         "0": 0,
         "1": 256
