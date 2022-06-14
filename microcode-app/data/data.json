@@ -1105,7 +1105,8 @@
         "sa": 1,
         "flag": 1,
         "sys": 1
-      }
+      },
+      "desciption": "Illegal Operation: Assert the ~ILL_OP signal, and reload the address buffer (and PC?) with the current PC. Then fetch the instruction again, which will now trap."
     }
   },
   "fragments": {
@@ -26367,7 +26368,8 @@
       "options": [
         0,
         1
-      ]
+      ],
+      "desciption": "When IMM_PC_OUT_S~P is low the shift registers for the PC and immediate values are reloaded. When IMM_PC_OUT_S~P the serial data is shifted out."
     },
     "ADDR_LATCH": {
       "type": "binary",
