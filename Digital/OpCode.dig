@@ -15263,30 +15263,6 @@ A001   c.j 0</string>
       <pos x="2040" y="1040"/>
     </visualElement>
     <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~OE</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2040" y="1100"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>~OE</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2000" y="1100"/>
-    </visualElement>
-    <visualElement>
       <elementName>D_FF_AS</elementName>
       <elementAttributes>
         <entry>
@@ -16403,10 +16379,6 @@ A001   c.j 0</string>
     <wire>
       <p1 x="540" y="1100"/>
       <p2 x="560" y="1100"/>
-    </wire>
-    <wire>
-      <p1 x="2000" y="1100"/>
-      <p2 x="2040" y="1100"/>
     </wire>
     <wire>
       <p1 x="-1080" y="460"/>
