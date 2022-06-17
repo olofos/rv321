@@ -1,4 +1,4 @@
 (sym_lib_table
-  (lib (name riscv-serial)(type Legacy)(uri ${KIPRJMOD}/../riscv-serial.lib)(options "")(descr ""))
-  (lib (name memory-lcd-rescue)(type Legacy)(uri ${KIPRJMOD}/memory-lcd-rescue.lib)(options "")(descr ""))
+  (lib (name "riscv-serial")(type "KiCad")(uri "${KIPRJMOD}/../riscv-serial.kicad_sym")(options "")(descr ""))
+  (lib (name "memory-lcd-rescue")(type "Legacy")(uri "${KIPRJMOD}/memory-lcd-rescue.lib")(options "")(descr "")(disabled))
 )

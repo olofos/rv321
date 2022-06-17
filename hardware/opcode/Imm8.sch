@@ -1,0 +1,149 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 7
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L riscv-serial:74HC597 U17
+U 1 1 623DF866
+P 3450 3150
+F 0 "U17" H 3600 2300 50  0000 L CNN
+F 1 "74HC597" V 3450 3150 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 3450 3950 50  0001 C CNN
+F 3 "" H 3450 3950 50  0001 C CNN
+	1    3450 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 2650 3050 2650
+Wire Wire Line
+	3050 2550 2700 2550
+Wire Wire Line
+	3050 2350 2950 2350
+Wire Wire Line
+	2950 2350 2950 3150
+Wire Wire Line
+	2950 3150 3050 3150
+Wire Wire Line
+	2700 2950 3050 2950
+Wire Wire Line
+	3050 2850 2700 2850
+$Comp
+L power:VCC #PWR0133
+U 1 1 623DF867
+P 3450 2050
+F 0 "#PWR0133" H 3450 1900 50  0001 C CNN
+F 1 "VCC" H 3465 2223 50  0000 C CNN
+F 2 "" H 3450 2050 50  0001 C CNN
+F 3 "" H 3450 2050 50  0001 C CNN
+	1    3450 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 2050 3450 2100
+$Comp
+L power:GND #PWR0134
+U 1 1 6238F62A
+P 3450 4100
+F 0 "#PWR0134" H 3450 3850 50  0001 C CNN
+F 1 "GND" H 3455 3927 50  0000 C CNN
+F 2 "" H 3450 4100 50  0001 C CNN
+F 3 "" H 3450 4100 50  0001 C CNN
+	1    3450 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 4050 3450 4100
+Wire Wire Line
+	2700 3150 2950 3150
+Connection ~ 2950 3150
+Wire Wire Line
+	3050 3250 2700 3250
+Wire Wire Line
+	2700 3350 3050 3350
+Wire Wire Line
+	3050 3450 2700 3450
+Wire Wire Line
+	2700 3550 3050 3550
+Wire Wire Line
+	3050 3650 2700 3650
+Wire Wire Line
+	2700 3750 3050 3750
+Wire Wire Line
+	3050 3850 2700 3850
+Wire Wire Line
+	4000 3150 3850 3150
+$Comp
+L Device:C C1
+U 1 1 623DF869
+P 4200 2200
+F 0 "C1" H 4315 2246 50  0000 L CNN
+F 1 "100n" H 4315 2155 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4238 2050 50  0001 C CNN
+F 3 "~" H 4200 2200 50  0001 C CNN
+	1    4200 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0135
+U 1 1 623DF86A
+P 4200 2000
+F 0 "#PWR0135" H 4200 1850 50  0001 C CNN
+F 1 "VCC" H 4215 2173 50  0000 C CNN
+F 2 "" H 4200 2000 50  0001 C CNN
+F 3 "" H 4200 2000 50  0001 C CNN
+	1    4200 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2000 4200 2050
+$Comp
+L power:GND #PWR0136
+U 1 1 623DF86B
+P 4200 2400
+F 0 "#PWR0136" H 4200 2150 50  0001 C CNN
+F 1 "GND" H 4205 2227 50  0000 C CNN
+F 2 "" H 4200 2400 50  0001 C CNN
+F 3 "" H 4200 2400 50  0001 C CNN
+	1    4200 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2350 4200 2400
+Text HLabel 4000 3150 2    50   Output ~ 0
+OUT
+Text HLabel 2700 2550 0    50   Input ~ 0
+CLK
+Text HLabel 2700 2650 0    50   Input ~ 0
+~RESET
+Text HLabel 2700 2850 0    50   Input ~ 0
+LATCH
+Text HLabel 2700 2950 0    50   Input ~ 0
+S~P
+Text HLabel 2700 3150 0    50   Input ~ 0
+D7
+Text HLabel 2700 3250 0    50   Input ~ 0
+D6
+Text HLabel 2700 3350 0    50   Input ~ 0
+D5
+Text HLabel 2700 3450 0    50   Input ~ 0
+D4
+Text HLabel 2700 3550 0    50   Input ~ 0
+D3
+Text HLabel 2700 3650 0    50   Input ~ 0
+D2
+Text HLabel 2700 3750 0    50   Input ~ 0
+D1
+Text HLabel 2700 3850 0    50   Input ~ 0
+D0
+$EndSCHEMATC

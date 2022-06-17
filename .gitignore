@@ -8,6 +8,7 @@ tb/firmware/obj/
 *-rescue.dcm
 *-rescue.lib
 *.kicad_pcb-bak
+*.kicad_prl
 *.sch-bak
 *fp-info-cache
 
@@ -16,6 +17,9 @@ tb/firmware/obj/
 *.elf
 *.hex
 *.bin
+
+hardware/*/*-backups
+hardware/*/gerbers
 
 tb/runner/runner/digital/parser.out
 tb/runner/runner/digital/parsetab.py

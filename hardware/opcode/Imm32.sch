@@ -1,0 +1,569 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 8268 11693 portrait
+encoding utf-8
+Sheet 5 7
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L riscv-serial:74HC597 U25
+U 1 1 6238D2D1
+P 2600 7250
+F 0 "U25" H 2750 6400 50  0000 L CNN
+F 1 "74HC597" V 2600 7250 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2600 8050 50  0001 C CNN
+F 3 "" H 2600 8050 50  0001 C CNN
+	1    2600 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0157
+U 1 1 6238F054
+P 2600 6150
+F 0 "#PWR0157" H 2600 6000 50  0001 C CNN
+F 1 "VCC" H 2615 6323 50  0000 C CNN
+F 2 "" H 2600 6150 50  0001 C CNN
+F 3 "" H 2600 6150 50  0001 C CNN
+	1    2600 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 6150 2600 6200
+$Comp
+L power:GND #PWR0158
+U 1 1 6201F842
+P 2600 8200
+F 0 "#PWR0158" H 2600 7950 50  0001 C CNN
+F 1 "GND" H 2605 8027 50  0000 C CNN
+F 2 "" H 2600 8200 50  0001 C CNN
+F 3 "" H 2600 8200 50  0001 C CNN
+	1    2600 8200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 8150 2600 8200
+Wire Wire Line
+	2200 7350 1850 7350
+Wire Wire Line
+	1850 7450 2200 7450
+Wire Wire Line
+	2200 7550 1850 7550
+Wire Wire Line
+	1850 7650 2200 7650
+Wire Wire Line
+	2200 7750 1850 7750
+Wire Wire Line
+	1850 7850 2200 7850
+Wire Wire Line
+	2200 7950 1850 7950
+Wire Wire Line
+	3150 7250 3000 7250
+$Comp
+L Device:C C9
+U 1 1 62390ED0
+P 3350 6300
+F 0 "C9" H 3465 6346 50  0000 L CNN
+F 1 "100n" H 3465 6255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 3388 6150 50  0001 C CNN
+F 3 "~" H 3350 6300 50  0001 C CNN
+	1    3350 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0159
+U 1 1 623F49AD
+P 3350 6100
+F 0 "#PWR0159" H 3350 5950 50  0001 C CNN
+F 1 "VCC" H 3365 6273 50  0000 C CNN
+F 2 "" H 3350 6100 50  0001 C CNN
+F 3 "" H 3350 6100 50  0001 C CNN
+	1    3350 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 6100 3350 6150
+$Comp
+L power:GND #PWR0160
+U 1 1 623F49AE
+P 3350 6500
+F 0 "#PWR0160" H 3350 6250 50  0001 C CNN
+F 1 "GND" H 3355 6327 50  0000 C CNN
+F 2 "" H 3350 6500 50  0001 C CNN
+F 3 "" H 3350 6500 50  0001 C CNN
+	1    3350 6500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 6450 3350 6500
+Text HLabel 950  850  0    50   Input ~ 0
+CLK
+Text HLabel 950  950  0    50   Input ~ 0
+~RESET
+Text HLabel 950  1150 0    50   Input ~ 0
+LATCH
+Text HLabel 950  1250 0    50   Input ~ 0
+S~P
+Text HLabel 1850 7250 0    50   Input ~ 0
+D15
+Text HLabel 1850 7350 0    50   Input ~ 0
+D14
+Text HLabel 1850 7450 0    50   Input ~ 0
+D13
+Text HLabel 1850 7550 0    50   Input ~ 0
+D12
+Text HLabel 1850 7650 0    50   Input ~ 0
+D11
+Text HLabel 1850 7750 0    50   Input ~ 0
+D10
+Text HLabel 1850 7850 0    50   Input ~ 0
+D9
+Text HLabel 1850 7950 0    50   Input ~ 0
+D8
+$Comp
+L riscv-serial:74HC597 U26
+U 1 1 6201F837
+P 2600 9950
+F 0 "U26" H 2750 9100 50  0000 L CNN
+F 1 "74HC597" V 2600 9950 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2600 10750 50  0001 C CNN
+F 3 "" H 2600 10750 50  0001 C CNN
+	1    2600 9950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 9450 2200 9450
+Wire Wire Line
+	2200 9350 1750 9350
+Wire Wire Line
+	1750 9750 2200 9750
+Wire Wire Line
+	2200 9650 1750 9650
+$Comp
+L power:VCC #PWR0161
+U 1 1 623CFBBE
+P 2600 8850
+F 0 "#PWR0161" H 2600 8700 50  0001 C CNN
+F 1 "VCC" H 2615 9023 50  0000 C CNN
+F 2 "" H 2600 8850 50  0001 C CNN
+F 3 "" H 2600 8850 50  0001 C CNN
+	1    2600 8850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 8850 2600 8900
+$Comp
+L power:GND #PWR0162
+U 1 1 623CFBC5
+P 2600 10900
+F 0 "#PWR0162" H 2600 10650 50  0001 C CNN
+F 1 "GND" H 2605 10727 50  0000 C CNN
+F 2 "" H 2600 10900 50  0001 C CNN
+F 3 "" H 2600 10900 50  0001 C CNN
+	1    2600 10900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 10850 2600 10900
+Wire Wire Line
+	2200 10050 1850 10050
+Wire Wire Line
+	1850 10150 2200 10150
+Wire Wire Line
+	2200 10250 1850 10250
+Wire Wire Line
+	1850 10350 2200 10350
+Wire Wire Line
+	2200 10450 1850 10450
+Wire Wire Line
+	1850 10550 2200 10550
+Wire Wire Line
+	2200 10650 1850 10650
+Wire Wire Line
+	3150 9950 3000 9950
+$Comp
+L Device:C C10
+U 1 1 623CFBD6
+P 3350 9000
+F 0 "C10" H 3465 9046 50  0000 L CNN
+F 1 "100n" H 3465 8955 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 3388 8850 50  0001 C CNN
+F 3 "~" H 3350 9000 50  0001 C CNN
+	1    3350 9000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0163
+U 1 1 623CFBDC
+P 3350 8800
+F 0 "#PWR0163" H 3350 8650 50  0001 C CNN
+F 1 "VCC" H 3365 8973 50  0000 C CNN
+F 2 "" H 3350 8800 50  0001 C CNN
+F 3 "" H 3350 8800 50  0001 C CNN
+	1    3350 8800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 8800 3350 8850
+$Comp
+L power:GND #PWR0164
+U 1 1 6201F845
+P 3350 9200
+F 0 "#PWR0164" H 3350 8950 50  0001 C CNN
+F 1 "GND" H 3355 9027 50  0000 C CNN
+F 2 "" H 3350 9200 50  0001 C CNN
+F 3 "" H 3350 9200 50  0001 C CNN
+	1    3350 9200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 9150 3350 9200
+Text HLabel 3150 9950 2    50   Output ~ 0
+OUT
+Text HLabel 1850 9950 0    50   Input ~ 0
+D7
+Text HLabel 1850 10050 0    50   Input ~ 0
+D6
+Text HLabel 1850 10150 0    50   Input ~ 0
+D5
+Text HLabel 1850 10250 0    50   Input ~ 0
+D4
+Text HLabel 1850 10350 0    50   Input ~ 0
+D3
+Text HLabel 1850 10450 0    50   Input ~ 0
+D2
+Text HLabel 1850 10550 0    50   Input ~ 0
+D1
+Text HLabel 1850 10650 0    50   Input ~ 0
+D0
+Wire Wire Line
+	3150 7250 3150 8500
+Wire Wire Line
+	3150 8500 1700 8500
+Wire Wire Line
+	1700 8500 1700 9150
+Text Label 1350 850  2    50   ~ 0
+CLK
+Text Label 1350 950  2    50   ~ 0
+~RESET
+Text Label 1350 1150 2    50   ~ 0
+LATCH
+Text Label 1350 1250 2    50   ~ 0
+S~P
+Wire Wire Line
+	1350 1250 950  1250
+Wire Wire Line
+	950  1150 1350 1150
+Wire Wire Line
+	1350 950  950  950 
+Wire Wire Line
+	950  850  1350 850 
+Text Label 1750 9350 0    50   ~ 0
+CLK
+Text Label 1750 9450 0    50   ~ 0
+~RESET
+Text Label 1750 9650 0    50   ~ 0
+LATCH
+Text Label 1750 9750 0    50   ~ 0
+S~P
+Wire Wire Line
+	1750 6750 2200 6750
+Wire Wire Line
+	2200 6650 1750 6650
+Wire Wire Line
+	1750 7050 2200 7050
+Wire Wire Line
+	2200 6950 1750 6950
+Text Label 1750 6650 0    50   ~ 0
+CLK
+Text Label 1750 6750 0    50   ~ 0
+~RESET
+Text Label 1750 6950 0    50   ~ 0
+LATCH
+Text Label 1750 7050 0    50   ~ 0
+S~P
+$Comp
+L riscv-serial:74HC597 U24
+U 1 1 623EDB46
+P 2600 4550
+F 0 "U24" H 2750 3700 50  0000 L CNN
+F 1 "74HC597" V 2600 4550 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2600 5350 50  0001 C CNN
+F 3 "" H 2600 5350 50  0001 C CNN
+	1    2600 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0165
+U 1 1 623EDB4F
+P 2600 3450
+F 0 "#PWR0165" H 2600 3300 50  0001 C CNN
+F 1 "VCC" H 2615 3623 50  0000 C CNN
+F 2 "" H 2600 3450 50  0001 C CNN
+F 3 "" H 2600 3450 50  0001 C CNN
+	1    2600 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 3450 2600 3500
+$Comp
+L power:GND #PWR0166
+U 1 1 6201F83E
+P 2600 5500
+F 0 "#PWR0166" H 2600 5250 50  0001 C CNN
+F 1 "GND" H 2605 5327 50  0000 C CNN
+F 2 "" H 2600 5500 50  0001 C CNN
+F 3 "" H 2600 5500 50  0001 C CNN
+	1    2600 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 5450 2600 5500
+Wire Wire Line
+	2200 4650 1850 4650
+Wire Wire Line
+	1850 4750 2200 4750
+Wire Wire Line
+	2200 4850 1850 4850
+Wire Wire Line
+	1850 4950 2200 4950
+Wire Wire Line
+	2200 5050 1850 5050
+Wire Wire Line
+	1850 5150 2200 5150
+Wire Wire Line
+	2200 5250 1850 5250
+Wire Wire Line
+	3150 4550 3000 4550
+$Comp
+L Device:C C8
+U 1 1 623EDB67
+P 3350 3600
+F 0 "C8" H 3465 3646 50  0000 L CNN
+F 1 "100n" H 3465 3555 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 3388 3450 50  0001 C CNN
+F 3 "~" H 3350 3600 50  0001 C CNN
+	1    3350 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0167
+U 1 1 623EDB6D
+P 3350 3400
+F 0 "#PWR0167" H 3350 3250 50  0001 C CNN
+F 1 "VCC" H 3365 3573 50  0000 C CNN
+F 2 "" H 3350 3400 50  0001 C CNN
+F 3 "" H 3350 3400 50  0001 C CNN
+	1    3350 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 3400 3350 3450
+$Comp
+L power:GND #PWR0168
+U 1 1 623EDB74
+P 3350 3800
+F 0 "#PWR0168" H 3350 3550 50  0001 C CNN
+F 1 "GND" H 3355 3627 50  0000 C CNN
+F 2 "" H 3350 3800 50  0001 C CNN
+F 3 "" H 3350 3800 50  0001 C CNN
+	1    3350 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 3750 3350 3800
+Text HLabel 1850 4550 0    50   Input ~ 0
+D23
+Text HLabel 1850 4650 0    50   Input ~ 0
+D22
+Text HLabel 1850 4750 0    50   Input ~ 0
+D21
+Text HLabel 1850 4850 0    50   Input ~ 0
+D20
+Text HLabel 1850 4950 0    50   Input ~ 0
+D19
+Text HLabel 1850 5050 0    50   Input ~ 0
+D18
+Text HLabel 1850 5150 0    50   Input ~ 0
+D17
+Text HLabel 1850 5250 0    50   Input ~ 0
+D16
+Wire Wire Line
+	3150 4550 3150 5800
+Wire Wire Line
+	3150 5800 1700 5800
+Wire Wire Line
+	1700 5800 1700 6450
+Wire Wire Line
+	1750 4050 2200 4050
+Wire Wire Line
+	2200 3950 1750 3950
+Wire Wire Line
+	1750 4350 2200 4350
+Wire Wire Line
+	2200 4250 1750 4250
+Text Label 1750 3950 0    50   ~ 0
+CLK
+Text Label 1750 4050 0    50   ~ 0
+~RESET
+Text Label 1750 4250 0    50   ~ 0
+LATCH
+Text Label 1750 4350 0    50   ~ 0
+S~P
+Wire Wire Line
+	1850 7250 2200 7250
+Wire Wire Line
+	1700 6450 2200 6450
+Wire Wire Line
+	1700 9150 2200 9150
+Wire Wire Line
+	1850 9950 2200 9950
+$Comp
+L riscv-serial:74HC597 U23
+U 1 1 62424333
+P 2600 1850
+F 0 "U23" H 2750 1000 50  0000 L CNN
+F 1 "74HC597" V 2600 1850 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2600 2650 50  0001 C CNN
+F 3 "" H 2600 2650 50  0001 C CNN
+	1    2600 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 1050 2100 1050
+Wire Wire Line
+	2100 1050 2100 1850
+Wire Wire Line
+	2100 1850 2200 1850
+$Comp
+L power:VCC #PWR0169
+U 1 1 6242433C
+P 2600 750
+F 0 "#PWR0169" H 2600 600 50  0001 C CNN
+F 1 "VCC" H 2615 923 50  0000 C CNN
+F 2 "" H 2600 750 50  0001 C CNN
+F 3 "" H 2600 750 50  0001 C CNN
+	1    2600 750 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 750  2600 800 
+$Comp
+L power:GND #PWR0170
+U 1 1 62424343
+P 2600 2800
+F 0 "#PWR0170" H 2600 2550 50  0001 C CNN
+F 1 "GND" H 2605 2627 50  0000 C CNN
+F 2 "" H 2600 2800 50  0001 C CNN
+F 3 "" H 2600 2800 50  0001 C CNN
+	1    2600 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 2750 2600 2800
+Wire Wire Line
+	1850 1850 2100 1850
+Connection ~ 2100 1850
+Wire Wire Line
+	2200 1950 1850 1950
+Wire Wire Line
+	1850 2050 2200 2050
+Wire Wire Line
+	2200 2150 1850 2150
+Wire Wire Line
+	1850 2250 2200 2250
+Wire Wire Line
+	2200 2350 1850 2350
+Wire Wire Line
+	1850 2450 2200 2450
+Wire Wire Line
+	2200 2550 1850 2550
+Wire Wire Line
+	3150 1850 3000 1850
+$Comp
+L Device:C C7
+U 1 1 62424354
+P 3350 900
+F 0 "C7" H 3465 946 50  0000 L CNN
+F 1 "100n" H 3465 855 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 3388 750 50  0001 C CNN
+F 3 "~" H 3350 900 50  0001 C CNN
+	1    3350 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0171
+U 1 1 6242435A
+P 3350 700
+F 0 "#PWR0171" H 3350 550 50  0001 C CNN
+F 1 "VCC" H 3365 873 50  0000 C CNN
+F 2 "" H 3350 700 50  0001 C CNN
+F 3 "" H 3350 700 50  0001 C CNN
+	1    3350 700 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 700  3350 750 
+$Comp
+L power:GND #PWR0172
+U 1 1 62424361
+P 3350 1100
+F 0 "#PWR0172" H 3350 850 50  0001 C CNN
+F 1 "GND" H 3355 927 50  0000 C CNN
+F 2 "" H 3350 1100 50  0001 C CNN
+F 3 "" H 3350 1100 50  0001 C CNN
+	1    3350 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 1050 3350 1100
+Text HLabel 1850 1850 0    50   Input ~ 0
+D31
+Text HLabel 1850 1950 0    50   Input ~ 0
+D30
+Text HLabel 1850 2050 0    50   Input ~ 0
+D29
+Text HLabel 1850 2150 0    50   Input ~ 0
+D28
+Text HLabel 1850 2250 0    50   Input ~ 0
+D27
+Text HLabel 1850 2350 0    50   Input ~ 0
+D26
+Text HLabel 1850 2450 0    50   Input ~ 0
+D25
+Wire Wire Line
+	3150 1850 3150 3100
+Wire Wire Line
+	3150 3100 1700 3100
+Wire Wire Line
+	1700 3100 1700 3750
+Wire Wire Line
+	1750 1350 2200 1350
+Wire Wire Line
+	2200 1250 1750 1250
+Wire Wire Line
+	1750 1650 2200 1650
+Wire Wire Line
+	2200 1550 1750 1550
+Text Label 1750 1250 0    50   ~ 0
+CLK
+Text Label 1750 1350 0    50   ~ 0
+~RESET
+Text Label 1750 1550 0    50   ~ 0
+LATCH
+Text Label 1750 1650 0    50   ~ 0
+S~P
+Wire Wire Line
+	1700 3750 2200 3750
+Wire Wire Line
+	1850 4550 2200 4550
+Text HLabel 1850 2550 0    50   Input ~ 0
+D24
+$EndSCHEMATC
