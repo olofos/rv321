@@ -20,6 +20,7 @@ tb/firmware/obj/
 
 hardware/*/*-backups
 hardware/*/gerbers
+gerbers.zip
 
 tb/runner/runner/digital/parser.out
 tb/runner/runner/digital/parsetab.py
