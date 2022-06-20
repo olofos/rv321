@@ -24,3 +24,6 @@ gerbers.zip
 
 tb/runner/runner/digital/parser.out
 tb/runner/runner/digital/parsetab.py
+tb/runner/env/
+
+*node_modules
