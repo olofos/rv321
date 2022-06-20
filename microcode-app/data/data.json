@@ -1144,7 +1144,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -2072,7 +2072,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -2830,7 +2830,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -3839,7 +3839,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -4548,7 +4548,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -6117,7 +6117,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -7576,7 +7576,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -8985,7 +8985,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -10498,7 +10498,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -11901,7 +11901,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -13228,7 +13228,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -13972,7 +13972,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -14737,7 +14737,7 @@
           "values": [],
           "captions": []
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [],
           "captions": []
         },
@@ -14904,7 +14904,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -16458,7 +16458,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -18579,7 +18579,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -19742,7 +19742,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0
           ],
@@ -19971,7 +19971,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             1
           ],
@@ -20266,7 +20266,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -22325,7 +22325,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -23874,7 +23874,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -24797,7 +24797,7 @@
             ""
           ]
         },
-        "SLEEP": {
+        "~SLEEP": {
           "values": [
             0,
             0,
@@ -26260,7 +26260,7 @@
     }
   },
   "signals": {
-    "SLEEP": {
+    "~SLEEP": {
       "type": "binary",
       "pre": 0,
       "post": 0,
@@ -26755,7 +26755,7 @@
     "CSR_OUT_LATCH",
     "CSR_IN_MUX",
     "CSR_OP",
-    "SLEEP",
+    "~SLEEP",
     "LAST_STEP",
     "STEP_LEN",
     "STEP",
