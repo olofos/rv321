@@ -47,6 +47,11 @@ function generateSyncronousSignals(signalData) {
         },
         'ALU_B_MUX': (index) => (signalData['IMM_MUX'].values[index] === 'ImmCSR') ? 'RS2' : signalData['IMM_MUX'].values[index],
         'PC_CNT_EN': (index) => (index === 0) ? 1 : 0,
+        'IMM_PC_OUT_SP': (index) => {
+            const busSteps = signalData['STEP_LEN'].values.slice(0, index + 1).filter((_, i) => signalData['BUS_EN'].values[i] === 1);
+            const stepCount = busSteps.reduce((acc, val) => acc + val, 0);
+            return ((signalData['BUS_EN'].values[index] === 1) || ((stepCount % 32) !== 0)) ? 1 : 0;
+        },
     }
 
     const generatedSignals = {}
@@ -140,7 +145,24 @@ function addWarnings(signalData) {
             } else {
                 addWarning(signalData, 'OP_LATCH', 0, 'The OP_LATCH signal should have a rising edge at the start of the instruction.')
             }
-        }
+        },
+        () => {
+            let busVal = 0;
+            let busCount = 0;
+            for (let i = 0; i < lastIndex; i++) {
+                if (signalData['BUS_EN'].values[i] === 1) {
+                    busVal = 1;
+                    busCount += signalData['STEP_LEN'].values[i];
+                }
+                if ((busVal === 1) && (signalData['BUS_EN'].values[i] === 0)) {
+                    if ((busCount % 8) !== 0) {
+                        addWarning(signalData, 'BUS_EN', i, 'The bus should be enabled in a multiple of eight cycles.');
+                    }
+                    busVal = 0;
+                    busCount = 0;
+                }
+            }
+        },
     ]
     checks.forEach((check) => check());
     return signalData;
