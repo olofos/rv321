@@ -5371,7 +5371,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>~RESET</string>
+          <string>RESET</string>
         </entry>
       </elementAttributes>
       <pos x="320" y="-440"/>
@@ -9494,7 +9494,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>SLEEP</string>
+          <string>~SLEEP</string>
         </entry>
       </elementAttributes>
       <pos x="320" y="-400"/>
@@ -9504,7 +9504,7 @@
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>SLEEP</string>
+          <string>~SLEEP</string>
         </entry>
       </elementAttributes>
       <pos x="1960" y="-600"/>
@@ -12258,16 +12258,6 @@
       <pos x="960" y="1160"/>
     </visualElement>
     <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
-          <string>SUBSTEP-EN</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="-420"/>
-    </visualElement>
-    <visualElement>
       <elementName>And</elementName>
       <elementAttributes/>
       <pos x="1660" y="400"/>
@@ -13000,11 +12990,6 @@
         </entry>
       </elementAttributes>
       <pos x="320" y="-460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes/>
-      <pos x="940" y="-420"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -14626,10 +14611,6 @@ upper two bits of the counter.</string>
     <wire>
       <p1 x="320" y="-420"/>
       <p2 x="340" y="-420"/>
-    </wire>
-    <wire>
-      <p1 x="940" y="-420"/>
-      <p2 x="1060" y="-420"/>
     </wire>
     <wire>
       <p1 x="-680" y="-420"/>
