@@ -13388,7 +13388,7 @@
           ],
           "captions": [
             "",
-            "",
+            "Calculate branch condition",
             "",
             "",
             "",
@@ -14151,7 +14151,7 @@
           ],
           "captions": [
             "",
-            "",
+            "Calculate target address and store in PC and ADDR",
             "",
             "",
             "",
@@ -25452,7 +25452,7 @@
         0,
         1
       ],
-      "desciption": "On a rising edge of PC_OUT_LATCH the current value of the internal PC counter is made available on the outgoing PC bus."
+      "desciption": "On a rising edge of PC_OUT_LATCH the current value of the internal PC counter is made available on the outgoing PC bus. At the end of each instruction the PC of the next instruction should be available on the bus, which means that PC_OUT_LATCH should be asserted in all instructions."
     },
     "PC_IN_LATCH": {
       "type": "binary",
