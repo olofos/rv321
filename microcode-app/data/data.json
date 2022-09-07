@@ -792,7 +792,8 @@
       ],
       "opcode": {
         "op": 27
-      }
+      },
+      "desciption": "Latch in new PC"
     },
     "JALR": {
       "fragments": [
@@ -14995,6 +14996,7 @@
             "",
             "",
             "",
+            "Latch out old PC",
             "",
             "",
             "",
@@ -15008,8 +15010,7 @@
             "",
             "",
             "",
-            "",
-            ""
+            "Latch out new PC"
           ]
         },
         "~ILL_OP": {
@@ -15482,7 +15483,7 @@
             "",
             "",
             "",
-            "",
+            "Latch in new PC",
             "",
             "",
             "",
@@ -15635,6 +15636,7 @@
           ],
           "captions": [
             "",
+            "Calculate target address and store it in ADDR and PC",
             "",
             "",
             "",
@@ -15645,8 +15647,7 @@
             "",
             "",
             "",
-            "",
-            "",
+            "Write the previous PC to the link register",
             "",
             "",
             "",
