@@ -217,11 +217,13 @@ function opcodes(instruction, instructions) {
 function generateInstructionMicrocode(op, instructions, instructionFragments, signals) {
     const assembledInstruction = assembleInstruction(op, instructions, instructionFragments);
     const codes = Array(1 << 6).fill(0);
-    for (let index = 0; index < assembledInstruction['STEP_LEN'].values.length; index++) {
+    const len = assembledInstruction['STEP_LEN'].values.length;
+    for (let index = 0; index < len; index++) {
         codes[index] = Object.keys(assembledInstruction).map((key) =>
             signals[key].bitmap?.[assembledInstruction[key].values[index]] ?? 0
         ).reduce((acc, val) => acc + val, 0)
     }
+    codes[len] = codes[len-1];
     return codes;
 }
 
