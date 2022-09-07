@@ -119,20 +119,6 @@
       <pos x="-960" y="-220"/>
     </visualElement>
     <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>BUS-CLK</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-580" y="400"/>
-    </visualElement>
-    <visualElement>
       <elementName>In</elementName>
       <elementAttributes>
         <entry>
@@ -3410,7 +3396,7 @@ end loop
           <string>CNT-2</string>
         </entry>
       </elementAttributes>
-      <pos x="2240" y="800"/>
+      <pos x="2180" y="780"/>
     </visualElement>
     <visualElement>
       <elementName>Or</elementName>
@@ -3992,38 +3978,10 @@ end loop
         </entry>
         <entry>
           <string>NetName</string>
-          <string>BUS-CLK</string>
+          <string>BUS-CLK-GATED</string>
         </entry>
       </elementAttributes>
       <pos x="-580" y="-440"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>BUS-CLK</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-580" y="-160"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>BUS-CLK</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-580" y="120"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -15077,25 +15035,6 @@ end loop
       <pos x="-1000" y="-180"/>
     </visualElement>
     <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>OP-LATCH-LSB</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2020" y="880"/>
-    </visualElement>
-    <visualElement>
-      <elementName>And</elementName>
-      <elementAttributes/>
-      <pos x="2120" y="780"/>
-    </visualElement>
-    <visualElement>
       <elementName>NAnd</elementName>
       <elementAttributes/>
       <pos x="-20" y="-140"/>
@@ -15665,6 +15604,111 @@ end loop
       <elementAttributes/>
       <pos x="-820" y="440"/>
     </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>BUS-CLK-GATED</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-580" y="-160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>BUS-CLK-GATED</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-580" y="120"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>BUS-CLK-GATED</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-580" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>BUS-CLK-GATED</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-560" y="680"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>BUS-CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-660" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>OP-FETCH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-660" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes/>
+      <pos x="-640" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>OP-FETCH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-1000" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>OP-FETCH</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-960" y="140"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -15861,7 +15905,7 @@ end loop
     </wire>
     <wire>
       <p1 x="2040" y="780"/>
-      <p2 x="2120" y="780"/>
+      <p2 x="2180" y="780"/>
     </wire>
     <wire>
       <p1 x="-1080" y="780"/>
@@ -15894,6 +15938,10 @@ end loop
     <wire>
       <p1 x="2420" y="140"/>
       <p2 x="2440" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="-1000" y="140"/>
+      <p2 x="-960" y="140"/>
     </wire>
     <wire>
       <p1 x="1300" y="-400"/>
@@ -16024,6 +16072,10 @@ end loop
       <p2 x="-1040" y="660"/>
     </wire>
     <wire>
+      <p1 x="-660" y="660"/>
+      <p2 x="-640" y="660"/>
+    </wire>
+    <wire>
       <p1 x="1660" y="-280"/>
       <p2 x="1700" y="-280"/>
     </wire>
@@ -16146,10 +16198,6 @@ end loop
     <wire>
       <p1 x="1920" y="800"/>
       <p2 x="1960" y="800"/>
-    </wire>
-    <wire>
-      <p1 x="2180" y="800"/>
-      <p2 x="2240" y="800"/>
     </wire>
     <wire>
       <p1 x="-1080" y="800"/>
@@ -16312,6 +16360,10 @@ end loop
       <p2 x="-1040" y="680"/>
     </wire>
     <wire>
+      <p1 x="-580" y="680"/>
+      <p2 x="-560" y="680"/>
+    </wire>
+    <wire>
       <p1 x="1300" y="-300"/>
       <p2 x="1360" y="-300"/>
     </wire>
@@ -16456,10 +16508,6 @@ end loop
       <p2 x="560" y="820"/>
     </wire>
     <wire>
-      <p1 x="2080" y="820"/>
-      <p2 x="2120" y="820"/>
-    </wire>
-    <wire>
       <p1 x="-1080" y="820"/>
       <p2 x="-1040" y="820"/>
     </wire>
@@ -16570,6 +16618,10 @@ end loop
     <wire>
       <p1 x="1300" y="700"/>
       <p2 x="1360" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="-660" y="700"/>
+      <p2 x="-640" y="700"/>
     </wire>
     <wire>
       <p1 x="2420" y="60"/>
@@ -17280,10 +17332,6 @@ end loop
       <p2 x="560" y="880"/>
     </wire>
     <wire>
-      <p1 x="2020" y="880"/>
-      <p2 x="2080" y="880"/>
-    </wire>
-    <wire>
       <p1 x="2420" y="240"/>
       <p2 x="2440" y="240"/>
     </wire>
@@ -17498,10 +17546,6 @@ end loop
     <wire>
       <p1 x="-660" y="-640"/>
       <p2 x="-520" y="-640"/>
-    </wire>
-    <wire>
-      <p1 x="2080" y="820"/>
-      <p2 x="2080" y="880"/>
     </wire>
     <wire>
       <p1 x="-740" y="180"/>

@@ -137,16 +137,6 @@ function addWarnings(signalData) {
             }
         },
         () => {
-            if (signalData['OP_LATCH'].values[0] === 1) {
-                const warningIndex = signalData['OP_LATCH'].values.slice(0, -1).findIndex((_, index, array) => (array[index] === 0) && (array[index + 1] === 1));
-                if (warningIndex > 0) {
-                    addWarning(signalData, 'OP_LATCH', warningIndex + 1, 'The OP_LATCH signal should only have one rising edge.');
-                }
-            } else {
-                addWarning(signalData, 'OP_LATCH', 0, 'The OP_LATCH signal should have a rising edge at the start of the instruction.')
-            }
-        },
-        () => {
             let busVal = 0;
             let busCount = 0;
             for (let i = 0; i < lastIndex; i++) {
