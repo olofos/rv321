@@ -6295,7 +6295,7 @@
         </entry>
         <entry>
           <string>NetName</string>
-          <string>PC-CNT-EN</string>
+          <string>OP-LATCH</string>
         </entry>
       </elementAttributes>
       <pos x="2300" y="-500"/>
