@@ -33,7 +33,7 @@ function generateSyncronousSignals(signalData) {
             const last_step = index === signalData['STEP_LEN'].values.length - 1;
 
             if (bus_en) {
-                if (step_len === 4) {
+                if (step_len === 8) {
                     return 3;
                 }
                 return 2;

@@ -57,7 +57,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>~LEN4</string>
+          <string>~LEN8</string>
         </entry>
       </elementAttributes>
       <pos x="440" y="700"/>
