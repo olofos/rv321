@@ -92,66 +92,83 @@ CPU::CPU(std::function<void(uint32_t,uint32_t,const std::string& s)> on_opcode_d
     csr(on_info_),
     on_opcode_decode(on_opcode_decode_)
 {
+    const int cycles_bin_op = 37;
+    const int cycles_slt = 70;
+    const int cycles_lb = 107;
+    const int cycles_lh = 108;
+    const int cycles_lw = 110;
+    const int cycles_sb = 106;
+    const int cycles_sh = 107;
+    const int cycles_sw = 109;
+    const int cycles_shift = 104;
+    const int cycles_csr = 103;
+    const int cycles_branch = 106; // Taken branch
+    const int cycles_trap = 106;
+    const int cycles_wfi = 38;
+    const int cycles_illop = 73;
+    const int cycles_nop = 38;
+    const int cycles_jump = 73;
+
     opcode_table = {
-        bin_op("add",  0b000, 0, 105, [] (uint32_t a, uint32_t b) { return a + b; }),
-        bin_op("sub",  0b000, 1, 105, [] (uint32_t a, uint32_t b) { return a - b; }),
-        bin_op("sll",  0b001, 0, 171, [] (uint32_t a, uint32_t b) { return a << (b & 0x1F); }),
-        bin_op("slt",  0b010, 0, 138, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
-        bin_op("sltu", 0b011, 0, 138, [] (uint32_t a, uint32_t b) { return a < b; }),
-        bin_op("xor",  0b100, 0, 105, [] (uint32_t a, uint32_t b) { return a ^ b; }),
-        bin_op("srl",  0b101, 0, 171, [] (uint32_t a, uint32_t b) { return a >> (b & 0x1F); }),
-        bin_op("sra",  0b101, 1, 171, [] (uint32_t a, uint32_t b) { return static_cast<uint32_t>(static_cast<int32_t>(a) >> (b & 0x1F)); }),
-        bin_op("or",   0b110, 0, 105, [] (uint32_t a, uint32_t b) { return a | b; }),
-        bin_op("and",  0b111, 0, 105, [] (uint32_t a, uint32_t b) { return a & b; }),
+        bin_op("add",  0b000, 0, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a + b; }),
+        bin_op("sub",  0b000, 1, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a - b; }),
+        bin_op("sll",  0b001, 0, cycles_shift, [] (uint32_t a, uint32_t b) { return a << (b & 0x1F); }),
+        bin_op("slt",  0b010, 0, cycles_slt, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
+        bin_op("sltu", 0b011, 0, cycles_slt, [] (uint32_t a, uint32_t b) { return a < b; }),
+        bin_op("xor",  0b100, 0, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a ^ b; }),
+        bin_op("srl",  0b101, 0, cycles_shift, [] (uint32_t a, uint32_t b) { return a >> (b & 0x1F); }),
+        bin_op("sra",  0b101, 1, cycles_shift, [] (uint32_t a, uint32_t b) { return static_cast<uint32_t>(static_cast<int32_t>(a) >> (b & 0x1F)); }),
+        bin_op("or",   0b110, 0, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a | b; }),
+        bin_op("and",  0b111, 0, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a & b; }),
 
-        bin_imm_op("addi",  0b000, 105, [] (uint32_t a, uint32_t b) { return a + b; }),
-        bin_imm_op("slti",  0b010, 138, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
-        bin_imm_op("sltui", 0b011, 138, [] (uint32_t a, uint32_t b) { return a < b; }),
-        bin_imm_op("xori",  0b100, 105, [] (uint32_t a, uint32_t b) { return a ^ b; }),
-        bin_imm_op("ori",   0b110, 105, [] (uint32_t a, uint32_t b) { return a | b; }),
-        bin_imm_op("andi",  0b111, 105, [] (uint32_t a, uint32_t b) { return a & b; }),
+        bin_imm_op("addi",  0b000, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a + b; }),
+        bin_imm_op("slti",  0b010, cycles_slt, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
+        bin_imm_op("sltui", 0b011, cycles_slt, [] (uint32_t a, uint32_t b) { return a < b; }),
+        bin_imm_op("xori",  0b100, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a ^ b; }),
+        bin_imm_op("ori",   0b110, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a | b; }),
+        bin_imm_op("andi",  0b111, cycles_bin_op, [] (uint32_t a, uint32_t b) { return a & b; }),
 
-        shift_imm_op("slli",  0b001, 0, 171, [] (uint32_t a, uint32_t b) { return a << (b & 0x1F); }),
-        shift_imm_op("srli",  0b101, 0, 171, [] (uint32_t a, uint32_t b) { return a >> (b & 0x1F); }),
-        shift_imm_op("srai",  0b101, 1, 171, [] (uint32_t a, uint32_t b) { return static_cast<uint32_t>(static_cast<int32_t>(a) >> (b & 0x1F)); }),
+        shift_imm_op("slli",  0b001, 0, cycles_shift, [] (uint32_t a, uint32_t b) { return a << (b & 0x1F); }),
+        shift_imm_op("srli",  0b101, 0, cycles_shift, [] (uint32_t a, uint32_t b) { return a >> (b & 0x1F); }),
+        shift_imm_op("srai",  0b101, 1, cycles_shift, [] (uint32_t a, uint32_t b) { return static_cast<uint32_t>(static_cast<int32_t>(a) >> (b & 0x1F)); }),
 
-        branch_op("beq",  0b000, 106, [] (uint32_t a, uint32_t b) { return a == b; }),
-        branch_op("bne",  0b001, 106, [] (uint32_t a, uint32_t b) { return a != b; }),
-        branch_op("blt",  0b100, 106, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
-        branch_op("bge",  0b101, 106, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) >= static_cast<int32_t>(b); }),
-        branch_op("bltu", 0b110, 106, [] (uint32_t a, uint32_t b) { return a < b; }),
-        branch_op("bgeu", 0b111, 106, [] (uint32_t a, uint32_t b) { return a >= b; }),
+        branch_op("beq",  0b000, cycles_branch, [] (uint32_t a, uint32_t b) { return a == b; }),
+        branch_op("bne",  0b001, cycles_branch, [] (uint32_t a, uint32_t b) { return a != b; }),
+        branch_op("blt",  0b100, cycles_branch, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) < static_cast<int32_t>(b); }),
+        branch_op("bge",  0b101, cycles_branch, [] (uint32_t a, uint32_t b) { return static_cast<int32_t>(a) >= static_cast<int32_t>(b); }),
+        branch_op("bltu", 0b110, cycles_branch, [] (uint32_t a, uint32_t b) { return a < b; }),
+        branch_op("bgeu", 0b111, cycles_branch, [] (uint32_t a, uint32_t b) { return a >= b; }),
 
-        lui_op("lui", 105),
-        auipc_op("auipc", 105),
+        lui_op("lui", cycles_bin_op),
+        auipc_op("auipc", cycles_bin_op),
 
-        jal_op("jal", 139),
-        jalr_op("jalr", 139),
+        jal_op("jal", cycles_jump),
+        jalr_op("jalr", cycles_jump),
 
-        load_op("lb",  0b000, 140, [] (Memory &memory, uint32_t address) { return memory.read_int8(address); }),
-        load_op("lh",  0b001, 141, [] (Memory &memory, uint32_t address) { return memory.read_int16(address); }),
-        load_op("lw",  0b010, 143, [] (Memory &memory, uint32_t address) { return memory.read_uint32(address); }),
-        load_op("lbu", 0b100, 140, [] (Memory &memory, uint32_t address) { return memory.read_uint8(address); }),
-        load_op("lhu", 0b101, 141, [] (Memory &memory, uint32_t address) { return memory.read_uint16(address); }),
+        load_op("lb",  0b000, cycles_lb, [] (Memory &memory, uint32_t address) { return memory.read_int8(address); }),
+        load_op("lh",  0b001, cycles_lh, [] (Memory &memory, uint32_t address) { return memory.read_int16(address); }),
+        load_op("lw",  0b010, cycles_lw, [] (Memory &memory, uint32_t address) { return memory.read_uint32(address); }),
+        load_op("lbu", 0b100, cycles_lb, [] (Memory &memory, uint32_t address) { return memory.read_uint8(address); }),
+        load_op("lhu", 0b101, cycles_lh, [] (Memory &memory, uint32_t address) { return memory.read_uint16(address); }),
 
-        store_op("sb", 0b000, 138, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint8(address, data); }),
-        store_op("sh", 0b001, 139, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint16(address, data); }),
-        store_op("sw", 0b010, 141, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint32(address, data); }),
+        store_op("sb", 0b000, cycles_sb, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint8(address, data); }),
+        store_op("sh", 0b001, cycles_sh, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint16(address, data); }),
+        store_op("sw", 0b010, cycles_sw, [] (Memory &memory, uint32_t address, uint32_t data) { memory.write_uint32(address, data); }),
 
-        nop_op("fence.i", 0b00011, 0b001, OpCodeTable::any, OpCodeTable::any, 73),
-        nop_op("fence",   0b00011, 0b000, OpCodeTable::any, OpCodeTable::any, 73),
+        nop_op("fence.i", 0b00011, 0b001, OpCodeTable::any, OpCodeTable::any, cycles_nop),
+        nop_op("fence",   0b00011, 0b000, OpCodeTable::any, OpCodeTable::any, cycles_nop),
 
-        csr_op("csrrw", 0b001, 137, [] (uint32_t a, uint32_t b) { return a; }),
-        csr_op("csrrs", 0b010, 137, [] (uint32_t a, uint32_t b) { return b | a; }),
-        csr_op("csrrc", 0b011, 137, [] (uint32_t a, uint32_t b) { return b & ~a; }),
+        csr_op("csrrw", 0b001, cycles_csr, [] (uint32_t a, uint32_t b) { return a; }),
+        csr_op("csrrs", 0b010, cycles_csr, [] (uint32_t a, uint32_t b) { return b | a; }),
+        csr_op("csrrc", 0b011, cycles_csr, [] (uint32_t a, uint32_t b) { return b & ~a; }),
 
-        csr_imm_op("csrrwi", 0b101, 137, [] (uint32_t a, uint32_t b) { return a; }),
-        csr_imm_op("csrrsi", 0b110, 137, [] (uint32_t a, uint32_t b) { return b | a; }),
-        csr_imm_op("csrrci", 0b111, 137, [] (uint32_t a, uint32_t b) { return b & ~a; }),
+        csr_imm_op("csrrwi", 0b101, cycles_csr, [] (uint32_t a, uint32_t b) { return a; }),
+        csr_imm_op("csrrsi", 0b110, cycles_csr, [] (uint32_t a, uint32_t b) { return b | a; }),
+        csr_imm_op("csrrci", 0b111, cycles_csr, [] (uint32_t a, uint32_t b) { return b & ~a; }),
 
-        trap_op("trap", 105),
-        mret_op("mret", 105),
-        wfi_op("wfi", 73),
+        trap_op("trap", cycles_trap),
+        mret_op("mret", cycles_trap),
+        wfi_op("wfi", cycles_wfi),
     };
 
     csr.add(0x300, "mstatus", std::make_shared<MaskedRegister>(0x0088, 0x1800));
