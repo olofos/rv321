@@ -123,10 +123,10 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>OP-LATCH</string>
+          <string>OP-FETCH</string>
         </entry>
       </elementAttributes>
-      <pos x="220" y="820"/>
+      <pos x="220" y="620"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -194,11 +194,6 @@
       </elementAttributes>
       <pos x="220" y="880"/>
     </visualElement>
-    <visualElement>
-      <elementName>Not</elementName>
-      <elementAttributes/>
-      <pos x="260" y="820"/>
-    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -224,14 +219,6 @@
     <wire>
       <p1 x="660" y="580"/>
       <p2 x="960" y="580"/>
-    </wire>
-    <wire>
-      <p1 x="300" y="820"/>
-      <p2 x="380" y="820"/>
-    </wire>
-    <wire>
-      <p1 x="220" y="820"/>
-      <p2 x="260" y="820"/>
     </wire>
     <wire>
       <p1 x="380" y="820"/>
@@ -262,7 +249,15 @@
       <p2 x="580" y="620"/>
     </wire>
     <wire>
+      <p1 x="220" y="620"/>
+      <p2 x="380" y="620"/>
+    </wire>
+    <wire>
       <p1 x="380" y="600"/>
+      <p2 x="380" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="380" y="620"/>
       <p2 x="380" y="820"/>
     </wire>
   </wires>
