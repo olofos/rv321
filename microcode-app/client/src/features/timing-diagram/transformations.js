@@ -265,6 +265,53 @@ function generateBusClk(assembledInstruction) {
     return values;
 }
 
+function expandValues(values, stepLengths) {
+    const result = [];
+    for (let index = 0; index < stepLengths.length; index++) {
+        for (let tick = 0; tick < stepLengths[index]; tick++) {
+            result.push(values[index]);
+        }
+    }
+    return result;
+}
+
+function generateAddrClk(assembledInstruction) {
+    const stepLengths = assembledInstruction['STEP_LEN'].values;
+    const oe = expandValues(assembledInstruction['~MEM_OE'].values, stepLengths);
+    const we = expandValues(assembledInstruction['~MEM_WE'].values, stepLengths);
+    const addrLatch = expandValues(assembledInstruction['ADDR_LATCH'].values, stepLengths);
+
+    const values = [{ time: -0.5, duration: 2.5, value: 0, parameter: '' }];
+    for (let index = 2; index < oe.length; index++) {
+        const mem = (~(oe[index - 2] & we[index - 2])) & 1;
+        const value = mem | addrLatch[index - 1];
+        if (value === values[values.length - 1].value) {
+            values[values.length - 1].duration++;
+        } else {
+            values.push({ time: index, duration: 1, value, parameter: '' });
+        }
+    }
+    values[values.length - 1].duration += 0.5;
+    return values;
+}
+
+function generateAddrPE(assembledInstruction) {
+    const stepLengths = assembledInstruction['STEP_LEN'].values;
+    const addrLatch = assembledInstruction['ADDR_LATCH'].values;
+    const values = [{ time: -0.5, duration: 1, value: 1, parameter: '' }];
+    let time = 0.5;
+    for (let index = 0; index < stepLengths.length; index++) {
+        const value = ~addrLatch[index] & 1;
+        const lastValue = values[values.length - 1];
+        if (value === lastValue.value) {
+            lastValue.duration += stepLengths[index];
+        } else {
+            values.push({ time: lastValue.time + lastValue.duration, duration: stepLengths[index], value, parameter: '' });
+        }
+    }
+    return values;
+}
+
 function generateCount(assembledInstruction) {
     const stepLengths = assembledInstruction['STEP_LEN'].values;
     const values = [{ time: -1, duration: 1, value: '', parameter: '' }];
@@ -287,6 +334,8 @@ export function generateInstructionTimeSeries(assembledInstruction, signals) {
         'CLK': generateClk(assembledInstruction),
         'BUS_CLK': generateBusClk(assembledInstruction),
         '[count]': generateCount(assembledInstruction),
+        'ADDR_CLK': generateAddrClk(assembledInstruction),
+        '~ADDR_PE': generateAddrPE(assembledInstruction),
     };
 
     for (let signalName in assembledInstruction) {

@@ -18113,6 +18113,18 @@
       ],
       "desciption": "On a rising edge of ADDR_LATCH a new address is latched in to the memory controller."
     },
+    "ADDR_CLK": {
+      "type": "binary",
+      "pre": 0,
+      "post": 0,
+      "generated": true
+    },
+    "~ADDR_PE": {
+      "type": "binary",
+      "pre": 1,
+      "post": 1,
+      "generated": true
+    },
     "~MEM_OE": {
       "type": "binary",
       "pre": 1,
@@ -18437,6 +18449,8 @@
     "PC_CNT_EN",
     "IMM_PC_OUT_SP",
     "ADDR_LATCH",
+    "~ADDR_PE",
+    "ADDR_CLK",
     "~MEM_OE",
     "~MEM_WE",
     "OP_FETCH",
