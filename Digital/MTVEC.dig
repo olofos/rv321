@@ -392,6 +392,16 @@
       </elementAttributes>
       <pos x="600" y="780"/>
     </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Why not tie ~CP1 to ground?</string>
+        </entry>
+      </elementAttributes>
+      <pos x="380" y="1160"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
