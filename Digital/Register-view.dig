@@ -850,10 +850,24 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>4</int>
+          <int>5</int>
         </entry>
       </elementAttributes>
-      <pos x="-400" y="380"/>
+      <pos x="-440" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>5</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-420" y="380"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -1104,6 +1118,10 @@
     <wire>
       <p1 x="-400" y="380"/>
       <p2 x="-160" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="-440" y="380"/>
+      <p2 x="-420" y="380"/>
     </wire>
     <wire>
       <p1 x="260" y="1020"/>

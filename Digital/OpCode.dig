@@ -2189,7 +2189,7 @@
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>4,1</string>
+          <string>5</string>
         </entry>
       </elementAttributes>
       <pos x="1900" y="-420"/>
@@ -2273,7 +2273,7 @@
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>4,1</string>
+          <string>5</string>
         </entry>
       </elementAttributes>
       <pos x="2220" y="-420"/>
@@ -2361,7 +2361,7 @@
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>4,1</string>
+          <string>5</string>
         </entry>
       </elementAttributes>
       <pos x="2540" y="-420"/>
@@ -15942,6 +15942,10 @@ end loop
     <wire>
       <p1 x="-1000" y="140"/>
       <p2 x="-960" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="3180" y="140"/>
+      <p2 x="3240" y="140"/>
     </wire>
     <wire>
       <p1 x="1300" y="-400"/>
