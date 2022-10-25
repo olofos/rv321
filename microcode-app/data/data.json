@@ -19434,7 +19434,29 @@
         0,
         1
       ],
+      "desciption": ""
+    },
+    "OP_LATCH": {
+      "type": "binary",
+      "pre": 0,
+      "post": 1,
+      "generated": true,
+      "options": [
+        0,
+        1
+      ],
       "desciption": "On the rising edge of OP_LATCH a new opcode is latched in and decoded."
+    },
+    "IMM_LATCH": {
+      "type": "binary",
+      "pre": 0,
+      "post": 0,
+      "generated": true,
+      "options": [
+        0,
+        1
+      ],
+      "desciption": ""
     },
     "~ILL_OP": {
       "type": "binary",
@@ -19667,7 +19689,7 @@
     "PC_CNT_EN": {
       "type": "binary",
       "pre": 0,
-      "post": 0,
+      "post": 1,
       "generated": true,
       "options": [
         0,
@@ -19723,6 +19745,8 @@
     "~MEM_OE",
     "~MEM_WE",
     "OP_FETCH",
+    "OP_LATCH",
+    "IMM_LATCH",
     "~ILL_OP",
     "BUS_EN",
     "ALU_OP",

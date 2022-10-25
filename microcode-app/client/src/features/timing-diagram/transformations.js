@@ -47,6 +47,7 @@ function generateSyncronousSignals(signalData) {
         },
         'ALU_B_MUX': (index) => (signalData['IMM_MUX'].values[index] === 'ImmCSR') ? 'RS2' : signalData['IMM_MUX'].values[index],
         'PC_CNT_EN': (index) => (index === 0) ? 1 : 0,
+        'OP_LATCH': (index) => (index === 0) ? 1 : 0,
         'IMM_PC_OUT_SP': (index) => {
             const busSteps = signalData['STEP_LEN'].values.slice(0, index + 1).filter((_, i) => signalData['BUS_EN'].values[i] === 1);
             const stepCount = busSteps.reduce((acc, val) => acc + val, 0);
@@ -213,7 +214,7 @@ function generateInstructionMicrocode(op, instructions, instructionFragments, si
             signals[key].bitmap?.[assembledInstruction[key].values[index]] ?? 0
         ).reduce((acc, val) => acc + val, 0)
     }
-    codes[len] = codes[len-1];
+    codes[len] = codes[len - 1];
     return codes;
 }
 
@@ -312,6 +313,20 @@ function generateAddrPE(assembledInstruction) {
     return values;
 }
 
+function generateImmLatch(assembledInstruction) {
+    const stepLengths = assembledInstruction['STEP_LEN'].values;
+    let len = 0;
+    for (let step of stepLengths) {
+        len += step;
+    }
+    const values = [
+        { time: -0.5, duration: 1, value: 0, parameter: '' },
+        { time: 0.5, duration: 1, value: 1, parameter: '' },
+        { time: 1.5, duration: len - 1, value: 0, parameter: '' },
+    ];
+    return values;
+}
+
 function generateCount(assembledInstruction) {
     const stepLengths = assembledInstruction['STEP_LEN'].values;
     const values = [{ time: -1, duration: 1, value: '', parameter: '' }];
@@ -336,6 +351,7 @@ export function generateInstructionTimeSeries(assembledInstruction, signals) {
         '[count]': generateCount(assembledInstruction),
         'ADDR_CLK': generateAddrClk(assembledInstruction),
         '~ADDR_PE': generateAddrPE(assembledInstruction),
+        'IMM_LATCH': generateImmLatch(assembledInstruction),
     };
 
     for (let signalName in assembledInstruction) {
