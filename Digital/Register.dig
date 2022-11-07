@@ -9,11 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>HEF4557B.dig</elementName>
-      <elementAttributes/>
-      <pos x="760" y="360"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="740" y="580"/>
@@ -130,6 +125,11 @@
         </entry>
       </elementAttributes>
       <pos x="320" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>HEF4557B</elementName>
+      <elementAttributes/>
+      <pos x="760" y="360"/>
     </visualElement>
   </visualElements>
   <wires>

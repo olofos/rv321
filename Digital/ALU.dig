@@ -1594,11 +1594,6 @@ end loop
       <pos x="120" y="500"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC4017.dig</elementName>
-      <elementAttributes/>
-      <pos x="-40" y="-240"/>
-    </visualElement>
-    <visualElement>
       <elementName>Not</elementName>
       <elementAttributes/>
       <pos x="-100" y="-200"/>
@@ -1847,6 +1842,11 @@ end loop
         </entry>
       </elementAttributes>
       <pos x="700" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>744017</elementName>
+      <elementAttributes/>
+      <pos x="-40" y="-240"/>
     </visualElement>
   </visualElements>
   <wires>

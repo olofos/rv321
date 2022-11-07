@@ -96,16 +96,6 @@
       <pos x="620" y="100"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1340" y="500"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1340" y="160"/>
-    </visualElement>
-    <visualElement>
       <elementName>Tunnel</elementName>
       <elementAttributes>
         <entry>
@@ -318,11 +308,6 @@
         </entry>
       </elementAttributes>
       <pos x="1320" y="580"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1340" y="-180"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -615,11 +600,6 @@
       <pos x="1180" y="-20"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="880" y="540"/>
-    </visualElement>
-    <visualElement>
       <elementName>Tunnel</elementName>
       <elementAttributes>
         <entry>
@@ -685,11 +665,6 @@
         </entry>
       </elementAttributes>
       <pos x="860" y="620"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="880" y="300"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -759,11 +734,6 @@
       <pos x="860" y="380"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="880" y="60"/>
-    </visualElement>
-    <visualElement>
       <elementName>Tunnel</elementName>
       <elementAttributes>
         <entry>
@@ -829,11 +799,6 @@
         </entry>
       </elementAttributes>
       <pos x="860" y="140"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="880" y="-180"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1331,6 +1296,41 @@
         </entry>
       </elementAttributes>
       <pos x="1740" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="880" y="-180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="880" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="880" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="880" y="540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1340" y="-180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1340" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1340" y="500"/>
     </visualElement>
   </visualElements>
   <wires>

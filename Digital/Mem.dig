@@ -14,11 +14,6 @@
       <pos x="560" y="140"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="340" y="460"/>
-    </visualElement>
-    <visualElement>
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
@@ -99,21 +94,6 @@
       <pos x="100" y="640"/>
     </visualElement>
     <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes/>
-      <pos x="320" y="560"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Value</string>
-          <long>0</long>
-        </entry>
-      </elementAttributes>
-      <pos x="320" y="580"/>
-    </visualElement>
-    <visualElement>
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
@@ -132,11 +112,6 @@
         </entry>
       </elementAttributes>
       <pos x="60" y="-20"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1540" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Splitter</elementName>
@@ -902,6 +877,16 @@ end loop
       </elementAttributes>
       <pos x="1640" y="140"/>
     </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="340" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1540" y="460"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -919,10 +904,6 @@ end loop
     <wire>
       <p1 x="460" y="580"/>
       <p2 x="500" y="580"/>
-    </wire>
-    <wire>
-      <p1 x="320" y="580"/>
-      <p2 x="340" y="580"/>
     </wire>
     <wire>
       <p1 x="100" y="580"/>
@@ -1123,10 +1104,6 @@ end loop
     <wire>
       <p1 x="460" y="560"/>
       <p2 x="500" y="560"/>
-    </wire>
-    <wire>
-      <p1 x="320" y="560"/>
-      <p2 x="340" y="560"/>
     </wire>
     <wire>
       <p1 x="600" y="560"/>

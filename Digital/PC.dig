@@ -9,46 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="480" y="700"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="640"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="980"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1860" y="520"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="1040" y="820"/>
@@ -92,36 +52,6 @@
         </entry>
       </elementAttributes>
       <pos x="1040" y="1180"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="480" y="1360"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="1300"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="1640"/>
     </visualElement>
     <visualElement>
       <elementName>Const</elementName>
@@ -169,36 +99,6 @@
       <pos x="1040" y="1840"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="480" y="2020"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="1960"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="2300"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="1040" y="2140"/>
@@ -242,36 +142,6 @@
         </entry>
       </elementAttributes>
       <pos x="1040" y="2500"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="480" y="2680"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="2620"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74161.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1060" y="2960"/>
     </visualElement>
     <visualElement>
       <elementName>Const</elementName>
@@ -349,36 +219,6 @@
         </entry>
       </elementAttributes>
       <pos x="1080" y="340"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1860" y="1180"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1860" y="1840"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes>
-        <entry>
-          <string>shapeType</string>
-          <shapeType>SIMPLE</shapeType>
-        </entry>
-      </elementAttributes>
-      <pos x="1860" y="2500"/>
     </visualElement>
     <visualElement>
       <elementName>Const</elementName>
@@ -1814,6 +1654,86 @@ end loop
       <elementName>XOr</elementName>
       <elementAttributes/>
       <pos x="700" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="480" y="1360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="480" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="480" y="2020"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="480" y="2680"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="980"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="1300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="1640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="1960"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="2300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="2620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74161</elementName>
+      <elementAttributes/>
+      <pos x="1060" y="2960"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1860" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1860" y="1180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1860" y="1840"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1860" y="2500"/>
     </visualElement>
   </visualElements>
   <wires>

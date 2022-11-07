@@ -9,11 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1100" y="360"/>
-    </visualElement>
-    <visualElement>
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
@@ -90,6 +85,11 @@
         </entry>
       </elementAttributes>
       <pos x="1400" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="360"/>
     </visualElement>
   </visualElements>
   <wires>

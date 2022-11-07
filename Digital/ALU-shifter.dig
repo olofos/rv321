@@ -9,16 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>HEF4557B.dig</elementName>
-      <elementAttributes/>
-      <pos x="2280" y="600"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="1640" y="960"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="2260" y="840"/>
@@ -330,6 +320,16 @@ end loop
       <elementName>PullUp</elementName>
       <elementAttributes/>
       <pos x="2180" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="1640" y="960"/>
+    </visualElement>
+    <visualElement>
+      <elementName>HEF4557B</elementName>
+      <elementAttributes/>
+      <pos x="2280" y="600"/>
     </visualElement>
   </visualElements>
   <wires>

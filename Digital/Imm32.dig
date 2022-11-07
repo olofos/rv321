@@ -9,11 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1100" y="360"/>
-    </visualElement>
-    <visualElement>
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
@@ -78,11 +73,6 @@
       <pos x="1400" y="360"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1100" y="-80"/>
-    </visualElement>
-    <visualElement>
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
@@ -95,11 +85,6 @@
         </entry>
       </elementAttributes>
       <pos x="1000" y="20"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1100" y="-520"/>
     </visualElement>
     <visualElement>
       <elementName>Splitter</elementName>
@@ -148,11 +133,6 @@
       <pos x="220" y="40"/>
     </visualElement>
     <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1100" y="-960"/>
-    </visualElement>
-    <visualElement>
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
@@ -165,6 +145,26 @@
         </entry>
       </elementAttributes>
       <pos x="1000" y="-860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="-960"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="-520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="-80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1100" y="360"/>
     </visualElement>
   </visualElements>
   <wires>

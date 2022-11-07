@@ -9,26 +9,6 @@
   </attributes>
   <visualElements>
     <visualElement>
-      <elementName>74HC595.dig</elementName>
-      <elementAttributes/>
-      <pos x="360" y="420"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1420" y="360"/>
-    </visualElement>
-    <visualElement>
-      <elementName>74HC597.dig</elementName>
-      <elementAttributes/>
-      <pos x="1420" y="20"/>
-    </visualElement>
-    <visualElement>
-      <elementName>HEF4557B.dig</elementName>
-      <elementAttributes/>
-      <pos x="360" y="20"/>
-    </visualElement>
-    <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
       <pos x="340" y="160"/>
@@ -963,7 +943,7 @@
     <visualElement>
       <elementName>Const</elementName>
       <elementAttributes/>
-      <pos x="880" y="520"/>
+      <pos x="880" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -977,7 +957,7 @@
           <string>~RESET</string>
         </entry>
       </elementAttributes>
-      <pos x="880" y="460"/>
+      <pos x="880" y="520"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1400,6 +1380,26 @@
         </entry>
       </elementAttributes>
       <pos x="1640" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>HEF4557B</elementName>
+      <elementAttributes/>
+      <pos x="360" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74595</elementName>
+      <elementAttributes/>
+      <pos x="360" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1420" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>74597</elementName>
+      <elementAttributes/>
+      <pos x="1420" y="360"/>
     </visualElement>
   </visualElements>
   <wires>
